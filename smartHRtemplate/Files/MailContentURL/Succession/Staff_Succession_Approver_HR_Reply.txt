@@ -1,0 +1,10 @@
+
+Staff ID: @empid
+
+@mgrname has @status the succession plan of @empname for the job role of @job (@grade)
+
+@comment
+
+Thank you.
+
+@company

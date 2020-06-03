@@ -1,0 +1,15 @@
+Dear @mgrname,
+
+Kindly accept this as a formal requisition for the following job position which requires your approval.
+
+Here are the details:
+
+Hiring Manager    : @hiringmgr
+Dept/Unit         : @dept
+Job Title         : @job
+Positions		  : @number
+Latest Resumption : @resumptiondate
+
+Thank you.
+
+@company

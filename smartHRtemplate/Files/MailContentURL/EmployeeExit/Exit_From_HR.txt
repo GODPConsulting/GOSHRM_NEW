@@ -1,0 +1,22 @@
+Staff ID: @empid
+
+Kindly accept this mail as job exit request which requires your approval
+
+Here are the details:
+Employee     : @empname
+
+Dept/Unit    : @dept
+
+Job Title    : @job
+
+Reports To   : @supervisor
+
+Exit Date    : @exitdate
+
+Reason:
+@reason
+
+
+Thank you.
+
+@company

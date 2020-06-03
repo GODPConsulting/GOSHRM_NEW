@@ -1,0 +1,8 @@
+Staff ID: @empid
+
+Dear @empfname,
+
+@mgrname has @status to guarantee your Loan @ref requiring him/her to serve as guarantor.
+
+
+@company

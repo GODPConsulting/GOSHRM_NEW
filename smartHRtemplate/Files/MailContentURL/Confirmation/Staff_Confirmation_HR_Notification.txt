@@ -1,0 +1,9 @@
+Staff ID: @empid
+
+@mgrname has completed the Confirmation Review for @empname.
+
+Your review and approval is required.
+
+Thank you.
+
+@company

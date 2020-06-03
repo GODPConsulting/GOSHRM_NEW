@@ -1,0 +1,16 @@
+Staff ID: @empid
+
+Appraisal Final Comment for your Review
+
+Details:
+
+Employee     : @empname
+Dept/Unit    : @dept
+
+Reason:
+@reason
+
+
+Thank you.
+
+@company

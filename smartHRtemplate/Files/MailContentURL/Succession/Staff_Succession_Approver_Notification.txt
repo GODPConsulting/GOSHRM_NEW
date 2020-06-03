@@ -1,0 +1,13 @@
+
+Staff ID: @empid
+
+Dear @approver,
+
+Succession plan for @empname for the job role of @job (@grade) has been initiated.
+
+Your review and approval is required.
+
+Thank you.
+
+@company
+

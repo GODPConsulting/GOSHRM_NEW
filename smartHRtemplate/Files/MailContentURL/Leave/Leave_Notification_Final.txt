@@ -1,0 +1,16 @@
+Staff ID: @empid
+
+Dear @empname,
+
+Your leave request has been @status by @approver.
+
+Details:
+
+Leave Type   : @leavetype
+Leave Period : @startdate to @enddate
+
+Find attached your leave letter.
+
+Thank you.
+
+@company

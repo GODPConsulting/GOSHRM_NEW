@@ -1,0 +1,18 @@
+Staff ID: @empid
+
+Leave request has been @status by @approver.
+
+Details:
+
+Employee     : @empname
+Leave Ref    : @ref
+Leave Type   : @leavetype
+Leave Period : @startdate to @enddate
+
+Comment:
+@comment
+
+
+Thank you.
+
+@company

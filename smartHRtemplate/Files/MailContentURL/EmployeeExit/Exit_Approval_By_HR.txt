@@ -1,0 +1,21 @@
+Staff ID: @empid
+
+Kindly accept this mail as job exit request response to @empname
+
+Here are the details:
+Employee        : @empname
+
+Dept/Unit       : @dept
+
+Approval Status : @status
+
+Approved by     : @mgrname
+
+Exit Date       : @exitdate
+
+Comment:
+@comment
+
+
+
+@company

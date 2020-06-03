@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Performance_result" targetNamespace="http://tempuri.org/Performance_result.xsd" xmlns:mstns="http://tempuri.org/Performance_result.xsd" xmlns="http://tempuri.org/Performance_result.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="GOSHRMConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="GOSHRMConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.GOSHRMConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="Performance_All_ReportTableAdapter" GeneratorDataComponentClassName="Performance_All_ReportTableAdapter" Name="Performance_All_Report" UserDataComponentName="Performance_All_ReportTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="GOSHRMConnectionString (Web.config)" DbObjectName="GOSHRM.dbo.Performance_All_Report" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT Rows, Period, EmpID, Name, CoachName, ReviewerI, ReviewerII, ReviewerIpoint, ReviewerIIPoint, RevieweePoint, OverallPoint, Overscore, AdjustedScore, Recommendation, StartPeriod, EndPeriod, GradeBefore, GradeAfter, Office FROM dbo.Performance_All_Report</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Rows" DataSetColumn="Rows" />
+              <Mapping SourceColumn="Period" DataSetColumn="Period" />
+              <Mapping SourceColumn="EmpID" DataSetColumn="EmpID" />
+              <Mapping SourceColumn="Name" DataSetColumn="Name" />
+              <Mapping SourceColumn="CoachName" DataSetColumn="CoachName" />
+              <Mapping SourceColumn="ReviewerI" DataSetColumn="ReviewerI" />
+              <Mapping SourceColumn="ReviewerII" DataSetColumn="ReviewerII" />
+              <Mapping SourceColumn="ReviewerIpoint" DataSetColumn="ReviewerIpoint" />
+              <Mapping SourceColumn="ReviewerIIPoint" DataSetColumn="ReviewerIIPoint" />
+              <Mapping SourceColumn="RevieweePoint" DataSetColumn="RevieweePoint" />
+              <Mapping SourceColumn="OverallPoint" DataSetColumn="OverallPoint" />
+              <Mapping SourceColumn="Overscore" DataSetColumn="Overscore" />
+              <Mapping SourceColumn="AdjustedScore" DataSetColumn="AdjustedScore" />
+              <Mapping SourceColumn="Recommendation" DataSetColumn="Recommendation" />
+              <Mapping SourceColumn="StartPeriod" DataSetColumn="StartPeriod" />
+              <Mapping SourceColumn="EndPeriod" DataSetColumn="EndPeriod" />
+              <Mapping SourceColumn="GradeBefore" DataSetColumn="GradeBefore" />
+              <Mapping SourceColumn="GradeAfter" DataSetColumn="GradeAfter" />
+              <Mapping SourceColumn="Office" DataSetColumn="Office" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Performance_result" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="Performance_result" msprop:Generator_UserDSName="Performance_result">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Performance_All_Report" msprop:Generator_TableClassName="Performance_All_ReportDataTable" msprop:Generator_TableVarName="tablePerformance_All_Report" msprop:Generator_TablePropName="Performance_All_Report" msprop:Generator_RowDeletingName="Performance_All_ReportRowDeleting" msprop:Generator_RowChangingName="Performance_All_ReportRowChanging" msprop:Generator_RowEvHandlerName="Performance_All_ReportRowChangeEventHandler" msprop:Generator_RowDeletedName="Performance_All_ReportRowDeleted" msprop:Generator_UserTableName="Performance_All_Report" msprop:Generator_RowChangedName="Performance_All_ReportRowChanged" msprop:Generator_RowEvArgName="Performance_All_ReportRowChangeEvent" msprop:Generator_RowClassName="Performance_All_ReportRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Rows" msprop:Generator_ColumnVarNameInTable="columnRows" msprop:Generator_ColumnPropNameInRow="Rows" msprop:Generator_ColumnPropNameInTable="RowsColumn" msprop:Generator_UserColumnName="Rows" type="xs:long" minOccurs="0" />
+              <xs:element name="Period" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPeriod" msprop:Generator_ColumnPropNameInRow="Period" msprop:Generator_ColumnPropNameInTable="PeriodColumn" msprop:Generator_UserColumnName="Period" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="103" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EmpID" msprop:Generator_ColumnVarNameInTable="columnEmpID" msprop:Generator_ColumnPropNameInRow="EmpID" msprop:Generator_ColumnPropNameInTable="EmpIDColumn" msprop:Generator_UserColumnName="EmpID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Name" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="201" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CoachName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCoachName" msprop:Generator_ColumnPropNameInRow="CoachName" msprop:Generator_ColumnPropNameInTable="CoachNameColumn" msprop:Generator_UserColumnName="CoachName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="201" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ReviewerI" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnReviewerI" msprop:Generator_ColumnPropNameInRow="ReviewerI" msprop:Generator_ColumnPropNameInTable="ReviewerIColumn" msprop:Generator_UserColumnName="ReviewerI" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="201" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ReviewerII" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnReviewerII" msprop:Generator_ColumnPropNameInRow="ReviewerII" msprop:Generator_ColumnPropNameInTable="ReviewerIIColumn" msprop:Generator_UserColumnName="ReviewerII" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="201" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ReviewerIpoint" msprop:Generator_ColumnVarNameInTable="columnReviewerIpoint" msprop:Generator_ColumnPropNameInRow="ReviewerIpoint" msprop:Generator_ColumnPropNameInTable="ReviewerIpointColumn" msprop:Generator_UserColumnName="ReviewerIpoint" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ReviewerIIPoint" msprop:Generator_ColumnVarNameInTable="columnReviewerIIPoint" msprop:Generator_ColumnPropNameInRow="ReviewerIIPoint" msprop:Generator_ColumnPropNameInTable="ReviewerIIPointColumn" msprop:Generator_UserColumnName="ReviewerIIPoint" type="xs:decimal" minOccurs="0" />
+              <xs:element name="RevieweePoint" msprop:Generator_ColumnVarNameInTable="columnRevieweePoint" msprop:Generator_ColumnPropNameInRow="RevieweePoint" msprop:Generator_ColumnPropNameInTable="RevieweePointColumn" msprop:Generator_UserColumnName="RevieweePoint" type="xs:decimal" minOccurs="0" />
+              <xs:element name="OverallPoint" msprop:Generator_ColumnVarNameInTable="columnOverallPoint" msprop:Generator_ColumnPropNameInRow="OverallPoint" msprop:Generator_ColumnPropNameInTable="OverallPointColumn" msprop:Generator_UserColumnName="OverallPoint" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Overscore" msprop:Generator_ColumnVarNameInTable="columnOverscore" msprop:Generator_ColumnPropNameInRow="Overscore" msprop:Generator_ColumnPropNameInTable="OverscoreColumn" msprop:Generator_UserColumnName="Overscore" type="xs:decimal" minOccurs="0" />
+              <xs:element name="AdjustedScore" msprop:Generator_ColumnVarNameInTable="columnAdjustedScore" msprop:Generator_ColumnPropNameInRow="AdjustedScore" msprop:Generator_ColumnPropNameInTable="AdjustedScoreColumn" msprop:Generator_UserColumnName="AdjustedScore" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Recommendation" msprop:Generator_ColumnVarNameInTable="columnRecommendation" msprop:Generator_ColumnPropNameInRow="Recommendation" msprop:Generator_ColumnPropNameInTable="RecommendationColumn" msprop:Generator_UserColumnName="Recommendation" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StartPeriod" msprop:Generator_ColumnVarNameInTable="columnStartPeriod" msprop:Generator_ColumnPropNameInRow="StartPeriod" msprop:Generator_ColumnPropNameInTable="StartPeriodColumn" msprop:Generator_UserColumnName="StartPeriod" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="EndPeriod" msprop:Generator_ColumnVarNameInTable="columnEndPeriod" msprop:Generator_ColumnPropNameInRow="EndPeriod" msprop:Generator_ColumnPropNameInTable="EndPeriodColumn" msprop:Generator_UserColumnName="EndPeriod" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="GradeBefore" msprop:Generator_ColumnVarNameInTable="columnGradeBefore" msprop:Generator_ColumnPropNameInRow="GradeBefore" msprop:Generator_ColumnPropNameInTable="GradeBeforeColumn" msprop:Generator_UserColumnName="GradeBefore" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="GradeAfter" msprop:Generator_ColumnVarNameInTable="columnGradeAfter" msprop:Generator_ColumnPropNameInRow="GradeAfter" msprop:Generator_ColumnPropNameInTable="GradeAfterColumn" msprop:Generator_UserColumnName="GradeAfter" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Office" msprop:Generator_ColumnVarNameInTable="columnOffice" msprop:Generator_ColumnPropNameInRow="Office" msprop:Generator_ColumnPropNameInTable="OfficeColumn" msprop:Generator_UserColumnName="Office" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

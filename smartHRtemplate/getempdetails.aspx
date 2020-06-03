@@ -1,0 +1,1 @@
+﻿<%@ Page Language="vb"    CodeBehind="getempdetails.aspx.vb" Inherits="GOSHRM.DummyMisc"%><html><body><%=out3%></body></html>

@@ -1,0 +1,478 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="Recruit.Master.vb" Inherits="GOSHRM.Recruit" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ Register Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" TagPrefix="telerik" %>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+    <%--        <title>Dashboard - HRMS admin template</title>--%>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="css/fullcalendar.min.css" rel="stylesheet" />
+    <link href="css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/select2.min.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" type="text/css">
+    <link rel="stylesheet" href="plugins/morris/morris.css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/gridview.css" rel="stylesheet" type="text/css">
+    <link href="css/w3.css" rel="stylesheet" type="text/css" />
+    <link href="css/slider-goke.css" rel="stylesheet" type="text/css" />
+    <title>
+        <asp:ContentPlaceHolder ID="title" runat="server">
+        </asp:ContentPlaceHolder>
+    </title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+    <telerik:RadScriptManager ID="RadScriptManager1" runat="server">
+    </telerik:RadScriptManager>
+    <div class="main-wrapper">
+         <div class="header">
+            <div class="header-left">
+                <a href="#" class="logo">
+                </a>
+            </div>
+            <div class="page-title-box pull-left">
+                <h3 id="divwelcome" runat="server">
+                    &nbsp;</h3>
+            </div>
+            <div style="margin-top:10px;" class="header-right pull-right">
+                <a style="margin-right: 40px;" href="<%= Page.ResolveClientUrl("~/home.aspx")%>"
+                    class="logo-dark">
+                    <img src="<%= Page.ResolveClientUrl("~/Module/Admin/Organisation/CompanyLogo.ashx")%>" width="40" height="40"
+                        alt=""/>
+                </a><a href="<%= Page.ResolveClientUrl("~/home.aspx")%>" class="logo">
+                    <img src="<%= Page.ResolveClientUrl("~/Module/Admin/Organisation/CompanyLogo.ashx")%>" width="40" height="40"
+                        alt=""/>
+                </a>
+                <%--<button id="btnLogin" runat="server" onserverclick="Signout_Click" class="btn btn-link" style="height:15px"
+                                type="submit">
+                               <u>Sign Out</u></button>--%>
+            </div>
+            <a id="mobile_btn" class="mobile_btn pull-left" href="#sidebar"><i class="fa fa-bars"
+                aria-hidden="true"></i></a>
+       <%--     <ul class="nav navbar-nav navbar-right user-menu pull-right">
+                <li class="dropdown toolbar-icon-bg hidden-xs"><a href="events.html" id="" class="">
+                    <i class="fa fa-calendar"></i><span class="badge bg-purple pull-right">8</span></a>
+                </li>
+                <li class="dropdown hidden-xs"><a href="#" class="hasnotifications dropdown-toggle"
+                    data-toggle="dropdown"><i class="fa fa-rss"></i><span class="badge bg-purple pull-right">
+                        4</span></a>
+                    <div class="dropdown-menu notifications">
+                        <div class="topnav-dropdown-header">
+                            <span>Blog Notifications</span>
+                        </div>
+                        <div class="drop-scroll">
+                            <ul class="media-list scroll-content">
+                                <li class="media notification-message"><a href="BlackBoardView.html">
+                                    <div class="media-left">
+                                        <span class="avatar">
+                                            <img alt="John Doe" src="<%= Page.ResolveClientUrl("~/images/user.jpg")%>" class="img-responsive img-circle">
+                                        </span>
+                                    </div>
+                                    <div class="media-body">
+                                        <p class="m-0 noti-details">
+                                            <span class="noti-title">John Doe</span> added new post <span class="noti-title">Patient
+                                                appointment booking</span></p>
+                                        <p class="m-0">
+                                            <span class="notification-time">4 mins ago</span></p>
+                                    </div>
+                                </a></li>
+                                <li class="media notification-message"><a href="BlackBoardView.html">
+                                    <div class="media-left">
+                                        <span class="avatar">V</span>
+                                    </div>
+                                    <div class="media-body">
+                                        <p class="m-0 noti-details">
+                                            <span class="noti-title">Tarah Shropshire</span> commented on your post <span class="noti-title">
+                                                Appointment booking with payment gateway</span></p>
+                                        <p class="m-0">
+                                            <span class="notification-time">6 mins ago</span></p>
+                                    </div>
+                                </a></li>
+                                <li class="media notification-message"><a href="BlackBoardView.html">
+                                    <div class="media-left">
+                                        <span class="avatar">L</span>
+                                    </div>
+                                    <div class="media-body">
+                                        <p class="m-0 noti-details">
+                                            <span class="noti-title">Misty Tison</span> likes your blog post <span class="noti-title">
+                                                Domenic Houston</span> and <span class="noti-title">Claire Mapes</span> to project
+                                            <span class="noti-title">Doctor available module</span></p>
+                                        <p class="m-0">
+                                            <span class="notification-time">8 mins ago</span></p>
+                                    </div>
+                                </a></li>
+                                <li class="media notification-message"><a href="BlackBoardView.html">
+                                    <div class="media-left">
+                                        <span class="avatar">G</span>
+                                    </div>
+                                    <div class="media-body">
+                                        <p class="m-0 noti-details">
+                                            <span class="noti-title">Rolland Webber</span> likes your comment on <span class="noti-title">
+                                                Patient and Doctor video conferencing</span></p>
+                                        <p class="m-0">
+                                            <span class="notification-time">12 mins ago</span></p>
+                                    </div>
+                                </a></li>
+                            </ul>
+                        </div>
+                        <div class="topnav-dropdown-footer">
+                            <a href="Blackboard.html">View all Blog Notifications</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="dropdown hidden-xs"><a href="#" class="hasnotifications dropdown-toggle"
+                    data-toggle="dropdown"><i class="fa fa-envelope"></i><span class="badge bg-purple pull-right">
+                        3</span></a>
+                    <div class="dropdown-menu notifications">
+                        <div class="topnav-dropdown-header">
+                            <span>Mail Notifications</span>
+                        </div>
+                        <div class="drop-scroll">
+                            <ul class="media-list scroll-content">
+                                <li class="media notification-message"><a href="inbox.html">
+                                    <div class="media-left">
+                                        <span class="avatar">
+                                            <img alt="John Doe" src="<%= Page.ResolveClientUrl("~/images/user.jpg")%>" class="img-responsive img-circle">
+                                        </span>
+                                    </div>
+                                    <div class="media-body">
+                                        <p class="m-0 noti-details">
+                                            <span class="noti-title">John Doe</span> added new task <span class="noti-title">Patient
+                                                appointment booking</span></p>
+                                        <p class="m-0">
+                                            <span class="notification-time">4 mins ago</span></p>
+                                    </div>
+                                </a></li>
+                                <li class="media notification-message"><a href="inbox.html">
+                                    <div class="media-left">
+                                        <span class="avatar">V</span>
+                                    </div>
+                                    <div class="media-body">
+                                        <p class="m-0 noti-details">
+                                            <span class="noti-title">Tarah Shropshire</span> changed the task name <span class="noti-title">
+                                                Appointment booking with payment gateway</span></p>
+                                        <p class="m-0">
+                                            <span class="notification-time">6 mins ago</span></p>
+                                    </div>
+                                </a></li>
+                                <li class="media notification-message"><a href="inbox.html">
+                                    <div class="media-left">
+                                        <span class="avatar">L</span>
+                                    </div>
+                                    <div class="media-body">
+                                        <p class="m-0 noti-details">
+                                            <span class="noti-title">Misty Tison</span> added <span class="noti-title">Domenic Houston</span>
+                                            and <span class="noti-title">Claire Mapes</span> to project <span class="noti-title">
+                                                Doctor available module</span></p>
+                                        <p class="m-0">
+                                            <span class="notification-time">8 mins ago</span></p>
+                                    </div>
+                                </a></li>
+                                <li class="media notification-message"><a href="inbox.html">
+                                    <div class="media-left">
+                                        <span class="avatar">G</span>
+                                    </div>
+                                    <div class="media-body">
+                                        <p class="m-0 noti-details">
+                                            <span class="noti-title">Rolland Webber</span> completed task <span class="noti-title">
+                                                Patient and Doctor video conferencing</span></p>
+                                        <p class="m-0">
+                                            <span class="notification-time">12 mins ago</span></p>
+                                    </div>
+                                </a></li>
+                                <li class="media notification-message"><a href="inbox.html">
+                                    <div class="media-left">
+                                        <span class="avatar">V</span>
+                                    </div>
+                                    <div class="media-body">
+                                        <p class="m-0 noti-details">
+                                            <span class="noti-title">Bernardo Galaviz</span> added new task <span class="noti-title">
+                                                Private chat module</span></p>
+                                        <p class="m-0">
+                                            <span class="notification-time">2 days ago</span></p>
+                                    </div>
+                                </a></li>
+                            </ul>
+                        </div>
+                        <div class="topnav-dropdown-footer">
+                            <a href="inbox.html">View all Mail Notifications</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="dropdown toolbar-icon-bg hidden-xs"><a href="javascript:;" id="open_msg_box"
+                    class="hasnotifications"><i class="fa fa-comment-o"></i><span class="badge bg-purple pull-right">
+                        8</span></a> </li>
+                <li class="dropdown"><a href="profile.html" class="dropdown-toggle user-link" data-toggle="dropdown"
+                    title="Admin"><span class="user-img">
+                        <img class="img-circle" src="<%= Page.ResolveClientUrl("~/images/user.jpg")%>" width="40"
+                            alt="Admin">
+                        <span class="status online"></span></span><span></span><i class="caret"></i>
+                </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="EmployeeProfile.html">My Profile</a></li>
+                        <li><a href="edit-profile.html">Edit Profile</a></li>
+                        <li><a href="settings.html">Settings</a></li>
+                        <li><a href="login.html">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>--%>
+            <div class="dropdown mobile-user-menu pull-right">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i
+                    class="fa fa-ellipsis-v"></i></a>
+                <ul class="dropdown-menu pull-right">
+                    <li><a href="<%= Page.ResolveClientUrl("~/Module/Recruitment/Applications/CandidateProfile") %>">Profile</a></li>
+                    <li><a href="#" runat="server" onserverclick="Signout_Click">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+                <div id="sidebar-menu" class="sidebar-menu">
+                    <ul id="menu">
+                        <li><a href="<%= Page.ResolveClientUrl("~/Module/Recruitment/Applications/welcome") %>"> Home</a> </li>
+                        <li><a href="<%= Page.ResolveClientUrl("~/Module/Recruitment/Applications/Vacancies") %>"> Jobs</a> </li>
+                        <li>                            
+                            <a href="<%= Page.ResolveClientUrl("~/Module/Recruitment/Applications/CandidateProfile") %>">Profile</a> </li>
+                        <li>                            
+                            <a href="<%= Page.ResolveClientUrl("~/Module/Recruitment/Applications/MyApplications") %>">Applications</a> </li>
+                            <li><a href="#" id="btnLogin" runat="server" onserverclick="Signout_Click">Sign Out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="page-wrapper">
+            <div class="content container-fluid">
+                <div>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <div class="themes">
+                    <div class="themes-icon">
+                        <i class="fa fa-cog"></i>
+                    </div>
+                    <div class="themes-body">
+                        <ul id="theme-change" class="theme-colors">
+                            <li><span class="theme-orange"></span></li>
+                            <li><span class="theme-purple"></span></li>
+                            <li><span class="theme-blue"></span></li>
+                            <li><span class="theme-maroon"></span></li>
+                            <li><span class="theme-light"></span></li>
+                            <li><span class="theme-dark"></span></li>
+                            <li><span class="theme-green"></span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="notification-box">
+                <div class="msg-sidebar notifications msg-noti">
+                    <div class="topnav-dropdown-header">
+                        <span>Messages</span>
+                    </div>
+                    <div class="drop-scroll msg-list-scroll">
+                        <ul class="list-box">
+                            <li><a href="chat.html">
+                                <div class="list-item">
+                                    <div class="list-left">
+                                        <span class="avatar">R</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <span class="message-author">Richard Miles </span><span class="message-time">12:28 AM</span>
+                                        <div class="clearfix">
+                                        </div>
+                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                                    </div>
+                                </div>
+                            </a></li>
+                            <li><a href="chat.html">
+                                <div class="list-item new-message">
+                                    <div class="list-left">
+                                        <span class="avatar">J</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <span class="message-author">John Doe</span> <span class="message-time">1 Aug</span>
+                                        <div class="clearfix">
+                                        </div>
+                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                                    </div>
+                                </div>
+                            </a></li>
+                            <li><a href="chat.html">
+                                <div class="list-item">
+                                    <div class="list-left">
+                                        <span class="avatar">T</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <span class="message-author">Tarah Shropshire </span><span class="message-time">12:28
+                                            AM</span>
+                                        <div class="clearfix">
+                                        </div>
+                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                                    </div>
+                                </div>
+                            </a></li>
+                            <li><a href="chat.html">
+                                <div class="list-item">
+                                    <div class="list-left">
+                                        <span class="avatar">M</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <span class="message-author">Mike Litorus</span> <span class="message-time">12:28 AM</span>
+                                        <div class="clearfix">
+                                        </div>
+                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                                    </div>
+                                </div>
+                            </a></li>
+                            <li><a href="chat.html">
+                                <div class="list-item">
+                                    <div class="list-left">
+                                        <span class="avatar">C</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <span class="message-author">Catherine Manseau </span><span class="message-time">12:28
+                                            AM</span>
+                                        <div class="clearfix">
+                                        </div>
+                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                                    </div>
+                                </div>
+                            </a></li>
+                            <li><a href="chat.html">
+                                <div class="list-item">
+                                    <div class="list-left">
+                                        <span class="avatar">D</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <span class="message-author">Domenic Houston </span><span class="message-time">12:28
+                                            AM</span>
+                                        <div class="clearfix">
+                                        </div>
+                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                                    </div>
+                                </div>
+                            </a></li>
+                            <li><a href="chat.html">
+                                <div class="list-item">
+                                    <div class="list-left">
+                                        <span class="avatar">B</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <span class="message-author">Buster Wigton </span><span class="message-time">12:28 AM</span>
+                                        <div class="clearfix">
+                                        </div>
+                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                                    </div>
+                                </div>
+                            </a></li>
+                            <li><a href="chat.html">
+                                <div class="list-item">
+                                    <div class="list-left">
+                                        <span class="avatar">R</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <span class="message-author">Rolland Webber </span><span class="message-time">12:28
+                                            AM</span>
+                                        <div class="clearfix">
+                                        </div>
+                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                                    </div>
+                                </div>
+                            </a></li>
+                            <li><a href="chat.html">
+                                <div class="list-item">
+                                    <div class="list-left">
+                                        <span class="avatar">C</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <span class="message-author">Claire Mapes </span><span class="message-time">12:28 AM</span>
+                                        <div class="clearfix">
+                                        </div>
+                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                                    </div>
+                                </div>
+                            </a></li>
+                            <li><a href="chat.html">
+                                <div class="list-item">
+                                    <div class="list-left">
+                                        <span class="avatar">M</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <span class="message-author">Melita Faucher</span> <span class="message-time">12:28
+                                            AM</span>
+                                        <div class="clearfix">
+                                        </div>
+                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                                    </div>
+                                </div>
+                            </a></li>
+                            <li><a href="chat.html">
+                                <div class="list-item">
+                                    <div class="list-left">
+                                        <span class="avatar">J</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <span class="message-author">Jeffery Lalor</span> <span class="message-time">12:28 AM</span>
+                                        <div class="clearfix">
+                                        </div>
+                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                                    </div>
+                                </div>
+                            </a></li>
+                            <li><a href="chat.html">
+                                <div class="list-item">
+                                    <div class="list-left">
+                                        <span class="avatar">L</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <span class="message-author">Loren Gatlin</span> <span class="message-time">12:28 AM</span>
+                                        <div class="clearfix">
+                                        </div>
+                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                                    </div>
+                                </div>
+                            </a></li>
+                            <li><a href="chat.html">
+                                <div class="list-item">
+                                    <div class="list-left">
+                                        <span class="avatar">T</span>
+                                    </div>
+                                    <div class="list-body">
+                                        <span class="message-author">Tarah Shropshire</span> <span class="message-time">12:28
+                                            AM</span>
+                                        <div class="clearfix">
+                                        </div>
+                                        <span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                                    </div>
+                                </div>
+                            </a></li>
+                        </ul>
+                    </div>
+                    <div class="topnav-dropdown-footer">
+                        <a href="chat.html">See all messages</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar-overlay" data-reff="#sidebar">
+    </div>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/js/jquery-3.2.1.min.js") %>"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/js/bootstrap.min.js") %>"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/js/jquery.slimscroll.js") %>"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/js/select2.min.js") %>"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/js/moment.min.js") %>"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/js/bootstrap-datetimepicker.min.js") %>"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/plugins/morris/morris.min.js") %>"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/plugins/raphael/raphael-min.js") %>"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/js/app.js") %>"></script>
+    </form>
+</body>
+</html>

@@ -1,0 +1,8 @@
+
+Staff ID: @empid
+
+We are pleased to inform you that @empname has been promoted as requested.
+
+Thank you.
+
+@company

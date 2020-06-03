@@ -1,0 +1,7 @@
+
+Dear @empfname,
+
+You have been issued a query by @mgrname on the @querydate and latest expected response date to this query is @expecteddate
+
+
+@company

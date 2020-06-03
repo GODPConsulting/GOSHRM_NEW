@@ -1,0 +1,9 @@
+
+Staff ID  : @empid
+Company   : @company
+Unit/Dept : @dept
+
+@empname has been issued a query by @mgrname on the @querydate and latest expected response date to this query is @responsedate
+
+
+@company

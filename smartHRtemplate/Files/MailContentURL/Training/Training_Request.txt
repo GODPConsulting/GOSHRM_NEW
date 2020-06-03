@@ -1,0 +1,21 @@
+
+Kindly accept this as request for @empfname to participate  in @training training.
+
+Details:
+
+Employee ID : @empid
+Employee    : @empname
+Dept/Unit   : @dept
+Training    : @training
+Date        : @eventdate
+Time        : @eventtime
+Venue       : @venue
+
+Your approval is required.
+
+Thank you.
+
+@mgrname
+@mgrjob
+@mgrdept
+@company

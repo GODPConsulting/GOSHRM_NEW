@@ -1,0 +1,9 @@
+Dear @empname,
+
+Your leave application has been submitted.
+
+Your Leave Reference is @ref
+
+Thank you.
+
+@company

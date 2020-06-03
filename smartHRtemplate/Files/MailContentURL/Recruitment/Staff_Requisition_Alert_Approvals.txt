@@ -1,0 +1,20 @@
+
+This mail confirms that @mgrname @status job requisiton.
+
+Here are the details:
+
+Hiring Manager    : @hiringmgr
+Dept/Unit         : @dept
+Job Title         : @job
+Positions		  : @number
+Latest Resumption : @resumptiondate
+
+Approval Status   : @status
+@status by		  : @mgrname
+
+Comment:
+@comment
+
+Thank you.
+
+@company

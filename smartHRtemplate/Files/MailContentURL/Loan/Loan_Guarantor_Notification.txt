@@ -1,0 +1,13 @@
+Staff ID: @empid
+
+Loan Ref: @ref
+
+Dear @mgrfname,
+
+@empname has nominated you as a guarantor for @loantype of @amount
+
+It would be of great assistance to the applicant as your guarantee is required to further process the loan.
+
+Thank you.
+
+@company

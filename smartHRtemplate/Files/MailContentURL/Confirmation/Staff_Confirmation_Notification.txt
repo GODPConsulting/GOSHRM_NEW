@@ -1,0 +1,7 @@
+Dear @empname,
+
+We are pleased to inform you that @mgrname has completed your confirmation and it has been sent to the Human Resource Department for approval.
+
+Thank you.
+
+@company

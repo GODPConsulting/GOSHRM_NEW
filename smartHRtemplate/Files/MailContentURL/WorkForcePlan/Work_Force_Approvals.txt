@@ -1,0 +1,6 @@
+
+This mail confirms that @mgrname has @status @budgetyear workforce @workforcetype for @dept
+
+@comment
+
+@company

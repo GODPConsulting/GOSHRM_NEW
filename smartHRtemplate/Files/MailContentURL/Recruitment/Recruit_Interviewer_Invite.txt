@@ -1,0 +1,13 @@
+Dear @empname,
+
+You have been selected as one of the interviewers for the position of @jobpost
+
+Below are the interview details:
+
+Position : @jobpost
+Date     : @interviewdate
+Time     : @interviewtime
+Venue    : @venue
+
+
+

@@ -1,0 +1,8 @@
+Dear @empname,
+
+Your performance feedback for the review cycle ending @enddate is due.
+
+Kindly complete appropriately.
+
+HR Team
+@company

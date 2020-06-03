@@ -1,0 +1,21 @@
+Staff ID: @empid
+
+Dear @empfname,
+
+Your Loan reference @ref has been approved by HR/Finance.
+
+Details:
+
+Loan Type		  : @loantype
+Amount			  : @amount
+Start Date		  : @startdate
+Monthly Repayment : @monthlypay
+Repayment Period  : @tenor month(s)
+Interest Rate(%)  : @interestrate
+
+
+Find attached your loan letter.
+
+Thank you.
+
+@company

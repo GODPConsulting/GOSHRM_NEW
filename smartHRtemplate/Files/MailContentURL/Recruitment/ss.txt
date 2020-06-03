@@ -1,0 +1,12 @@
+SELECT  a.EmpID [Employee No], a.firstname [First Name],  
+	a.LastName [Last Name],gg.KPIObjectives,gg.KPIType,gg.objectives
+	FROM   dbo.Employees_All  a left outer join dbo.Employees_All s on a.SupervisorID = s.EmpID 
+	left outer join dbo.Employees_All i on a.CoachID = i.EmpID and a.Terminated = 'No'
+	left outer join Performance_Appraisal_Summary ff on s.EmpID = ff.EmpID 
+	left outer join Performance_Appraisal gg on ff.id = gg.AppraisalSummaryID
+	where a.SupervisorID in('802','1235','15875')
+	union all
+	select c.EmpID [Employee No], c.firstname [First Name],  
+	c.LastName [Last Name] ,a.KPIObjectives,a.KPIType,a.objectives, from Performance_Appraisal a left outer join Performance_Appraisal_Summary b on a.AppraisalSummaryID = b.id
+	left outer join Employees_All c on b.EmpID = c.EmpID
+	where c.Terminated ='No' and c.EmpID in ('1203','1235','1457','14681','1541','15568','15571','15595','15674','1577','15875','15960','SB0847','727')

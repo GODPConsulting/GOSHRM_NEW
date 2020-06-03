@@ -1,0 +1,16 @@
+
+This mail confirms that all approvers have approved the staff requisition form
+
+Here are the details:
+
+Hiring Manager    : @hiringmgr
+Dept/Unit         : @dept
+Job Title         : @job
+Positions		  : @number
+Latest Resumption : @resumptiondate
+
+
+
+Thank you.
+
+@company

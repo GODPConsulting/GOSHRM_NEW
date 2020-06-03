@@ -1,0 +1,10 @@
+Dear @empname,
+
+We are pleased to welcome you to the @company team.
+
+Your Staff ID. is @empid.
+
+You are welcome.
+
+HR Department
+@company

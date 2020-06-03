@@ -1,0 +1,9 @@
+Staff ID: @empid
+
+Dear @empfname,
+
+Your Loan reference @ref has been @status by @mgrname. It has been forwarded to HR/Finance for further review.
+
+
+
+@company

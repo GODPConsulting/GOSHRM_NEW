@@ -1,0 +1,14 @@
+Staff ID: @empid
+
+Kindly accept this mail as job exit request response to @empname which required my (@mgrname) approval.
+
+Status:  @status
+
+@comment
+
+
+Kindly review and approve appropriately.
+
+
+
+@company

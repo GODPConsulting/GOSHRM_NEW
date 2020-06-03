@@ -1,0 +1,8 @@
+Dear @empname,
+
+Your performance objective for the review cycle starting @startdate is due.
+
+Kindly complete appropriately.
+
+HR Team
+@company

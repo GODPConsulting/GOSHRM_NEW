@@ -1,0 +1,38 @@
+
+Staff ID: @empid
+
+Query issued for @empname has been finalised.
+
+Find the details below:
+
+Employee           : @empname
+
+Unit/Dept          : @dept
+
+Query Issuer       : @mgrname
+
+Query Date         : @querydate
+
+Expected Reply Date: @expecteddate
+
+Expected Reply Time: @expectedtime
+
+Employee Reply Date: @empresponsedate
+
+Query Recommendation: @recommend
+
+Query:
+@query
+
+Employee Reply:
+@empresponse
+
+Issuer Comment:
+@mgrcomment
+
+HR Comment:
+@hrcomment
+
+
+
+@company

@@ -1,0 +1,10 @@
+
+Staff ID: @empid
+
+@mgrname has requested the promotion of @empname from @oldjob (@oldgrade) to @job (@grade).
+
+Kindly select appropriate approvers / reviewers for this request.
+
+Thank you.
+
+@company

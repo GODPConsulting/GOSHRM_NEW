@@ -1,0 +1,8 @@
+
+Staff ID: @empid
+
+@empname has added new  @certtype (@certname) which requires approval to be accepted to their qualifications.
+
+Kindly finalise appropriately with the necessary recommendation.
+
+@company

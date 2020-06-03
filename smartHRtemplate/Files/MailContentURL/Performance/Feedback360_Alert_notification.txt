@@ -1,0 +1,12 @@
+Dear @name,
+
+@line
+
+Appraisal : @appperiod
+Name      : @empname
+Job Title : @empjobtitle
+Dept      : @empdept
+
+
+HR Team
+@company

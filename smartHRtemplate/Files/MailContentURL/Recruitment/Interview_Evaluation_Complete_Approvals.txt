@@ -1,0 +1,11 @@
+This mail confirms that @interviewer has completed his/her scheduled Interview Session.
+
+Here are the details:
+
+Interviewee	       : @interviewee
+Specialization         : @dept
+Gender		       : @gender		
+
+Thank you.
+
+@company

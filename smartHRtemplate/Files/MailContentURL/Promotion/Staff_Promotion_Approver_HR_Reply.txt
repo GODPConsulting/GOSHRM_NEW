@@ -1,0 +1,10 @@
+
+Staff ID: @empid
+
+@mgrname has @status the promotion of @empname from @oldjob (@oldgrade) to @job (@grade).
+
+@comment
+
+Thank you.
+
+@company

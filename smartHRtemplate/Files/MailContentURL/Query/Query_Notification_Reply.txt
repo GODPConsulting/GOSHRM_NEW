@@ -1,0 +1,13 @@
+
+Staff ID: @empid
+
+Dear @mgrname,
+
+@empname has responded to the query you issued on @querydate
+
+Kindly append your comments and recommendations.
+
+Thank you.
+
+
+@company

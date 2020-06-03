@@ -1,0 +1,9 @@
+Staff ID: @empid
+
+Loan reference @ref has been approved by @mgrname
+
+Kindly proceed to review and approve appropriately.
+
+Thank you.
+
+@company

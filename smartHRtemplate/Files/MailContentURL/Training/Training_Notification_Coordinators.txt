@@ -1,0 +1,19 @@
+Dear @empfname,
+
+You have been selected to be among our Training Coordinator for an upcoming training.
+
+Details:
+
+Coordinator : @coordinator
+Trainer	    : @coordinator
+Training    : @training
+Date        : @eventdate
+Time        : @eventtime
+Venue       : @venue
+
+Your availability will be highly appreciated.
+
+Thank you.
+
+HR Department,
+@company

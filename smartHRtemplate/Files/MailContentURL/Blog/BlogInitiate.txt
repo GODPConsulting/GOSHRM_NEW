@@ -1,0 +1,5 @@
+
+A blog posted titled @title by @empname on @date is awaiting approval.
+
+
+@company

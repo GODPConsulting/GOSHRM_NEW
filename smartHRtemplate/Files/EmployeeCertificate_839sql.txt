@@ -1,0 +1,103 @@
+ALTER proc [dbo].[Emp_PersonalDetail_update_Bulk]
+(	
+	@EmpID varchar(100),	
+	@Photo varchar(1000)
+)
+as
+
+If Exists (Select * from Emp_PersonalDetail where empid = @EmpID)
+Begin
+	Update Emp_PersonalDetail
+	set imgtype = @Photo 
+	where EmpID = @EmpID
+End
+
+
+ALTER proc [dbo].[Emp_PersonalDetail_get_all_Specific]
+(
+	@EmpID varchar(50),
+	@Company varchar(250),
+	@low int = null,
+	@high int = null
+)
+as
+
+if @EmpID = ''
+Begin
+	Set @EmpID = '%%'
+End
+if @low is null
+begin
+	set @low = 1
+	set @high = 1000000
+end
+
+if @Company = 'All' or @Company = ''
+Begin
+	select * from (SELECT ROW_NUMBER() OVER(ORDER BY a.EmpID) [Rows], a.EmpID [Employee No], a.firstname [First Name],  
+	a.LastName [Last Name],a.MiddleName ,a.Grade GradeLevel, a.JobTitle,dbo.My_Company(a.Office) Company,a.Office,
+		a.MobileNo [Mobile],a.WorkPhone [Office Number], a.Email [Office Email], a.Gender ,
+	case when isnull(a.suspendpay,0) = 0 then 'No' Else 'Yes' end  [Pay Suspended],a.Terminated [Job Terminated],a.Employee2 ,a.EmpID,
+	case when a.Office is null then 'No' Else 'Yes' end JobHistory ,dbo.initials(a.FirstName + ' ' + a.LastName) initial, a.Name, a.pid, a.imgtype
+	FROM   dbo.Employees_All  a 
+	where isnull(a.Office,dbo.My_Company('') ) in (Select m.companys from Fn_Company_Filter(dbo.My_Company('')) m)	and a.Terminated = 'No') tab where 
+	tab.[Rows] between @low and @high   
+End
+Else
+Begin
+	select * from(SELECT ROW_NUMBER() OVER(ORDER BY a.EmpID) [Rows], a.EmpID [Employee No], a.firstname [First Name],  
+	a.LastName [Last Name],a.MiddleName ,a.Grade GradeLevel, a.JobTitle,dbo.My_Company(a.Office) Company,a.Office,
+	a.MobileNo [Mobile],a.WorkPhone [Office Number], a.Email [Office Email], a.Gender ,
+	case when isnull(a.suspendpay,0) = 0 then 'No' Else 'Yes' end  [Pay Suspended],a.Terminated [Job Terminated],a.Employee2 ,a.EmpID ,
+	case when a.Office is null then 'No' Else 'Yes' end JobHistory,dbo.initials(a.FirstName + ' ' + a.LastName) initial,a.Name,a.pid, a.imgtype
+	FROM   dbo.Employees_All  a 
+	where isnull(dbo.My_Company(a.Office),dbo.My_Company('') ) = @Company and a.Terminated = 'No') tab where 
+	tab.[Rows] between @low and @high   
+End
+
+
+ALTER proc [dbo].[Emp_PersonalDetail_search_Specific]
+(
+	@Text varchar(100),
+	@EmpID varchar(50),
+	@Company varchar(250),
+	@low int = null,
+	@high int = null
+)
+as
+Set @Text = '%' + @Text + '%';
+
+if @low is null
+begin
+	set @low = 1
+	set @high = 1000000
+end
+
+
+if @Company = 'All' or @Company = ''
+Begin
+	select * from (SELECT ROW_NUMBER() OVER(ORDER BY a.EmpID) [Rows], a.EmpID [Employee No], a.firstname [First Name],  
+	a.LastName [Last Name],a.MiddleName ,a.Grade GradeLevel, a.JobTitle,dbo.My_Company(a.Office) Company,a.Office,	a.MobileNo [Mobile],a.WorkPhone [Office Number], a.Email [Office Email], a.Gender ,
+	case when isnull(a.suspendpay,0) = 0 then 'No' Else 'Yes' end  [Pay Suspended],a.Terminated [Job Terminated],a.Employee2 ,a.EmpID,
+	case when a.Office is null then 'No' Else 'Yes' end JobHistory ,dbo.initials(a.FirstName + ' ' + a.LastName) initial,a.Name,a.pid,a.imgtype
+	FROM   dbo.Employees_All  a 
+	where isnull(a.Office,dbo.My_Company('') ) in (Select m.companys from Fn_Company_Filter(dbo.My_Company('')) m) and (a.Terminated = 'No')  and 
+	(a.EmpID like @Text or isnull(a.Name,'') like @Text or isnull(a.JobTitle,'') like @Text 
+	or ISNULL(a.Grade,'') like @Text or ISNULL(a.Office,'') like @Text))tab where 
+	tab.[Rows] between @low and @high   
+
+End
+Else
+Begin
+	select * from (SELECT ROW_NUMBER() OVER(ORDER BY a.EmpID) [Rows], a.EmpID [Employee No], a.firstname [First Name],  
+	a.LastName [Last Name],a.MiddleName ,a.Grade GradeLevel, a.JobTitle,dbo.My_Company(a.Office) Company,a.Office,a.MobileNo [Mobile],a.WorkPhone [Office Number], 
+	a.Email [Office Email], a.Gender ,
+	case when isnull(a.suspendpay,0) = 0 then 'No' Else 'Yes' end  [Pay Suspended],a.Terminated [Job Terminated],a.Employee2 ,a.EmpID,
+	case when a.Office is null then 'No' Else 'Yes' end JobHistory ,dbo.initials(a.FirstName + ' ' + a.LastName) initial,a.Name, a.pid,a.imgtype
+	FROM   dbo.Employees_All  a  
+	where isnull(dbo.My_Company(a.Office),dbo.My_Company('') ) = @Company and a.Terminated = 'No' and 
+	(a.EmpID like @Text or isnull(a.Name,'') like @Text or isnull(a.JobTitle,'') like @Text 
+	or ISNULL(a.Grade,'') like @Text or ISNULL(a.Office,'') like @Text 
+	or (case when a.Office is null then 'No' Else 'Yes' end) like @Text))tab where 
+	tab.[Rows] between @low and @high   
+End

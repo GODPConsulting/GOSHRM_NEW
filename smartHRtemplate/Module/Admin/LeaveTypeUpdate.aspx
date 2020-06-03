@@ -1,0 +1,169 @@
+﻿<%@ Page Language="vb" MasterPageFile="~/smartHR.Master" AutoEventWireup="true" CodeBehind="LeaveTypeUpdate.aspx.vb"
+    Inherits="GOSHRM.LeaveTypeUpdate" EnableEventValidation="false" Debug="true" %>
+
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<asp:Content ID="content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <form id="form1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10">
+                    <div id="divalert" runat="server" visible="false" class="alert alert-info">
+                        <strong id="msgalert" runat="server"></strong>
+                        <asp:TextBox ID="txtid" runat="server" Width="3px" Font-Names="Candara" Height="2px"
+                            Visible="False"></asp:TextBox>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-md-10">
+                    <div class="panel panel-success">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-0">
+                                    <h4 class="page-title">
+                                        Leave Type</h4>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>
+                                            Name*</label>
+                                        <input id="aname" runat="server" class="form-control" type="text" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>
+                                            Gender*</label>
+                                        <telerik:raddropdownlist id="radGender" runat="server" defaultmessage="-- Select --"
+                                            height="16px" width="100%" forecolor="#666666" rendermode="Lightweight" skin="Bootstrap">
+                                        </telerik:raddropdownlist>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>
+                                            Employee Can Apply*</label>
+                                        <telerik:raddropdownlist id="radEmpCanApply" runat="server" defaultmessage="-- Select --"
+                                            font-names="Verdana" height="16px" width="100%" forecolor="#666666" rendermode="Lightweight"
+                                            skin="Bootstrap">
+                                        </telerik:raddropdownlist>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>
+                                            Leave Specific By Days*</label>
+                                        <telerik:raddropdownlist id="radSpecific" runat="server" defaultmessage="-- Select --"
+                                            height="16px" width="100%" autopostback="True" forecolor="#666666" rendermode="Lightweight"
+                                            skin="Bootstrap">
+                                        </telerik:raddropdownlist>
+                                    </div>
+                                </div>
+                            </div>
+                            <asp:UpdatePanel runat="server" ID="UpdatePanel2" UpdateMode="Always">
+                                <ContentTemplate>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>
+                                                    Leave Per Year*</label>
+                                                <input id="leavePerYear" runat="server" class="form-control" type="text" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>
+                                                    Eligible During Probation*</label>
+                                                <telerik:raddropdownlist id="radProbation" runat="server" defaultmessage="-- Select --"
+                                                    height="16px" width="100%" forecolor="#666666" rendermode="Lightweight" skin="Bootstrap">
+                                                </telerik:raddropdownlist>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>
+                                                    Leave Accrued<span class="text-danger">*</span></label>
+                                                <telerik:raddropdownlist id="radLeaveAccruedEnabled" runat="server" defaultmessage="-- Select --"
+                                                    height="16px" width="100%" forecolor="#666666" rendermode="Lightweight" skin="Bootstrap">
+                                                </telerik:raddropdownlist>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>
+                                                    Leave Carried Forward<span class="text-danger">*</span></label>
+                                                <telerik:raddropdownlist id="radLeaveCarriedEnabled" runat="server" defaultmessage="-- Select --"
+                                                    height="16px" width="100%" autopostback="True" forecolor="#666666" rendermode="Lightweight"
+                                                    skin="Bootstrap">
+                                                </telerik:raddropdownlist>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>
+                                                    Percentage of Leave Days Carried Forward<span class="text-danger">*</span></label>
+                                                <input id="txtPercent" runat="server" class="form-control" type="text" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>
+                                                    Carried Forward Leave Period (Mths)<span class="text-danger">*</span></label>
+                                                <telerik:raddropdownlist id="radAvailabilityPeriod" runat="server" defaultmessage="-- Select --"
+                                                    height="16px" width="100%" forecolor="#666666" skin="Bootstrap" rendermode="Lightweight">
+                                                </telerik:raddropdownlist>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>
+                                                    Allowance Payable <span class="text-danger">*</span></label>
+                                                <telerik:raddropdownlist id="radPayable" runat="server" defaultmessage="-- Select --"
+                                                    height="16px" width="100%" forecolor="#666666" rendermode="Lightweight" skin="Bootstrap">
+                                                </telerik:raddropdownlist>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ContentTemplate>
+                                <Triggers>
+                                    <asp:AsyncPostBackTrigger ControlID="radSpecific" EventName="SelectedIndexChanged" />
+                                    <asp:AsyncPostBackTrigger ControlID="radLeaveCarriedEnabled" EventName="SelectedIndexChanged" />
+                                </Triggers>
+                            </asp:UpdatePanel>
+                            <div class="row">
+                                <div class="col-md-10 m-t-20">
+                                    <button id="btnupdate" runat="server" onserverclick="btnAdd_Click" type="submit"
+                                        style="width: 150px" class="btn btn-primary btn-success">
+                                        Save &amp; Update</button>
+                                    <button id="Button1" runat="server" onserverclick="btnCancel_Click" type="submit"
+                                        style="width: 150px" class="btn btn-primary btn-danger">
+                                        << Back</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+    </body>
+    </html>
+</asp:Content>
+<asp:Content ID="Content2" runat="server" ContentPlaceHolderID="head">
+</asp:Content>

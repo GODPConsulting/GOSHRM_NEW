@@ -1,0 +1,313 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="smartHRold.Master.vb" Inherits="GOSHRM.smartHRold" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ Register Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" TagPrefix="telerik" %>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<link rel="icon" type="image/png" href="images/Goshrm.png" />
+<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+        
+
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="css/fullcalendar.min.css" rel="stylesheet" />
+    <link href="css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/select2.min.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" type="text/css"/>
+    <link rel="stylesheet" href="plugins/morris/morris.css"/>
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="css/gridview.css" rel="stylesheet" type="text/css"/>
+    <link href="css/w3.css" rel="stylesheet" type="text/css" />
+    <link href="css/slider-goke.css" rel="stylesheet" type="text/css" />
+     
+    <link href="res_new/vendors/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet" />
+    <link href="res_new/vendors/flag-icon-css/css/flag-icon.min.css" rel="stylesheet" />
+    <link href="res_new/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="res_new/vendors/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" />
+    <!-- Main styles for this application-->
+
+   <!-- <link href="res_new/css/style.css" rel="stylesheet"> --> 
+
+    <link href="res_new/vendors/pace-progress/css/pace.min.css" rel="stylesheet">
+    <title>GOS HRM</title>
+       <asp:ContentPlaceHolder ID="title" runat="server">
+
+    </asp:ContentPlaceHolder>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+       
+    </asp:ContentPlaceHolder>
+        
+</head>
+<body>
+    <form id="form1" runat="server">
+    <telerik:RadScriptManager ID="RadScriptManager1" runat="server">
+                </telerik:RadScriptManager>
+    <div class="main-wrapper">
+							
+            <div class="header">
+                <div class="header-left">
+                    <a href="<%= Page.ResolveClientUrl("~/home.aspx")%>" class="logo">
+						<img src="<%= Page.ResolveClientUrl("~/images/goshrm.png")%>" width="40" height="40" alt="">
+					</a>
+					<a href="<%= Page.ResolveClientUrl("~/home.aspx")%>" class="logo-dark">
+						<img src="<%= Page.ResolveClientUrl("~/images/goshrm.png")%>" width="40" 
+                        height="35" alt="">
+					</a>
+                </div>
+                <div class="page-title-box pull-left">
+					<h3 id="divwelcome" runat="server"> Welcome, Oluwaseun Akinyelu</h3>
+                </div>
+				<div class="header-right pull-right">
+					<a style="margin-right:40px;" href="<%= Page.ResolveClientUrl("~/home.aspx")%>" class="logo-dark">
+						<img id="companylogo" runat="server" src="~/Module/Admin/Organisation/CompanyLogo.ashx" width="40" height="40" alt=""/>
+                        
+					</a>
+					<a href="<%= Page.ResolveClientUrl("~/home")%>" class="logo">
+						<img src="<%= Page.ResolveClientUrl("~/Module/Admin/Organisation/CompanyLogo.ashx")%>" width="40" height="40" alt="">
+					</a>
+                </div>
+				<a id="mobile_btn" class="mobile_btn pull-left" href="#sidebar"><i class="fa fa-bars" aria-hidden="true"></i></a>
+				<ul class="nav navbar-nav navbar-right user-menu pull-right">
+					<li class="dropdown hidden-xs">
+						<a href="#" class="hasnotifications dropdown-toggle" data-toggle="dropdown"><i class="fa fa-birthday-cake"></i><span class="badge bg-purple pull-right"><%=c%></span></a>
+						<div class="dropdown-menu notifications">
+							<div class="topnav-dropdown-header">
+								<span>Birthday Notifications</span>
+							</div>
+							<div style="width:400px; max-height:290px; position:relative; overflow-y:scroll;">
+                            <asp:Image ID="imgBirthdayWish" runat="server" Height="150px" ImageUrl="~/images/birthday01.png"
+                                    Visible="False" Width="370px" />
+								<ul id="birthday_box" runat="server" class="media-list scroll-content">
+                                    <center style="margin-top:10px;"><strong>No birthday today</strong></center>                                 
+								</ul>
+							</div>
+							<div class="topnav-dropdown-footer">
+								<%--<a href="Blackboard.html">View all Birthday Notifications</a>--%>
+							</div>
+						</div>
+					</li>
+					<li class="dropdown toolbar-icon-bg hidden-xs">
+						<a href="cal_view.aspx" class=""><i class="fa fa-calendar"></i> <span class="badge bg-purple pull-right"><%=emp%></span></a>
+					</li>
+					<li class="dropdown hidden-xs">
+						<a href="#" class="hasnotifications dropdown-toggle" data-toggle="dropdown"><i class="fa fa-rss"></i><span id="blogcount" runat="server" class="badge bg-purple pull-right">4</span></a>
+						<div class="dropdown-menu notifications">
+							<div class="topnav-dropdown-header">
+								<span>Blog Notifications</span>
+							</div>
+							<div class="drop-scroll">
+								<ul class="media-list scroll-content">
+									<li class="media notification-message">
+										<a href="BlackBoardView.html">
+											<div class="media-left">
+												<span class="avatar">
+													<img alt="John Doe" src="<%= Page.ResolveClientUrl("~/images/user.jpg")%>" class="img-responsive img-circle">
+												</span>
+											</div>
+											<div class="media-body">
+												<p class="m-0 noti-details"><span class="noti-title">John Doe</span> added new post <span class="noti-title">Patient appointment booking</span></p>
+												<p class="m-0"><span class="notification-time">4 mins ago</span></p>
+											</div>
+										</a>
+									</li>
+									<li class="media notification-message">
+										<a href="BlackBoardView.html">
+											<div class="media-left">
+												<span class="avatar">V</span>
+											</div>
+											<div class="media-body">
+												<p class="m-0 noti-details"><span class="noti-title">Tarah Shropshire</span> commented on your post <span class="noti-title">Appointment booking with payment gateway</span></p>
+												<p class="m-0"><span class="notification-time">6 mins ago</span></p>
+											</div>
+										</a>
+									</li>
+									<li class="media notification-message">
+										<a href="BlackBoardView.html">
+											<div class="media-left">
+												<span class="avatar">L</span>
+											</div>
+											<div class="media-body">
+												<p class="m-0 noti-details"><span class="noti-title">Misty Tison</span> likes your blog post <span class="noti-title">Domenic Houston</span> and <span class="noti-title">Claire Mapes</span> to project <span class="noti-title">Doctor available module</span></p>
+												<p class="m-0"><span class="notification-time">8 mins ago</span></p>
+											</div>
+										</a>
+									</li>
+									<li class="media notification-message">
+										<a href="BlackBoardView.html">
+											<div class="media-left">
+												<span class="avatar">G</span>
+											</div>
+											<div class="media-body">
+												<p class="m-0 noti-details"><span class="noti-title">Rolland Webber</span> likes your comment on <span class="noti-title">Patient and Doctor video conferencing</span></p>
+												<p class="m-0"><span class="notification-time">12 mins ago</span></p>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div class="topnav-dropdown-footer">
+								<a href="Module/Employee/BlackBoard">View all Blog Notifications</a>
+							</div>
+						</div>
+					</li>
+					<li class="dropdown hidden-xs">
+						<a href="#" class="hasnotifications dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <span id="mailcount" runat="server" class="badge bg-purple pull-right">3</span></a>
+						<div class="dropdown-menu notifications">
+							<div class="topnav-dropdown-header">
+								<span>Mail Notifications</span>
+							</div>
+							<div class="drop-scroll">
+								<ul id="mail_list" runat="server" class="media-list scroll-content">																										
+								</ul>
+							</div>
+							<div class="topnav-dropdown-footer">
+								<a href="<%= Page.ResolveClientUrl("~/Module/Employee/Notifications")%>">View all Mail Notifications</a>
+							</div>
+						</div>
+					</li>
+					<li class="dropdown toolbar-icon-bg hidden-xs">
+						<a href="javascript:;" id="open_msg_box" class="hasnotifications"><i class="fa fa-comment-o"></i> <span id="chatcount" runat="server" class="badge bg-purple pull-right">8</span></a>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle user-link" data-toggle="dropdown" title="Admin">
+							<span class="user-img"><img class="img-circle" src="<%= Page.ResolveClientUrl("~/images/user.jpg")%>" width="40" alt="Admin">
+							<span class="status online"></span></span>
+							<span></span>
+							<i class="caret"></i>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="<%= Page.ResolveClientUrl("~/Module/Employee/EmployeeProfile")%>">My Profile</a></li>
+							<li><a href="#" runat="server" onserverclick ="Signout_Click">Logout</a></li>
+						</ul>
+					</li>
+				</ul>
+				<div class="dropdown mobile-user-menu pull-right">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+					<ul class="dropdown-menu pull-right">
+						<li><a href="<%= Page.ResolveClientUrl("~/Module/Employee/EmployeeProfile")%>">My Profile</a></li>
+						<li><a href="#" runat="server" onserverclick ="Signout_Click">Logout</a></li>
+					</ul>
+				</div>
+            </div>
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-inner slimscroll">
+					<div id="sidebar-menu" class="sidebar-menu">
+                    <ul id="menu">
+                        <li>
+                                <a href="<%= Page.ResolveClientUrl("~/empdashboard") %>"><i class="fa fa-dashboard"></i> Dashboard</a>
+						</li>
+        
+                    </ul>
+
+						
+					</div>
+                </div>
+            </div>
+            <div class="page-wrapper">
+                <div class="content container-fluid">
+					<div>
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+                        </asp:ContentPlaceHolder>
+                    </div>	
+                 <div class="themes">
+					<div class="themes-icon"><i class="fa fa-cog"></i></div>
+						<div class="themes-body">
+							<ul id="theme-change" class="theme-colors">
+								<li><span class="theme-orange"></span></li>
+								<li><span class="theme-purple"></span></li>
+								<li><span class="theme-blue"></span></li>
+								<li><span class="theme-maroon"></span></li>
+								<li><span class="theme-light"></span></li>
+								<li><span class="theme-dark"></span></li>
+                                <li><span class="theme-green"></span></li>
+							</ul>
+						</div>
+					</div>		
+				</div>
+
+               
+				<div class="notification-box">
+					<div class="msg-sidebar notifications msg-noti">
+						<div class="topnav-dropdown-header">
+							<span>Messages</span>
+						</div>
+						<%--<div class="drop-scroll msg-list-scroll">
+							<ul class="list-box">
+								<li>
+									<a href="chat.html">
+										<div class="list-item">
+											<div class="list-left">
+												<span class="avatar">R</span>
+											</div>
+											<div class="list-body">
+												<span class="message-author">Richard Miles </span>
+												<span class="message-time">12:28 AM</span>
+												<div class="clearfix"></div>
+												<span class="message-content">Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+											</div>
+										</div>
+									</a>
+								</li>
+								
+							</ul>
+						</div>--%>
+						<div class="topnav-dropdown-footer">
+							<a href="<%= Page.ResolveClientUrl("~/chats")%>">See all messages</a>
+						</div>
+					</div>
+				</div>
+			</div>
+        </div>
+        
+        <div class="sidebar-overlay" data-reff="#sidebar"></div>
+        <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/js/jquery-3.2.1.min.js") %>"></script>
+        <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/js/bootstrap.min.js") %>"></script>
+        <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/js/jquery.slimscroll.js") %>"></script>
+        <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/js/select2.min.js") %>"></script>
+        <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/js/moment.min.js") %>"></script>
+        <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/js/bootstrap-datetimepicker.min.js") %>"></script>
+        <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/plugins/morris/morris.min.js") %>"></script>
+        <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/plugins/raphael/raphael-min.js") %>"></script>
+        <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/js/app.js") %>"></script>
+        <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/js/echarts.js") %>"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $.ajax({
+                    url: "<%= Page.ResolveClientUrl("~/MenuHandler.ashx") %>",
+                    method: 'get',
+                    dataType: 'json',
+                    success: function (data) {
+                        buildMenu($('#menu'), data);
+                        //$('#menu').menu();
+                    }
+                });
+
+
+                function buildMenu(parent, items) {
+                    $.each(items, function () {
+                        //var li = $('<li class="active"><a hre>f="index-2.html">' + this.MenuText + '</a></li>');
+                        var url = this.NavURL;
+                        console.log(url);
+                        var li = $('<li class="submenu"><a href="#" class="noti-dot"><span>' + this.MenuText + '</span> <span class="menu-arrow"></span></a></li>');
+                        if (url) {
+                            url = "/" + url;
+                            li = $('<li><a href="<%= Page.ResolveClientUrl("'+ url +'") %>"class="noti-dot">' + this.MenuText + '</a></li>');
+                        } 
+                        li.appendTo(parent);
+
+                        if (this.List && this.List.length > 0) {
+                            var ul = $('<ul class="list-unstyled" style="display: none;"></ul>');
+                            ul.appendTo(li);
+                            buildMenu(ul, this.List);
+                        }
+                    });
+                }
+            });
+    </script>      
+    </form>    
+</body>
+</html>

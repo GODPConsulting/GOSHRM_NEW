@@ -1,0 +1,19 @@
+Staff ID: @empid
+
+Leave Request with Ref @ref has been forwarded to you for your approval
+
+Details:
+
+Employee     : @empname
+Dept/Unit    : @dept
+Leave Ref    : @ref
+Leave Type   : @leavetype
+Leave Period : @startdate to @enddate
+
+Reason:
+@reason
+
+
+Thank you.
+
+@company

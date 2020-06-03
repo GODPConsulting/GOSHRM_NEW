@@ -1,0 +1,8 @@
+
+Staff ID: @empid
+
+Query issued for @empname has been commented on and finalised by @mgrname.
+
+Kindly finalise appropriately with the necessary recommendation.
+
+@company

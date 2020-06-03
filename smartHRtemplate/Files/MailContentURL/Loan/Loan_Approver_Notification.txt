@@ -1,0 +1,21 @@
+Staff ID: @empid
+
+Dear @mgrname,
+
+Loan Reference @ref has been forwarded to you for your approval.
+
+Details:
+
+Employee   : @empname
+Loan Ref   : @ref
+Loan       : @loantype
+Amount     : @amount
+Monthly Pay: @monthlypay
+Start Date : @startdate
+Guarantor  : @guarantor [@guadept]
+Description:
+@desc
+
+Thank you.
+
+@company

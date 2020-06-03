@@ -1,0 +1,42 @@
+﻿.schEvent .rsMonthView .rsWrap,
+    .schEvent .rsMonthView .rsApt,
+    .schEvent .rsMonthView .rsAptOut,
+    .schEvent .rsMonthView .rsAptIn,
+    .schEvent .rsMonthView .rsAptMid,
+    .schEvent .rsMonthView .rsAptContent
+    {
+            position: static !important;
+            height: auto !important;
+    }
+    .schEvent .rsMonthView .rsWrap
+    {
+            overflow: hidden;
+            font-size: 0;
+            line-height: 0;
+    }
+    .schEvent .rsMonthView .rsLastWrap
+    {
+            height: 16px !important;
+    }
+    .schEvent .rsMonthView .rsAptContent
+    {
+            position: relative !important;
+            border-top: 0;
+            border-bottom: 0;
+            left: 0;
+            top: 0;
+    }
+    * html .schEvent .rsMonthView .rsAptIn
+    {
+            border-width: 0 1px;
+            top: 0;
+        margin-left: -1px;
+        margin-right: -1px;
+    }
+    * html .schEvent .rsMonthView .rsAptMid
+    {
+            top: 0;
+            left: 1px;
+            margin: 0 1px;
+            border-width: 1px 0;
+    }
