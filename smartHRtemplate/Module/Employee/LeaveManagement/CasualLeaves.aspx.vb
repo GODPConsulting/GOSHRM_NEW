@@ -239,6 +239,7 @@ Public Class CasualLeaves
             cmd.Parameters.Add("@filetype", SqlDbType.VarChar).Value = filetype
             cmd.Parameters.Add("@filesize", SqlDbType.BigInt).Value = filesize
             cmd.Parameters.Add("@casualcheck", SqlDbType.Int).Value = Process.casualcheck
+            cmd.Parameters.Add("@leavelength", SqlDbType.VarChar).Value = ""
             cmd.Connection = con
             con.Open()
             Dim obj As Object = cmd.ExecuteScalar()
@@ -273,6 +274,7 @@ Public Class CasualLeaves
             cmd.Parameters.Add("@LeaveName", SqlDbType.VarChar).Value = leavename
             cmd.Parameters.Add("@PayDate", SqlDbType.Date).Value = paydate
             cmd.Parameters.Add("@casualcheck", SqlDbType.Int).Value = Process.casualcheck
+            cmd.Parameters.Add("@leavelength", SqlDbType.VarChar).Value = ""
             cmd.Connection = con
             con.Open()
             Dim obj As Object = cmd.ExecuteScalar()
