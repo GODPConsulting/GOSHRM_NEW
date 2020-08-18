@@ -338,11 +338,13 @@ Public Class CandidateProfile
                 cvtype = fileresume.PostedFile.ContentType.ToString()
                 cvname = Path.GetFileName(fileresume.PostedFile.FileName)
                 cvfile = New Byte(img_len - 1) {}
-                Dim n As Integer = img_strm.Read(cvfile, 0, img_len)
-                fileresume.PostedFile.SaveAs(Server.MapPath(emailFile + "Resume_" & alastname.Value & cvname))
-                cvname = "Resume_" & alastname.Value & cvname & alastname.Value
+                If cvname <> "" Then
+                    Dim n As Integer = img_strm.Read(cvfile, 0, img_len)
+                    fileresume.PostedFile.SaveAs(Server.MapPath(emailFile + "Resume_" & alastname.Value & cvname))
+                    cvname = "Resume_" & alastname.Value & cvname
+                End If
             Else
-                If btresume.InnerText = "" Then
+                    If btresume.InnerText = "" Then
                     lblstatus = "No Resume available for upload, please select resume"
                     Process.loadalert(divalert, msgalert, lblstatus, "warning")
                     fileresume.Focus()
@@ -352,17 +354,22 @@ Public Class CandidateProfile
 
             'Save Cover Letter
             If Not filecoverletter.PostedFile Is Nothing Then
+
+
+
                 Dim img_strm As Stream = filecoverletter.PostedFile.InputStream
-                Dim img_len As Integer = filecoverletter.PostedFile.ContentLength
-                coverlettertype = filecoverletter.PostedFile.ContentType.ToString()
-                coverlettername = Path.GetFileName(filecoverletter.PostedFile.FileName)
+                    Dim img_len As Integer = filecoverletter.PostedFile.ContentLength
+                    coverlettertype = filecoverletter.PostedFile.ContentType.ToString()
+                    coverlettername = Path.GetFileName(filecoverletter.PostedFile.FileName)
                 coverletterfile = New Byte(img_len - 1) {}
-                Dim n As Integer = img_strm.Read(coverletterfile, 0, img_len)
-                filecoverletter.PostedFile.SaveAs(Server.MapPath(emailFile + "Coverletter_" & alastname.Value & coverlettername))
-                coverlettername = "Coverletter_" & alastname.Value & coverlettername
+                If coverlettername <> "" Then
+                    Dim n As Integer = img_strm.Read(coverletterfile, 0, img_len)
+                    filecoverletter.PostedFile.SaveAs(Server.MapPath(emailFile + "Coverletter_" & alastname.Value & coverlettername))
+                    coverlettername = "Coverletter_" & alastname.Value & coverlettername
+                End If
 
             Else
-                If btcoverletter.InnerText = "" Then
+                    If btcoverletter.InnerText = "" Then
                     lblstatus = "No Cover Letter available for upload, please select Cover Letter"
                     Process.loadalert(divalert, msgalert, lblstatus, "warning")
                     filecoverletter.Focus()
@@ -378,11 +385,14 @@ Public Class CandidateProfile
                 certtype = filecertificate.PostedFile.ContentType.ToString()
                 certname = Path.GetFileName(filecertificate.PostedFile.FileName)
                 certfile = New Byte(img_len - 1) {}
-                Dim n As Integer = img_strm.Read(certfile, 0, img_len)
-                filecertificate.PostedFile.SaveAs(Server.MapPath(emailFile + "Certificate_" & alastname.Value & certname))
-                certname = "Certificate_" & alastname.Value & certname
+                If certname <> "" Then
+                    Dim n As Integer = img_strm.Read(certfile, 0, img_len)
+                    filecertificate.PostedFile.SaveAs(Server.MapPath(emailFile + "Certificate_" & alastname.Value & certname))
+                    certname = "Certificate_" & alastname.Value & certname
+                End If
+
             Else
-                If btcertificate.InnerText = "" Then
+                    If btcertificate.InnerText = "" Then
                     lblstatus = "No School Certificate available for upload, please select"
                     Process.loadalert(divalert, msgalert, lblstatus, "warning")
                     filecertificate.Focus()
@@ -397,10 +407,13 @@ Public Class CandidateProfile
                 'phototype = imguploads.PostedFile.ContentType.ToString()
                 phototype = Path.GetFileName(imguploads.PostedFile.FileName)
                 photo = New Byte(img_len - 1) {}
-                Dim n As Integer = img_strm.Read(photo, 0, img_len)
-                imguploads.PostedFile.SaveAs(Server.MapPath(emailFile) + "ApplicantPhoto_" & alastname.Value & phototype)
-                phototype = "ApplicantPhoto_" & alastname.Value & phototype
+                If phototype <> "" Then
+                    Dim n As Integer = img_strm.Read(photo, 0, img_len)
+                    imguploads.PostedFile.SaveAs(Server.MapPath(emailFile) + "ApplicantPhoto_" & alastname.Value & phototype)
+                    phototype = "ApplicantPhoto_" & alastname.Value & phototype
+                End If
             End If
+
 
             If alastname.Value.Trim = "" Then
                 alastname.Focus()

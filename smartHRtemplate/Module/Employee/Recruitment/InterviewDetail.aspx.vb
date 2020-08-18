@@ -11,6 +11,7 @@ Imports System.IO
 
 Public Class InterviewDetail
     Inherits System.Web.UI.Page
+    Dim emailFile As String = ConfigurationManager.AppSettings("FileURL")
     Dim AuthenCode As String
     Private Sub LoadGrid(applicantid As String, jobid As Integer)
         Try
@@ -159,8 +160,14 @@ Public Class InterviewDetail
         Try
             Dim dt As DataTable = Process.SearchData("Recruit_Job_Interview_Comment_Get", lblID.Text)
             If dt IsNot Nothing Then
-                downloadFile(CType(dt.Rows(0)("cvfile"), Byte()), dt.Rows(0)("cvtype").ToString(), dt.Rows(0)("cvname").ToString())
+                'downloadFile(CType(dt.Rows(0)("cvfile"), Byte()), dt.Rows(0)("cvtype").ToString(), dt.Rows(0)("cvname").ToString())
             End If
+            Dim fileName As String = dt.Rows(0)("cvname").ToString()
+            Dim filePath As String = Server.MapPath(emailFile & fileName)
+            Response.ContentType = ContentType
+            Response.AppendHeader("Content-Disposition", ("attachment; filename=" + Path.GetFileName(filePath)))
+            Response.WriteFile(filePath)
+            Response.End()
 
         Catch ex As Exception
             Process.loadalert(divalert, msgalert, ex.Message, "danger")
@@ -172,11 +179,16 @@ Public Class InterviewDetail
         Try
    
                 Dim dt As DataTable = Process.SearchData("Recruit_Job_Interview_Comment_Get", lblID.Text)
-                If dt IsNot Nothing Then
-                    'downloadCoverLetter(dt)
-                    downloadFile(CType(dt.Rows(0)("coverletterfile"), Byte()), dt.Rows(0)("coverlettertype").ToString(), dt.Rows(0)("coverlettername").ToString())
-                End If
-
+            If dt IsNot Nothing Then
+                'downloadCoverLetter(dt)
+                'downloadFile(CType(dt.Rows(0)("coverletterfile"), Byte()), dt.Rows(0)("coverlettertype").ToString(), dt.Rows(0)("coverlettername").ToString())
+            End If
+            Dim fileName As String = dt.Rows(0)("coverlettername").ToString()
+            Dim filePath As String = Server.MapPath(emailFile & fileName)
+            Response.ContentType = ContentType
+            Response.AppendHeader("Content-Disposition", ("attachment; filename=" + Path.GetFileName(filePath)))
+            Response.WriteFile(filePath)
+            Response.End()
 
         Catch ex As Exception
             Process.loadalert(divalert, msgalert, ex.Message, "danger")
@@ -188,9 +200,15 @@ Public Class InterviewDetail
         Try
 
                 Dim dt As DataTable = Process.SearchData("Recruit_Job_Interview_Comment_Get", lblID.Text)
-                If dt IsNot Nothing Then
-                    downloadFile(CType(dt.Rows(0)("certfile"), Byte()), dt.Rows(0)("certtype").ToString(), dt.Rows(0)("certname").ToString())
-                End If
+            If dt IsNot Nothing Then
+                'downloadFile(CType(dt.Rows(0)("certfile"), Byte()), dt.Rows(0)("certtype").ToString(), dt.Rows(0)("certname").ToString())
+            End If
+            Dim fileName As String = dt.Rows(0)("certname").ToString()
+            Dim filePath As String = Server.MapPath(emailFile & fileName)
+            Response.ContentType = ContentType
+            Response.AppendHeader("Content-Disposition", ("attachment; filename=" + Path.GetFileName(filePath)))
+            Response.WriteFile(filePath)
+            Response.End()
 
         Catch ex As Exception
             Process.loadalert(divalert, msgalert, ex.Message, "danger")

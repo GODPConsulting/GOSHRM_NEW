@@ -1,0 +1,10 @@
+SELECT a.ACC_0 as GL_CODE, b.DES_0 as Account_Description,a.CUR_0 as ACCT_CRNCY, SUM(SNS_0*AMTCUR_0) as balance
+FROM
+EGBINLIVE.GACCENTRYD as a inner join
+EGBINLIVE.GACCOUNT as b
+ON a.ACC_0=b.ACC_0 where ACCDAT_0 between 'Startdate' and 'enddate'
+GROUP BY a.ACC_0,b.DES_0,a.CUR_0 
+
+
+
+Server=192.168.20.6\SQLX3V6;Database=sqlx3v6;Uid=GOPD;Pwd=Sage2020;
