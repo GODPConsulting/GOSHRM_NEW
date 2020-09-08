@@ -181,6 +181,7 @@ Public Class EmployeeTerminalBenefit
                 If confirmGen = "Yes" Then
                     Dim strCompletionStatus As New DataSet
                     Using conn2 As New SqlConnection(WebConfig.ConnectionString)
+                        conn2.Open()
                         Dim comm2 As New SqlCommand("Finance_Generate_Single_Terminal_PaySlip", conn2)
                         comm2.CommandType = CommandType.StoredProcedure
                         comm2.Parameters.AddWithValue("@employee", lblEmpID.Text)

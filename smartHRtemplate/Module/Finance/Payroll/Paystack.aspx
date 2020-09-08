@@ -151,7 +151,7 @@
                      }
 
                      function payRecipient(){
-                     var payment = "<%=paystatus %>";
+                     var payment = "<%=paystatus%>";
                      if (payment == "True"){
                        $("#diva").css("display", "block");
                        $("#msga").text("Payment has already been made");
@@ -194,9 +194,13 @@
                                  });
                          }
                      });
-                     }
-         window.onload = getRecipient;
-         window.onload = getBalanceFromPaystack;
+        }
+        window.onload = function () {
+            getBalanceFromPaystack();
+            getRecipient();
+        }
+       //  window.onload = getRecipient;
+         //window.onload = getBalanceFromPaystack;
     </script>
     <script type="text/javascript" language="javascript">
         //    Grid View Check box

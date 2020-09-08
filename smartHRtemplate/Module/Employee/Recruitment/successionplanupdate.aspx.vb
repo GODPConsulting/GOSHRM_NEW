@@ -313,7 +313,7 @@ Public Class successionplanupdate
 
             lblstatus = "Record saved!"
             Process.loadalert(divalert, msgalert, lblstatus, "success")
-
+            Response.Redirect("~/Module/Employee/Recruitment/SuccessionPlans")
         Catch ex As Exception
             Process.loadalert(divalert, msgalert, ex.Message, "danger")
         End Try

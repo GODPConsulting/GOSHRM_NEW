@@ -109,6 +109,7 @@ Public Class gos
                     Dim prog As transfers = New transfers()
                     prog.recipient = Convert.ToString(strTest.Tables(0).Rows(i)("RecipientCode"))
                     Dim amount As Decimal = (Convert.ToDecimal(strTest.Tables(0).Rows(i)("Net Pay")) * 100)
+                    amount = Convert.ToInt32(amount)
                     prog.amount = Convert.ToString(amount)
 
                     listTransfers.Add(prog)

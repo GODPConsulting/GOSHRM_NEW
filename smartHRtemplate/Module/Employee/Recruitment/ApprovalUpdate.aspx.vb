@@ -121,6 +121,8 @@ Public Class ApprovalUpdate
 
 
             Process.loadalert(divalert, msgalert, "Status successfully updated", "success")
+            Response.Write("<script language='javascript'> { self.close() }</script>")
+
         Catch ex As Exception
             Process.loadalert(divalert, msgalert, ex.Message, "danger")
         End Try

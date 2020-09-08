@@ -136,6 +136,13 @@ Public Class successiondetail
             Process.LoadListAndComboxFromDataset(lstemployees, cboemployee, "Recruitment_Succession_Detail_Responsibility_Get", "name", "empid", lblid.Text)
             lblstatus = "Record saved"
             Process.loadalert(divalert, msgalert, lblstatus, "success")
+            If Request.QueryString("appid") IsNot Nothing Then
+                Response.Redirect("successionplanupdate?appid=" & lblsuccessionid.Text, True)
+            ElseIf Request.QueryString("type") = "user" Then
+                Response.Redirect("successionplanupdate?id=" & lblsuccessionid.Text, True)
+            ElseIf Request.QueryString("type") = "hr" Then
+                Response.Redirect("~/module/recruitment/successionupdate?id=" & lblsuccessionid.Text, True)
+            End If
         Catch ex As Exception
             Process.loadalert(divalert, msgalert, ex.Message, "danger")
         End Try

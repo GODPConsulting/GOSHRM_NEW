@@ -101,7 +101,7 @@
                     </div>--%>
                     <div class="form-group">
                                         <label>
-                                            TARGET DATE</label>
+                                            TARGET START DATE</label>
                                         <telerik:raddatepicker runat="server" mindate="1900-01-01" forecolor="#666666" culture="en-US"
                                             rendermode="Lightweight" width="100%" resolvedrendermode="Classic" id="astartdate"
                                             skin="Bootstrap">
@@ -134,7 +134,7 @@
                 <div class=" col-md-8">
                     <div class="form-group">
                                         <label>
-                                            DUE DATE</label>
+                                           TARGET DUE DATE</label>
                                         <telerik:raddatepicker runat="server" mindate="1900-01-01" forecolor="#666666" culture="en-US"
                                             rendermode="Lightweight" width="100%" resolvedrendermode="Classic" id="aduedate"
                                             skin="Bootstrap">

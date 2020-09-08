@@ -345,8 +345,8 @@
                                                             runat="server" OnClick="viewdetail"></asp:LinkButton>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:BoundField DataField="expectedstartdate" HeaderText="Start Date" SortExpression="expectedstartdate" DataFormatString="{0:dd, MMM yyyy}" />
-                                                <asp:BoundField DataField="expectedenddate" HeaderText="Due Date" SortExpression="expectedenddate" DataFormatString="{0:dd, MMM yyyy}"/>
+                                                <asp:BoundField DataField="expectedstartdate" HeaderText="Target Start Date" SortExpression="expectedstartdate" DataFormatString="{0:dd, MMM yyyy}" />
+                                                <asp:BoundField DataField="expectedenddate" HeaderText="Target Due Date" SortExpression="expectedenddate" DataFormatString="{0:dd, MMM yyyy}"/>
                                                 <asp:BoundField DataField="status" HeaderText="Status" SortExpression="status" />
                                             </Columns>
                                             <HeaderStyle BackColor="White" ForeColor="#1BA691" HorizontalAlign="center" />

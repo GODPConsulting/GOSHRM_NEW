@@ -89,10 +89,15 @@
                      HttpUtility.UrlEncode(Eval("id").ToString())) %>' Text='<%# Eval("name")%>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>  
-                                 <asp:BoundField DataField="plannedjobgrade" HeaderText="Planned Job Grade" SortExpression= "plannedjobgrade" />  
+                               
+                                <asp:BoundField DataField="jobgrade" HeaderText="Current Job Grade" SortExpression= "jobgrade" />
+                                 <asp:BoundField DataField="jobtitle" HeaderText="Current Job Title" SortExpression= "jobtitle" />
+                                  <asp:BoundField DataField="plannedjobgrade" HeaderText="Planned Job Grade" SortExpression= "plannedjobgrade" />  
                                  <asp:BoundField DataField="plannedjobtitle" HeaderText="Planned Job Title" SortExpression= "plannedjobtitle" /> 
                                 <asp:BoundField DataField="planneddept" HeaderText="Planned Office" SortExpression= "planneddept" />
                                 <asp:BoundField DataField="finalstatus" HeaderText="Approval" SortExpression= "finalstatus" />
+                               
+
                             </Columns>
                             <HeaderStyle BackColor="White" ForeColor="#1BA691" HorizontalAlign="center" />
                         </asp:GridView>
