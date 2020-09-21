@@ -83,6 +83,9 @@
                         <strong id="msgalert" runat="server">Danger!</strong>
                         <asp:TextBox ID="txtid" runat="server" Font-Size="1px" Height="16px" Width="6px"
                                 Visible="False"></asp:TextBox>
+                         <asp:TextBox ID="Star" runat="server" Font-Size="1px" Height="16px" Width="6px"
+                                Visible="False"></asp:TextBox>
+
                     </div>
                  </div>
                <div class="panel panel-info">
@@ -133,14 +136,14 @@
                             <div class="form-group">
                                 <label>
                                     LAST NAME*</label>
-                                <input id="alastname" runat="server" class="form-control" type="text" placeholder="Surname" />
+                                <input id="alastname" runat="server" readonly class="form-control" type="text" placeholder="Surname" />
                             </div>
                         </div>
                         <div class=" col-md-8">
                             <div class="form-group">
                                 <label>
                                     OTHER NAMES*</label>
-                                <input id="aothername" runat="server" class="form-control" type="text" placeholder="First Name Middle Name" />
+                                <input id="aothername" runat="server" readonly  class="form-control" type="text" placeholder="First Name Middle Name" />
                             </div>
                         </div>
                     </div>
@@ -176,7 +179,7 @@
                             <div class="form-group">
                                 <label>
                                     EMAIL ADDRESS*</label>
-                                <input id="aemailadd" runat="server" class="form-control" type="text" placeholder="Personal Email Address" />
+                                <input id="aemailadd" runat="server" class="form-control" type="text" readonly placeholder="Personal Email Address" />
                             </div>
                         </div>
                     </div>

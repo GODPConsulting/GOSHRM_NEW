@@ -239,6 +239,7 @@ Public Class LeaveTypeUpdate
             End If
             lblstatus = "Record saved"
             Process.loadalert(divalert, msgalert, lblstatus, "success")
+            Response.Redirect("~/Module/Admin/leavetype", True)
         Catch ex As Exception
             Process.loadalert(divalert, msgalert, ex.Message, "danger")
         End Try

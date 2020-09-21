@@ -44,8 +44,25 @@ Public Class ApplicantLogin
                     Session("stage") = Request.QueryString("stage")
                     Response.Redirect("~/Module/Recruitment/OnlineTest/TestStartup", True)
                 Else
-                    SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "applicant_lastlogin_update", Request.Form("uid"))
-                    Response.Redirect("~/Module/Recruitment/Applications/Vacancies", True)
+                    Dim strUser As New DataSet
+                    strUser = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Recruit_Applicant_Get", Request.Form("uid"))
+                    Dim VerificationStatus As Boolean = strUser.Tables(0).Rows(0).Item("Virified")
+                    Dim FirstUserCheck1 = strUser.Tables(0).Rows(0).Item("certname").ToString
+                    Dim FirstUserCheck2 = strUser.Tables(0).Rows(0).Item("coverlettername").ToString
+                    Dim FirstUserCheck3 = strUser.Tables(0).Rows(0).Item("certname").ToString
+                    Dim FirstUserCheck4 = strUser.Tables(0).Rows(0).Item("Skill").ToString
+                    If (VerificationStatus = False) Then
+                        lblStatus = "Please Comfirm Your Email"
+                        Process.loadalert(divalert, msgalert, lblStatus, "danger")
+                    Else
+                        If (FirstUserCheck1 = "" And FirstUserCheck2 = "" And FirstUserCheck3 = "" And FirstUserCheck4 = "") Then
+                            SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "applicant_lastlogin_update", Request.Form("uid"))
+                            Response.Redirect("~/Module/Recruitment/Applications/CandidateProfile", True)
+                        Else
+                            SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "applicant_lastlogin_update", Request.Form("uid"))
+                            Response.Redirect("~/Module/Recruitment/Applications/Vacancies", True)
+                        End If
+                    End If
                 End If
             Else
                 lblStatus = "Login failed, invalid user or password"
@@ -59,7 +76,7 @@ Public Class ApplicantLogin
 
     Protected Sub lnkNewUser(sender As Object, e As EventArgs)
         Try
-            Response.Redirect("~/Module/Recruitment/Applications/CandidateProfile")
+            Response.Redirect("~/Module/Recruitment/Applications/SignUp")
         Catch ex As Exception
             Process.loadalert(divalert, msgalert, ex.Message, "danger")  
         End Try

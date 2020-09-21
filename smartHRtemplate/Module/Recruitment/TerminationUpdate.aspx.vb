@@ -160,7 +160,11 @@ Public Class TerminationUpdate
                 Process.loadalert(divalert, msgalert, lblstatus, "warning")
                 Exit Sub
             End If
-
+            If ahigherapproval.Value.ToUpper <> "APPROVED" And cboHRApproval.SelectedItem.Text.ToUpper = "APPROVED" Then
+                lblstatus = cboApproverII.SelectedValue & " 's Approval required!"
+                Process.loadalert(divalert, msgalert, lblstatus, "warning")
+                Exit Sub
+            End If
             If (anoticedate.SelectedDate Is Nothing) Then
                 lblstatus = "Date of Notice required!"
                 Process.loadalert(divalert, msgalert, lblstatus, "warning")
@@ -212,6 +216,7 @@ Public Class TerminationUpdate
             If cboApproverII.SelectedValue.ToLower = "n/a" Then
                 ahigherapproval.Value = "Approved"
             End If
+
 
 
             If txtid.Text <> "0" And txtid.Text <> "" Then
@@ -395,7 +400,7 @@ Public Class TerminationUpdate
                 'Process.Exit_For_HOD_Approval(Process.DDMONYYYY(aexitdate.Value), cboExitType.SelectedValue, areason.Value, cboEmployee.SelectedValue, cboApproverII.SelectedValue, Process.ApplicationURL() + "/" + Process.GetMailLink(AuthenCode, 1))cboManager
                 'Process.Exit_For_HOD_Approval(Process.DDMONYYYY(aexitdate.Value), cboExitType.SelectedValue, areason.Value, cboEmployee.SelectedValue, cboManager.SelectedValue, Process.ApplicationURL() + "/" + Process.GetMailLink(AuthenCode, 1))
                 lblstatus = "Approver Notification sent!"
-                Process.loadalert(divalert, msgalert, lblstatus, "warning")
+                Process.loadalert(divalert, msgalert, lblstatus, "success")
             End If
         Catch ex As Exception
             Process.loadalert(divalert, msgalert, ex.Message, "danger")

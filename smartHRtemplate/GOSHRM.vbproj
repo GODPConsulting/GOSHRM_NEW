@@ -2397,11 +2397,14 @@
     <Content Include="Module\Admin\Organisation\LocationUpdate.aspx" />
     <Content Include="Module\Admin\Organisation\StructureDefinition.aspx" />
     <Content Include="Module\Admin\Organisation\StructureDefinitionUpdate.aspx" />
+    <Content Include="Module\Admin\PerformanceReward.aspx" />
     <Content Include="Module\Admin\RadNavigationScripts.js" />
+    <Content Include="Module\Admin\Reward.aspx" />
     <Content Include="Module\Admin\Roles.aspx" />
     <Content Include="Module\Admin\UpdateUser.aspx" />
     <Content Include="Module\Admin\Users.aspx" />
     <Content Include="Module\Admin\UsersAccess.aspx" />
+    <Content Include="Module\Admin\WebForm3.aspx" />
     <Content Include="Module\Admin\WorkWeek.aspx" />
     <Content Include="Module\Admin\WorkWeekGrade.aspx" />
     <Content Include="Module\Admin\WorkWeekGradeUpdate.aspx" />
@@ -2483,7 +2486,11 @@
     <Content Include="Module\Finance\Payroll\Paystack.aspx" />
     <Content Include="Module\Recruitment\Applications\about.html" />
     <Content Include="Module\Recruitment\Applications\ApplicantLogin.html" />
+    <Content Include="Module\Recruitment\Applications\goat.aspx" />
+    <Content Include="Module\Recruitment\Applications\SignUp.aspx" />
     <Content Include="Module\Recruitment\Applications\vacancyview.aspx" />
+    <Content Include="Module\Recruitment\Applications\Verified.aspx" />
+    <Content Include="Module\Recruitment\Applications\Verify.aspx" />
     <Content Include="Module\Recruitment\StaffRequisitionStat.aspx" />
     <Content Include="Module\Employee\Recruitment\StaffRequisitionUpdate.aspx" />
     <Content Include="Module\Employee\Recruitment\StatView.aspx" />
@@ -5251,12 +5258,33 @@
       <DependentUpon>PaystackSetup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Module\Admin\PerformanceReward.aspx.designer.vb">
+      <DependentUpon>PerformanceReward.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Admin\PerformanceReward.aspx.vb">
+      <DependentUpon>PerformanceReward.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Module\Admin\Reward.aspx.designer.vb">
+      <DependentUpon>Reward.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Admin\Reward.aspx.vb">
+      <DependentUpon>Reward.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Module\Admin\UpdateUser.aspx.designer.vb">
       <DependentUpon>UpdateUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="Module\Admin\UpdateUser.aspx.vb">
       <DependentUpon>UpdateUser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Module\Admin\WebForm3.aspx.designer.vb">
+      <DependentUpon>WebForm3.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Admin\WebForm3.aspx.vb">
+      <DependentUpon>WebForm3.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Module\Employee\EmergencyContacts.aspx.designer.vb">
       <DependentUpon>EmergencyContacts.aspx</DependentUpon>
@@ -5349,6 +5377,13 @@
       <DependentUpon>Paystack.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Module\Recruitment\Applications\goat.aspx.designer.vb">
+      <DependentUpon>goat.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Recruitment\Applications\goat.aspx.vb">
+      <DependentUpon>goat.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Module\Recruitment\Applications\searchpage.aspx.designer.vb">
       <DependentUpon>searchpage.aspx</DependentUpon>
     </Compile>
@@ -5356,11 +5391,32 @@
       <DependentUpon>searchpage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Module\Recruitment\Applications\SignUp.aspx.designer.vb">
+      <DependentUpon>SignUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Recruitment\Applications\SignUp.aspx.vb">
+      <DependentUpon>SignUp.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Module\Recruitment\Applications\vacancyview.aspx.designer.vb">
       <DependentUpon>vacancyview.aspx</DependentUpon>
     </Compile>
     <Compile Include="Module\Recruitment\Applications\vacancyview.aspx.vb">
       <DependentUpon>vacancyview.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Module\Recruitment\Applications\Verified.aspx.designer.vb">
+      <DependentUpon>Verified.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Recruitment\Applications\Verified.aspx.vb">
+      <DependentUpon>Verified.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Module\Recruitment\Applications\Verify.aspx.designer.vb">
+      <DependentUpon>Verify.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Recruitment\Applications\Verify.aspx.vb">
+      <DependentUpon>Verify.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Module\Recruitment\Applications\welcome.aspx.designer.vb">

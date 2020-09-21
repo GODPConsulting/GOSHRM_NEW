@@ -835,6 +835,17 @@ Public Class Process
         Next
         Return result
     End Function
+    Public Shared Function GetRecruitData(ByVal GUID As String, ByVal column As String) As String
+        'Load RadCombo Box with Display Text and Value
+
+        Dim strDataSet As New DataSet
+        Dim result As String = ""
+        strDataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Recruit_Applicant_Get", GUID)
+        For i As Integer = 0 To strDataSet.Tables(0).Rows.Count - 1
+            result = strDataSet.Tables(0).Rows(i).Item(column).ToString()
+        Next
+        Return result
+    End Function
     Public Shared Function GetEmailAddress(empid As String) As String
         Try
             Dim name As String = ""
@@ -3286,9 +3297,33 @@ Public Class Process
 
 
 
-            Return SendEmail("", scompany, receiver, _
-                                   subject, _
-                                   "<div style=""font-family:Arial; font-size:12px;"">" & msgbuild.ToString.Replace(vbCrLf, "<br />") & "</div>", _
+            Return SendEmail("", scompany, receiver,
+                                   subject,
+                                   "<div style=""font-family:Arial; font-size:12px;"">" & msgbuild.ToString.Replace(vbCrLf, "<br />") & "</div>",
+                                   "", True)
+        Catch ex As Exception
+            HttpContext.Current.Session.Item("exception") = ex.Message
+            Return False
+        End Try
+    End Function
+    Public Shared Function Verify_Recruit(ByVal scompany As String, ByVal receiver As String, ByVal recruitName As String, ByVal Link As String) As Boolean
+        Try
+            Dim subject As String = "Comfirm Your Email"
+            Dim filePath As String = MailContentURL & MailFolderRecruitment & "Verify_Recruit.txt"
+            Dim readertxt As New StreamReader(filePath)
+            msgbuild.Clear()
+            While Not readertxt.EndOfStream
+                Dim line As String = readertxt.ReadLine()
+                msgbuild.AppendLine(line)
+            End While
+            readertxt.Close()
+            msgbuild = msgbuild.Replace("@empname", recruitName).Replace("@Link", Link).Replace("@company", scompany)
+
+
+
+            Return SendEmail("", scompany, receiver,
+                                   subject,
+                                   "<div style=""font-family:Arial; font-size:12px;"">" & msgbuild.ToString.Replace(vbCrLf, "<br />") & "</div>",
                                    "", True)
         Catch ex As Exception
             HttpContext.Current.Session.Item("exception") = ex.Message

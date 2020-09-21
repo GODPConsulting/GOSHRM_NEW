@@ -178,7 +178,8 @@ Public Class EmpLeaveAllowanceUpdate
                 End If
 
             End If
-            Process.loadalert(divalert, msgalert, "Record saved", "danger")
+            Process.loadalert(divalert, msgalert, "Record saved", "Success")
+            Response.Redirect("EmpLeaveAllowanceSetup")
         Catch ex As Exception
             Process.loadalert(divalert, msgalert, ex.Message, "danger")
         End Try

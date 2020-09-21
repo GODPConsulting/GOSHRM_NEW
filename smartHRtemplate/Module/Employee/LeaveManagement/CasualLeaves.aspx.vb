@@ -66,11 +66,13 @@ Public Class CasualLeaves
                 aDays.Value = NoDays
             End If
 
-            If Session("LeaveDays") > 0 Then
-                If LeaveBalance < 0 Then
-                    lblstatus = "You don't have sufficient leave days left!"
-                    Process.loadalert(divalert1, msgalert1, lblstatus, "danger")
-                End If
+            'If Session("LeaveDays") > 0 Then
+            If LeaveBalance < 0 Then
+                ClientScript.RegisterClientScriptBlock(Me.[GetType](), "alert", Convert.ToString("alert('") & "Query notification successfully sent to ')", True)
+                ClientScript.RegisterClientScriptBlock(Me.[GetType](), "alert", Convert.ToString("alert('") & "You don't have sufficient leave days left. Are you sure you want to continue" + "')", True)
+                lblstatus = "You don't have sufficient leave days left!"
+                Process.loadalert(divalert1, msgalert1, lblstatus, "danger")
+                ' End If
             End If
 
         Catch ex As Exception
@@ -342,12 +344,13 @@ Public Class CasualLeaves
             Dim apaydate As Date
             apaydate = Date.Now.AddYears(-100)
 
-            If Session("LeaveDays") > 0 Then
-                If CInt(aBalance.Value) < 0 Then
-                    lblstatus = "You do not have sufficient leave days left!"
-                    Process.loadalert(divalert, msgalert, lblstatus, "warning")
-                    Exit Sub
-                End If
+            'If Session("LeaveDays") > 0 Then
+            If CInt(aBalance.Value) < 0 Then
+                ClientScript.RegisterClientScriptBlock(Me.[GetType](), "alert", Convert.ToString("alert('") & "You don't have sufficient leave days left. Are you sure you want to continue" + "')", True)
+                'lblstatus = "You do not have sufficient leave days left!"
+                ' Process.loadalert(divalert, msgalert, lblstatus, "warning")
+                Exit Sub
+                'End If
             End If
 
             Dim daysadd As Integer = 0

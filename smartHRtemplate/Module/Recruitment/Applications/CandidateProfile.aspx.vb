@@ -18,7 +18,7 @@ Public Class CandidateProfile
         If strUser.Tables(0).Rows.Count > 0 Then
             txtid.Text = strUser.Tables(0).Rows(0).Item("id").ToString
             'lblimgtype.Text = strUser.Tables(0).Rows(0).Item("imgtype").ToString
-
+            Star.Text = strUser.Tables(0).Rows(0).Item("GUID").ToString
             aaddress.Value = strUser.Tables(0).Rows(0).Item("ResidentAddress").ToString
             acity.Value = strUser.Tables(0).Rows(0).Item("City").ToString
             aemailadd.Value = strUser.Tables(0).Rows(0).Item("EmailAddress").ToString
@@ -39,6 +39,7 @@ Public Class CandidateProfile
             aexpyears.Value = strUser.Tables(0).Rows(0).Item("Experience").ToString
             arefyears1.Value = strUser.Tables(0).Rows(0).Item("RefereeYears1").ToString
             arefyears2.Value = strUser.Tables(0).Rows(0).Item("RefereeYears2").ToString
+
 
             btcertificate.InnerText = strUser.Tables(0).Rows(0).Item("certname").ToString
             btcoverletter.InnerText = strUser.Tables(0).Rows(0).Item("coverlettername").ToString
@@ -140,6 +141,12 @@ Public Class CandidateProfile
             If Session("clicked") = "1" Then
                 btnupdate.Focus()
             End If
+            Dim lblstatus As String = ""
+            If (aphonenumber.Value = "") Then
+                lblstatus = "Please complete your Profile"
+
+                Process.loadalert(divalert, msgalert, lblstatus, "success")
+            End If
 
         Catch ex As Exception
             Process.loadalert(divalert, msgalert, ex.Message, "danger")
@@ -154,7 +161,7 @@ Public Class CandidateProfile
         Dim num As String = Convert.ToString(random.Next(10, 20000)).PadLeft(6, "0")
         Return num
     End Function
-    Private Function GetIdentity(Pwd As String, Skill As String, lang As String, cvfile As Byte(), cvtype As String, _
+    Private Function GetIdentity(Skill As String, lang As String, cvfile As Byte(), cvtype As String,
                                 cvname As String, coverfile As Byte(), covertype As String, covername As String, certfile As Byte(), certtype As String, certname As String, photo As Byte(), phototype As String) As String
         Try
             Dim fname As String = ""
@@ -170,62 +177,71 @@ Public Class CandidateProfile
                 End If
             End If
 
+            Dim Exp = Convert.ToInt32(aexpyears.Value)
 
-            Dim strConnString As String = WebConfig.ConnectionString   ' ConfigurationManager.ConnectionStrings("conString").ConnectionString
-            Dim con As New SqlConnection(strConnString)
-            Dim cmd As New SqlCommand()
-            cmd.CommandType = CommandType.StoredProcedure
-            cmd.CommandText = "Recruit_Applicant_Update"
-            cmd.Parameters.Add("@id", SqlDbType.VarChar).Value = txtid.Text.Trim
-            cmd.Parameters.Add("@EmailAddress", SqlDbType.VarChar).Value = aemailadd.Value.Trim
-            cmd.Parameters.Add("@MobileNo", SqlDbType.VarChar).Value = aphonenumber.Value.Trim
-            cmd.Parameters.Add("@Gender", SqlDbType.VarChar).Value = cbogender.SelectedItem.Text
-            cmd.Parameters.Add("@FieldType", SqlDbType.VarChar).Value = cboField.SelectedValue
-            cmd.Parameters.Add("@DOB", SqlDbType.Date).Value = datDOB.SelectedDate
-            cmd.Parameters.Add("@Education", SqlDbType.VarChar).Value = cboEducation.SelectedValue
-            cmd.Parameters.Add("@Skill", SqlDbType.VarChar).Value = Skill
-            cmd.Parameters.Add("@lang", SqlDbType.VarChar).Value = lang
-            cmd.Parameters.Add("@Experience", SqlDbType.Int).Value = aexpyears.Value
-            cmd.Parameters.Add("@Nationality", SqlDbType.VarChar).Value = cbonationality.SelectedItem.Text
-            cmd.Parameters.Add("@FName", SqlDbType.VarChar).Value = fname
-            cmd.Parameters.Add("@MName", SqlDbType.VarChar).Value = mname
-            cmd.Parameters.Add("@LName", SqlDbType.VarChar).Value = alastname.Value.Trim
-            cmd.Parameters.Add("@Marital", SqlDbType.VarChar).Value = cbomarital.SelectedItem.Text
-            cmd.Parameters.Add("@Address", SqlDbType.VarChar).Value = aaddress.Value.Trim
-            cmd.Parameters.Add("@City", SqlDbType.VarChar).Value = acity.Value
-            cmd.Parameters.Add("@State", SqlDbType.VarChar).Value = astate.Value
-            cmd.Parameters.Add("@Country", SqlDbType.VarChar).Value = cbocountry.SelectedValue
-            cmd.Parameters.Add("@Pwd", SqlDbType.VarChar).Value = Pwd
-            cmd.Parameters.Add("@RefereeName1", SqlDbType.VarChar).Value = arefname1.Value.Trim
+            Dim RefYears1 = Convert.ToInt32(arefyears1.Value)
+            Dim RefYears2
+            If (arefyears2.Value <> "") Then
+                RefYears2 = Convert.ToInt32(arefyears2.Value)
+            Else
+                RefYears2 = arefyears2.Value
+            End If
+            SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Recruit_Applicant_Update", Star.Text, aphonenumber.Value.Trim, cbogender.SelectedItem.Text, cboField.SelectedValue, datDOB.SelectedDate, cboEducation.SelectedValue, Skill, lang, Exp, cbonationality.SelectedItem.Text, cbomarital.SelectedItem.Text, aaddress.Value.Trim, acity.Value, astate.Value, cbocountry.SelectedValue, arefname1.Value.Trim, arefaddr1.Value, arefphone1.Value, arefemail1.Value, arefposition1.Value, RefYears1, arefname2.Value.Trim, arefaddr2.Value, arefphone2.Value, arefemail2.Value, arefposition2.Value, RefYears2, cvfile, cvtype, cvname, coverfile, covertype, covername, certfile, certtype, certname, photo, phototype, cbograde.SelectedValue, cboDiscipline.SelectedValue)
+            'Dim strConnString As String = WebConfig.ConnectionString   ' ConfigurationManager.ConnectionStrings("conString").ConnectionString
+            'Dim con As New SqlConnection(strConnString)
+            'Dim cmd As New SqlCommand()
+            'cmd.CommandType = CommandType.StoredProcedure
+            'cmd.CommandText = "Recruit_Applicant_Update"
+            'cmd.Parameters.Add("@id", SqlDbType.Int).Value = txtid.Text.Trim
+            'cmd.Parameters.Add("@EmailAddress", SqlDbType.VarChar).Value = aemailadd.Value.Trim
+            'cmd.Parameters.Add("@MobileNo", SqlDbType.VarChar).Value = aphonenumber.Value.Trim
+            'cmd.Parameters.Add("@Gender", SqlDbType.VarChar).Value = cbogender.SelectedItem.Text
+            'cmd.Parameters.Add("@FieldType", SqlDbType.VarChar).Value = cboField.SelectedValue
+            'cmd.Parameters.Add("@DOB", SqlDbType.Date).Value = datDOB.SelectedDate
+            'cmd.Parameters.Add("@Education", SqlDbType.VarChar).Value = cboEducation.SelectedValue
+            'cmd.Parameters.Add("@Skill", SqlDbType.VarChar).Value = Skill
+            'cmd.Parameters.Add("@lang", SqlDbType.VarChar).Value = lang
+            'cmd.Parameters.Add("@Experience", SqlDbType.Int).Value = aexpyears.Value
+            'cmd.Parameters.Add("@Nationality", SqlDbType.VarChar).Value = cbonationality.SelectedItem.Text
+            'cmd.Parameters.Add("@FName", SqlDbType.VarChar).Value = fname
+            'cmd.Parameters.Add("@MName", SqlDbType.VarChar).Value = mname
+            'cmd.Parameters.Add("@LName", SqlDbType.VarChar).Value = alastname.Value.Trim
+            'cmd.Parameters.Add("@Marital", SqlDbType.VarChar).Value = cbomarital.SelectedItem.Text
+            'cmd.Parameters.Add("@Address", SqlDbType.VarChar).Value = aaddress.Value.Trim
+            'cmd.Parameters.Add("@City", SqlDbType.VarChar).Value = acity.Value
+            'cmd.Parameters.Add("@State", SqlDbType.VarChar).Value = astate.Value
+            'cmd.Parameters.Add("@Country", SqlDbType.VarChar).Value = cbocountry.SelectedValue
+            'cmd.Parameters.Add("@Pwd", SqlDbType.VarChar).Value = Pwd
+            'cmd.Parameters.Add("@RefereeName1", SqlDbType.VarChar).Value = arefname1.Value.Trim
 
-            cmd.Parameters.Add("@RefereeAddress1", SqlDbType.VarChar).Value = arefaddr1.Value
-            cmd.Parameters.Add("@RefereePhone1", SqlDbType.VarChar).Value = arefphone1.Value
-            cmd.Parameters.Add("@RefereeEmail1", SqlDbType.VarChar).Value = arefemail1.Value
-            cmd.Parameters.Add("@RefereePostion1", SqlDbType.VarChar).Value = arefposition1.Value
-            cmd.Parameters.Add("@RefereeYears1", SqlDbType.Int).Value = arefyears1.Value
-            cmd.Parameters.Add("@RefereeName2", SqlDbType.VarChar).Value = arefname2.Value.Trim
-            cmd.Parameters.Add("@RefereeAddress2", SqlDbType.VarChar).Value = arefaddr2.Value.Trim
-            cmd.Parameters.Add("@RefereePhone2", SqlDbType.VarChar).Value = arefphone2.Value
-            cmd.Parameters.Add("@RefereeEmail2", SqlDbType.VarChar).Value = arefemail2.Value
-            cmd.Parameters.Add("@RefereePostion2", SqlDbType.VarChar).Value = arefposition2.Value
-            cmd.Parameters.Add("@RefereeYears2", SqlDbType.Int).Value = arefyears2.Value
-            cmd.Parameters.Add("@cvfile", SqlDbType.Image).Value = cvfile
-            cmd.Parameters.Add("@cvtype", SqlDbType.VarChar).Value = cvtype
-            cmd.Parameters.Add("@cvname", SqlDbType.VarChar).Value = cvname
-            cmd.Parameters.Add("@coverfile", SqlDbType.Image).Value = coverfile
-            cmd.Parameters.Add("@covertype", SqlDbType.VarChar).Value = covertype
-            cmd.Parameters.Add("@covername", SqlDbType.VarChar).Value = covername
-            cmd.Parameters.Add("@certfile", SqlDbType.Image).Value = certfile
-            cmd.Parameters.Add("@certtype", SqlDbType.VarChar).Value = certtype
-            cmd.Parameters.Add("@certname", SqlDbType.VarChar).Value = certname
-            cmd.Parameters.Add("@photofile", SqlDbType.Image).Value = photo
-            cmd.Parameters.Add("@phototype", SqlDbType.VarChar).Value = phototype
-            cmd.Parameters.Add("@academicgrade", SqlDbType.VarChar).Value = cbograde.SelectedValue
-            cmd.Parameters.Add("@discipline", SqlDbType.VarChar).Value = cboDiscipline.SelectedValue
-            cmd.Connection = con
-            con.Open()
-            Dim obj As Object = cmd.ExecuteScalar()
-            Return obj.ToString()
+            'cmd.Parameters.Add("@RefereeAddress1", SqlDbType.VarChar).Value = arefaddr1.Value
+            'cmd.Parameters.Add("@RefereePhone1", SqlDbType.VarChar).Value = arefphone1.Value
+            'cmd.Parameters.Add("@RefereeEmail1", SqlDbType.VarChar).Value = arefemail1.Value,arefposition1.Value
+            'cmd.Parameters.Add("@RefereePostion1", SqlDbType.VarChar).Value = arefposition1.Value
+            'cmd.Parameters.Add("@RefereeYears1", SqlDbType.Int).Value = arefyears1.Value
+            'cmd.Parameters.Add("@RefereeName2", SqlDbType.VarChar).Value = arefname2.Value.Trim
+            'cmd.Parameters.Add("@RefereeAddress2", SqlDbType.VarChar).Value = arefaddr2.Value.Trim
+            'cmd.Parameters.Add("@RefereePhone2", SqlDbType.VarChar).Value = arefphone2.Value
+            'cmd.Parameters.Add("@RefereeEmail2", SqlDbType.VarChar).Value = arefemail2.Value
+            'cmd.Parameters.Add("@RefereePostion2", SqlDbType.VarChar).Value = arefposition2.Value
+            'cmd.Parameters.Add("@RefereeYears2", SqlDbType.Int).Value = arefyears2.Value
+            'cmd.Parameters.Add("@cvfile", SqlDbType.Image).Value = cvfile
+            'cmd.Parameters.Add("@cvtype", SqlDbType.VarChar).Value = cvtype
+            'cmd.Parameters.Add("@cvname", SqlDbType.VarChar).Value = cvname
+            'cmd.Parameters.Add("@coverfile", SqlDbType.Image).Value = coverfile
+            'cmd.Parameters.Add("@covertype", SqlDbType.VarChar).Value = covertype
+            'cmd.Parameters.Add("@covername", SqlDbType.VarChar).Value = covername
+            'cmd.Parameters.Add("@certfile", SqlDbType.Image).Value = certfile
+            'cmd.Parameters.Add("@certtype", SqlDbType.VarChar).Value = certtype
+            'cmd.Parameters.Add("@certname", SqlDbType.VarChar).Value = certname
+            'cmd.Parameters.Add("@photofile", SqlDbType.Image).Value = photo
+            'cmd.Parameters.Add("@phototype", SqlDbType.VarChar).Value = phototype
+            'cmd.Parameters.Add("@academicgrade", SqlDbType.VarChar).Value = cbograde.SelectedValue,
+            'cmd.Parameters.Add("@discipline", SqlDbType.VarChar).Value = cboDiscipline.SelectedValue
+            'cmd.Connection = con
+            'con.Open()
+            'Dim obj As Object = cmd.ExecuteScalar()
+            'Return obj.ToString()
         Catch ex As Exception
             Process.loadalert(divalert, msgalert, ex.Message, "danger")
             Return 0
@@ -308,6 +324,7 @@ Public Class CandidateProfile
 
             Dim phototype As String = ""
             Dim photo As Byte() = Nothing
+            txtid.Text = Convert.ToInt32(txtid.Text)
 
             If aemailadd.Value.Trim.Contains("@") = False Or aemailadd.Value.Trim = "" Then
                 lblstatus = "Enter a valid email address"
@@ -435,7 +452,7 @@ Public Class CandidateProfile
                 Process.loadalert(divalert, msgalert, lblstatus, "warning")
                 Exit Sub
             End If
-
+            aexpyears.Value = Convert.ToInt32(aexpyears.Value)
             If IsDate(datDOB.SelectedDate) = False Then
                 datDOB.Focus()
                 lblstatus = "Date of Birth is required"
@@ -582,9 +599,9 @@ Public Class CandidateProfile
             End If
 
             If txtid.Text = "0" Then
-                txtid.Text = GetIdentity(Password, skills, lang, Nothing, cvtype, cvname, Nothing, coverlettertype, coverlettername, Nothing, certtype, certname, Nothing, phototype)
+                txtid.Text = GetIdentity(skills, lang, Nothing, cvtype, cvname, Nothing, coverlettertype, coverlettername, Nothing, certtype, certname, Nothing, phototype)
             Else
-                If GetIdentity(Password, skills, lang, Nothing, cvtype, cvname, Nothing, coverlettertype, coverlettername, Nothing, certtype, certname, Nothing, phototype) = "0" Then
+                If GetIdentity(skills, lang, Nothing, cvtype, cvname, Nothing, coverlettertype, coverlettername, Nothing, certtype, certname, Nothing, phototype) = "0" Then
                     Exit Sub
                 End If
             End If
@@ -602,9 +619,9 @@ Public Class CandidateProfile
             If Session("AppID") Is Nothing Then
                 Session("AppID") = txtid.Text
                 Session("ApplicantName") = alastname.Value & " " & aothername.Value
-                If divpwd.Visible = True = True Then
-                    Process.Applicant_New_Profile(aemailadd.Value.Trim, aothername.Value, aemailadd.Value, apwd.Value)
-                End If
+                'If divpwd.Visible = True = True Then
+                '    Process.Applicant_New_Profile(aemailadd.Value.Trim, aothername.Value, aemailadd.Value, apwd.Value)
+                'End If
 
                 divpwd.Visible = False
 

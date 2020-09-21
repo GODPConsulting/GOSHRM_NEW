@@ -1,0 +1,11 @@
+Hello @empname,
+
+Thanks for registering.
+
+Kindly click the link below to cofirm your email
+@Link
+
+Please Disregard this mail if it was not from you.
+
+HR Department
+@company
