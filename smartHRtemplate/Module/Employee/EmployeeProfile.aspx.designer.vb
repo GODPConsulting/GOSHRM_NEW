@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class EmployeeProfile
-    
+
     '''<summary>
     '''divalert control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents divalert As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''msgalert control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents msgalert As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''lblEmpID control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblEmpID As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''imgphoto control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents imgphoto As Global.System.Web.UI.HtmlControls.HtmlImage
-    
+
     '''<summary>
     '''pempname control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pempname As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''pempid control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pempid As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''pmaritalstatus control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pmaritalstatus As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''pdob control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pdob As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''pgender control.
     '''</summary>
@@ -93,7 +93,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pgender As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''pbloodgroup control.
     '''</summary>
@@ -102,7 +102,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pbloodgroup As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''pcountry control.
     '''</summary>
@@ -111,7 +111,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pcountry As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''pnationality control.
     '''</summary>
@@ -120,7 +120,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnationality As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''pidtype control.
     '''</summary>
@@ -129,7 +129,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pidtype As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''pidnumber control.
     '''</summary>
@@ -138,7 +138,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pidnumber As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''pidissuer control.
     '''</summary>
@@ -147,7 +147,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pidissuer As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''pidexpirydate control.
     '''</summary>
@@ -156,7 +156,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pidexpirydate As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''pmobileno control.
     '''</summary>
@@ -165,7 +165,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pmobileno As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''pofficemail control.
     '''</summary>
@@ -174,7 +174,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pofficemail As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''phomeaddress control.
     '''</summary>
@@ -183,7 +183,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents phomeaddress As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''presumptiondate control.
     '''</summary>
@@ -192,7 +192,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents presumptiondate As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''pconfirmationdate control.
     '''</summary>
@@ -201,7 +201,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pconfirmationdate As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''A4 control.
     '''</summary>
@@ -210,7 +210,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents A4 As Global.System.Web.UI.HtmlControls.HtmlAnchor
-    
+
     '''<summary>
     '''dlDependents control.
     '''</summary>
@@ -219,7 +219,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dlDependents As Global.System.Web.UI.WebControls.DataList
-    
+
     '''<summary>
     '''emername1 control.
     '''</summary>
@@ -228,7 +228,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents emername1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''emerrelationship1 control.
     '''</summary>
@@ -237,7 +237,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents emerrelationship1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''emerphone1 control.
     '''</summary>
@@ -246,7 +246,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents emerphone1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''emeraddr1 control.
     '''</summary>
@@ -255,7 +255,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents emeraddr1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''emername2 control.
     '''</summary>
@@ -264,7 +264,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents emername2 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''emerrelationship2 control.
     '''</summary>
@@ -273,7 +273,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents emerrelationship2 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''emerphone2 control.
     '''</summary>
@@ -282,7 +282,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents emerphone2 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''emeraddr2 control.
     '''</summary>
@@ -291,7 +291,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents emeraddr2 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''dlskills control.
     '''</summary>
@@ -300,7 +300,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dlskills As Global.System.Web.UI.WebControls.DataList
-    
+
     '''<summary>
     '''A3 control.
     '''</summary>
@@ -309,7 +309,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents A3 As Global.System.Web.UI.HtmlControls.HtmlAnchor
-    
+
     '''<summary>
     '''dlcertification control.
     '''</summary>
@@ -318,7 +318,16 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dlcertification As Global.System.Web.UI.WebControls.DataList
-    
+
+    '''<summary>
+    '''DataList1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DataList1 As Global.System.Web.UI.WebControls.DataList
+
     '''<summary>
     '''A2 control.
     '''</summary>
@@ -327,7 +336,7 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents A2 As Global.System.Web.UI.HtmlControls.HtmlAnchor
-    
+
     '''<summary>
     '''dlEducation control.
     '''</summary>
@@ -336,4 +345,13 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dlEducation As Global.System.Web.UI.WebControls.DataList
+
+    '''<summary>
+    '''DataList2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DataList2 As Global.System.Web.UI.WebControls.DataList
 End Class

@@ -38,7 +38,7 @@ Partial Public Class PerformanceReport
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UpdatePanel As UI.UpdatePanel
+    Protected WithEvents UpdatePanel As Global.System.Web.UI.UpdatePanel
 
     '''<summary>
     '''cboDepts control.
@@ -74,7 +74,7 @@ Partial Public Class PerformanceReport
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UpdatePanel2 As UI.UpdatePanel
+    Protected WithEvents UpdatePanel2 As Global.System.Web.UI.UpdatePanel
 
     '''<summary>
     '''cboEmployee control.

@@ -151,20 +151,31 @@ Public Class KPIType
                     ' Access the CheckBox
                     Dim cb As CheckBox = row.FindControl("chkEmp")
                     If cb IsNot Nothing AndAlso cb.Checked Then
-                        count = count + 1
+
                         ' Delete row! (Well, not really...)
                         atLeastOneRowDeleted = True
                         ' First, get the ProductID for the selected row
-                        Dim ID As String = _
+                        Dim ID As String =
                             Convert.ToString(GridVwHeaderChckbox.DataKeys(row.RowIndex).Value)
                         ' "Delete" the row
-                        SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Competency_Group_delete", ID)
+                        Dim strUser As DataSet
+                        strUser = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Competency_Group_Get_Special", ID)
+                        Dim Notdeletedata = strUser.Tables(0).Rows(0).Item("CompetencyType").ToString
+                        If Notdeletedata <> "Others" Then
+                            count = count + 1
+                            SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Competency_Group_delete", ID)
+                        End If
+
                     End If
                 Next
-                Process.loadalert(divalert, msgalert, count.ToString & " records successfully deleted", "success")
+                If count > 0 Then
+                    Process.loadalert(divalert, msgalert, count.ToString & " records successfully deleted", "success")
+                Else
+                    Process.loadalert(divalert, msgalert, " Others cannot be deleted", "success")
+                End If
                 LoadGrid()
-            
-            End If
+
+                End If
         Catch ex As Exception
             Process.loadalert(divalert, msgalert, ex.Message, "danger")
 

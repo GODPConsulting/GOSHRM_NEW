@@ -141,6 +141,9 @@
     <Reference Include="System.Web.Extensions">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Windows.Forms.Ribbon35, Version=3.5.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Forms.Ribbon35.3.5.8.0\lib\net35\System.Windows.Forms.Ribbon35.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq">
       <Private>True</Private>
     </Reference>
@@ -2400,6 +2403,8 @@
     <Content Include="Module\Admin\PerformanceReward.aspx" />
     <Content Include="Module\Admin\RadNavigationScripts.js" />
     <Content Include="Module\Admin\Reward.aspx" />
+    <Content Include="Module\Admin\RewardJobGradeUpdate.aspx" />
+    <Content Include="Module\Admin\RewardTable.aspx" />
     <Content Include="Module\Admin\Roles.aspx" />
     <Content Include="Module\Admin\UpdateUser.aspx" />
     <Content Include="Module\Admin\Users.aspx" />
@@ -2416,11 +2421,14 @@
     <Content Include="Module\Employee\BlackBoard.aspx" />
     <Content Include="Module\Employee\BlackBoardView.aspx" />
     <Content Include="Module\Employee\DirectReports.aspx" />
+    <Content Include="Module\Employee\EmployeeAsset.aspx" />
+    <Content Include="Module\Employee\EmployeeAssetReturn.aspx" />
     <Content Include="Module\Employee\EmployeeCertification.aspx" />
     <Content Include="Module\Employee\EmployeeData.aspx" />
     <Content Include="Module\Employee\EmergencyContacts.aspx" />
     <Content Include="Module\Employee\EmployeeDependant.aspx" />
     <Content Include="Module\Employee\EmployeeEducation.aspx" />
+    <Content Include="Module\Employee\EmployeeHobbies.aspx" />
     <Content Include="Module\Employee\EmployeeJobHistory.aspx" />
     <Content Include="Module\Employee\EmployeeLanguage.aspx" />
     <Content Include="Module\Employee\EmployeeProfile.aspx" />
@@ -2443,6 +2451,8 @@
     <Content Include="Module\Employee\Performance\AppraisalObjectivesForm.aspx" />
     <Content Include="Module\Employee\Performance\CoacheeAppraisalObjectives.aspx" />
     <Content Include="Module\Employee\Performance\CoacheeDevelopmentPlan.aspx" />
+    <Content Include="Module\Employee\Performance\CoachingForm.aspx" />
+    <Content Include="Module\Employee\Performance\CoachingList.aspx" />
     <Content Include="Module\Employee\Performance\CoachObjectives.aspx" />
     <Content Include="Module\Employee\Performance\AppFeedbackMComment.aspx" />
     <Content Include="Module\Employee\Performance\AppraisalFeedBackNuggetsList.aspx" />
@@ -4865,6 +4875,7 @@
     <Content Include="Skins\orgchart\OrgChart.Metro.css" />
     <Content Include="Skins\_all-skins.min.css" />
     <Content Include="manager.aspx" />
+    <Content Include="Updates.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -5272,6 +5283,20 @@
       <DependentUpon>Reward.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Module\Admin\RewardJobGradeUpdate.aspx.designer.vb">
+      <DependentUpon>RewardJobGradeUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Admin\RewardJobGradeUpdate.aspx.vb">
+      <DependentUpon>RewardJobGradeUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Module\Admin\RewardTable.aspx.designer.vb">
+      <DependentUpon>RewardTable.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Admin\RewardTable.aspx.vb">
+      <DependentUpon>RewardTable.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Module\Admin\UpdateUser.aspx.designer.vb">
       <DependentUpon>UpdateUser.aspx</DependentUpon>
     </Compile>
@@ -5292,6 +5317,27 @@
     <Compile Include="Module\Employee\EmergencyContacts.aspx.vb">
       <DependentUpon>EmergencyContacts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Module\Employee\EmployeeAsset.aspx.designer.vb">
+      <DependentUpon>EmployeeAsset.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Employee\EmployeeAsset.aspx.vb">
+      <DependentUpon>EmployeeAsset.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Module\Employee\EmployeeAssetReturn.aspx.designer.vb">
+      <DependentUpon>EmployeeAssetReturn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Employee\EmployeeAssetReturn.aspx.vb">
+      <DependentUpon>EmployeeAssetReturn.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Module\Employee\EmployeeHobbies.aspx.designer.vb">
+      <DependentUpon>EmployeeHobbies.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Employee\EmployeeHobbies.aspx.vb">
+      <DependentUpon>EmployeeHobbies.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Module\Employee\Performance\AppFeedbackComment.aspx.designer.vb">
       <DependentUpon>AppFeedbackComment.aspx</DependentUpon>
@@ -5348,6 +5394,20 @@
     <Compile Include="Module\Employee\Performance\AppraisalFeedBackNuggetsOwnerList.aspx.vb">
       <DependentUpon>AppraisalFeedBackNuggetsOwnerList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Module\Employee\Performance\CoachingForm.aspx.designer.vb">
+      <DependentUpon>CoachingForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Employee\Performance\CoachingForm.aspx.vb">
+      <DependentUpon>CoachingForm.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Module\Employee\Performance\CoachingList.aspx.designer.vb">
+      <DependentUpon>CoachingList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Employee\Performance\CoachingList.aspx.vb">
+      <DependentUpon>CoachingList.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Module\Employee\TimeManagement\EmployeeShift.aspx.designer.vb">
       <DependentUpon>EmployeeShift.aspx</DependentUpon>

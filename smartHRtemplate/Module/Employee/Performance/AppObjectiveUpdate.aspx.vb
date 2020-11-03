@@ -1138,6 +1138,7 @@ Public Class AppObjectiveUpdate
             cmd.Parameters.Add("@target", SqlDbType.VarChar).Value = a_measure.Value
             cmd.Parameters.Add("@objectives", SqlDbType.VarChar).Value = a_objective.Value
             cmd.Parameters.Add("@weightmodel", SqlDbType.VarChar).Value = lblmodel.Text
+            cmd.Parameters.Add("@UploadStatus", SqlDbType.VarChar).Value = "No"
             cmd.Connection = con
             con.Open()
             Dim obj As Object = cmd.ExecuteScalar()

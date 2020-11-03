@@ -85,10 +85,17 @@
                                 </telerik:RadComboBox>
                             </div>
                         </div>
-                        <div class=" col-md-12">
+                        <div class=" col-md-6">
                             <div class="form-group">
                                 <label>KPI Name*</label>
                                 <input id="txtname" runat="server" class="form-control" type="text" />
+                            </div>
+                        </div>
+                        <div class=" col-md-6">
+                            <div class="form-group">
+                                <label>Upload of actual Result</label>
+                                  <telerik:RadDropDownList ID="RadDropDownList1" runat="server" DefaultMessage="-- Select --"
+                                            Width="100%" ForeColor="#666666" Skin="Bootstrap"/>
                             </div>
                         </div>
                         <div class=" col-md-12">

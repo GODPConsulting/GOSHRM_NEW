@@ -68,6 +68,15 @@ Partial Public Class KPIUpdate
     Protected WithEvents txtname As Global.System.Web.UI.HtmlControls.HtmlInputText
 
     '''<summary>
+    '''RadDropDownList1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadDropDownList1 As Global.Telerik.Web.UI.RadDropDownList
+
+    '''<summary>
     '''txtDesc control.
     '''</summary>
     '''<remarks>

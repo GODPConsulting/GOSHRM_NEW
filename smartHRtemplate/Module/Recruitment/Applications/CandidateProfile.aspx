@@ -116,12 +116,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
+                    <div class="row"><div class ="col-md-10">
+
+                                     </div>
+                        <div class="col-md-2">
                             <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-4"></div><div class="col-md-6">
                                 <asp:Image ID="imgprofile" runat="server" CssClass="avatar" ImageUrl="~/images/logo.png"
-                                    Height="120px" Width="120px" />
-                                <input id="imguploads" runat="server" class="form-control" type="file" />
+                                    Height="120px" Width="120px" style="text-align :right" /></div> 
+                                <input id="imguploads" runat="server" class="form-control" type="file" /></div>
                             </div>
                         </div>
                         <div class="col-md-6">

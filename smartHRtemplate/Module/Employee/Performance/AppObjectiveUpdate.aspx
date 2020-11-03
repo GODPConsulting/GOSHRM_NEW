@@ -45,6 +45,7 @@
                  kpimetric.obj = $('#obj').val();
                  kpimetric.suc = $('#suc').val();
                  kpimetric.key = $('#key').val();
+                 kpimetric.UploadStatus = $('#upload').val();
                  if (this.kpi_id == 0) {
                      kpimetric.ID = 0;
                  } else {
@@ -147,6 +148,7 @@
                              $('#cat').val(prog.cat);
                              $('#AppID').val(prog.AppID);
                              $('#agree').val(prog.agree);
+                             $('#upload').val(prog.UploadStatus);
                              if ((prog.agree == "Discussed & Agreed") || (prog.EmpSetObj == "no")){
                                 $("#btnsubmit").attr("disabled", true); 
                              }
@@ -355,6 +357,7 @@
                         <textarea id="cat" onclick="hide_msg()" class="form-control" style="display:none;" type="text"></textarea>
                         <textarea id="AppID" onclick="hide_msg()" class="form-control" style="display:none;" type="text"></textarea>
                         <textarea id="agree" onclick="hide_msg()" class="form-control" style="display:none;" type="text"></textarea>
+                        <textarea id="upload" onclick="hide_msg()" class="form-control" style="display:none;" type="text"></textarea>
                     </div>
                     <div class="col-md-6">
                         <label>Success Measure</label>

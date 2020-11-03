@@ -156,6 +156,9 @@
                             <button id="btpersonal" runat="server" onserverclick="btnPersonal_Click" type="submit"
                                 class="btn btn-default">
                                 Personal Detail</button>
+                            <button id="bthobbies" runat="server" onserverclick="btnHobbies_click"   type="submit"
+                                class="btn btn-default">
+                                Hobbies</button>
                             <button id="btemercontact" runat="server" onserverclick="btnEmergency_Click" type="submit"
                                 class="btn btn-default">
                                 Contacts & Referees</button>
@@ -168,6 +171,9 @@
                             <button id="btcareer" runat="server" onserverclick="btnWorkHistory_Click" type="submit"
                                 class="btn btn-default">
                                 Career</button>
+                             <button id="btasset" runat="server" onserverclick="btnAsset_click"  type="submit" 
+                                class="btn btn-default">
+                                Asset</button>
                             <%-- <button id="Button5" runat="server" onserverclick="btnWorkHistory_Click" type="submit"
                                 class="btn btn-default">
                                 Employee Skills</button>--%>
@@ -1361,6 +1367,141 @@
                                             </div>
                                         </div>
                                         <button id="Button4" runat="server" onserverclick="btnCancel_Click" type="submit"
+                                            style="width: 150px" class="btn btn-info rounded">
+                                            << Back</button>
+                                    </div>
+
+
+
+                                </asp:View>
+                                <asp:View ID="Asset" runat="server">
+                                    <div class="row">
+                                        <div class="card-box">
+                                            <h5 class="card-title" style="color: #1BA691">Career History</h5>
+                                            <div class="row">
+                                                <div class="col-md-8 m-t-20">
+                                                    <button id="Button5" runat="server" onserverclick="btnAddAsset_Click" type="submit"
+                                                        style="width: 150px" class="btn btn-primary btn-success">
+                                                        Add New</button>
+                                                    <asp:Button ID="Button6" runat="server" Text="Delete" OnClientClick="Confirm()"
+                                                        BackColor="#FF3300" ForeColor="White" Width="150px" Height="34px" CssClass="btn btn-danger"
+                                                        BorderStyle="None" Font-Names="Verdana" Font-Size="13px" />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="table-responsive">
+                                                    <asp:GridView ID="GridAsset" runat="server" AllowSorting="True"
+                                                        BorderStyle="Solid" Font-Names="Verdana" AllowPaging="True" PageSize="20" DataKeyNames="id"
+                                                        Width="100%" Height="50px" ToolTip="click row to select record"
+                                                        Font-Size="12px" ShowHeaderWhenEmpty="True" EmptyDataText="No data to display"
+                                                        AutoGenerateColumns="False" GridLines="Both" ForeColor="#666666" BorderWidth="1px"
+                                                        BorderColor="#CCCCCC" CssClass="table table-condensed">
+                                                        <RowStyle BackColor="White" />
+                                                        <Columns>
+                                                            <asp:TemplateField ItemStyle-Width="1%" ItemStyle-HorizontalAlign="Center">
+                                                                <HeaderTemplate>
+                                                                    <asp:CheckBox ID="chkboxSelectAll4" runat="server" onclick="CheckAllWorkHist(this);" />
+                                                                </HeaderTemplate>
+                                                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                                <ItemTemplate>
+                                                                    <asp:CheckBox ID="chkEmp4" runat="server"></asp:CheckBox>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:BoundField DataField="Rows" ItemStyle-Width="5%" HeaderText="Row" SortExpression="rows" />
+                                                            <asp:TemplateField HeaderText="Asset Name" ItemStyle-Font-Bold="true" SortExpression="Grade Level">
+                                                                <ItemTemplate>
+                                                                    <asp:LinkButton ID="lnkWorkHistory" runat="server" Text='<%# Eval("Asset Name")%>'
+                                                                        CommandName="AddAsset" CausesValidation="false" CommandArgument='<%# Eval("id") %>'></asp:LinkButton>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:BoundField DataField="Asset Number" HeaderText="Asset Number" SortExpression="Asset Number" />
+                                                            <asp:BoundField DataField="Asset Description" HeaderText="Asset Description" SortExpression="Asset Description" />
+                                                            <asp:BoundField DataField="Asset Clasification" HeaderText="Asset Clasification" SortExpression="Asset Clasification" />
+                                                           
+                                                        </Columns>
+                                                        <HeaderStyle BackColor="White" ForeColor="#1BA691" HorizontalAlign="center" />
+                                                    </asp:GridView>
+                                                    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                                                    <script type="text/javascript">
+                                                        $(function () {
+                                                            $("[id*=GridAsset] td").hover(function () {
+                                                                $("td", $(this).closest("tr")).addClass("hover_row");
+                                                            }, function () {
+                                                                $("td", $(this).closest("tr")).removeClass("hover_row");
+                                                            })
+                                                        })
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button id="Button7" runat="server" onserverclick="btnCancel_Click" type="submit"
+                                            style="width: 150px" class="btn btn-info rounded">
+                                            << Back</button>
+                                    </div>
+
+
+
+                                </asp:View>
+                                 <asp:View ID="Hobbies" runat="server">
+                                    <div class="row">
+                                        <div class="card-box">
+                                            <h5 class="card-title" style="color: #1BA691">Career History</h5>
+                                            <div class="row">
+                                                <div class="col-md-8 m-t-20">
+                                                    <button id="Button8" runat="server" onserverclick="btnAddHobbies_Click" type="submit"
+                                                        style="width: 150px" class="btn btn-primary btn-success">
+                                                        Add New</button>
+                                                    <asp:Button ID="Button9" runat="server" Text="Delete" OnClientClick="Confirm()"
+                                                        BackColor="#FF3300" ForeColor="White" Width="150px" Height="34px" CssClass="btn btn-danger"
+                                                        BorderStyle="None" Font-Names="Verdana" Font-Size="13px" />
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="table-responsive">
+                                                    <asp:GridView ID="GridHobbies" runat="server" AllowSorting="True"
+                                                        BorderStyle="Solid" Font-Names="Verdana" AllowPaging="True" PageSize="20" DataKeyNames="id"
+                                                        Width="100%" Height="50px" ToolTip="click row to select record"
+                                                        Font-Size="12px" ShowHeaderWhenEmpty="True" EmptyDataText="No data to display"
+                                                        AutoGenerateColumns="False" GridLines="Both" ForeColor="#666666" BorderWidth="1px"
+                                                        BorderColor="#CCCCCC" CssClass="table table-condensed">
+                                                        <RowStyle BackColor="White" />
+                                                        <Columns>
+                                                            <asp:TemplateField ItemStyle-Width="1%" ItemStyle-HorizontalAlign="Center">
+                                                                <HeaderTemplate>
+                                                                    <asp:CheckBox ID="chkboxSelectAll4" runat="server" onclick="CheckAllWorkHist(this);" />
+                                                                </HeaderTemplate>
+                                                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                                <ItemTemplate>
+                                                                    <asp:CheckBox ID="chkEmp4" runat="server"></asp:CheckBox>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:BoundField DataField="Rows" ItemStyle-Width="5%" HeaderText="Row" SortExpression="rows" />
+                                                            <asp:TemplateField HeaderText="Hobby Name" ItemStyle-Font-Bold="true" SortExpression="Grade Level">
+                                                                <ItemTemplate>
+                                                                    <asp:LinkButton ID="lnkWorkHistory" runat="server" Text='<%# Eval("Hobby Name")%>'
+                                                                        CommandName="AddHobbies" CausesValidation="false" CommandArgument='<%# Eval("id") %>'></asp:LinkButton>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:BoundField DataField="Hobby Description" HeaderText="Hobby Description" SortExpression="Hobby Description" />
+                                                            <asp:BoundField DataField="Hobby rating" HeaderText="Hobby Rating" SortExpression="Hobby rating" />
+                                                            
+                                                        </Columns>
+                                                        <HeaderStyle BackColor="White" ForeColor="#1BA691" HorizontalAlign="center" />
+                                                    </asp:GridView>
+                                                    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                                                    <script type="text/javascript">
+                                                        $(function () {
+                                                            $("[id*=GridHobbies] td").hover(function () {
+                                                                $("td", $(this).closest("tr")).addClass("hover_row");
+                                                            }, function () {
+                                                                $("td", $(this).closest("tr")).removeClass("hover_row");
+                                                            })
+                                                        })
+                                                    </script>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button id="Button10" runat="server" onserverclick="btnCancel_Click" type="submit"
                                             style="width: 150px" class="btn btn-info rounded">
                                             << Back</button>
                                     </div>

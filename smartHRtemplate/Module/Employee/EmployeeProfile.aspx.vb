@@ -144,6 +144,26 @@ Public Class EmployeeProfile
             Process.loadalert(divalert, msgalert, ex.Message, "danger")
         End Try
     End Sub
+    Private Sub LoadAssets(ByVal EmpID As String)
+        Try
+            Dim datatables As New DataTable
+            datatables = Process.SearchData("Emp_Asset_get_all", EmpID)
+            DataList1.DataSource = datatables
+            DataList1.DataBind()
+        Catch ex As Exception
+            Process.loadalert(divalert, msgalert, ex.Message, "danger")
+        End Try
+    End Sub
+    Private Sub LoadHobbies(ByVal EmpID As String)
+        Try
+            Dim datatables As New DataTable
+            datatables = Process.SearchData("Emp_Hobbies_get_all", EmpID)
+            DataList2.DataSource = datatables
+            DataList2.DataBind()
+        Catch ex As Exception
+            Process.loadalert(divalert, msgalert, ex.Message, "danger")
+        End Try
+    End Sub
 
     Private Sub LoadEducation(ByVal EmpID As String)
         Try
@@ -164,8 +184,10 @@ Public Class EmployeeProfile
                     LoadEducation(Request.QueryString("empid"))
                     LoadEmergencyContact(Request.QueryString("empid"))
                     LoadSkills(Request.QueryString("empid"))
+                    LoadAssets(Request.QueryString("empid"))
                     'LoadDirectReport(Request.QueryString("empid"))
                     LoadDependants(Request.QueryString("empid"))
+                    LoadHobbies(Request.QueryString("empid"))
                     ' LoadContacts(Request.QueryString("empid"))
                 Else
                     LoadPersonalDetail(Session("UserEmpID"))
@@ -175,6 +197,8 @@ Public Class EmployeeProfile
                     LoadSkills(Session("UserEmpID"))
                     'LoadDirectReport(Session("UserEmpID"))
                     LoadDependants(Session("UserEmpID"))
+                    LoadAssets(Session("UserEmpID"))
+                    LoadHobbies(Session("UserEmpID"))
                     'LoadContacts(Session("UserEmpID"))
                     'btnWorkHistory.Visible = False
                 End If

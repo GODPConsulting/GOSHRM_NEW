@@ -33,6 +33,7 @@ Public Class KPITypeUpdate
                     Process.AssignRadComboValue(cboEmpSetObj, strUser.Tables(0).Rows(0).Item("EmpSetObjective").ToString)
                     aname.Value = strUser.Tables(0).Rows(0).Item("CompetencyType").ToString
                     adesc.Value = strUser.Tables(0).Rows(0).Item("Description").ToString
+
                     If cboEmpSetObj.SelectedItem.Text.ToLower = "no" Then
                         cboWeightModel.Items.Clear()
                         cboWeightModel.Items.Add("even distribution")
@@ -64,7 +65,12 @@ Public Class KPITypeUpdate
                 Else
                     div360review.Visible = False
                 End If
-
+                If aname.Value = "Others" Then
+                    aname.Disabled = True
+                    adesc.Disabled = True
+                    cboWeightModel.Visible = False
+                    cboEmpSetObj.Visible = False
+                End If
             End If
         Catch ex As Exception
             Process.loadalert(divalert, msgalert, ex.message, "danger")
@@ -128,6 +134,7 @@ Public Class KPITypeUpdate
 
             lblstatus = "Record saved"
             Process.loadalert(divalert, msgalert, lblstatus, "success")
+            Response.Redirect("kpitype", True)
         Catch ex As Exception
             Process.loadalert(divalert, msgalert, ex.Message, "danger")
         End Try

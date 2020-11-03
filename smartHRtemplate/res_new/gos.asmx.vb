@@ -34,8 +34,32 @@ Public Class gos
         Public Property obj As String
         Public Property agree As String
         Public Property EmpSetObj As String
+        Public Property UploadStatus As String
     End Class
-
+    Public Class PerfomancePoints
+        Public Property points As Integer
+        Public Property name As String
+        Public Property desc As String
+    End Class
+    Public Class EmpComment
+        Public Property performanceid As Integer
+        Public Property radEnddate As Date
+        Public Property obj As String
+        Public Property Kpiid As String
+        Public Property empid As String
+    End Class
+    Public Class EmpComment1
+        Public Property performanceid As Integer
+        Public Property radEnddate As Date
+        Public Property obj As String
+        Public Property Kpiid As String
+        Public Property empid As String
+        Public Property obj2 As String
+    End Class
+    Public Class EmpGetComment
+        Public Property pid As Integer
+        Public Property empid As String
+    End Class
     Public Class transfers
         Public Property recipient As String
         Public Property amount As String
@@ -55,6 +79,18 @@ Public Class gos
 
         Public transfers As List(Of transfers)
     End Class
+    Public Class EmployeePerformanceGrade
+        Public Property Pid As Integer
+        Public Property Points As String
+        Public Property userid As String
+        Public Property empid As String
+        Public Property rev1id As String
+        Public Property rev2id As String
+        Public Property kpiobjectives As String
+        Public Property jobgrade As String
+
+    End Class
+
 
     Public Class recipient2
         Public Property currency As String
@@ -170,6 +206,7 @@ Public Class gos
                     prog.aweight = Convert.ToString(strTest.Tables(0).Rows(i)("customweight"))
                     prog.suc = Convert.ToString(strTest.Tables(0).Rows(i)("comment"))
                     prog.obj = Convert.ToString(strTest.Tables(0).Rows(i)("objectives"))
+                    prog.UploadStatus = Convert.ToString(strTest.Tables(0).Rows(i)("Upload_Status"))
                     If IsDBNull(strTest.Tables(0).Rows(i)("targetdate")) = False Then
                         prog.tdates = Convert.ToDateTime(strTest.Tables(0).Rows(i)("targetdate"))
                         prog.tdate = String.Format("{0: dd-MM-yyyy}", prog.tdates)
@@ -245,15 +282,269 @@ Public Class gos
         End If
 
         If emp.ID = 0 Then
-            SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Performance_Appraisal_Update", emp.ID, emp.AppID, emp.cat, emp.kpi, emp.key, emp.tdate, emp.aweight, emp.suc, emp.obj, emp.w_model)
+            SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Performance_Appraisal_Update", emp.ID, emp.AppID, emp.cat, emp.kpi, emp.key, emp.tdate, emp.aweight, emp.suc, emp.obj, emp.w_model, emp.UploadStatus)
         Else
             If complete = "Yes" Then
-                SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Performance_Appraisal_Update", emp.ID, emp.AppID, emp.cat, emp.kpi, emp.key, emp.tdate, emp.aweight, emp.suc, emp.obj, emp.w_model)
+                SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Performance_Appraisal_Update", emp.ID, emp.AppID, emp.cat, emp.kpi, emp.key, emp.tdate, emp.aweight, emp.suc, emp.obj, emp.w_model, emp.UploadStatus)
                 Process.Appraisal_Obj_UpdateKPI(manager, empname, reviewyear, emp.ID, managerID, Process.ApplicationURL + "/" + "Module/Employee/Performance/CoacheeAppraisalObjectives")
             Else
-                SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Performance_Appraisal_Update", emp.ID, emp.AppID, emp.cat, emp.kpi, emp.key, emp.tdate, emp.aweight, emp.suc, emp.obj, emp.w_model)
+                SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Performance_Appraisal_Update", emp.ID, emp.AppID, emp.cat, emp.kpi, emp.key, emp.tdate, emp.aweight, emp.suc, emp.obj, emp.w_model, emp.UploadStatus)
             End If
         End If
     End Sub
+
+    <WebMethod(EnableSession:=True)>
+    Public Sub addcomment(ByVal emp As EmpComment)
+        Dim id = 0
+        SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Performance_comment_add", id, emp.performanceid, emp.Kpiid, emp.obj, emp.radEnddate, emp.empid)
+
+    End Sub
+
+    <WebMethod()>
+    Public Sub getcomment(ByVal pid As String, empid As String)
+        Dim listRecipients As List(Of recipient) = New List(Of recipient)()
+        Dim strTest As DataSet
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Performance_comment_get", pid, empid)
+        Dim i As Integer = 0
+        Dim count As Integer = 1
+
+        If strTest.Tables(0).Rows.Count > 0 Then
+            For Each dr As DataRow In strTest.Tables(0).Rows
+                Try
+                    Dim prog As recipient = New recipient()
+                    prog.name = Convert.ToString(strTest.Tables(0).Rows(i)("Comment"))
+                    prog.description = Convert.ToString(strTest.Tables(0).Rows(i)("Date"))
+
+
+                    listRecipients.Add(prog)
+                    i += 1
+                    count += 1
+                Catch Ex As Exception
+                    Context.Response.Write(Ex.Message)
+                End Try
+            Next
+            Dim js As JavaScriptSerializer = New JavaScriptSerializer()
+            Context.Response.Write(js.Serialize(listRecipients))
+        End If
+    End Sub
+    <WebMethod()>
+    Public Sub getcommentmngr(ByVal pid As String, empid As String)
+        Dim listRecipients As List(Of recipient) = New List(Of recipient)()
+        Dim strTest As DataSet
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Performance_comment_get", pid, empid)
+        Dim i As Integer = 0
+        Dim count As Integer = 1
+
+        If strTest.Tables(0).Rows.Count > 0 Then
+            For Each dr As DataRow In strTest.Tables(0).Rows
+                Try
+                    Dim prog As recipient = New recipient()
+                    prog.name = Convert.ToString(strTest.Tables(0).Rows(i)("Comment"))
+                    prog.description = Convert.ToString(strTest.Tables(0).Rows(i)("Date"))
+
+
+                    listRecipients.Add(prog)
+                    i += 1
+                    count += 1
+                Catch Ex As Exception
+                    Context.Response.Write(Ex.Message)
+                End Try
+            Next
+            Dim js As JavaScriptSerializer = New JavaScriptSerializer()
+            Context.Response.Write(js.Serialize(listRecipients))
+        End If
+    End Sub
+    <WebMethod()>
+    Public Sub getcommensupervisor(ByVal pid As String, empid As String)
+        Dim listRecipients As List(Of recipient) = New List(Of recipient)()
+        Dim strTest As DataSet
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Performance_comment_get", pid, empid)
+        Dim i As Integer = 0
+        Dim count As Integer = 1
+
+        If strTest.Tables(0).Rows.Count > 0 Then
+            For Each dr As DataRow In strTest.Tables(0).Rows
+                Try
+                    Dim prog As recipient = New recipient()
+                    prog.name = Convert.ToString(strTest.Tables(0).Rows(i)("Comment"))
+                    prog.description = Convert.ToString(strTest.Tables(0).Rows(i)("Date"))
+
+
+                    listRecipients.Add(prog)
+                    i += 1
+                    count += 1
+                Catch Ex As Exception
+                    Context.Response.Write(Ex.Message)
+                End Try
+            Next
+            Dim js As JavaScriptSerializer = New JavaScriptSerializer()
+            Context.Response.Write(js.Serialize(listRecipients))
+        End If
+    End Sub
+    <WebMethod()>
+    Public Sub PerformPoints(ByVal pid As String)
+        Dim listRecipients As List(Of PerfomancePoints) = New List(Of PerfomancePoints)()
+        Dim strTest As DataSet
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Performance_Points_Get_All")
+        Dim i As Integer = 0
+        Dim count As Integer = 1
+
+        If strTest.Tables(0).Rows.Count > 0 Then
+            For Each dr As DataRow In strTest.Tables(0).Rows
+                Try
+                    Dim prog As PerfomancePoints = New PerfomancePoints()
+                    prog.points = Convert.ToString(strTest.Tables(0).Rows(i)("Point"))
+                    prog.name = Convert.ToString(strTest.Tables(0).Rows(i)("PointName"))
+                    prog.desc = Convert.ToString(strTest.Tables(0).Rows(i)("PointDesc"))
+
+
+                    listRecipients.Add(prog)
+                    i += 1
+                    count += 1
+                Catch Ex As Exception
+                    Context.Response.Write(Ex.Message)
+                End Try
+            Next
+            Dim js As JavaScriptSerializer = New JavaScriptSerializer()
+            Context.Response.Write(js.Serialize(listRecipients))
+        End If
+    End Sub
+    <WebMethod(EnableSession:=True)>
+    Public Sub PerformanceSubmit(ByVal Performance As EmployeePerformanceGrade)
+        Try
+
+            Dim point = Decimal.Parse(Performance.Points)
+            If Performance.userid = Performance.empid Then
+                SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Performance_Appraisal_Questionaire_Update_reviewee", Performance.Pid, point, Performance.jobgrade, Performance.kpiobjectives)
+            ElseIf Performance.userid = Performance.rev1id Then
+                SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Performance_Appraisal_Questionaire_Update_reviewer", Performance.Pid, point, Performance.jobgrade, Performance.kpiobjectives)
+            Else
+                SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Performance_Appraisal_Questionaire_Update_reviewer2", Performance.Pid, point, Performance.jobgrade, Performance.kpiobjectives)
+
+
+            End If
+        Catch ex As Exception
+            Context.Response.Write(ex.Message)
+        End Try
+
+    End Sub
+    <WebMethod()>
+    Public Sub PerformObjectives(ByVal pid As String)
+        Dim listRecipients As List(Of PerfomancePoints) = New List(Of PerfomancePoints)()
+        Dim strTest As DataSet
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Performance_Objectives_Get_All", pid)
+        Dim i As Integer = 0
+        Dim count As Integer = 1
+
+        If strTest.Tables(0).Rows.Count > 0 Then
+            For Each dr As DataRow In strTest.Tables(0).Rows
+                Try
+                    Dim prog As PerfomancePoints = New PerfomancePoints()
+                    prog.name = Convert.ToString(strTest.Tables(0).Rows(i)("KPIObjectives"))
+
+                    prog.desc = Convert.ToString(strTest.Tables(0).Rows(i)("KPIObjectives"))
+
+
+                    listRecipients.Add(prog)
+                    i += 1
+                    count += 1
+                Catch Ex As Exception
+                    Context.Response.Write(Ex.Message)
+                End Try
+            Next
+            Dim js As JavaScriptSerializer = New JavaScriptSerializer()
+            Context.Response.Write(js.Serialize(listRecipients))
+        End If
+    End Sub
+    <WebMethod(EnableSession:=True)>
+    Public Sub addcomment1(ByVal emp As EmpComment1)
+        Dim id = 0
+        SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Coaching_comment_add", id, emp.performanceid, emp.Kpiid, emp.obj, emp.radEnddate, emp.empid, emp.obj2)
+
+    End Sub
+    <WebMethod()>
+    Public Sub getcomment1(ByVal pid As String, empid As String)
+        Dim listRecipients As List(Of recipient) = New List(Of recipient)()
+        Dim strTest As DataSet
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Coaching_comment_get", pid, empid)
+        Dim i As Integer = 0
+        Dim count As Integer = 1
+
+        If strTest.Tables(0).Rows.Count > 0 Then
+            For Each dr As DataRow In strTest.Tables(0).Rows
+                Try
+                    Dim prog As recipient = New recipient()
+                    prog.name = Convert.ToString(strTest.Tables(0).Rows(i)("Comment"))
+                    prog.description = Convert.ToString(strTest.Tables(0).Rows(i)("Deadline_Date"))
+                    prog.type = Convert.ToString(strTest.Tables(0).Rows(i)("Key_Takeaways"))
+
+                    listRecipients.Add(prog)
+                    i += 1
+                    count += 1
+                Catch Ex As Exception
+                    Context.Response.Write(Ex.Message)
+                End Try
+            Next
+            Dim js As JavaScriptSerializer = New JavaScriptSerializer()
+            Context.Response.Write(js.Serialize(listRecipients))
+        End If
+    End Sub
+    <WebMethod()>
+    Public Sub getcommentmngr1(ByVal pid As String, empid As String)
+        Dim listRecipients As List(Of recipient) = New List(Of recipient)()
+        Dim strTest As DataSet
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Coaching_comment_get", pid, empid)
+        Dim i As Integer = 0
+        Dim count As Integer = 1
+
+        If strTest.Tables(0).Rows.Count > 0 Then
+            For Each dr As DataRow In strTest.Tables(0).Rows
+                Try
+                    Dim prog As recipient = New recipient()
+                    prog.name = Convert.ToString(strTest.Tables(0).Rows(i)("Comment"))
+                    prog.description = Convert.ToString(strTest.Tables(0).Rows(i)("Deadline_Date"))
+                    prog.type = Convert.ToString(strTest.Tables(0).Rows(i)("Key_Takeaways"))
+
+                    listRecipients.Add(prog)
+                    i += 1
+                    count += 1
+                Catch Ex As Exception
+                    Context.Response.Write(Ex.Message)
+                End Try
+            Next
+            Dim js As JavaScriptSerializer = New JavaScriptSerializer()
+            Context.Response.Write(js.Serialize(listRecipients))
+        End If
+    End Sub
+    <WebMethod()>
+    Public Sub getAllComments(ByVal pid As String, empid As String, ByVal empid1 As String, ByVal empid2 As String)
+        Dim listRecipients As List(Of recipient) = New List(Of recipient)()
+        Dim strTest As DataSet
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Performance_Comment_get_All", pid, empid, empid1, empid2)
+        Dim i As Integer = 0
+        Dim count As Integer = 1
+
+        If strTest.Tables(0).Rows.Count > 0 Then
+            For Each dr As DataRow In strTest.Tables(0).Rows
+                Try
+                    Dim prog As recipient = New recipient()
+                    prog.name = Convert.ToString(strTest.Tables(0).Rows(i)("Objectives"))
+                    prog.type = Convert.ToString(strTest.Tables(0).Rows(i)("CommentDate"))
+                    prog.description = Convert.ToString(strTest.Tables(0).Rows(i)("successtarget"))
+                    If prog.type <> "" Then
+                        listRecipients.Add(prog)
+
+                    End If
+                    i += 1
+                    count += 1
+                Catch Ex As Exception
+                    Context.Response.Write(Ex.Message)
+                End Try
+            Next
+            Dim js As JavaScriptSerializer = New JavaScriptSerializer()
+            Context.Response.Write(js.Serialize(listRecipients))
+        End If
+    End Sub
+
 
 End Class

@@ -12,7 +12,160 @@ Option Explicit On
 
 
 Partial Public Class AppraisalFeedback
-    
+
+    '''<summary>
+    '''modal_title control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents modal_title As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''Text1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Text1 As Global.System.Web.UI.HtmlControls.HtmlInputText
+
+    '''<summary>
+    '''Text3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Text3 As Global.System.Web.UI.HtmlControls.HtmlInputText
+
+    '''<summary>
+    '''comment1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents comment1 As Global.System.Web.UI.HtmlControls.HtmlTextArea
+
+    '''<summary>
+    '''btnsubmit1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnsubmit1 As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''B5 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents B5 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''Button16 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Button16 As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''B1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents B1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''pointsheader control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pointsheader As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''Button11 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Button11 As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''B3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents B3 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''Button12 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Button12 As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''B2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents B2 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''Button13 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Button13 As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''B4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents B4 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''Button14 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Button14 As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''Button17 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Button17 As Global.System.Web.UI.HtmlControls.HtmlButton
+
     '''<summary>
     '''divalert control.
     '''</summary>
@@ -21,7 +174,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents divalert As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''msgalert control.
     '''</summary>
@@ -30,7 +183,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents msgalert As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''lblid control.
     '''</summary>
@@ -39,7 +192,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblid As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblend control.
     '''</summary>
@@ -48,7 +201,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblend As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblvisibleI control.
     '''</summary>
@@ -57,7 +210,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblvisibleI As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblreviewer control.
     '''</summary>
@@ -66,7 +219,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblreviewer As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''Label15 control.
     '''</summary>
@@ -75,7 +228,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label15 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblQuestID control.
     '''</summary>
@@ -84,7 +237,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblQuestID As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblrevieweremail control.
     '''</summary>
@@ -93,7 +246,16 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblrevieweremail As Global.System.Web.UI.WebControls.Label
-    
+
+    '''<summary>
+    '''empemail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents empemail As Global.System.Web.UI.WebControls.Label
+
     '''<summary>
     '''lblQuestCount control.
     '''</summary>
@@ -102,7 +264,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblQuestCount As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblreviewer2 control.
     '''</summary>
@@ -111,7 +273,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblreviewer2 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblvisibleII control.
     '''</summary>
@@ -120,7 +282,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblvisibleII As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''txtEmpID control.
     '''</summary>
@@ -129,7 +291,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtEmpID As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtdept control.
     '''</summary>
@@ -138,7 +300,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtdept As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtlocation control.
     '''</summary>
@@ -147,7 +309,16 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtlocation As Global.System.Web.UI.WebControls.TextBox
-    
+
+    '''<summary>
+    '''Period control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Period As Global.System.Web.UI.WebControls.TextBox
+
     '''<summary>
     '''MrgEndcycle control.
     '''</summary>
@@ -156,7 +327,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents MrgEndcycle As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''UpdatePanel control.
     '''</summary>
@@ -165,7 +336,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UpdatePanel As Global.System.Web.UI.UpdatePanel
-    
+
     '''<summary>
     '''lblMyRating control.
     '''</summary>
@@ -174,7 +345,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblMyRating As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''UpdatePanel1 control.
     '''</summary>
@@ -183,7 +354,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
-    
+
     '''<summary>
     '''lblMgrRating control.
     '''</summary>
@@ -192,7 +363,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblMgrRating As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''UpdatePanel2 control.
     '''</summary>
@@ -201,7 +372,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UpdatePanel2 As Global.System.Web.UI.UpdatePanel
-    
+
     '''<summary>
     '''lblMgrRating2 control.
     '''</summary>
@@ -210,7 +381,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblMgrRating2 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''pagetitle control.
     '''</summary>
@@ -219,7 +390,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pagetitle As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''divemplink control.
     '''</summary>
@@ -228,7 +399,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents divemplink As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''divjoboffer control.
     '''</summary>
@@ -237,7 +408,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents divjoboffer As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''reviewerdetails control.
     '''</summary>
@@ -246,7 +417,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reviewerdetails As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''reviewyear control.
     '''</summary>
@@ -255,7 +426,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reviewyear As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''reviewstart control.
     '''</summary>
@@ -264,7 +435,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reviewstart As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''reviewend control.
     '''</summary>
@@ -273,7 +444,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents reviewend As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''aname control.
     '''</summary>
@@ -282,7 +453,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aname As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''ajobgrade control.
     '''</summary>
@@ -291,7 +462,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ajobgrade As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''ajobtitle control.
     '''</summary>
@@ -300,7 +471,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ajobtitle As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''alenofservice control.
     '''</summary>
@@ -309,7 +480,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents alenofservice As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''apresentposition control.
     '''</summary>
@@ -318,7 +489,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents apresentposition As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''btnsubmit control.
     '''</summary>
@@ -327,7 +498,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnsubmit As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''btnrefresh control.
     '''</summary>
@@ -336,7 +507,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnrefresh As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''Button5 control.
     '''</summary>
@@ -345,7 +516,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Button5 As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''Button6 control.
     '''</summary>
@@ -354,7 +525,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Button6 As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''Button1 control.
     '''</summary>
@@ -363,7 +534,25 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Button1 As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
+    '''<summary>
+    '''Button7 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Button7 As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''Button10 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Button10 As Global.System.Web.UI.HtmlControls.HtmlButton
+
     '''<summary>
     '''divoverdesc control.
     '''</summary>
@@ -372,7 +561,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents divoverdesc As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''aoverdesc control.
     '''</summary>
@@ -381,7 +570,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aoverdesc As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''areviewer1 control.
     '''</summary>
@@ -390,7 +579,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents areviewer1 As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''areviewer2 control.
     '''</summary>
@@ -399,7 +588,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents areviewer2 As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''Button3 control.
     '''</summary>
@@ -408,7 +597,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Button3 As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''Button4 control.
     '''</summary>
@@ -417,7 +606,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Button4 As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''Button2 control.
     '''</summary>
@@ -426,7 +615,34 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Button2 As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
+    '''<summary>
+    '''Button19 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Button19 As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''Button9 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Button9 As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''Button15 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Button15 As Global.System.Web.UI.HtmlControls.HtmlButton
+
     '''<summary>
     '''MultiView1 control.
     '''</summary>
@@ -435,7 +651,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents MultiView1 As Global.System.Web.UI.WebControls.MultiView
-    
+
     '''<summary>
     '''View1 control.
     '''</summary>
@@ -444,7 +660,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents View1 As Global.System.Web.UI.WebControls.View
-    
+
     '''<summary>
     '''nuggetsquestion control.
     '''</summary>
@@ -453,7 +669,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents nuggetsquestion As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''questionaira control.
     '''</summary>
@@ -462,7 +678,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents questionaira As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''aratingdesc control.
     '''</summary>
@@ -471,7 +687,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aratingdesc As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''akpitype control.
     '''</summary>
@@ -480,7 +696,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents akpitype As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''aQuestNo control.
     '''</summary>
@@ -489,7 +705,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aQuestNo As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''apageview control.
     '''</summary>
@@ -498,7 +714,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents apageview As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''aObjective control.
     '''</summary>
@@ -507,7 +723,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aObjective As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''aObjDesc control.
     '''</summary>
@@ -516,7 +732,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aObjDesc As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''lll control.
     '''</summary>
@@ -525,7 +741,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lll As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''aMyObjective control.
     '''</summary>
@@ -534,7 +750,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aMyObjective As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''emp_app control.
     '''</summary>
@@ -543,7 +759,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents emp_app As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''aMyPerformance control.
     '''</summary>
@@ -552,7 +768,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aMyPerformance As Global.System.Web.UI.HtmlControls.HtmlTextArea
-    
+
     '''<summary>
     '''rdoMyRatings control.
     '''</summary>
@@ -561,7 +777,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdoMyRatings As Global.System.Web.UI.WebControls.RadioButtonList
-    
+
     '''<summary>
     '''divreviewer1 control.
     '''</summary>
@@ -570,7 +786,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents divreviewer1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''amanager1 control.
     '''</summary>
@@ -579,7 +795,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents amanager1 As Global.System.Web.UI.HtmlControls.HtmlTextArea
-    
+
     '''<summary>
     '''rdoMgrRatings control.
     '''</summary>
@@ -588,7 +804,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdoMgrRatings As Global.System.Web.UI.WebControls.RadioButtonList
-    
+
     '''<summary>
     '''divreviewer2 control.
     '''</summary>
@@ -597,7 +813,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents divreviewer2 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''amanager2 control.
     '''</summary>
@@ -606,7 +822,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents amanager2 As Global.System.Web.UI.HtmlControls.HtmlTextArea
-    
+
     '''<summary>
     '''rdoMgrRatings2 control.
     '''</summary>
@@ -615,7 +831,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdoMgrRatings2 As Global.System.Web.UI.WebControls.RadioButtonList
-    
+
     '''<summary>
     '''btprevious control.
     '''</summary>
@@ -624,7 +840,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btprevious As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''btnext control.
     '''</summary>
@@ -633,7 +849,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnext As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''btSubmit control.
     '''</summary>
@@ -642,7 +858,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btSubmit As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''View2 control.
     '''</summary>
@@ -651,79 +867,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents View2 As Global.System.Web.UI.WebControls.View
-    
-    '''<summary>
-    '''gridsss control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents gridsss As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
-    '''<summary>
-    '''btback control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btback As Global.System.Web.UI.HtmlControls.HtmlButton
-    
-    '''<summary>
-    '''btSubmitReview control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btSubmitReview As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''bt360degree control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents bt360degree As Global.System.Web.UI.HtmlControls.HtmlButton
-    
-    '''<summary>
-    '''btnDisagree control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnDisagree As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''divrecommendation control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents divrecommendation As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
-    '''<summary>
-    '''cborecommendation control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cborecommendation As Global.Telerik.Web.UI.RadComboBox
-    
-    '''<summary>
-    '''gridReviewee control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents gridReviewee As Global.Telerik.Web.UI.RadGrid
-    
+
     '''<summary>
     '''View3 control.
     '''</summary>
@@ -732,7 +876,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents View3 As Global.System.Web.UI.WebControls.View
-    
+
     '''<summary>
     '''H1 control.
     '''</summary>
@@ -741,7 +885,7 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents H1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''btnend control.
     '''</summary>
@@ -750,4 +894,94 @@ Partial Public Class AppraisalFeedback
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnend As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''Views4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Views4 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''Button18 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Button18 As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''mate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents mate As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''RadComboBox2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadComboBox2 As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''recomm control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents recomm As Global.System.Web.UI.HtmlControls.HtmlInputText
+
+    '''<summary>
+    '''mate2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents mate2 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''btSubmitReview control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btSubmitReview As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnDisagree control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnDisagree As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''UpdatePanel3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UpdatePanel3 As Global.System.Web.UI.UpdatePanel
+
+    '''<summary>
+    '''gridskills control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gridskills As Global.System.Web.UI.WebControls.GridView
 End Class

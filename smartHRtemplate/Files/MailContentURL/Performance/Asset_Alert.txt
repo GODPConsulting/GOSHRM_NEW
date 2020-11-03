@@ -1,0 +1,9 @@
+Dear @HR
+
+@empname with Id @empid has requested to submit 
+Asset: @AssetName
+Asset No.: @AssetNumber
+
+Kindly Approve
+
+@Company

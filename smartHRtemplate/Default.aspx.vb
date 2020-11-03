@@ -23,6 +23,38 @@ Public Class Login
         End Try
     End Sub
 
+    Private Sub CheckCoachingPerformance()
+        Try
+            Dim strAssessments As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Employee_Coaching_Checks", Session("userempid"))
+            Dim counts As Integer = strAssessments.Tables(0).Rows.Count()
+            If (counts > 0) Then
+                For d As Integer = 0 To counts - 1
+                    Dim uid = strAssessments.Tables(0).Rows(0).Item("id").ToString
+                    Dim CoachieDate As Date = strAssessments.Tables(0).Rows(0).Item("Date")
+                    Process.Coaching_Alert(Session("UserEmpID"), strAssessments.Tables(0).Rows(0).Item("Email").ToString, strAssessments.Tables(0).Rows(0).Item("Name").ToString, Process.DDMONYYYY(CoachieDate), Process.ApplicationURL & "/" & "Module/Employee/Performance/CoachingForm?id=" + uid, strAssessments.Tables(0).Rows(0).Item("Time").ToString)
+                Next
+            End If
+            Process.Training_Application_Assessment_AutoAlert()
+        Catch ex As Exception
+        End Try
+    End Sub
+    Private Sub CheckCoachingPerformance1()
+        Try
+            Dim strAssessments As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Employee_Coaching_Checks_Rev", Session("userempid"))
+            Dim counts As Integer = strAssessments.Tables(0).Rows.Count()
+            If (counts > 0) Then
+                For d As Integer = 0 To counts - 1
+                    Dim uid = strAssessments.Tables(0).Rows(0).Item("id").ToString
+                    Dim CoachieDate As Date = strAssessments.Tables(0).Rows(0).Item("Date")
+                    Process.Coaching_Alert(Session("UserEmpID"), strAssessments.Tables(0).Rows(0).Item("Email").ToString, strAssessments.Tables(0).Rows(0).Item("Name").ToString, Process.DDMONYYYY(CoachieDate), Process.ApplicationURL & "/" & "Module/Employee/Performance/CoachingForm?id=" + uid, strAssessments.Tables(0).Rows(0).Item("Time").ToString)
+                Next
+            End If
+            Process.Training_Application_Assessment_AutoAlert()
+        Catch ex As Exception
+        End Try
+    End Sub
+
+
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "users_refresh")
@@ -122,6 +154,8 @@ Public Class Login
 
             If (loginSuccess) Then
                 CheckApplicationAssements()
+                CheckCoachingPerformance()
+                CheckCoachingPerformance1()
                 If (changePwd) Then
                     If Request.QueryString("ReturnUrl") IsNot Nothing Then
                         Dim url As String = Request.QueryString("ReturnUrl").ToString

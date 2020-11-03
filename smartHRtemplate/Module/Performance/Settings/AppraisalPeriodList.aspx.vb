@@ -112,6 +112,39 @@ Public Class AppraisalPeriodList
 
         End Try
     End Sub
+    Protected Sub btnUpload_Click2(sender As Object, e As EventArgs) 'Handles btnUpload.Click
+        Try
+            If Process.AuthenAction(Session("role"), AuthenCode, "Create") = False Then
+                Process.loadalert(divalert, msgalert, Process.privilegemsg, "info")
+
+                Exit Sub
+            End If
+
+
+            If Not file1.PostedFile Is Nothing Then
+                'System.Threading.Thread.Sleep(300)
+                'To create a PostedFile
+                Dim csvPath As String = Server.MapPath(Process.FileURL) + Path.GetFileName(file1.PostedFile.FileName)
+                If File.Exists(csvPath) = True Then
+                    File.Delete(csvPath)
+                End If
+                file1.PostedFile.SaveAs(csvPath)
+
+                If Import1(csvPath, "Performance_Appraisal_Upload_Reviewer", "") = True Then
+                    Process.loadalert(divalert, msgalert, "Uploaded " & Session("uploadcnt") & " record(s)", "success")
+                Else
+                    Process.loadalert(divalert, msgalert, Session("exception"), "danger")
+                End If
+
+            End If
+            Process.GetAuditTrailInsertandUpdate("", "Uploaded " & Session("uploadcnt") & " record(s) from " & file1.PostedFile.FileName, "File Upload", "")
+
+            'Response.Write("<script language='javascript'> { self.close() }</script>")
+        Catch ex As Exception
+            Process.loadalert(divalert, msgalert, ex.Message, "danger")
+
+        End Try
+    End Sub
 
     Public Shared Function Import1(ByVal filename As String, ByVal SP As String, ByVal Page As String) As Boolean
         'Min 1 and Max 26 columns import

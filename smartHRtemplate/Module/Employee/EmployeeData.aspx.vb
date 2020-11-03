@@ -237,6 +237,34 @@ Public Class EmployeeData
 
         End Try
     End Sub
+    Private Sub LoadAsset(LoadType As String)
+        Try
+            'If LoadType = "All" Then
+            '    GridVwWorkHistory.DataSource = Process.SearchData("Emp_Work_History_get_all", aempid.Value.Trim)
+            'End If
+            GridAsset.DataSource = Process.SearchData("Emp_Asset_get_all", aempid.Value.Trim)
+            GridAsset.AllowSorting = True
+            GridAsset.AllowPaging = True
+            GridAsset.DataBind()
+        Catch ex As Exception
+            Response.Write("WH: " & ex.Message)
+
+        End Try
+    End Sub
+    Private Sub LoadHobbies(LoadType As String)
+        Try
+            'If LoadType = "All" Then
+            '    GridVwWorkHistory.DataSource = Process.SearchData("Emp_Work_History_get_all", aempid.Value.Trim)
+            'End If
+            GridHobbies.DataSource = Process.SearchData("Emp_Hobbies_get_all", aempid.Value.Trim)
+            GridHobbies.AllowSorting = True
+            GridHobbies.AllowPaging = True
+            GridHobbies.DataBind()
+        Catch ex As Exception
+            Response.Write("WH: " & ex.Message)
+
+        End Try
+    End Sub
     Private Sub LoadEducation(LoadType As String)
         Try
             'If LoadType = "All" Then
@@ -311,6 +339,44 @@ Public Class EmployeeData
             table.DefaultView.Sort = sortExpression & direction
             GridVwWorkHistory.DataSource = table
             GridVwWorkHistory.DataBind()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Protected Sub SortAsset(ByVal sender As Object, ByVal e As GridViewSortEventArgs) Handles GridAsset.Sorting
+        Try
+            Dim sortExpression As String = e.SortExpression
+            Dim direction As String = String.Empty
+            If SortDirection = SortDirection.Ascending Then
+                SortDirection = SortDirection.Descending
+                direction = " DESC"
+            Else
+                SortDirection = SortDirection.Ascending
+                direction = " ASC"
+            End If
+            Dim table As DataTable = Process.SearchData("Emp_Asset_get_all", aempid.Value.Trim)
+            table.DefaultView.Sort = sortExpression & direction
+            GridAsset.DataSource = table
+            GridAsset.DataBind()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Protected Sub SortHobbies(ByVal sender As Object, ByVal e As GridViewSortEventArgs) Handles GridHobbies.Sorting
+        Try
+            Dim sortExpression As String = e.SortExpression
+            Dim direction As String = String.Empty
+            If SortDirection = SortDirection.Ascending Then
+                SortDirection = SortDirection.Descending
+                direction = " DESC"
+            Else
+                SortDirection = SortDirection.Ascending
+                direction = " ASC"
+            End If
+            Dim table As DataTable = Process.SearchData("Emp_Hobbies_get_all", aempid.Value.Trim)
+            table.DefaultView.Sort = sortExpression & direction
+            GridHobbies.DataSource = table
+            GridHobbies.DataBind()
         Catch ex As Exception
 
         End Try
@@ -431,6 +497,8 @@ Public Class EmployeeData
                     LoadLanguages("All")
                     LoadCertification("All")
                     LoadWorkHistory("All")
+                    LoadAsset("All")
+                    LoadHobbies("All")
                     divlogin.Visible = False
                 Else
                     Dim count As Integer = SqlHelper.ExecuteScalar(WebConfig.ConnectionString, CommandType.StoredProcedure, "Check_EmployeeID_Format")
@@ -448,6 +516,8 @@ Public Class EmployeeData
                     LoadLanguages("All")
                     LoadCertification("All")
                     LoadWorkHistory("All")
+                    LoadAsset("All")
+                    LoadHobbies("All")
                 End If
 
                 If Session("clicked") = 1 Then
@@ -460,6 +530,10 @@ Public Class EmployeeData
                     btnQualifications_Click(sender, e)
                 ElseIf Session("clicked") = 5 Then
                     btnWorkHistory_Click(sender, e)
+                ElseIf Session("clicked") = 6 Then
+                    btnAsset_click(sender, e)
+                ElseIf Session("clicked") = 7 Then
+                    btnHobbies_click(sender, e)
                 End If
             End If
         Catch ex As Exception
@@ -1477,6 +1551,38 @@ Public Class EmployeeData
             Process.loadalert(divalert, msgalert, ex.Message, "danger")
         End Try
     End Sub
+    Protected Sub btnAddAsset_Click(sender As Object, e As EventArgs)
+        Try
+            Session("EmpID") = aempid.Value.Trim
+            If Process.AuthenAction(Session("role"), AuthenCode, "Create") = False Then
+                Process.loadalert(divalert, msgalert, Process.privilegemsg, "warning")
+
+                Exit Sub
+            End If
+            OpenAsset("")
+
+        Catch ex As Exception
+            Process.loadalert(divalert, msgalert, ex.Message, "danger")
+            Process.loadalert(divalert, msgalert, ex.Message, "danger")
+        End Try
+    End Sub
+    Protected Sub btnAddHobbies_Click(sender As Object, e As EventArgs)
+        Try
+            Session("EmpID") = aempid.Value.Trim
+            If Process.AuthenAction(Session("role"), AuthenCode, "Create") = False Then
+                Process.loadalert(divalert, msgalert, Process.privilegemsg, "warning")
+
+                Exit Sub
+            End If
+            OpenHobbies("")
+
+        Catch ex As Exception
+            Process.loadalert(divalert, msgalert, ex.Message, "danger")
+            Process.loadalert(divalert, msgalert, ex.Message, "danger")
+        End Try
+    End Sub
+
+
 
     Protected Sub btnDelWork_Click(sender As Object, e As EventArgs) Handles btndeletecareer.Click
         Try
@@ -1678,6 +1784,8 @@ Public Class EmployeeData
             btqualification.Attributes.Remove("class")
             btdependants.Attributes.Remove("class")
             btcareer.Attributes.Remove("class")
+            btasset.Attributes.Remove("class")
+            bthobbies.Attributes.Remove("class")
 
             btpersonal.Attributes.Add("class", "btn btn-success")
             'btpersonalcontact.Attributes.Add("class", "btn btn-default")
@@ -1685,6 +1793,8 @@ Public Class EmployeeData
             btqualification.Attributes.Add("class", "btn btn-default")
             btdependants.Attributes.Add("class", "btn btn-default")
             btcareer.Attributes.Add("class", "btn btn-default")
+            btasset.Attributes.Add("class", "btn btn-default")
+            bthobbies.Attributes.Add("class", "btn btn-default")
         Catch ex As Exception
         End Try
     End Sub
@@ -1700,6 +1810,8 @@ Public Class EmployeeData
             btqualification.Attributes.Remove("class")
             btdependants.Attributes.Remove("class")
             btcareer.Attributes.Remove("class")
+            btasset.Attributes.Remove("class")
+            bthobbies.Attributes.Remove("class")
 
             btpersonal.Attributes.Add("class", "btn btn-default")
             'btpersonalcontact.Attributes.Add("class", "btn btn-success")
@@ -1707,6 +1819,8 @@ Public Class EmployeeData
             btqualification.Attributes.Add("class", "btn btn-default")
             btdependants.Attributes.Add("class", "btn btn-default")
             btcareer.Attributes.Add("class", "btn btn-default")
+            btasset.Attributes.Add("class", "btn btn-default")
+            bthobbies.Attributes.Add("class", "btn btn-default")
         Catch ex As Exception
 
         End Try
@@ -1723,6 +1837,8 @@ Public Class EmployeeData
             btqualification.Attributes.Remove("class")
             btdependants.Attributes.Remove("class")
             btcareer.Attributes.Remove("class")
+            btasset.Attributes.Remove("class")
+            bthobbies.Attributes.Remove("class")
 
             btpersonal.Attributes.Add("class", "btn btn-default")
             'btpersonalcontact.Attributes.Add("class", "btn btn-default")
@@ -1730,6 +1846,8 @@ Public Class EmployeeData
             btqualification.Attributes.Add("class", "btn btn-default")
             btdependants.Attributes.Add("class", "btn btn-default")
             btcareer.Attributes.Add("class", "btn btn-default")
+            btasset.Attributes.Add("class", "btn btn-default")
+            bthobbies.Attributes.Add("class", "btn btn-default")
         Catch ex As Exception
 
         End Try
@@ -1746,6 +1864,8 @@ Public Class EmployeeData
             btqualification.Attributes.Remove("class")
             btdependants.Attributes.Remove("class")
             btcareer.Attributes.Remove("class")
+            btasset.Attributes.Remove("class")
+            bthobbies.Attributes.Remove("class")
 
             btpersonal.Attributes.Add("class", "btn btn-default")
             'btpersonalcontact.Attributes.Add("class", "btn btn-default")
@@ -1753,6 +1873,8 @@ Public Class EmployeeData
             btqualification.Attributes.Add("class", "btn btn-default")
             btdependants.Attributes.Add("class", "btn btn-success")
             btcareer.Attributes.Add("class", "btn btn-default")
+            btasset.Attributes.Add("class", "btn btn-default")
+            bthobbies.Attributes.Add("class", "btn btn-default")
         Catch ex As Exception
 
         End Try
@@ -1769,6 +1891,8 @@ Public Class EmployeeData
             btqualification.Attributes.Remove("class")
             btdependants.Attributes.Remove("class")
             btcareer.Attributes.Remove("class")
+            btasset.Attributes.Remove("class")
+            bthobbies.Attributes.Remove("class")
 
             btpersonal.Attributes.Add("class", "btn btn-default")
             'btpersonalcontact.Attributes.Add("class", "btn btn-default")
@@ -1776,6 +1900,8 @@ Public Class EmployeeData
             btqualification.Attributes.Add("class", "btn btn-success")
             btdependants.Attributes.Add("class", "btn btn-default")
             btcareer.Attributes.Add("class", "btn btn-default")
+            btasset.Attributes.Add("class", "btn btn-default")
+            bthobbies.Attributes.Add("class", "btn btn-default")
         Catch ex As Exception
 
         End Try
@@ -1793,6 +1919,8 @@ Public Class EmployeeData
             btqualification.Attributes.Remove("class")
             btdependants.Attributes.Remove("class")
             btcareer.Attributes.Remove("class")
+            btasset.Attributes.Remove("class")
+            bthobbies.Attributes.Remove("class")
 
             btpersonal.Attributes.Add("class", "btn btn-default")
             'btpersonalcontact.Attributes.Add("class", "btn btn-default")
@@ -1800,10 +1928,67 @@ Public Class EmployeeData
             btqualification.Attributes.Add("class", "btn btn-default")
             btdependants.Attributes.Add("class", "btn btn-default")
             btcareer.Attributes.Add("class", "btn btn-success")
+            btasset.Attributes.Add("class", "btn btn-default")
+            bthobbies.Attributes.Add("class", "btn btn-default")
         Catch ex As Exception
 
         End Try
     End Sub
+    Protected Sub btnAsset_click(sender As Object, e As EventArgs)
+        Try
+
+            MultiView1.ActiveViewIndex = 5
+            Session("clicked") = MultiView1.ActiveViewIndex + 1
+
+            btpersonal.Attributes.Remove("class")
+            'btpersonalcontact.Attributes.Remove("class")
+            btemercontact.Attributes.Remove("class")
+            btqualification.Attributes.Remove("class")
+            btdependants.Attributes.Remove("class")
+            btcareer.Attributes.Remove("class")
+            btasset.Attributes.Remove("class")
+            bthobbies.Attributes.Remove("class")
+
+            btpersonal.Attributes.Add("class", "btn btn-default")
+            'btpersonalcontact.Attributes.Add("class", "btn btn-default")
+            btemercontact.Attributes.Add("class", "btn btn-default")
+            btqualification.Attributes.Add("class", "btn btn-default")
+            btdependants.Attributes.Add("class", "btn btn-default")
+            btcareer.Attributes.Add("class", "btn btn-default")
+            btasset.Attributes.Add("class", "btn btn-success")
+            bthobbies.Attributes.Add("class", "btn btn-default")
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Protected Sub btnHobbies_click(sender As Object, e As EventArgs)
+        Try
+
+            MultiView1.ActiveViewIndex = 6
+            Session("clicked") = MultiView1.ActiveViewIndex + 1
+
+            btpersonal.Attributes.Remove("class")
+            'btpersonalcontact.Attributes.Remove("class")
+            btemercontact.Attributes.Remove("class")
+            btqualification.Attributes.Remove("class")
+            btdependants.Attributes.Remove("class")
+            btcareer.Attributes.Remove("class")
+            btasset.Attributes.Remove("class")
+            bthobbies.Attributes.Remove("class")
+
+            btpersonal.Attributes.Add("class", "btn btn-default")
+            'btpersonalcontact.Attributes.Add("class", "btn btn-default")
+            btemercontact.Attributes.Add("class", "btn btn-default")
+            btqualification.Attributes.Add("class", "btn btn-default")
+            btdependants.Attributes.Add("class", "btn btn-default")
+            btcareer.Attributes.Add("class", "btn btn-default")
+            btasset.Attributes.Add("class", "btn btn-default")
+            bthobbies.Attributes.Add("class", "btn btn-success")
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
     Private Sub OpenDependant(sid As String)
         Try
             Dim url As String = ""
@@ -1894,6 +2079,36 @@ Public Class EmployeeData
             Process.loadalert(divalert, msgalert, ex.Message, "danger")
         End Try
     End Sub
+    Private Sub OpenAsset(sid As String)
+        Try
+            Dim url As String = ""
+            If sid = "" Then
+                url = "EmployeeAsset"
+            Else
+                url = "EmployeeAsset?Id1=" & sid
+            End If
+            Response.Redirect(url, True)
+            'Dim s As String = "window.open('" & url + "', 'popup_window', 'width=700,height=500,status=yes,resizable=no,toolbar=no,menubar=no,location=center,scrollbars=yes,resizable=no');"
+            'ClientScript.RegisterStartupScript(Me.GetType(), "script", s, True)
+        Catch ex As Exception
+            Process.loadalert(divalert, msgalert, ex.Message, "danger")
+        End Try
+    End Sub
+    Private Sub OpenHobbies(sid As String)
+        Try
+            Dim url As String = ""
+            If sid = "" Then
+                url = "EmployeeHobbies"
+            Else
+                url = "EmployeeHobbies?Id1=" & sid
+            End If
+            Response.Redirect(url, True)
+            'Dim s As String = "window.open('" & url + "', 'popup_window', 'width=700,height=500,status=yes,resizable=no,toolbar=no,menubar=no,location=center,scrollbars=yes,resizable=no');"
+            'ClientScript.RegisterStartupScript(Me.GetType(), "script", s, True)
+        Catch ex As Exception
+            Process.loadalert(divalert, msgalert, ex.Message, "danger")
+        End Try
+    End Sub
     Protected Sub GridVwHeaderChckbox_RowCommand(sender As Object, e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles GridVwHeaderChckbox.RowCommand
         If (e.CommandName = "AddDependant") Then
             Dim index As Integer = Convert.ToInt32(e.CommandArgument)
@@ -1947,6 +2162,26 @@ Public Class EmployeeData
             If (e.CommandName = "AddWorkHistory") Then
                 Dim index As Integer = Convert.ToInt32(e.CommandArgument)
                 OpenWorkHistory(index)
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub GridAsset_RowCommand(sender As Object, e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles GridAsset.RowCommand
+        Try
+            If (e.CommandName = "AddAsset") Then
+                Dim index As Integer = Convert.ToInt32(e.CommandArgument)
+                OpenAsset(index)
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Private Sub GridHobbies_RowCommand(sender As Object, e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles GridHobbies.RowCommand
+        Try
+            If (e.CommandName = "AddHobbies") Then
+                Dim index As Integer = Convert.ToInt32(e.CommandArgument)
+                OpenHobbies(index)
             End If
         Catch ex As Exception
 

@@ -238,9 +238,10 @@
                 <div id="sidebar-menu" class="sidebar-menu">
                     <ul id="menu">
                         <li><a href="<%= Page.ResolveClientUrl("~/Module/Recruitment/Applications/welcome") %>"> Home</a> </li>
-                        <li><a href="<%= Page.ResolveClientUrl("~/Module/Recruitment/Applications/Vacancies") %>"> Jobs</a> </li>
                         <li>                            
                             <a href="<%= Page.ResolveClientUrl("~/Module/Recruitment/Applications/CandidateProfile") %>">Profile</a> </li>
+                        <li><a href="<%= Page.ResolveClientUrl("~/Module/Recruitment/Applications/Vacancies") %>"> Jobs</a> </li>
+                        
                         <li>                            
                             <a href="<%= Page.ResolveClientUrl("~/Module/Recruitment/Applications/MyApplications") %>">Applications</a> </li>
                             <li><a href="#" id="btnLogin" runat="server" onserverclick="Signout_Click">Sign Out</a></li>

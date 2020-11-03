@@ -147,6 +147,9 @@
                             </div>
                         </div>
                     </div>
+                    <button id="Button2"  onserverclick="btnAdd_Click1" type="submit"
+                                        style="width: 150px; margin-bottom;-20px " class="btn btn-primary btn-success">
+                                        Add By Job Grade</button>
                 </div>
                  <asp:UpdatePanel runat="server" ID="UpdatePanel4" UpdateMode="Always">
                                             <ContentTemplate>
@@ -199,18 +202,18 @@
                                     </asp:TemplateField>
                                     <asp:BoundField DataField="Rows" HeaderText="Rows" SortExpression="rows"
                                         ItemStyle-VerticalAlign="Top" />
-                                    <asp:TemplateField HeaderText="Lower Score range" SortExpression="skills"
-                                        ItemStyle-VerticalAlign="Top">
-                                        <ItemTemplate>
-                                            <asp:LinkButton ID="lnkDownload" Text='<%# Eval("skill")%>' CommandArgument='<%# Eval("id") %>'
-                                                runat="server" OnClick="DrillDown"></asp:LinkButton>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                      <asp:BoundField DataField="LowerScore" HeaderText="Rating" SortExpression="rating"
+                                       <asp:TemplateField HeaderText="Name" ItemStyle-VerticalAlign="Top" SortExpression="name"
+                            ItemStyle-Font-Bold="true">
+                            <ItemTemplate>
+                                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%#String.Format("~/Module/Admin/PerformanceReward?id={0}",
+                                                                                             HttpUtility.UrlEncode(Eval("id").ToString())) %>' Text='<%# Eval("LowerScore")%>' />
+                            </ItemTemplate>
+                                           </asp:TemplateField> 
+                                  
+                                  
+                                      <asp:BoundField DataField="HigherScore" HeaderText="HigherScore" SortExpression="higherscore"
                                         ItemStyle-VerticalAlign="Top" />
-                                      <asp:BoundField DataField="HigherScore" HeaderText="Rating" SortExpression="rating"
-                                        ItemStyle-VerticalAlign="Top" />
-                                     <asp:BoundField DataField="Percentage" HeaderText="Rating" SortExpression="rating"
+                                     <asp:BoundField DataField="Percentage" HeaderText="Percentage" SortExpression="percentage"
                                         ItemStyle-VerticalAlign="Top" />
                                 </Columns>
                                 <HeaderStyle BackColor="White" ForeColor="#1BA691" HorizontalAlign="center" />

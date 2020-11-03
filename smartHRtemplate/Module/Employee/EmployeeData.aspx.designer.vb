@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class EmployeeData
-    
+
     '''<summary>
     '''RadScriptBlock1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RadScriptBlock1 As Global.Telerik.Web.UI.RadScriptBlock
-    
+
     '''<summary>
     '''divalert control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents divalert As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''msgalert control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents msgalert As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''txtID control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtID As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtIDContact control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtIDContact As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtIDEmergency control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtIDEmergency As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''btpersonal control.
     '''</summary>
@@ -75,7 +75,16 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btpersonal As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
+    '''<summary>
+    '''bthobbies control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents bthobbies As Global.System.Web.UI.HtmlControls.HtmlButton
+
     '''<summary>
     '''btemercontact control.
     '''</summary>
@@ -84,7 +93,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btemercontact As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''btdependants control.
     '''</summary>
@@ -93,7 +102,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btdependants As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''btqualification control.
     '''</summary>
@@ -102,7 +111,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btqualification As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''btcareer control.
     '''</summary>
@@ -111,7 +120,16 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btcareer As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
+    '''<summary>
+    '''btasset control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btasset As Global.System.Web.UI.HtmlControls.HtmlButton
+
     '''<summary>
     '''pagetitle control.
     '''</summary>
@@ -120,7 +138,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pagetitle As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''imgphoto control.
     '''</summary>
@@ -129,7 +147,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents imgphoto As Global.System.Web.UI.HtmlControls.HtmlImage
-    
+
     '''<summary>
     '''imgUpload control.
     '''</summary>
@@ -138,7 +156,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents imgUpload As Global.System.Web.UI.HtmlControls.HtmlInputFile
-    
+
     '''<summary>
     '''chkPay control.
     '''</summary>
@@ -147,7 +165,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents chkPay As Global.System.Web.UI.WebControls.CheckBox
-    
+
     '''<summary>
     '''MultiView1 control.
     '''</summary>
@@ -156,7 +174,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents MultiView1 As Global.System.Web.UI.WebControls.MultiView
-    
+
     '''<summary>
     '''aempid control.
     '''</summary>
@@ -165,7 +183,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aempid As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''btgenerateempid control.
     '''</summary>
@@ -174,7 +192,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btgenerateempid As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''alastname control.
     '''</summary>
@@ -183,7 +201,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents alastname As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''afirstname control.
     '''</summary>
@@ -192,7 +210,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents afirstname As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''amiddlename control.
     '''</summary>
@@ -201,7 +219,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents amiddlename As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''drpgender control.
     '''</summary>
@@ -210,7 +228,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents drpgender As Global.System.Web.UI.HtmlControls.HtmlSelect
-    
+
     '''<summary>
     '''adateofbirth control.
     '''</summary>
@@ -219,7 +237,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents adateofbirth As Global.Telerik.Web.UI.RadDatePicker
-    
+
     '''<summary>
     '''drpmaritalstatus control.
     '''</summary>
@@ -228,7 +246,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents drpmaritalstatus As Global.System.Web.UI.HtmlControls.HtmlSelect
-    
+
     '''<summary>
     '''drpnationality control.
     '''</summary>
@@ -237,7 +255,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents drpnationality As Global.System.Web.UI.HtmlControls.HtmlSelect
-    
+
     '''<summary>
     '''drpcountryofbirth control.
     '''</summary>
@@ -246,7 +264,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents drpcountryofbirth As Global.System.Web.UI.HtmlControls.HtmlSelect
-    
+
     '''<summary>
     '''astateorigin control.
     '''</summary>
@@ -255,7 +273,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents astateorigin As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''abirthplace control.
     '''</summary>
@@ -264,7 +282,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents abirthplace As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''aidtype control.
     '''</summary>
@@ -273,7 +291,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aidtype As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''aidnumber control.
     '''</summary>
@@ -282,7 +300,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aidnumber As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''aidissuer control.
     '''</summary>
@@ -291,7 +309,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aidissuer As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''aidexpirydate control.
     '''</summary>
@@ -300,7 +318,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aidexpirydate As Global.Telerik.Web.UI.RadDatePicker
-    
+
     '''<summary>
     '''adateresume control.
     '''</summary>
@@ -309,7 +327,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents adateresume As Global.Telerik.Web.UI.RadDatePicker
-    
+
     '''<summary>
     '''divconfirmexpected control.
     '''</summary>
@@ -318,7 +336,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents divconfirmexpected As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''adateexpectconfirm control.
     '''</summary>
@@ -327,7 +345,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents adateexpectconfirm As Global.Telerik.Web.UI.RadDatePicker
-    
+
     '''<summary>
     '''divconfirmdate control.
     '''</summary>
@@ -336,7 +354,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents divconfirmdate As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''adateconfirm control.
     '''</summary>
@@ -345,7 +363,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents adateconfirm As Global.Telerik.Web.UI.RadDatePicker
-    
+
     '''<summary>
     '''divterminatedate control.
     '''</summary>
@@ -354,7 +372,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents divterminatedate As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''aterminatedate control.
     '''</summary>
@@ -363,7 +381,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aterminatedate As Global.Telerik.Web.UI.RadDatePicker
-    
+
     '''<summary>
     '''divlogcreate control.
     '''</summary>
@@ -372,7 +390,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents divlogcreate As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''chklogcreate control.
     '''</summary>
@@ -381,7 +399,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents chklogcreate As Global.System.Web.UI.WebControls.CheckBox
-    
+
     '''<summary>
     '''aphonenumber control.
     '''</summary>
@@ -390,7 +408,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aphonenumber As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''aworkphonenumber control.
     '''</summary>
@@ -399,7 +417,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aworkphonenumber As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''aemailaddress control.
     '''</summary>
@@ -408,7 +426,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aemailaddress As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''aworkemailaddress control.
     '''</summary>
@@ -417,7 +435,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aworkemailaddress As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''aaddress control.
     '''</summary>
@@ -426,7 +444,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aaddress As Global.System.Web.UI.HtmlControls.HtmlTextArea
-    
+
     '''<summary>
     '''aaddresscity control.
     '''</summary>
@@ -435,7 +453,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aaddresscity As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''drpaddresscountry control.
     '''</summary>
@@ -444,7 +462,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents drpaddresscountry As Global.System.Web.UI.HtmlControls.HtmlSelect
-    
+
     '''<summary>
     '''UpdatePanel1 control.
     '''</summary>
@@ -453,7 +471,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
-    
+
     '''<summary>
     '''divlogin control.
     '''</summary>
@@ -462,7 +480,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents divlogin As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''ausername control.
     '''</summary>
@@ -471,7 +489,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ausername As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''apassword control.
     '''</summary>
@@ -480,7 +498,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents apassword As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''cbouserrole control.
     '''</summary>
@@ -489,7 +507,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cbouserrole As Global.Telerik.Web.UI.RadComboBox
-    
+
     '''<summary>
     '''cbouserstat control.
     '''</summary>
@@ -498,7 +516,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cbouserstat As Global.Telerik.Web.UI.RadComboBox
-    
+
     '''<summary>
     '''cbouseraccess control.
     '''</summary>
@@ -507,7 +525,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cbouseraccess As Global.Telerik.Web.UI.RadComboBox
-    
+
     '''<summary>
     '''UpdatePanel6 control.
     '''</summary>
@@ -516,7 +534,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UpdatePanel6 As Global.System.Web.UI.UpdatePanel
-    
+
     '''<summary>
     '''cbouseraccesslevel control.
     '''</summary>
@@ -525,7 +543,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cbouseraccesslevel As Global.Telerik.Web.UI.RadComboBox
-    
+
     '''<summary>
     '''auseremail control.
     '''</summary>
@@ -534,7 +552,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents auseremail As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''chksuperadmin control.
     '''</summary>
@@ -543,7 +561,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents chksuperadmin As Global.System.Web.UI.HtmlControls.HtmlInputCheckBox
-    
+
     '''<summary>
     '''chkhradmin control.
     '''</summary>
@@ -552,7 +570,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents chkhradmin As Global.System.Web.UI.HtmlControls.HtmlInputCheckBox
-    
+
     '''<summary>
     '''chkfinadmin control.
     '''</summary>
@@ -561,7 +579,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents chkfinadmin As Global.System.Web.UI.HtmlControls.HtmlInputCheckBox
-    
+
     '''<summary>
     '''btsavepersonal control.
     '''</summary>
@@ -570,7 +588,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btsavepersonal As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''btnback control.
     '''</summary>
@@ -579,7 +597,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnback As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''Emergency control.
     '''</summary>
@@ -588,7 +606,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Emergency As Global.System.Web.UI.WebControls.View
-    
+
     '''<summary>
     '''collapse_acc control.
     '''</summary>
@@ -597,7 +615,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents collapse_acc As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''divbtnapprove control.
     '''</summary>
@@ -606,7 +624,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents divbtnapprove As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''lnkApprove control.
     '''</summary>
@@ -615,7 +633,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkApprove As Global.System.Web.UI.WebControls.LinkButton
-    
+
     '''<summary>
     '''lnkCancel control.
     '''</summary>
@@ -624,7 +642,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkCancel As Global.System.Web.UI.WebControls.LinkButton
-    
+
     '''<summary>
     '''B1 control.
     '''</summary>
@@ -633,7 +651,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents B1 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''tempaemername1 control.
     '''</summary>
@@ -642,7 +660,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tempaemername1 As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''tempaemercontactnumber1 control.
     '''</summary>
@@ -651,7 +669,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tempaemercontactnumber1 As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''drptemprelation1 control.
     '''</summary>
@@ -660,7 +678,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents drptemprelation1 As Global.System.Web.UI.HtmlControls.HtmlSelect
-    
+
     '''<summary>
     '''tempaemeraddress1 control.
     '''</summary>
@@ -669,7 +687,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tempaemeraddress1 As Global.System.Web.UI.HtmlControls.HtmlTextArea
-    
+
     '''<summary>
     '''tempaemername2 control.
     '''</summary>
@@ -678,7 +696,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tempaemername2 As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''tempaemercontactnumber2 control.
     '''</summary>
@@ -687,7 +705,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tempaemercontactnumber2 As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''drptemprelation2 control.
     '''</summary>
@@ -696,7 +714,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents drptemprelation2 As Global.System.Web.UI.HtmlControls.HtmlSelect
-    
+
     '''<summary>
     '''tempaemeraddress2 control.
     '''</summary>
@@ -705,7 +723,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents tempaemeraddress2 As Global.System.Web.UI.HtmlControls.HtmlTextArea
-    
+
     '''<summary>
     '''aemername1 control.
     '''</summary>
@@ -714,7 +732,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aemername1 As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''aemercontactnumber1 control.
     '''</summary>
@@ -723,7 +741,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aemercontactnumber1 As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''drpemerrelation1 control.
     '''</summary>
@@ -732,7 +750,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents drpemerrelation1 As Global.System.Web.UI.HtmlControls.HtmlSelect
-    
+
     '''<summary>
     '''aemeraddress1 control.
     '''</summary>
@@ -741,7 +759,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aemeraddress1 As Global.System.Web.UI.HtmlControls.HtmlTextArea
-    
+
     '''<summary>
     '''aemername2 control.
     '''</summary>
@@ -750,7 +768,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aemername2 As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''aemercontactnumber2 control.
     '''</summary>
@@ -759,7 +777,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aemercontactnumber2 As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''drprelation2 control.
     '''</summary>
@@ -768,7 +786,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents drprelation2 As Global.System.Web.UI.HtmlControls.HtmlSelect
-    
+
     '''<summary>
     '''aemeraddress2 control.
     '''</summary>
@@ -777,7 +795,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aemeraddress2 As Global.System.Web.UI.HtmlControls.HtmlTextArea
-    
+
     '''<summary>
     '''arefname1 control.
     '''</summary>
@@ -786,7 +804,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents arefname1 As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''arefphonenumber1 control.
     '''</summary>
@@ -795,7 +813,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents arefphonenumber1 As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''arefemailaddress1 control.
     '''</summary>
@@ -804,7 +822,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents arefemailaddress1 As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''arefyrsknown1 control.
     '''</summary>
@@ -813,7 +831,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents arefyrsknown1 As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''drprefconfirmed1 control.
     '''</summary>
@@ -822,7 +840,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents drprefconfirmed1 As Global.System.Web.UI.HtmlControls.HtmlSelect
-    
+
     '''<summary>
     '''areforganisation1 control.
     '''</summary>
@@ -831,7 +849,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents areforganisation1 As Global.System.Web.UI.HtmlControls.HtmlTextArea
-    
+
     '''<summary>
     '''arefname2 control.
     '''</summary>
@@ -840,7 +858,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents arefname2 As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''arefcontactnumber2 control.
     '''</summary>
@@ -849,7 +867,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents arefcontactnumber2 As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''arefemailaddress2 control.
     '''</summary>
@@ -858,7 +876,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents arefemailaddress2 As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''arefyears2 control.
     '''</summary>
@@ -867,7 +885,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents arefyears2 As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''drprefconfirmed2 control.
     '''</summary>
@@ -876,7 +894,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents drprefconfirmed2 As Global.System.Web.UI.HtmlControls.HtmlSelect
-    
+
     '''<summary>
     '''areforganisation2 control.
     '''</summary>
@@ -885,7 +903,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents areforganisation2 As Global.System.Web.UI.HtmlControls.HtmlTextArea
-    
+
     '''<summary>
     '''btnsave control.
     '''</summary>
@@ -894,7 +912,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnsave As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''Button1 control.
     '''</summary>
@@ -903,7 +921,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Button1 As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''Dependants control.
     '''</summary>
@@ -912,7 +930,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Dependants As Global.System.Web.UI.WebControls.View
-    
+
     '''<summary>
     '''btnsavedependants control.
     '''</summary>
@@ -921,7 +939,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnsavedependants As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''btndeletedependants control.
     '''</summary>
@@ -930,7 +948,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btndeletedependants As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''GridVwHeaderChckbox control.
     '''</summary>
@@ -939,7 +957,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents GridVwHeaderChckbox As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''Button2 control.
     '''</summary>
@@ -948,7 +966,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Button2 As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''Qualifications control.
     '''</summary>
@@ -957,7 +975,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Qualifications As Global.System.Web.UI.WebControls.View
-    
+
     '''<summary>
     '''btnaddeducatin control.
     '''</summary>
@@ -966,7 +984,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnaddeducatin As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''btndeleteeducation control.
     '''</summary>
@@ -975,7 +993,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btndeleteeducation As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''GridVwEducation control.
     '''</summary>
@@ -984,7 +1002,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents GridVwEducation As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''btnaddcertificate control.
     '''</summary>
@@ -993,7 +1011,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnaddcertificate As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''btndeletecertificate control.
     '''</summary>
@@ -1002,7 +1020,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btndeletecertificate As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''GridVwCertification control.
     '''</summary>
@@ -1011,7 +1029,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents GridVwCertification As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''btnaddlanguage control.
     '''</summary>
@@ -1020,7 +1038,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnaddlanguage As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''btndeletelanguage control.
     '''</summary>
@@ -1029,7 +1047,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btndeletelanguage As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''GridVwLang control.
     '''</summary>
@@ -1038,7 +1056,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents GridVwLang As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''btnaddskills control.
     '''</summary>
@@ -1047,7 +1065,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnaddskills As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''btndeleteskills control.
     '''</summary>
@@ -1056,7 +1074,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btndeleteskills As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''GridVwSkills control.
     '''</summary>
@@ -1065,7 +1083,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents GridVwSkills As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''Button3 control.
     '''</summary>
@@ -1074,7 +1092,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Button3 As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''WorkHistory control.
     '''</summary>
@@ -1083,7 +1101,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents WorkHistory As Global.System.Web.UI.WebControls.View
-    
+
     '''<summary>
     '''btnaddcareer control.
     '''</summary>
@@ -1092,7 +1110,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnaddcareer As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''btndeletecareer control.
     '''</summary>
@@ -1101,7 +1119,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btndeletecareer As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''GridVwWorkHistory control.
     '''</summary>
@@ -1110,7 +1128,7 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents GridVwWorkHistory As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''Button4 control.
     '''</summary>
@@ -1119,4 +1137,94 @@ Partial Public Class EmployeeData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Button4 As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''Asset control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Asset As Global.System.Web.UI.WebControls.View
+
+    '''<summary>
+    '''Button5 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Button5 As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''Button6 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Button6 As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''GridAsset control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents GridAsset As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''Button7 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Button7 As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''Hobbies control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Hobbies As Global.System.Web.UI.WebControls.View
+
+    '''<summary>
+    '''Button8 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Button8 As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''Button9 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Button9 As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''GridHobbies control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents GridHobbies As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''Button10 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Button10 As Global.System.Web.UI.HtmlControls.HtmlButton
 End Class

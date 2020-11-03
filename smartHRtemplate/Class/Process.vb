@@ -1084,7 +1084,8 @@ Public Class Process
             smtp.Send(mm)
             Return True
         Catch ex As Exception
-            HttpContext.Current.Session.Item("exception") = ex.Message
+            Return False
+            'HttpContext.Current.Session.Item("exception") = ex.Message
             Return False
         Finally
 
@@ -4978,15 +4979,93 @@ sempid As String, mgrid As String, links As String)
 
                 If ArraysMail(i) <> "aa" Then
                     If SendNotification() = "Yes" Then
-                        Process.SendEmail("", GetCompanyByEmpID(Arrays(i)), ArraysMail(i), _
-                                         subject, _
-                                           "<div style=""font-family:Arial; font-size:12px;"">" & msgbuild.ToString & "<br /> <br /><a href=" & links & ">" & links & "</a> </div>", _
+                        Process.SendEmail("", GetCompanyByEmpID(Arrays(i)), ArraysMail(i),
+                                         subject,
+                                           "<div style=""font-family:Arial; font-size:12px;"">" & msgbuild.ToString & "<br /> <br /><a href=" & links & ">" & links & "</a> </div>",
                                         "", True, "")
 
                     End If
                 End If
 
             Next
+            Return True
+
+
+        Catch ex As Exception
+            HttpContext.Current.Session.Item("exception") = ex.Message
+            Return False
+        End Try
+    End Function
+    Public Shared Function Coaching_Alert(empid As String, email As String, Coachname As String, appstartdate As String, links As String, time As String) As Boolean
+        Try
+            Dim subject As String = "Coaching Session" & appstartdate
+            Dim filePath As String = MailContentURL & MailFolderPerformance & "Coaching_Alert.txt"
+
+
+
+
+            Dim rname As String = GetEmployeeData(empid, "firstname")
+            Dim readertxt As New StreamReader(filePath)
+            msgbuild.Clear()
+            While Not readertxt.EndOfStream
+                Dim line As String = readertxt.ReadLine()
+                msgbuild.AppendLine(line)
+            End While
+            readertxt.Close()
+            msgbuild = msgbuild.Replace("@empname", rname).Replace("@startdate", appstartdate).Replace("@Coach", Coachname).Replace("@Time", time).Replace("@company", GetCompanyByEmpID(empid)).Replace("@empid", empid)
+
+            Process.MailNotification(empid, MailPerfromance, subject, msgbuild.ToString, empid, Process.AppName, "", empid, links, "")
+
+            If email <> "aa" Then
+                If SendNotification() = "Yes" Then
+                    Process.SendEmail("", GetCompanyByEmpID(empid), email,
+                                         subject,
+                                           "<div style=""font-family:Arial; font-size:12px;"">" & msgbuild.ToString & "<br /> <br /><a href=" & links & ">" & links & "</a> </div>",
+                                        "", True, "")
+
+                End If
+            End If
+
+
+            Return True
+
+
+        Catch ex As Exception
+            HttpContext.Current.Session.Item("exception") = ex.Message
+            Return False
+        End Try
+    End Function
+    Public Shared Function Asset_Alert(empid As String, email As String, Coachname As String, appstartdate As String, links As String, time As String) As Boolean
+        Try
+            Dim subject As String = "Coaching Session" & appstartdate
+            Dim filePath As String = MailContentURL & MailFolderPerformance & "Asset_Alert.txt"
+
+
+
+
+            Dim rname As String = GetEmployeeData(empid, "firstname")
+            Dim readertxt As New StreamReader(filePath)
+            msgbuild.Clear()
+            While Not readertxt.EndOfStream
+                Dim line As String = readertxt.ReadLine()
+                msgbuild.AppendLine(line)
+            End While
+            readertxt.Close()
+            msgbuild = msgbuild.Replace("@empname", rname).Replace("@startdate", appstartdate).Replace("@Coach", Coachname).Replace("@Time", time).Replace("@company", GetCompanyByEmpID(empid)).Replace("@empid", empid)
+
+            Process.MailNotification(empid, MailPerfromance, subject, msgbuild.ToString, empid, Process.AppName, "", empid, links, "")
+
+            If email <> "aa" Then
+                If SendNotification() = "Yes" Then
+                    Process.SendEmail("", GetCompanyByEmpID(empid), email,
+                                         subject,
+                                           "<div style=""font-family:Arial; font-size:12px;"">" & msgbuild.ToString & "<br /> <br /><a href=" & links & ">" & links & "</a> </div>",
+                                        "", True, "")
+
+                End If
+            End If
+
+
             Return True
 
 
@@ -5886,6 +5965,30 @@ sempid As String, mgrid As String, links As String)
         End If
 
         strDataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, SP)
+        For i As Integer = 0 To strDataSet.Tables(0).Rows.Count - 1
+            'strDataSet.Tables(0).Rows(i).Item(Index).ToString()
+            Dim item As New RadComboBoxItem()
+            item.Text = strDataSet.Tables(0).Rows(i).Item(DisplayText).ToString()
+            item.Value = strDataSet.Tables(0).Rows(i).Item(setValue).ToString()
+            radBox.Items.Add(item)
+            item.DataBind()
+        Next
+
+    End Sub
+    Public Shared Sub LoadRadComboTextAndValue1(ByVal radBox As RadComboBox, ByVal SP As String, ByVal DisplayText As String, ByVal setValue As String, ByVal Parameter1 As Int16, Optional ByVal ApplyNA As Boolean = True)
+        'Load RadCombo Box with Display Text and Value
+
+        Dim strDataSet As New DataSet
+        radBox.Items.Clear()
+        If ApplyNA = True Then
+            Dim itemTemp As New RadComboBoxItem()
+            itemTemp.Text = "N/A"
+            itemTemp.Value = "N/A"
+            radBox.Items.Add(itemTemp)
+            itemTemp.DataBind()
+        End If
+
+        strDataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, SP, Parameter1)
         For i As Integer = 0 To strDataSet.Tables(0).Rows.Count - 1
             'strDataSet.Tables(0).Rows(i).Item(Index).ToString()
             Dim item As New RadComboBoxItem()

@@ -265,8 +265,52 @@
                     </div>
                     </div>
                      <div class="col-md-4">
-
+                          <div class="card-box">
+                        <h4 class="card-title" style="color: #1BA691;">
+                            <b>Assets</b></h4>
+                                    <div class="chat-action-btns">
+                                        <ul>
+                                            <%--<li><a id="A5" runat="server" onserverclick="btnAddCert_Click"  title='Add new Certificate' class="edit-btn"><i class="glyphicon glyphicon-plus">
+                                            </i></a></li>--%>
+                                        </ul>
+                                    </div>
+                        <div class="experience-box">
+                            <ul class="experience-list">
+                                <li>                                    
+                                    <asp:DataList ID="DataList1" runat="server" Width="100%" RepeatColumns="1"
+                                        CellSpacing="0" RepeatLayout="Flow" Font-Names="Arial" Font-Size="14px" DataKeyField="id"
+                                        BorderColor="Transparent" ForeColor="#666666" BorderWidth="1px">
+                                        <ItemTemplate>                                            
+                                            <div class="experience-user">
+                                                <div class="before-circle">
+                                                </div>
+                                            </div>
+                                            <div class="experience-content">
+                                                <div class="timeline-content">
+                                                    <div class="chat-action-btns">
+                                                        <ul>
+                                                            <li><a id="A1" runat="server" title='<%# Eval("id")%>' class="del-msg"></a></li>
+                                                        </ul>
+                                                    </div>
+                                                    
+                                                       <u> <%# Eval("Asset Name")%> <span>   <a href="EmployeeCertification?self=emp&id1=<%# Eval("id")%>" class="name"><button class="btn btn-default btn-sm 
+glyphicon glyphicon-repeat" type="button" runat="server" data-toggle="tooltip" data-original-title="Add Comment"></button></a></span></u>
+                                                    <div><%# Eval("Asset Number")%>
+                                                        </div>
+                                                    <span class="time">
+                                                        <%# Eval("Location")%>
+                                                        -
+                                                        <%# Eval("Status")%></span>
+                                                </div>
+                                            </div>                                            
+                                        </ItemTemplate>                                        
+                                    </asp:DataList>                                   
+                                </li>
+                            </ul>
+                         
+                        </div>
                      </div>
+                         </div>
                     <div class="col-md-4">
                     <div class="card-box">
                         <h3 class="card-title" style="color: #1BA691;">
@@ -314,6 +358,53 @@
                         </div>
                     </div>
                 </div>
+                  <div class="col-md-4">
+                          <div class="card-box">
+                        <h4 class="card-title" style="color: #1BA691;">
+                            <b>Assets</b></h4>
+                                    <div class="chat-action-btns">
+                                        <ul>
+                                            <%--<li><a id="A5" runat="server" onserverclick="btnAddCert_Click"  title='Add new Certificate' class="edit-btn"><i class="glyphicon glyphicon-plus">
+                                            </i></a></li>--%>
+                                        </ul>
+                                    </div>
+                        <div class="experience-box">
+                            <ul class="experience-list">
+                                <li>                                    
+                                    <asp:DataList ID="DataList2" runat="server" Width="100%" RepeatColumns="1"
+                                        CellSpacing="0" RepeatLayout="Flow" Font-Names="Arial" Font-Size="14px" DataKeyField="id"
+                                        BorderColor="Transparent" ForeColor="#666666" BorderWidth="1px">
+                                        <ItemTemplate>                                            
+                                            <div class="experience-user">
+                                                <div class="before-circle">
+                                                </div>
+                                            </div>
+                                            <div class="experience-content">
+                                                <div class="timeline-content">
+                                                    <div class="chat-action-btns">
+                                                        <ul>
+                                                            <li><a id="A1" runat="server" title='<%# Eval("id")%>' class="del-msg"></a></li>
+                                                        </ul>
+                                                    </div>
+                                                    
+                                                       <u> <%# Eval("Hobby Name")%></u>
+                                                    <div><i class="glyphicon glyphicon-star-empty"></i>
+                                                        <i class="glyphicon glyphicon-star-empty"></i>
+                                                        <i class="glyphicon glyphicon-star-empty"></i>
+                                                        <i class="glyphicon glyphicon-star-empty"></i>
+                                                        <i class="glyphicon glyphicon-star-empty"></i>
+                                                        </div>
+                                                    
+                                                </div>
+                                            </div>                                            
+                                        </ItemTemplate>                                        
+                                    </asp:DataList>                                   
+                                </li>
+                            </ul>
+                         
+                        </div>
+                     </div>
+                         </div>
             </div>
         </div>
         </form>

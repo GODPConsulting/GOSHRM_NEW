@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class AppraisalPeriodList
-    
+
     '''<summary>
     '''divalert control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class AppraisalPeriodList
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents divalert As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''msgalert control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class AppraisalPeriodList
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents msgalert As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''pagetitle control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class AppraisalPeriodList
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pagetitle As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''file1 control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class AppraisalPeriodList
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents file1 As Global.System.Web.UI.HtmlControls.HtmlInputFile
-    
+
     '''<summary>
     '''btnUploadFile control.
     '''</summary>
@@ -57,7 +57,16 @@ Partial Public Class AppraisalPeriodList
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnUploadFile As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
+    '''<summary>
+    '''Button1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Button1 As Global.System.Web.UI.HtmlControls.HtmlButton
+
     '''<summary>
     '''btnDelete control.
     '''</summary>
@@ -66,7 +75,7 @@ Partial Public Class AppraisalPeriodList
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnDelete As Global.System.Web.UI.WebControls.LinkButton
-    
+
     '''<summary>
     '''btAdd control.
     '''</summary>
@@ -75,7 +84,7 @@ Partial Public Class AppraisalPeriodList
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btAdd As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''search control.
     '''</summary>
@@ -84,7 +93,7 @@ Partial Public Class AppraisalPeriodList
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents search As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''btsearch control.
     '''</summary>
@@ -93,7 +102,7 @@ Partial Public Class AppraisalPeriodList
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btsearch As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''cboCompany control.
     '''</summary>
@@ -102,7 +111,7 @@ Partial Public Class AppraisalPeriodList
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboCompany As Global.Telerik.Web.UI.RadComboBox
-    
+
     '''<summary>
     '''GridVwHeaderChckbox control.
     '''</summary>
@@ -111,7 +120,7 @@ Partial Public Class AppraisalPeriodList
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents GridVwHeaderChckbox As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''SqlDataSource1 control.
     '''</summary>

@@ -1,0 +1,10 @@
+Dear @empname,
+
+A Coaching session with @Coach has been scheduled for @startdate.
+
+Time :@Time
+
+Kindly be informed.
+
+HR Team
+@company

@@ -174,6 +174,7 @@ Public Class Reward
 
                 If Request.QueryString("id") IsNot Nothing Then
                     Dim strUser As New DataSet
+                    Dim strUser2 As New DataSet
                     strUser = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Reward_get", Request.QueryString("id"))
                     abonusname.Value = strUser.Tables(0).Rows(0).Item("BonusReward").ToString
                     Process.AssignRadDropDownValue(abonustype, strUser.Tables(0).Rows(0).Item("Type").ToString)
@@ -184,8 +185,8 @@ Public Class Reward
                     Else
                         Active = "No"
                     End If
-                    RadDropDownList1.SelectedValue = Active
-                    Process.AssignRadDropDownValue(RadDropDownList2, strUser.Tables(0).Rows(0).Item("Active").ToString)
+                    RadDropDownList1.SelectedText = Active
+
                     aflatpercentage.Value = strUser.Tables(0).Rows(0).Item("FixedPercentage").ToString
                     Dim Taxable = strUser.Tables(0).Rows(0).Item("Taxable")
                     If Taxable = True Then
@@ -193,12 +194,16 @@ Public Class Reward
                     Else
                         Taxable = "No"
                     End If
-                    radStatus.SelectedValue = Taxable
-                    Process.AssignRadComboValue(radComponents, strUser.Tables(0).Rows(0).Item("Components").ToString)
+                    radStatus.SelectedText = Taxable
+                    Process.AssignRadDropDownValue(RadDropDownList2, strUser.Tables(0).Rows(0).Item("BonusModel").ToString)
                     txtid.Text = strUser.Tables(0).Rows(0).Item("id").ToString
+                    strUser2 = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Reward_Components_get", Request.QueryString("id"))
+                    Process.AssignRadComboValue(radComponents, strUser2.Tables(0).Rows(0).Item("Components").ToString)
                     'aobjective.Value = strUser.Tables(0).Rows(0).Item("objectives").ToString
                     LoadGrid(txtid.Text)
                     PanelVisibility()
+
+
                 Else
                     txtid.Text = "0"
 
@@ -212,6 +217,7 @@ Public Class Reward
             Process.loadalert(divalert, msgalert, ex.Message, "danger")
         End Try
     End Sub
+
 
     Protected Sub btnAdd_Click(sender As Object, e As EventArgs)
         Try
@@ -312,7 +318,7 @@ Public Class Reward
             txtid.Text = GetIdentity()
             If RadDropDownList2 IsNot Nothing Then
                 For d As Integer = 0 To radComponents.CheckedItems.Count - 1
-                    SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Emp_Reward_Component_Add", txtskillid.Text, radComponents.CheckedItems.Item(d).Text)
+                    SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Emp_Reward_Component_Add", txtskillid.Text, radComponents.CheckedItems.Item(d).Text, txtid.Text)
                 Next
             End If
 

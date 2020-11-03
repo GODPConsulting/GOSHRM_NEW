@@ -15,6 +15,11 @@ Public Class KPIUpdate
     Dim olddata(3) As String
     Dim lblstatus As String = ""
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+
+        RadDropDownList1.Items.Clear()
+        RadDropDownList1.Items.Add("Yes")
+        RadDropDownList1.Items.Add("No")
         Try
             If Not Me.IsPostBack Then
                 'Company_Structure_get_parent
@@ -26,6 +31,7 @@ Public Class KPIUpdate
                     txtid.Text = strUser.Tables(0).Rows(0).Item("id").ToString
                     txtname.Value = strUser.Tables(0).Rows(0).Item("name").ToString
                     txtDesc.Value = strUser.Tables(0).Rows(0).Item("Description").ToString
+                    RadDropDownList1.SelectedText = strUser.Tables(0).Rows(0).Item("UploadStatus").ToString
                     Process.AssignRadComboValue(cboKPIType, strUser.Tables(0).Rows(0).Item("CompetencyType").ToString)
                 End If
             End If
@@ -45,6 +51,7 @@ Public Class KPIUpdate
             cmd.Parameters.Add("@name", SqlDbType.VarChar).Value = kpitype
             cmd.Parameters.Add("@Desc", SqlDbType.VarChar).Value = kpidesc
             cmd.Parameters.Add("@groupid", SqlDbType.Int).Value = kpigroup
+            cmd.Parameters.Add("@UploadStatus", SqlDbType.VarChar).Value = RadDropDownList1.SelectedText
             cmd.Connection = con
             con.Open()
             Dim obj As Object = cmd.ExecuteScalar()
@@ -69,6 +76,11 @@ Public Class KPIUpdate
                 Process.loadalert(divalert, msgalert, lblstatus, "danger")
                 txtname.Focus()
                 Exit Sub
+            End If
+            If RadDropDownList1.SelectedText = "" Then
+                lblstatus = "please select upload status"
+                Process.loadalert(divalert, msgalert, lblstatus, "danger")
+                RadDropDownList1.Focus()
             End If
 
 
@@ -129,7 +141,7 @@ Public Class KPIUpdate
             If txtid.Text = "0" Then
                 txtid.Text = GetIdentity(txtname.Value, txtDesc.Value, cboKPIType.SelectedValue)
             Else
-                SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Competency_update", txtid.Text, txtname.Value.Trim, txtDesc.Value, cboKPIType.SelectedValue)
+                SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Competency_update", txtid.Text, txtname.Value.Trim, txtDesc.Value, cboKPIType.SelectedValue, RadDropDownList1.SelectedText)
             End If
 
             lblstatus = "Record saved"

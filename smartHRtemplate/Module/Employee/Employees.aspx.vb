@@ -260,6 +260,8 @@ Public Class Employees
                 cboUploadType.Items.Add("Emergency Contact")
                 cboUploadType.Items.Add("Education")
                 cboUploadType.Items.Add("Professional Qualification")
+                cboUploadType.Items.Add("Employess Hobbies")
+                cboUploadType.Items.Add("Employee Asset")
 
                 Dim tooltips As String = ""
                 If cboUploadType.SelectedItem.Text = "Biodata" Then
@@ -283,6 +285,12 @@ Public Class Employees
                     btnUploadFile.Attributes.Add("title", tooltips.ToLower)
                 ElseIf cboUploadType.SelectedItem.Text = "Professional Qualification" Then
                     tooltips = "CSV File (Comma Delimited): empid,qualification,institution, startdate e.g DEC, startyear, completedate e.g DEC, completeyear"
+                    btnUploadFile.Attributes.Add("title", tooltips.ToLower)
+                ElseIf cboUploadType.SelectedItem.Text = "Employess Hobbies" Then
+                    tooltips = "CSV File (Comma Delimited): empid,hobby name,hobby description, hobby rating(numeric and less than 5)"
+                    btnUploadFile.Attributes.Add("title", tooltips.ToLower)
+                ElseIf cboUploadType.SelectedItem.Text = "Employee Asset" Then
+                    tooltips = "CSV File (Comma Delimited): empid,asset name,asset number,asset description, asset classification,Physical Condition of asset, location,Status(Active,Inactive,Returned), Comments"
                     btnUploadFile.Attributes.Add("title", tooltips.ToLower)
                 End If
 
@@ -453,6 +461,12 @@ Public Class Employees
             ElseIf cboUploadType.SelectedItem.Text = "Professional Qualification" Then
                 Response.AppendHeader("Content-Disposition", "attachment; filename=ProfessionalQualification.csv")
                 Response.TransmitFile(sPath & Convert.ToString("ProfessionalQualification.csv"))
+            ElseIf cboUploadType.SelectedItem.Text = "Employess Hobbies" Then
+                Response.AppendHeader("Content-Disposition", "attachment; filename=EmployeeHobbies.csv")
+                Response.TransmitFile(sPath & Convert.ToString("EmployeeHobbies.csv"))
+            ElseIf cboUploadType.SelectedItem.Text = "Employee Asset" Then
+                Response.AppendHeader("Content-Disposition", "attachment; filename=Employeeasset.csv")
+                Response.TransmitFile(sPath & Convert.ToString("EmployeeAsset.csv"))
             End If
             Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             HttpContext.Current.Response.Flush()
@@ -501,6 +515,10 @@ Public Class Employees
                     proc = "Emp_Education_upload"
                 ElseIf cboUploadType.SelectedItem.Text = "Professional Qualification" Then
                     proc = "Emp_Certifications_Upload"
+                ElseIf cboUploadType.SelectedItem.Text = "Employess Hobbies" Then
+                    proc = "Emp_Hobbies_Upload"
+                ElseIf cboUploadType.SelectedItem.Text = "Employee Asset" Then
+                    proc = "Emp_Asset_Upload"
                 End If
 
                 If cboUploadType.SelectedItem.Text = "Biodata" Then
@@ -609,8 +627,13 @@ Public Class Employees
             ElseIf cboUploadType.SelectedItem.Text = "Professional Qualification" Then
                 tooltips = "CSV File (Comma Delimited): empid,qualification,institution, startdate e.g DEC, startyear, completedate e.g DEC, completeyear"
                 btnUploadFile.Attributes.Add("title", tooltips.ToLower)
+            ElseIf cboUploadType.SelectedItem.Text = "Employess Hobbies" Then
+                tooltips = "CSV File (Comma Delimited): empid,hobby name,hobby description, hobby rating(numeric and less than 5)"
+                btnUploadFile.Attributes.Add("title", tooltips.ToLower)
+            ElseIf cboUploadType.SelectedItem.Text = "Employee Asset" Then
+                tooltips = "CSV File (Comma Delimited): empid,asset name,asset number,asset description, asset classification,Physical Condition of asset, location,Status(Active,Inactive,Returned), Comments"
+                btnUploadFile.Attributes.Add("title", tooltips.ToLower)
             End If
-
         Catch ex As Exception
             Process.loadalert(divalert, msgalert, ex.Message, "danger")
 

@@ -22,22 +22,19 @@ Public Class PerformanceReward
 
                 If Request.QueryString("id") IsNot Nothing Then
                     Dim strUser As New DataSet
-                    strUser = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "emp_Reward_Performance", Request.QueryString("id"))
+                    strUser = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "emp_Reward_Performance_get", Request.QueryString("id"))
                     txtid.Text = strUser.Tables(0).Rows(0).Item("id").ToString
                     alowerscorerange.Value = strUser.Tables(0).Rows(0).Item("LowerScore")
                     aupperscorerange.Value = strUser.Tables(0).Rows(0).Item("HigherScore")
-                    txtcourseid.Text = strUser.Tables(0).Rows(0).Item("courseid").ToString
-                    aweight.Value = strUser.Tables(0).Rows(0).Item("rating").ToString
+                    txtcourseid.Text = strUser.Tables(0).Rows(0).Item("rewardid").ToString
+                    aweight.Value = strUser.Tables(0).Rows(0).Item("Percentage").ToString
                 Else
                     txtid.Text = "0"
                     txtcourseid.Text = Request.QueryString("rewardid")
                 End If
 
-                Dim strjob As New DataSet
-                strjob = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Courses_get", txtcourseid.Text)
-                If strjob.Tables(0).Rows.Count > 0 Then
-                    pagetitle.InnerText = strjob.Tables(0).Rows(0).Item("name").ToString & " Skills"
-                End If
+
+
 
             End If
 

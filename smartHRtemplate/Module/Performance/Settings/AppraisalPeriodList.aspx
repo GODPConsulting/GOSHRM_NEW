@@ -95,14 +95,15 @@
          <div class="row">
         <div class="col-sm-3 col-md-4 col-xs-12 form-group">
             <div class="col-md-6">
-                <input style="height:35px;" class="form-control" type="file" id="file1" runat="server" />
+                <input style="height:35px;width:200px" class="form-control" type="file" id="file1" runat="server" />
             </div>
             <div class="col-md-6">
-                <button id="btnUploadFile" type="button" data-toggle="tooltip" data-original-title="360 Feedback Upload(EmpID of Reviewee, EmpID of Reviewer, Period, Company)" runat="server" class="fa fa-upload btn btn-default btn-sm"
-                onserverclick="btnUpload_Click" style="height:35px"></button>
+                <button id="btnUploadFile" type="button" data-toggle="tooltip" data-original-title="360 Feedback Upload(EmpID of Reviewee, EmpID of Reviewer, Company)" runat="server" class="fa fa-upload btn btn-default btn-sm"
+                onserverclick="btnUpload_Click" style="height:35px;width:40px"></button>
+                <button id="Button1" type="button" data-toggle="tooltip" data-original-title="Upload Of Kpi Score(EmpID of Reviewee,Company,KPI Name, Reviewee Score, Reviewer1 Score,Reviewer2 Score)"  class="fa fa-upload btn btn-default btn-sm" runat="server"
+                onserverclick="btnUpload_Click2" style="height:35px;width:40px "></button>
             </div>
-            
-            
+           
         </div>
           <div class="search-box-wrapper col-sm-6 col-md-4 col-xs-12 form-group pull-right">             
                         <asp:LinkButton ID="btnDelete" data-toggle="tooltip" data-original-title="Delete" Height="35px" runat="server" CssClass="btn btn-default btn-sm" OnClick="Delete" OnClientClick="Confirm()">
@@ -120,6 +121,8 @@
             </telerik:RadComboBox>
             </div>
        </div>
+                 <div class="row"></div>
+                </div>
         <div class="row">
                 <asp:GridView ID="GridVwHeaderChckbox" runat="server" OnSorting="SortRecords" AllowSorting="True"
                     BorderStyle="Solid" Font-Names="Verdana" AllowPaging="True" PageSize="100" DataKeyNames="id"
