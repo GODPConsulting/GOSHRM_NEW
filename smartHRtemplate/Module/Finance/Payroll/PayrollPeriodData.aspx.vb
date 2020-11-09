@@ -7,7 +7,9 @@ Imports System.Web.Services
 Imports System.Web.Script.Services
 Imports GOSHRM.GOSHRM.GOSHRM.BO
 Imports Telerik.Web.UI
-
+Public Class MyList2
+    Public Property ApproveStat As Boolean
+End Class
 
 Public Class PayrollPeriodData
     Inherits System.Web.UI.Page
@@ -46,28 +48,38 @@ Public Class PayrollPeriodData
                     lbldateapproved.Value = strDataSet.Tables(0).Rows(0).Item("approveddate").ToString()
                     lblNetPay.Value = strDataSet.Tables(0).Rows(0).Item("netpay").ToString()
                     lblPeriod.Value = strDataSet.Tables(0).Rows(0).Item("Period").ToString()
-                    Process.AssignRadComboValue(cboapprovalstat, strDataSet.Tables(0).Rows(0).Item("approvalstatus").ToString())
-                    Process.AssignRadComboValue(cbopayrollstat, strDataSet.Tables(0).Rows(0).Item("status").ToString())
-                    txtcomment.Value = strDataSet.Tables(0).Rows(0).Item("approvalcomment").ToString()
-                    lblStart.Text = strDataSet.Tables(0).Rows(0).Item("startdate").ToString
-                    lblEnd.Text = strDataSet.Tables(0).Rows(0).Item("enddate").ToString
-                    lblpayotionid.Text = strDataSet.Tables(0).Rows(0).Item("payoptionid").ToString
-                    If cboapprovalstat.SelectedItem.Text.ToLower <> "approved" Then
-                        lblPayrollStat.Style.Add("display", "none")
-                        cbopayrollstat.Visible = False
-                        btnAdd.Visible = False
-                        'btnCancel.Visible = False
+                    If strDataSet.Tables(0).Rows(0).Item("approvalstatus").ToString() = "Approved" Then
+                        Process.AssignRadComboValue(cboapprovalstat, strDataSet.Tables(0).Rows(0).Item("approvalstatus").ToString())
+
+                    Else
+                        Dim strApproved As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Payroll_Option_Approver_Get_Approve]", Session("UserEmpID"), Session("Organisation"))
+                        If strApproved.Tables(0).Rows(0).Item("Approve") = True Then
+                            Process.AssignRadComboValue(cboapprovalstat, "Approved")
+                        Else
+                            Process.AssignRadComboValue(cboapprovalstat, "Not Approved")
+                        End If
                     End If
-                    If strDataSet.Tables(0).Rows(0).Item("status").ToString().ToLower = "locked" Then
-                        cboapprovalstat.Enabled = False
+                        Process.AssignRadComboValue(cbopayrollstat, strDataSet.Tables(0).Rows(0).Item("status").ToString())
+                        txtcomment.Value = strDataSet.Tables(0).Rows(0).Item("approvalcomment").ToString()
+                        lblStart.Text = strDataSet.Tables(0).Rows(0).Item("startdate").ToString
+                        lblEnd.Text = strDataSet.Tables(0).Rows(0).Item("enddate").ToString
+                        lblpayotionid.Text = strDataSet.Tables(0).Rows(0).Item("payoptionid").ToString
+                        If cboapprovalstat.SelectedItem.Text.ToLower <> "approved" Then
+                            lblPayrollStat.Style.Add("display", "none")
+                            cbopayrollstat.Visible = False
+                            btnAdd.Visible = False
+                            'btnCancel.Visible = False
+                        End If
+                        If strDataSet.Tables(0).Rows(0).Item("status").ToString().ToLower = "locked" Then
+                            cboapprovalstat.Enabled = False
+                        End If
+
+                        If cboapprovalstat.SelectedItem.Text.ToLower = "approved" Then
+                            cboapprovalstat.Enabled = False
+                        End If
                     End If
 
-                    If cboapprovalstat.SelectedItem.Text.ToLower = "approved" Then
-                        cboapprovalstat.Enabled = False
-                    End If
                 End If
-              
-            End If
         Catch ex As Exception
             Process.loadalert(divalert, msgalert, ex.Message, "danger")
         End Try
@@ -121,6 +133,38 @@ Public Class PayrollPeriodData
                 lblstatus = "You are not eligible to approve payroll"
                 Process.loadalert(divalert, msgalert, lblstatus, "danger")
                 Exit Sub
+            End If
+            If cboapprovalstat.SelectedItem.Text = "Approved" Then
+                SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Update_Payroll_Option_Approver_Get_Approve", Session("UserEmpID"), Session("Organisation"))
+                Dim SkillList As List(Of MyList2) = New List(Of MyList2)
+                Dim strUser As DataSet
+                strUser = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Payroll_Option_Approver_Get_All_Approve", Session("Organisation"))
+                Dim i As Integer = 0
+                Dim count1 As Integer = 1
+
+                If strUser.Tables(0).Rows.Count > 0 Then
+                    For Each dr As DataRow In strUser.Tables(0).Rows
+                        Try
+                            Dim prog As MyList2 = New MyList2()
+                            prog.ApproveStat = strUser.Tables(0).Rows(i)("Approve")
+                            If prog.ApproveStat <> True Then
+                                lblstatus = " Successfull Approved, waiting for others to approve "
+                                Process.loadalert(divalert, msgalert, lblstatus, "success")
+                                Exit Sub
+                            End If
+
+                            SkillList.Add(prog)
+
+
+                            i += 1
+                            count1 += 1
+                        Catch Ex As Exception
+                            Context.Response.Write(Ex.Message)
+                        End Try
+                    Next
+
+
+                End If
             End If
             SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Finance_Payslip_Primary_Approval_Update", lblid.Text, cboapprovalstat.SelectedItem.Text, Session("UserEmpID"), txtcomment.Value)
             lblstatus = "Payroll Approval Status updated"

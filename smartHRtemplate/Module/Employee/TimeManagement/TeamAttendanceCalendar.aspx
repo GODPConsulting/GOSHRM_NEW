@@ -21,6 +21,7 @@
         $('form').live("submit", function () {
             ShowProgress();
         });
+
     </script>
     <script type="text/javascript" language="javascript">
         //    Grid View Check box
@@ -29,6 +30,17 @@
             for (i = 1; i < GridVwHeaderChckbox.rows.length; i++) {
                 GridVwHeaderChckbox.rows[i].cells[0].getElementsByTagName("INPUT")[0].checked = Checkbox.checked;
             }
+        }
+        function Confirm1() {
+            var confirm_value = document.createElement("INPUT");
+            confirm_value.type = "hidden";
+            confirm_value.name = "confirm_value";
+            if (confirm("Do you want to Approve?")) {
+                confirm_value.value = "Yes";
+            } else {
+                confirm_value.value = "No";
+            }
+            document.forms[0].appendChild(confirm_value);
         }
     </script>
     <title></title>
@@ -107,7 +119,8 @@
                 </div>
                 <div class="row">
                     <div>
-                        <div class="search-box-wrapper col-sm-6 col-md-3 col-xs-12 form-group pull-right"> 
+                        <div class="search-box-wrapper col-sm-6 col-md-5 col-xs-12 form-group pull-right"> 
+                            <asp:button class="btn btn-success glyphicon glyphicon-ok "  Text="Approve"  runat="server" id="btapprove" data-toggle="tooltip" data-original-title="Approve Overtime" OnClick="Approve" OnClientClick="Confirm1()"></asp:button>
                             <input id="txtsearch" style="width:100%" runat="server" type="text" placeholder="Search..." class="search-box-input"/>
                             <button onserverclick="Button1_Click" id="btnsearch" runat="server" class="search-box-button"><i style="color:Black;" class="fa fa-search"></i></button>
                         </div>
@@ -120,6 +133,15 @@
                              ShowHeaderWhenEmpty="True" CssClass="table table-condensed">
                             <RowStyle BackColor="White" />
                             <Columns>
+                                 <asp:TemplateField ItemStyle-HorizontalAlign="left" ItemStyle-VerticalAlign="Top" >
+                                        <HeaderTemplate>
+                                            <asp:CheckBox ID="chkboxSelectAll" runat="server" onclick="CheckAllEmp(this);" />
+                                        </HeaderTemplate>
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Width="5px" />
+                                        <ItemTemplate>
+                                            <asp:CheckBox ID="chkEmp" runat="server"></asp:CheckBox>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                 <asp:BoundField DataField="Rows" ItemStyle-Width="5px" HeaderText="Row" />
                                 <asp:BoundField DataField="empid" ItemStyle-Width="50px" HeaderText="Emp ID" ItemStyle-HorizontalAlign="Center" />
                                 <asp:BoundField DataField="Name" ItemStyle-Width="100px" HeaderText="Name" />
@@ -136,14 +158,13 @@
                                     ItemStyle-HorizontalAlign="Center" />
                                 <asp:BoundField DataField="actualduration" ItemStyle-Width="20px" HeaderText="Actual Duration (Hr)"
                                     ItemStyle-HorizontalAlign="Right" />
-                                <asp:BoundField DataField="overtimepayrequest" ItemStyle-Width="0.1px" HeaderText=""
-                                    ItemStyle-HorizontalAlign="Right" />
                                
-                                <asp:TemplateField HeaderText="" ItemStyle-Width="30px" ItemStyle-Font-Bold="true" ItemStyle-HorizontalAlign="Left">
+                               
+                                <asp:TemplateField HeaderText="Request Status" ItemStyle-Width="30px" ItemStyle-Font-Bold="true" ItemStyle-HorizontalAlign="Left">
                                 <ItemTemplate>                             
                                          <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# string.Format("~/Module/Employee/TimeManagement/OvertimeApproval.aspx?id={0}",
                              HttpUtility.UrlEncode(Eval("id").ToString())) %>' onclick="window.open (this.href, 'popupwindow',  'width=700,height=600,scrollbars,resizable'); return false;"
-                                                    Text='Overtime' />
+                                                    Text='<%#Eval("overtimepayrequest")%>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
 

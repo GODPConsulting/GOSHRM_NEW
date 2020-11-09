@@ -68,10 +68,27 @@ Public Class EmployeeAssetReturn
     End Function
     Protected Sub btnAdd_Click(sender As Object, e As EventArgs)
         Dim lblstatus As String = ""
+        Dim initiator As String = ""
+        Dim initiatorname As String = ""
+        Dim office As String = ""
 
-        txtid.Text = GetIdentity(txtempid.Text, assetsname.Value, assetsnumber.Value, locations.Value, classifications.Value, assetsdescription.Value, physicalconditions.Value, RadComboBox2.SelectedItem.Text, comments.Value)
-        lblstatus = "Employee Asset has been Updated"
-        Process.loadalert(divalert, msgalert, lblstatus, "success")
+        Dim strEmp As New DataSet
+        strEmp = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, CommandType.Text, "select a.Name, a.Employee2 Employee,Email, Office     from dbo.Employees_All a where a.EmpID = '" & txtempid.Text & "'")
+        If strEmp.Tables(0).Rows.Count > 0 Then
+            initiator = strEmp.Tables(0).Rows(0).Item("Email").ToString
+            initiatorname = strEmp.Tables(0).Rows(0).Item("Name").ToString
+            office = strEmp.Tables(0).Rows(0).Item("Office").ToString
+        End If
+        Dim url As String = ""
+        url = Process.ApplicationURL & "/" & "Module/Employee/EmployeeData"
+        If Process.Asset_Return_Request(assetsname.Value, Process.GetMailList("hr"), initiatorname & " of " & office, assetsnumber.Value, initiator, txtempid.Text, "", url & "?id=" & txtempid.Text) = True Then
+            lblstatus = "Changes has been forwarded to HR for acceptance"
+            Process.loadalert(divalert, msgalert, lblstatus, "success")
+        Else
+            Process.loadalert(divalert, msgalert, Session("exception"), "danger")
+        End If
+
+
     End Sub
     Protected Sub btnCancel_Click(sender As Object, e As EventArgs)
         Try
@@ -85,7 +102,7 @@ Public Class EmployeeAssetReturn
             'End If
 
             'Response.Redirect("~/empdashboard", True)
-            Response.Redirect("~/Module/Employee/EmployeeData.aspx?Id=" & txtempid.Text, True)
+            Response.Redirect("~/Module/Employee/EmployeeProfile.aspx", True)
         Catch ex As Exception
             Process.loadalert(divalert, msgalert, ex.Message, "danger")
         End Try

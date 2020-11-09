@@ -1,9 +1,11 @@
-Dear @HR
+Staff ID:@empid
 
-@empname with Id @empid has requested to submit 
-Asset: @AssetName
-Asset No.: @AssetNumber
+@empname  has requested to submit
+ 
+Asset: @certtype 
 
-Kindly Approve
+Asset No.: @certname
+
+Kindly finalise appropriately with the necessary recommendation.
 
 @Company

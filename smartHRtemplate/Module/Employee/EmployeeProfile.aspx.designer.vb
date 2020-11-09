@@ -41,6 +41,15 @@ Partial Public Class EmployeeProfile
     Protected WithEvents lblEmpID As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''btnSample control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnSample As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''imgphoto control.
     '''</summary>
     '''<remarks>
@@ -345,6 +354,15 @@ Partial Public Class EmployeeProfile
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dlEducation As Global.System.Web.UI.WebControls.DataList
+
+    '''<summary>
+    '''A5 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents A5 As Global.System.Web.UI.HtmlControls.HtmlAnchor
 
     '''<summary>
     '''DataList2 control.

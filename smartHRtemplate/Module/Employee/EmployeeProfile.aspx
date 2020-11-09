@@ -20,7 +20,36 @@
             }
             document.forms[0].appendChild(confirm_value);
         }
+       
+
     </script>
+        <script>
+            function ConfirmPln(id) {
+                var ID = id;
+                
+
+                $.ajax({
+                    url: "<%= Page.ResolveClientUrl("~/res_new/gos.asmx/Send_Return_Request") %>",
+                method: 'post',
+                dataType: 'json',
+                data: { ID: ID },
+                    success: function (data) {
+                        console.log("am here")
+                    var goat = document.getElementById('<%=btnSample.ClientID%>')
+                  
+
+                    document.getElementById('<%=btnSample.ClientID%>').click();
+                },
+                error: function (err) {
+                    //alert(JSON.stringify(err));
+                    $(err).each(function (index, prog) {
+                        $('#msgbox2').css('display', 'block');
+                        $("#pmsg").text(prog.responseText);
+                    });
+                }
+            });
+             }
+        </script>
     <head>
         <title></title>
         <style type="text/css">       
@@ -42,6 +71,7 @@
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span></button>
                         <asp:Label ID="lblEmpID" runat="server" Font-Names="Verdana" Font-Size="1px" Visible="false"  ></asp:Label>
+                    <asp:Button runat="server" ID="btnSample" Text="" style="display:none;" OnClick="btnReturnAsset_Click" />
                 </div>
             </div>
             <div class="row">
@@ -293,8 +323,11 @@
                                                         </ul>
                                                     </div>
                                                     
-                                                       <u> <%# Eval("Asset Name")%> <span>   <a href="EmployeeCertification?self=emp&id1=<%# Eval("id")%>" class="name"><button class="btn btn-default btn-sm 
-glyphicon glyphicon-repeat" type="button" runat="server" data-toggle="tooltip" data-original-title="Add Comment"></button></a></span></u>
+                                                       <u> <%# Eval("Asset Name")%> <span style="margin-left:30px"> <a href="#" onclick='ConfirmPln(<%# Eval("id")%>);'>  <button class="btn btn-default btn-sm 
+glyphicon glyphicon-repeat"   type="button" runat="server" data-toggle="tooltip" data-original-title="Return Asset"></button></a></span>
+                                                           <span style="margin-left:30px">   <a href="EmployeeAssetReturn?id1=<%# Eval("id")%>" class="name"><button class="btn btn-default btn-sm 
+glyphicon glyphicon-eye-open" type="button" runat="server" data-toggle="tooltip" data-original-title="View Asset"></button></a></span>
+                                                       </u>
                                                     <div><%# Eval("Asset Number")%>
                                                         </div>
                                                     <span class="time">
@@ -361,11 +394,11 @@ glyphicon glyphicon-repeat" type="button" runat="server" data-toggle="tooltip" d
                   <div class="col-md-4">
                           <div class="card-box">
                         <h4 class="card-title" style="color: #1BA691;">
-                            <b>Assets</b></h4>
+                            <b>Hobbies</b></h4>
                                     <div class="chat-action-btns">
                                         <ul>
-                                            <%--<li><a id="A5" runat="server" onserverclick="btnAddCert_Click"  title='Add new Certificate' class="edit-btn"><i class="glyphicon glyphicon-plus">
-                                            </i></a></li>--%>
+                                            <li><a id="A5" runat="server" onserverclick="btnAddHobby_Click"  title='Add new Hobby' class="edit-btn"><i class="glyphicon glyphicon-plus">
+                                            </i></a></li>
                                         </ul>
                                     </div>
                         <div class="experience-box">
@@ -386,13 +419,11 @@ glyphicon glyphicon-repeat" type="button" runat="server" data-toggle="tooltip" d
                                                             <li><a id="A1" runat="server" title='<%# Eval("id")%>' class="del-msg"></a></li>
                                                         </ul>
                                                     </div>
-                                                    
-                                                       <u> <%# Eval("Hobby Name")%></u>
-                                                    <div><i class="glyphicon glyphicon-star-empty"></i>
-                                                        <i class="glyphicon glyphicon-star-empty"></i>
-                                                        <i class="glyphicon glyphicon-star-empty"></i>
-                                                        <i class="glyphicon glyphicon-star-empty"></i>
-                                                        <i class="glyphicon glyphicon-star-empty"></i>
+                                                    <a href="EmployeeHobbies?id1=<%# Eval("id")%>" class="name">
+                                                       <u> <%# Eval("Hobby Name")%></u></a>
+                                                    <div style=""> <telerik:RadRating ID="hobbiesrate" runat="server" Value='<%# Eval("Hobby rating")%>' AutoPostBack="False" ToolTip="How you rate hobby"
+                                            RenderMode="Lightweight" ReadOnly="true" Skin="Bootstrap">
+                                        </telerik:RadRating>
                                                         </div>
                                                     
                                                 </div>

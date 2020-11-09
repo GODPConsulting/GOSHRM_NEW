@@ -6174,3 +6174,6 @@ table.table-inbox tbody tr.checked {
     padding: 0px;
     margin: 0px;
 }
+.line-chart{
+    max-height: 220px!important
+}

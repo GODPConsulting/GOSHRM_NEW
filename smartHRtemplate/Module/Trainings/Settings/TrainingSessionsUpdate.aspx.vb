@@ -463,7 +463,7 @@ Public Class TrainingSessionsUpdate
                 For d As Integer = 0 To lstTrainee.Items.Count - 1
                     'Level = lstTrainee.Items(d).Text.Split(Separators, StringSplitOptions.RemoveEmptyEntries)
                     EmpID = lstTrainee.Items(d).Value  'Level(0).ToString.Trim
-                    SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Employee_Training_Sessions_Add", EmpID, txtid.Text, oHODStatus, oCoachStatus)
+                    SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Employee_Training_Sessions_Add", EmpID, txtid.Text, oHODStatus, oCoachStatus, datApplicationAssessment.SelectedDate)
                 Next
             End If
             SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Employee_Training_Sessions_delete_Mark", txtid.Text, "N")

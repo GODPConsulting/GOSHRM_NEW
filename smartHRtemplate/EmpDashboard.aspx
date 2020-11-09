@@ -25,7 +25,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-md-4">
+            <%--<div class="col-md-4">
                 <div class="dash-widget clearfix" style="background-color: aliceblue; padding: 5px; border: 1px solid #ddd; border-radius: 4px; margin: 5px">
                      <div style="margin-top: 5px; margin-left: 5px;">
                     <div class="" style="background-color: aliceblue;">
@@ -52,7 +52,7 @@
                 </div>
                     <h4 style="font-weight: 600">My Career</h4>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12">--%>
                             <%--<div class="card-box">
                                 <div class="experience-box">
                                                 <ul class="experience-list">
@@ -72,7 +72,7 @@
                                          </ul> 
                                   </div>
                                   </div>--%>
-                            <div>
+                  <%--          <div>
                                 <div class="activity">
 
                                     <div class="activity-box" >
@@ -183,10 +183,164 @@
                         </div>
                     </div>
                 </div>
+            </div>--%>
+            <div class="col-md-6">
+                 <div class="content-card chart-card">
+           <h3 class="content-card-header">Performance</h3>
+           <div class="bar-chart-wrapper">
+               <div style="margin-top:-25px; width:60%"> <canvas id="line-chart" style="max-height: 220px !important"></canvas></div>
+               <div class="right-side">
+                   <button runat="server" onserverclick="ObjectiveList_ServerClick" class="bar-btn btn btn-success">Initiate Objective</button>
+                   <button runat="server" onserverclick="FeedbackList_ServerClick" class="btn-success bar-btn btn">Initiate Feedback</button>
+                   <div class="feedback-wrapper">
+                       <span>2</span>
+                       <span>Feedback</span>
+                   </div>
+               </div>
+           </div>
+        </div>
+            </div>
+            <div class="col-md-6">
+
+                  <div class="content-card pie-chart-card">
+            <h3 class="content-card-header">My Time</h3>
+            <div class="pie-chart-wrapper">
+                <div><canvas id="pie-charta1" width="400" height="225"></canvas></div>
+                <div >
+                    <div class="pie-chart-detail">
+                        <div class="pie-chart-item">
+                            <span>24</span>
+                            <span>Total Days</span>
+                        </div>
+                        <div class="pie-chart-item">
+                            <span>10hrs</span><span>Overtime</span>
+                            <button class="btn-success btn">Request Pay</button>
+                        </div>
+                    </div>
+                    <div class="event-wrapper">
+                        <div class="event-item reward-item">
+                            <span class="event-count">8</span><span>Present</span>
+                        </div>
+                        <div class="event-pipe">
+                            
+                        </div>
+                        <div class="event-item reward-item">
+                            <span class="event-count">8</span>
+                            <span>Absent</span>
+                        </div>
+                        <div class="event-pipe"></div>
+                        <div class="event-item reward-item">
+                            <span class="event-count">8</span>
+                            <span>Leave</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+            </div>
+            <div class="col-md-4">
+                 <div class="content-card reward-card">
+            <h3 class="content-card-header">My Reward</h3>
+            <div class="event-wrapper">
+                <div class="event-item reward-item">
+                    <a href="href="<%= Page.ResolveClientUrl("~/Module/Employee/Performance/AppraisalFeedBackNuggetsOwnerList")%>">
+                    <span runat="server" id="Span3" class="event-count">8</span></a><span>Payslip</span>
+                </div>
+                <div class="event-pipe">
+                    
+                </div>
+                 
+                <div class="event-item reward-item">
+                   
+                   <a href="href="<%= Page.ResolveClientUrl("~/Module/Finance/Loans/LoansAndAdvances")%>"> <span runat="server" id="Span1" class="event-count">8</span></a>
+                    <span>Loans</span>
+                </div>
+                     
+                <%--<div class="event-pipe"></div>
+                <div class="event-item reward-item">
+                    <span class="event-count">8</span>
+                    <span>Gift</span>
+                </div>--%>
+                <div class="event-pipe"></div>
+                <div class="event-item reward-item">
+                    <a href="href="<%= Page.ResolveClientUrl("~/Module/Employee/Performance/AppraisalFeedBackNuggetsOwnerList")%>">
+                    <span runat="server" id="span2" class="event-count">5</span> </a><span>Kudos</span>
+                </div>
+            </div>
+            <div class="event-card">
+                <h3 class="content-card-header">My Events</h3>
+                <div class="event-wrapper">
+                    <div class="event-item reward-item">
+
+                        <span runat="server" id="Span4" class="event-count">2</span>
+                        <span>Scheduled</span>
+                    </div>
+                    <div class="event-pipe"></div>
+                    <div class="event-item reward-item">
+                        <span runat="server" id="Span5" class="event-count">1</span>
+                        <span>Today</span>
+                    </div>
+                </div>
+                <div class="page-btn-wrapper">
+                    <button class="btn btn-success" runat="server" onserverclick="InitiateNew">Initiate New</button>
+                </div>
+            </div>
+        </div>
+            </div>
+            <div class="col-md-4">
+                 <div class="content-card comp-card">
+            <h3 class="content-card-header"> My Competence and Development</h3>
+          <div>
+              <asp:DataList ID="dlEducation" runat="server" Width="100%" RepeatColumns="1" CellSpacing="0"
+                                        RepeatLayout="Flow" Font-Names="Arial" Font-Size="14px" DataKeyField="id" BorderColor="Transparent"
+                                        ForeColor="#666666" BorderWidth="1px">
+                  <ItemTemplate></ItemTemplate>
+                    <ItemTemplate>
+                       
+            <div class="progress-wrapper">
+                  
+                <div class="progress-item">
+                    <span> <%# Eval("KpiObjective")%></span>
+                    <progress value='<%# Eval("Actual Percentage")%>' max="100" class="progress"></progress>
+                </div>
+                
+                </div>
+                 </ItemTemplate>
+                </asp:DataList>
+               </div>
+               <div class="page-btn-wrapper">
+                   <button runat="server" onserverclick="TrainingLib_ServerClick" class="page-btn">Training Lib</button>
+                   <button runat="server" onserverclick="Devplan_ServerClick" class="page-btn">Dev Plan</button>
+                   <button runat="server" onserverclick="Training_ServerClick" class="page-btn">Training</button>
+               </div>
+          </div>
+        </div>
+            
+            <div class="col-md-4">
+                 <div class="content-card comp-card">
+            <h3 class="content-card-header">My Leave</h3>
+            <div class="event-wrapper">
+                <div class="event-item leave-event">
+                    <span runat="server" id="Span6" class="event-count">8</span><span>Leave Taken</span>
+                </div>
+                <div class="event-pipe">
+                    
+                </div>
+                <div class="event-item leave-event">
+                    <span runat="server" id="span7" class="event-count">8</span>
+                    <span>Remaining</span>
+                </div>
+            </div>
+            <div class="page-btn-wrapper">
+                <button runat="server" onserverclick="ApplyLeave_ServerClick" class="btn btn-success">Apply For Leave</button>
+            </div>
+        </div>
+            </div>
             </div>
 
-            <div class="col-md-8">
-                <div style="margin-top: 5px; margin-left: 5px; display:none">
+            <div class="col-md-6">
+               <%-- <div style="margin-top: 5px; margin-left: 5px; display:none">
                     <div class="col-md-6" style="background-color: aliceblue; border: 1px solid #ddd; border-radius: 4px;">
                         <h4 style="font-weight: 600">My Request</h4>
                         <div class="dash-widget clearfix card-box">
@@ -202,29 +356,29 @@
                         <h4 style="font-weight: 600">My Analytics</h4>
                         <div class="dash-widget clearfix card-box">
                             <div style="margin-top: 10px;"><a href="#" data-toggle="tooltip" title="" data-original-title="Average Length of stay on position(months)"><span class="dash-widget-iconz"><i class="fa fa-hourglass" aria-hidden="true" style="color: #ff6d00; margin-top: 12px"><span id="avgLength" runat="server" style="position: absolute" class="badge bg-purple pull-right">8</span></i></span></a></div>
-                            <div><a href="#" data-toggle="tooltip" title="" data-original-title="Current length of stay on position(months)"><span class="dash-widget-iconz"><i class="fa fa-hourglass-1" aria-hidden="true" style="color: #ff6d00; margin-top: 12px"><span id="Span2" runat="server" style="position: absolute" class="badge bg-purple pull-right"><%=cur_lenght%></span></i></span></a></div>
-                            <div><a href="#" data-toggle="tooltip" title="" data-original-title="Average performance score in the company"><span class="dash-widget-iconz"><i class="fa fa-edit" aria-hidden="true" style="color: #ff6d00; margin-top: 12px"><span id="Span3" runat="server" style="position: absolute" class="badge bg-purple pull-right"><%=cur_per%>%</span></i></span></a></div>
-                            <div><a href="#" data-toggle="tooltip" title="" data-original-title="My performance Forecast for Next Review Period"><span class="dash-widget-iconz"><i class="fa fa-tachometer" aria-hidden="true" style="color: #ff6d00; margin-top: 12px"><span id="Span4" runat="server" style="position: absolute" class="badge bg-purple pull-right"><%=cur_per_forcast%>%</span></i></span></a></div>
+                            <div><a href="#" data-toggle="tooltip" title="" data-original-title="Current length of stay on position(months)"><span class="dash-widget-iconz"><i class="fa fa-hourglass-1" aria-hidden="true" style="color: #ff6d00; margin-top: 12px"><span id="Span20" runat="server" style="position: absolute" class="badge bg-purple pull-right"><%=cur_lenght%></span></i></span></a></div>
+                            <div><a href="#" data-toggle="tooltip" title="" data-original-title="Average performance score in the company"><span class="dash-widget-iconz"><i class="fa fa-edit" aria-hidden="true" style="color: #ff6d00; margin-top: 12px"><span id="Span30" runat="server" style="position: absolute" class="badge bg-purple pull-right"><%=cur_per%>%</span></i></span></a></div>
+                            <div><a href="#" data-toggle="tooltip" title="" data-original-title="My performance Forecast for Next Review Period"><span class="dash-widget-iconz"><i class="fa fa-tachometer" aria-hidden="true" style="color: #ff6d00; margin-top: 12px"><span id="Span40" runat="server" style="position: absolute" class="badge bg-purple pull-right"><%=cur_per_forcast%>%</span></i></span></a></div>
                         </div>
 
                     </div>
-                </div>
+                </div>--%>
 
-                <div class="col-md-6" id="width_1" style="background-color: aliceblue; margin-top: 5px; width: 346px; margin-left: 5px; border: 1px solid #ddd; border-radius: 4px">
+               <%-- <div class="col-md-6" id="width_1" style="background-color: aliceblue; margin-top: 5px; width: 346px; margin-left: 5px; border: 1px solid #ddd; border-radius: 4px">
                     <h4 style="font-weight: 600">Performance Rating</h4>
                     <div>
-                        <canvas id="line-chart" height="300" width="300" style="display: block; background: #fff; "></canvas>
+                        <canvas id="line-chart1" height="300" width="300" style="display: block; background: #fff; "></canvas>
                     </div>
-                </div>
-               <div class="col-md-6" id="width_2" style="background-color: aliceblue; margin-top: 5px; margin-left: 5px; border: 1px solid #ddd; border-radius:4px">
+                </div>--%>
+            <%--   <div class="col-md-6" id="width_2" style="background-color: aliceblue; margin-top: 5px; margin-left: 5px; border: 1px solid #ddd; border-radius:4px">
                     <h4 style="font-weight: 600">Competence Rating</h4>
                     <div>
                         <canvas id="bar-chart-grouped" height="300" width="300" style="display: block; background: #fff;"></canvas>
                     </div>
-                </div>
-                 <div class=" col-md-12 dash-widget clearfix" id="special_width" style="background-color: aliceblue; padding: 5px; border: 1px solid #ddd; border-radius: 4px; margin: 5px;
+                </div>--%>
+                <%-- <div class=" col-md-12 dash-widget clearfix" id="special_width" style="background-color: aliceblue; padding: 5px; border: 1px solid #ddd; border-radius: 4px; margin: 5px;
 }">
-                    <h4 style="font-weight: 600">My Development</h4>
+              --%>      <%--<h4 style="font-weight: 600">My Development</h4>
                     <div style="display: none;" class="dropdown profile-action">
                         <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i style="margin-right: 10px" class="fa fa-ellipsis-v"></i></a>
                         <ul class="dropdown-menu pull-right">
@@ -246,14 +400,14 @@
                             </table>
                         </div>
                     </div>
-                </div>
+                </div>--%>
                 <div class="col-md-6">
-                    <div class="dash-widget clearfix" style="background-color: aliceblue; padding: 5px; border: 1px solid #ddd; border-radius: 4px; margin: 5px">
+                    <%--<div class="dash-widget clearfix" style="background-color: aliceblue; padding: 5px; border: 1px solid #ddd; border-radius: 4px; margin: 5px">
                         <h4 style="font-weight: 600">My Task </h4>
                         <div class="task-wrapper" style="padding: 5px">
                             <div class="task-list-container">
                                 <div class="task-list-body">
-                                    <ul id="task-list">
+                                    <ul id="task-list">--%>
                                         <%--<li class="task">
                                                     <div class="task-container">
                                                         <span class="task-action-btn task-check">
@@ -272,7 +426,7 @@
                                                         </span>
                                                     </div>
                                                 </li>--%>
-                                        <div class="col-md-12">
+                                        <%--<div class="col-md-12">
                                             <div class="card-box">
                                                 <div class="experience-box">
                                                     <ul id="taskss" runat="server" class="experience-list">
@@ -295,8 +449,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6">
+                </div>--%>
+              <%--  <div class="col-md-6">
                     <div class="dash-widget clearfix" style="background-color: aliceblue; padding: 5px; border: 1px solid #ddd; border-radius: 4px; margin: 5px">
                         <h4 style="font-weight: 600">Work Anniversaries</h4>
                         <div class="row">
@@ -311,7 +465,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>--%>
                
             </div>
            
@@ -334,27 +488,27 @@
             </ul>
         </div>
     </div>
-    </div>
+    
     <script type="text/javascript" src="js/Chart.min.js"></script>
     <script>
-        var canvas = document.getElementById("bar-chart-grouped");
-        var special_width = document.getElementById('special_width');
-        const width_1 = document.getElementById('width_1');
-        const width_2 = document.getElementById('width_2');
-        console.log(screen.height);
-        if (screen.width <= 1366) {
-            console.log(screen.height);
-            canvas.height = 289;
-            special_width.style.maxWidth = '47.4rem'
-        }
-        if (screen.width == 1600) {
-            console.log(screen.width)
-            canvas.height = 260;
-            special_width.style.maxWidth = '865px';
-            width_1.style.width = '400px';
-            width_2.style.width = '462px'
-        }
-        new Chart(document.getElementById("bar-chart-grouped"), {
+       // var canvas = document.getElementById("bar-chart-grouped");
+       // var special_width = document.getElementById('special_width');
+        //const width_1 = document.getElementById('width_1');
+        //const width_2 = document.getElementById('width_2');
+        //console.log(screen.height);
+        //if (screen.width <= 1366) {
+        //    console.log(screen.height);
+        //    canvas.height = 289;
+        //    special_width.style.maxWidth = '47.4rem'
+        //}
+        //if (screen.width == 1600) {
+        //    console.log(screen.width)
+        //    canvas.height = 260;
+        //    special_width.style.maxWidth = '865px';
+        //    width_1.style.width = '400px';
+        //    width_2.style.width = '462px'
+        //}
+        <%--new Chart(document.getElementById("bar-chart-grouped"), {
            type: 'radar',
                  data: {
                      labels: [<%=expectedSkills %>],
@@ -371,7 +525,7 @@
                      },
                      responsive: true
                  }
-        });
+        });--%>
        new Chart(document.getElementById("line-chart"), {
                  type: 'line',
                  data: {
@@ -396,7 +550,26 @@
 
                      }
                  }
-             });
+       });
+      <%--  new Chart(document.getElementById("pie-charta1"), {
+            type: 'pie',
+            data: {
+                labels: [<%=nationalitytitle %>],
+                     datasets: [{
+                         label: "Amount (millions)",
+                         backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#0250f7", "#f7020e"],
+                         data: [<%=nationalitytotal %>]
+                 }]
+             },
+             options: {
+                 legend: { display: true },
+                 title: {
+                     display: false,
+                     text: 'Employee by Nationality Ratio'
+                 }
+             }
+         });--%>
+
 
     </script>
 

@@ -122,7 +122,11 @@ Public Class EmployeeTrainingsUpdate
                     Else
                         lblassessment.Text = ""
                     End If
-
+                    If IsDBNull(strUser.Tables(0).Rows(0).Item("assessmentdate")) = False Then
+                        lblassessmentdate.Text = strUser.Tables(0).Rows(0).Item("assessmentdate").ToString
+                    Else
+                        lblassessmentdate.Text = ""
+                    End If
                     'received
                     If IsDBNull(strUser.Tables(0).Rows(0).Item("dateassessment")) = False Then
                         lbldateassessment.Text = strUser.Tables(0).Rows(0).Item("dateassessment").ToString
@@ -166,24 +170,32 @@ Public Class EmployeeTrainingsUpdate
                     End If
 
                     'Application Asseement
-                    If lblappassessment.Text.Trim = "" Or lblappassessment.Text.ToLower <> "received" Then
+                    'If lblappassessment.Text.Trim = "" Or lblappassessment.Text.ToLower <> "received" Then
+                    '    lnkapplicationassessment.Visible = False
+                    'Else
+                    '    lnkapplicationassessment.Visible = True
+                    'End If
+                    Dim D1 As Date = Date.Parse(lblassessmentdate.Text)
+                    Dim D2 As Date = DateTime.Today
+                    If (D2 < D1) Then
                         lnkapplicationassessment.Visible = False
                     Else
                         lnkapplicationassessment.Visible = True
                     End If
 
+
                     If lblappdateassessment.Text.Trim = "" Or lblappdateassessment.Text.Contains("1900") = True Then
-                        lnkapplicationassessment.Disabled = False
+                            lnkapplicationassessment.Disabled = False
+                        Else
+                            lnkapplicationassessment.Disabled = False
+                            lnkapplicationassessment.InnerText = "Application Assessment Submitted"
+                        End If
+                        Session("EmpID") = lblEmpID.Text
+                        atime.Value = Process.AMPM_Time(strUser.Tables(0).Rows(0).Item("trainingtime").ToString)
+                        avenue.Value = strUser.Tables(0).Rows(0).Item("DeliveryLocation").ToString  'Replace(vbCrLf, "<br/>")
+                        adate.Value = Process.DDMONYYYY(strUser.Tables(0).Rows(0).Item("ScheduledTime")) & " to " & Process.DDMONYYYY(strUser.Tables(0).Rows(0).Item("duedate"))
                     Else
-                        lnkapplicationassessment.Disabled = False
-                        lnkapplicationassessment.InnerText = "Application Assessment Submitted"
-                    End If
-                    Session("EmpID") = lblEmpID.Text
-                    atime.Value = Process.AMPM_Time(strUser.Tables(0).Rows(0).Item("trainingtime").ToString)
-                    avenue.Value = strUser.Tables(0).Rows(0).Item("DeliveryLocation").ToString  'Replace(vbCrLf, "<br/>")
-                    adate.Value = Process.DDMONYYYY(strUser.Tables(0).Rows(0).Item("ScheduledTime")) & " to " & Process.DDMONYYYY(strUser.Tables(0).Rows(0).Item("duedate"))
-                Else
-                    txtid.Text = "0"
+                        txtid.Text = "0"
                     lnklearnassessment.Visible = False
                     lnktrainassessment.Visible = False
                 End If
@@ -245,7 +257,13 @@ Public Class EmployeeTrainingsUpdate
         End Try
     End Sub
 
-
+    Protected Sub lnkmaterials_Click(Sender As Object, e As EventArgs)
+        Try
+            Response.Redirect("~/Module/Employee/TrainingPortal/TrainingMaterial?sessionid=" + lblsessionid.Text, True)
+        Catch ex As Exception
+            Process.loadalert(divalert, msgalert, ex.Message, "danger")
+        End Try
+    End Sub
 
     Protected Sub lnkTrainingAssessment_Click(sender As Object, e As EventArgs)
         Try

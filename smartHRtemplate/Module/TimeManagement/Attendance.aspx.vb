@@ -553,4 +553,40 @@ Public Class Attendance
 
         End Try
     End Sub
+    Protected Sub Approve(sender As Object, e As EventArgs) Handles btapprove.Click
+        Try
+            Process.loadalert(divalert, msgalert, "", "warning")
+            If Process.AuthenAction(Session("role"), AuthenCode, "Update") = False Then
+                Process.loadalert(divalert, msgalert, Process.privilegemsg, "warning")
+
+                Exit Sub
+            End If
+            Dim count As Integer = 0
+            Dim confirmValue As String = Request.Form("confirm_value")
+            'If confirmValue = "Yes" Then
+            Dim atLeastOneRowApproved As Boolean = False
+            ' Iterate through the Products.Rows property
+            For Each row As GridViewRow In GridVwHeaderChckbox.Rows
+                ' Access the CheckBox
+                Dim cb As CheckBox = row.FindControl("chkEmp")
+                If cb IsNot Nothing AndAlso cb.Checked Then
+                    count = count + 1
+                    ' Delete row! (Well, not really...)
+                    atLeastOneRowApproved = True
+                    ' First, get the ProductID for the selected row
+                    Dim ID As String =
+                        Convert.ToString(GridVwHeaderChckbox.DataKeys(row.RowIndex).Value)
+                    ' "Delete" the row
+                    SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Time_Employee_Attendance_HRUpdate_Status", ID, "Approved", "Approved", Session("UserEmpID"))
+                End If
+            Next
+            Process.loadalert(divalert, msgalert, count.ToString & " records successfully approved", "success")
+
+            LoadAttendanceGrid(Session("LoadType"))
+
+            'End If
+        Catch ex As Exception
+            Process.loadalert(divalert, msgalert, ex.Message, "danger")
+        End Try
+    End Sub
 End Class

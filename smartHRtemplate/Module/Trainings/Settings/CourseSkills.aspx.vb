@@ -7,7 +7,10 @@ Imports System.Web.Services
 Imports System.Web.Script.Services
 Imports GOSHRM.GOSHRM.GOSHRM.BO
 Imports Telerik.Web.UI
-
+Public Class MyList
+    Public Property skill As String
+    Public Property id As Integer
+End Class
 Public Class CourseSkills
     Inherits System.Web.UI.Page
     Dim jobtitle As New clsJobTitle
@@ -104,16 +107,48 @@ Public Class CourseSkills
                 aweight.Focus()
                 Exit Sub
             End If
+            Dim SkillList As List(Of MyList) = New List(Of MyList)
+            Dim strUser As DataSet
+            strUser = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Course_Skills_get_all", txtcourseid.Text)
+            Dim i As Integer = 0
+            Dim count1 As Integer = 1
+
+            If strUser.Tables(0).Rows.Count > 0 Then
+                For Each dr As DataRow In strUser.Tables(0).Rows
+                    Try
+                        Dim prog As MyList = New MyList()
+                        prog.skill = Convert.ToString(strUser.Tables(0).Rows(i)("skill"))
+                        prog.id = Convert.ToString(strUser.Tables(0).Rows(i)("id"))
+                        If prog.skill = cboskill.SelectedValue And prog.id <> txtid.Text Then
+                            lblstatus = "Skill  cannot be inputed twice "
+                            Process.loadalert(divalert, msgalert, lblstatus, "danger")
+                            Exit Sub
+                        End If
+
+                        SkillList.Add(prog)
+
+
+                        i += 1
+                        count1 += 1
+                    Catch Ex As Exception
+                        Context.Response.Write(Ex.Message)
+                    End Try
+                Next
+
+
+            End If
 
             If txtid.Text = "0" Then
                 txtid.Text = GetIdentity()
                 If txtid.Text = "0" Then
                     Exit Sub
                 End If
+
             Else
                 SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Course_Skills_update", txtid.Text, txtcourseid.Text, cboskill.SelectedItem.Value.Trim, aweight.Value)
             End If
-
+            Dim url As String = "CoursesUpdate?id=" & txtcourseid.Text
+            Response.Redirect(url, True)
             lblstatus = "Record saved!"
             Process.loadalert(divalert, msgalert, lblstatus, "success")
         Catch ex As Exception

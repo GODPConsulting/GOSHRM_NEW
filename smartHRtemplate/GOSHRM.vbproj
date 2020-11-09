@@ -5676,7 +5676,6 @@
     </Compile>
     <Compile Include="Module\Trainings\Settings\CourseSkills.aspx.vb">
       <DependentUpon>CourseSkills.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Module\Trainings\Settings\SessionQuestions.aspx.designer.vb">
       <DependentUpon>SessionQuestions.aspx</DependentUpon>
@@ -7149,7 +7148,6 @@
     </Compile>
     <Compile Include="Module\Finance\Payroll\PayrollPeriodData.aspx.vb">
       <DependentUpon>PayrollPeriodData.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Module\Finance\Payroll\SalaryMasterPage.aspx.designer.vb">
       <DependentUpon>SalaryMasterPage.aspx</DependentUpon>

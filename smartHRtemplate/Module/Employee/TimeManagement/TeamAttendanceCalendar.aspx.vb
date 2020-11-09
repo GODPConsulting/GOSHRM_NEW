@@ -142,8 +142,90 @@ Public Class TeamAttendanceCalendar
             Response.Write(ex.Message)
         End Try
     End Sub
+    Protected Sub Approve(sender As Object, e As EventArgs) Handles btapprove.Click
+        Try
+            Dim msgbuild As New StringBuilder()
+            Dim Separators() As Char = {";"c}
+            Process.loadalert(divalert, msgalert, "", "warning")
+            If Process.AuthenAction(Session("role"), AuthenCode, "Update") = False Then
+                Process.loadalert(divalert, msgalert, Process.privilegemsg, "warning")
 
-    
+                Exit Sub
+            End If
+            Dim count As Integer = 0
+            Dim confirmValue As String = Request.Form("confirm_value")
+            'If confirmValue = "Yes" Then
+            Dim atLeastOneRowApproved As Boolean = False
+            ' Iterate through the Products.Rows property
+            For Each row As GridViewRow In GridVwHeaderChckbox.Rows
+                ' Access the CheckBox
+                Dim cb As CheckBox = row.FindControl("chkEmp")
+                If cb IsNot Nothing AndAlso cb.Checked Then
+                    count = count + 1
+                    ' Delete row! (Well, not really...)
+                    atLeastOneRowApproved = True
+                    ' First, get the ProductID for the selected row
+                    Dim ID As String =
+                        Convert.ToString(GridVwHeaderChckbox.DataKeys(row.RowIndex).Value)
+                    ' "Delete" the row
+                    SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Time_Employee_Attendance_Update_All_Status", ID, "Approved", "Approved", Session("UserEmpID"))
+                    Dim strUser As New DataSet
+                    strUser = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Time_Employee_Attendance_Detail_My_Team", ID)
+                    If strUser.Tables(0).Rows.Count > 0 Then
+                        Dim empid As String = strUser.Tables(0).Rows(0).Item("empid").ToString
+                        Dim empname As String = strUser.Tables(0).Rows(0).Item("Name").ToString
+                        Dim mgrid As String = strUser.Tables(0).Rows(0).Item("managerid").ToString
+                        Dim dateshift As String = strUser.Tables(0).Rows(0).Item("datenames").ToString
+                        Dim shifts As String = strUser.Tables(0).Rows(0).Item("shifts").ToString
+                        Dim checkindate As String = strUser.Tables(0).Rows(0).Item("checkindate").ToString
+                        Dim checkoutdate As String = strUser.Tables(0).Rows(0).Item("checkoutdate").ToString
+                        Dim checkintime As String = strUser.Tables(0).Rows(0).Item("checkindate").ToString
+                        Dim checkouttime As String = strUser.Tables(0).Rows(0).Item("checkoutdate").ToString
+                        Dim agreedtime As String = strUser.Tables(0).Rows(0).Item("agreedovertime").ToString
+                        Dim shiftduration As Double = strUser.Tables(0).Rows(0).Item("duration")
+                        Dim actualduration As Double = strUser.Tables(0).Rows(0).Item("actualduration")
+                        Dim mgrname As String = strUser.Tables(0).Rows(0).Item("MgrName").ToString
+                        Dim Link = Process.ApplicationURL & "/" & "Module/TimeManagement/OvertimeApprovals.aspx?id=" + ID
+                        msgbuild.Clear()
+                        msgbuild.AppendLine("Employee       : " & empname)
+                        msgbuild.AppendLine(" ")
+                        msgbuild.AppendLine("Shift          : " & shifts)
+                        msgbuild.AppendLine("Duration (Hrs) : " & shiftduration.ToString)
+                        msgbuild.AppendLine(" ")
+                        msgbuild.AppendLine("CheckIn Date   : " & checkindate)
+                        msgbuild.AppendLine("CheckIn Time   : " & checkintime)
+                        msgbuild.AppendLine(" ")
+                        msgbuild.AppendLine("CheckOut Date  : " & checkoutdate)
+                        msgbuild.AppendLine("CheckOut Time  : " & checkouttime)
+                        msgbuild.AppendLine(" ")
+                        msgbuild.AppendLine("Work Hours     : " & actualduration.ToString)
+                        msgbuild.AppendLine("System Overtime: " & (actualduration - shiftduration).ToString)
+                        msgbuild.AppendLine(" ")
+                        msgbuild.AppendLine("Approval Stat  : Approved by " & " by " & mgrname)
+                        msgbuild.AppendLine(" ")
+                        msgbuild.AppendLine("Agreed Overtime (Hr): " & agreedtime)
 
-    
+
+                        Process.MailNotification(checkindate, 2, checkindate & " Overtime Approval Request by " & mgrname & " on behalf of " & empname, msgbuild.ToString, empid, mgrid, Process.GetEmpIDMailList("hr"), empid, "")
+
+                        Dim Arrays() As String = Process.GetEmpIDMailList("hr").Split(Separators, StringSplitOptions.RemoveEmptyEntries)
+                        For i = 0 To Arrays.Count - 1
+                            Process.MailNotification(checkindate, 2, checkindate & " Overtime Approval Request by " & mgrname & " on behalf of " & empname, msgbuild.ToString, Process.GetEmpIDMailList("hr"), mgrid, empid, Link, "")
+                        Next
+                    End If
+                End If
+
+            Next
+            Process.loadalert(divalert, msgalert, count.ToString & " records successfully approved", "success")
+
+            LoadGrid(Session("LoadType"))
+
+            'End If
+        Catch ex As Exception
+            Process.loadalert(divalert, msgalert, ex.Message, "danger")
+        End Try
+    End Sub
+
+
+
 End Class

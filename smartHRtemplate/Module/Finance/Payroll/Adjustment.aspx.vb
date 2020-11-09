@@ -18,7 +18,10 @@ Public Class Adjustment
     Private Function LoadDataTables(loadtype As String) As DataTable
         Dim sData As New DataTable
         If Session("LoadType") = "All" Then
-            sData = Process.SearchDataP3("Finance_Payslip_Adjustment_Get_All", cboCompany.SelectedValue, radYear.SelectedItem.Value, radMonth.SelectedItem.Value)
+            Dim Array As Array = radMonth.SelectedItem.Value.Split(":")
+            Dim Date1 As Date = Convert.ToDateTime(Array(0))
+            Dim Date2 As Date = Convert.ToDateTime(Array(1))
+            sData = Process.SearchDataP4("Finance_Payslip_Adjustment_Get_All", cboCompany.SelectedValue, radYear.SelectedItem.Value, Date1, Date2)
         ElseIf Session("LoadType") = "Find" Then
             sData = Process.SearchDataP4("Finance_Payslip_Adjustment_Search", cboCompany.SelectedValue, radYear.SelectedItem.Value, radMonth.SelectedItem.Value, txtsearch.Value.Trim)
         End If
@@ -60,7 +63,8 @@ Public Class Adjustment
                 If Session("varMonth") Is Nothing Then
                     Session("varMonth") = Date.Now.Month
                 End If
-                Process.AssignRadComboValue(radMonth, Session("varMonth"))
+
+                'Process.AssignRadComboValue(radMonth, Session("varMonth"))
 
                 If Session("varYear") Is Nothing Then
                     Session("varYear") = Date.Now.Year
@@ -75,6 +79,7 @@ Public Class Adjustment
                 If Session("company") Is Nothing Then
                     Session("company") = Session("Organisation")
                 End If
+                Process.LoadRadComboTextAndValueP2(radMonth, "Finance_Payslip_Primary_Get_All", Session("varYear"), Session("company"), "Period", "Period", False)
                 Process.AssignRadComboValue(cboCompany, Session("company"))
 
                 Session("LoadType") = "All"

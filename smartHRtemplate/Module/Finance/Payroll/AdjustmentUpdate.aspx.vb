@@ -72,7 +72,8 @@ Public Class AdjustmentUpdate
                     txtid.Text = "0"
                     cboAdj.Enabled = True
                     cboemployee.Enabled = True
-                    datPayDate.SelectedDate = Process.LastDay(Session("varYear"), Session("varMonth"))
+                    Dim Dates As Array = Session("varMonth").Split(":")
+                    datPayDate.SelectedDate = Convert.ToDateTime(Dates(1))
                     emp1.Visible = False
                 End If
 

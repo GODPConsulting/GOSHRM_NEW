@@ -17,6 +17,49 @@ Public Class EmpDashboard
     Inherits System.Web.UI.Page
     Public cur_lenght, cur_per, cur_per_forcast, obj As String
     Public score, year, actuallSkills, expectedSkills, actualWeight, expectedWeight As String
+
+    Protected Sub TrainingLib_ServerClick(sender As Object, e As EventArgs)
+        Try
+            Response.Redirect("~/Module/Employee/TrainingPortal/AvailableTrainings.aspx?id=emp", True)
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Protected Sub Devplan_ServerClick(sender As Object, e As EventArgs)
+        Try
+            Response.Redirect("~/Module/Employee/Performance/DevelopmentPlans", True)
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Protected Sub Training_ServerClick(sender As Object, e As EventArgs)
+        Try
+            Response.Redirect("~/Module/Employee/TrainingPortal/Training", True)
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Protected Sub ApplyLeave_ServerClick(sender As Object, e As EventArgs)
+        Try
+            Response.Redirect("~/Module/Employee/TrainingPortal/AvailableTrainings.aspx?id=emp", True)
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Protected Sub FeedbackList_ServerClick(sender As Object, e As EventArgs)
+        Try
+            Response.Redirect("~/Module/Employee/Performance/AppraisalFeedbackList", True)
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Protected Sub ObjectiveList_ServerClick(sender As Object, e As EventArgs)
+        Try
+            Response.Redirect("~/Module/Employee/Performance/AppraisalObjectivesForm", True)
+        Catch ex As Exception
+
+        End Try
+    End Sub
     'Public weight As Integer
 
     Public Class cal_events
@@ -33,6 +76,7 @@ Public Class EmpDashboard
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         If Not Me.IsPostBack Then
+
             obj = SqlHelper.ExecuteScalar(WebConfig.ConnectionString, CommandType.Text, "select Objectives from Performance_Custom_Naming")
             'Expected Skills Rating
             Dim jobskills As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Job_Titles_get_index", Session("UserEmpID"))
@@ -125,7 +169,7 @@ Public Class EmpDashboard
             Dim yy As StringBuilder = New StringBuilder("")
             If trainings.Tables(0).Rows.Count > 0 Then
                 cc = trainings.Tables(0).Rows.Count
-                trainer.InnerText = cc
+                'trainer.InnerText = cc
                 If cc > 0 Then
                     For i As Integer = 0 To cc - 1
                         Dim courses As String = Convert.ToString(trainings.Tables(0).Rows(i)("Course"))
@@ -133,7 +177,7 @@ Public Class EmpDashboard
                     Next
                 End If
                 Dim ww As String = yy.ToString()
-                train.InnerHtml = ww
+                'train.InnerHtml = ww
             End If
 
             'Performance Metrics
@@ -149,7 +193,7 @@ Public Class EmpDashboard
                     Next
                 End If
                 Dim ww As String = yyy.ToString()
-                metrics.InnerHtml = ww
+                ' metrics.InnerHtml = ww
             End If
 
             'Performance Rating
@@ -200,7 +244,7 @@ Public Class EmpDashboard
                     Next
                 End If
                 Dim ww As String = s.ToString()
-                JobH.InnerHtml = ww
+                'JobH.InnerHtml = ww
             End If
 
             'Next Performance Metrics
@@ -216,17 +260,45 @@ Public Class EmpDashboard
                     Next
                 End If
                 Dim ww As String = ss.ToString()
-                nxtP.InnerHtml = ww
+                'nxtP.InnerHtml = ww
             End If
 
             'Loans
             Dim strDashBoard As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Emp_Loan_get_index", Session("UserEmpID"), "Pending")
             Span1.InnerText = FormatNumber(strDashBoard.Tables(0).Rows.Count.ToString(), 0)
             strDashBoard.Clear()
+            'Feedback Nuggets
+            strDashBoard = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Performance_Appraisal_NuggetList_Owner_Get_All", Session("UserEmpID"), Session("Organisation"), "Dashboard")
+            span2.InnerText = FormatNumber(strDashBoard.Tables(0).Rows.Count.ToString(), 0)
+            'Payslip
+            Dim strDashboard2 As DataSet
+            strDashboard2 = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Payslip_count", Session("UserEmpID"))
+            Span3.InnerText = FormatNumber(strDashboard2.Tables(0).Rows.Count.ToString(), 0)
+
+            'scheduled Events
+            Dim strEvent As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Calendar_Event_Get_All", Session("UserEmpID"), Date.Today.AddDays(1))
+            Span4.InnerText = FormatNumber(strEvent.Tables(0).Rows.Count.ToString(), 0)
+            Dim V2 As Integer = Integer.Parse(Span4.InnerText)
+            'Today Event
+            Dim strEvent1 As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Calendar_Event_Get_All", Session("UserEmpID"), Date.Today)
+            Dim V1 As Integer = FormatNumber(strEvent.Tables(0).Rows.Count.ToString(), 0)
+            Span5.InnerText = V1 - V2
+            'Overtime hrs
 
             'Leave
-            strDashBoard = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Employee_Leavelist_Approver_get_index", Session("UserEmpID"), "Pending")
-            Span5.InnerText = FormatNumber(strDashBoard.Tables(0).Rows.Count.ToString(), 0)
+            Dim strLeave As DataTable
+            strLeave = Process.SearchData("Emp_Leave_Chart", Session("UserEmpID"))
+
+            Dim sum = IIf(IsDBNull(strLeave.Compute("SUM(totalbalance)", "")), "0", strLeave.Compute("SUM(totalbalance)", ""))
+            'Dim sum2 As Integer = Convert.ToInt32(strLeave.Compute("SUM(ApprovedDays)", String.Empty))
+            Dim sum2 = IIf(IsDBNull(strLeave.Compute("SUM(ApprovedDays)", "")), "0", strLeave.Compute("SUM(ApprovedDays)", ""))
+            Dim sums As String = sum.ToString()
+            Dim sums2 As String = sum2.ToString()
+            Span6.InnerText = sums2.Split(".")(0)
+            span7.InnerText = sums.Split(".")(0)
+
+            'strDashBoard = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Employee_Leavelist_Approver_get_index", Session("UserEmpID"), "Pending")
+            'Span5.InnerText = FormatNumber(strDashBoard.Tables(0).Rows.Count.ToString(), 0)
             strDashBoard.Clear()
 
             'Current length 
@@ -251,22 +323,22 @@ Public Class EmpDashboard
 
             'Dev Plan
             strDashBoard = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Performance_Development_Plan_Get_index", Session("UserEmpID"))
-            Span6.InnerText = FormatNumber(strDashBoard.Tables(0).Rows.Count.ToString(), 0)
+            ' Span6.InnerText = FormatNumber(strDashBoard.Tables(0).Rows.Count.ToString(), 0)
             strDashBoard.Clear()
 
             'Performance
             strDashBoard = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Performance_Appraisal_Summary_Employee_Get_index", Session("UserEmpID"))
-            Span8.InnerText = FormatNumber(strDashBoard.Tables(0).Rows.Count.ToString(), 0)
+            ' Span8.InnerText = FormatNumber(strDashBoard.Tables(0).Rows.Count.ToString(), 0)
             strDashBoard.Clear()
 
             'Query
             strDashBoard = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Performance_Employee_Query_Get_index", Session("UserEmpID"))
-            Span9.InnerText = FormatNumber(strDashBoard.Tables(0).Rows.Count.ToString(), 0)
+            'Span9.InnerText = FormatNumber(strDashBoard.Tables(0).Rows.Count.ToString(), 0)
             strDashBoard.Clear()
 
             'Training Count
             strDashBoard = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Employee_Training_Sessions2_get_all_index", Session("UserEmpID"))
-            Span7.InnerText = FormatNumber(strDashBoard.Tables(0).Rows.Count.ToString(), 0)
+            ' Span7.InnerText = FormatNumber(strDashBoard.Tables(0).Rows.Count.ToString(), 0)
             strDashBoard.Clear()
 
             'Work Anniversary
@@ -290,7 +362,7 @@ Public Class EmpDashboard
                 n.Append("<span class='time'></span></div></div></li>")
             End If
             Dim rr As String = n.ToString()
-            work_history.InnerHtml = rr
+            'work_history.InnerHtml = rr
             strDashBoard.Clear()
 
             'Development plan
@@ -329,12 +401,12 @@ Public Class EmpDashboard
                     Next
                 End If
                 Dim ww As String = sss.ToString()
-                dev_plan.InnerHtml = ww
+                'dev_plan.InnerHtml = ww
             Else
                 Dim v As StringBuilder = New StringBuilder("")
                 v.Append("<tr><td></td><td style='width:100px;'><span class='block text-muted'><span class='text-xs'>No Development Plan</span></span></td><td></td></tr>")
                 Dim ww As String = v.ToString()
-                dev_plan.InnerHtml = ww
+                'dev_plan.InnerHtml = ww
             End If
             strDashBoard.Clear()
 
@@ -371,7 +443,7 @@ Public Class EmpDashboard
                 o.Append("<span class='time'></span></div></div></li>")
             End If
             Dim mo As String = o.ToString()
-            taskss.InnerHtml = mo
+            'taskss.InnerHtml = mo
 
             'Average Length of Stay
             Dim ii, cemp, ans As Double
@@ -381,13 +453,31 @@ Public Class EmpDashboard
                 ii = SqlHelper.ExecuteScalar(WebConfig.ConnectionString, "Employee_Avg_length_On_job", Session("Organisation"))
                 cemp = SqlHelper.ExecuteScalar(WebConfig.ConnectionString, CommandType.Text, oo)
                 ans = (ii / cemp)
-                avgLength.InnerText = Math.Round(ans, 0)
+                'avgLength.InnerText = Math.Round(ans, 0)
             Else
                 ans = 0
-                avgLength.InnerText = Math.Round(ans, 0)
+                'avgLength.InnerText = Math.Round(ans, 0)
             End If
-
+            LoadSkill(Session("UserEmpID"))
             strDashBoard.Clear()
         End If
+    End Sub
+    Protected Sub InitiateNew(ByVal sender As Object, ByVal e As EventArgs)
+        Try
+            Response.Redirect("~/cal_view", True)
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+    Private Sub LoadSkill(ByVal EmpID As String)
+        Try
+            Dim datatables As New DataTable
+            datatables = Process.SearchData("Actual_skills_get", EmpID)
+            dlEducation.DataSource = datatables
+            dlEducation.DataBind()
+        Catch ex As Exception
+
+        End Try
     End Sub
 End Class
