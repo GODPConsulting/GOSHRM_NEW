@@ -281,10 +281,26 @@ Public Class EmpDashboard
             Dim V2 As Integer = Integer.Parse(Span4.InnerText)
             'Today Event
             Dim strEvent1 As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Calendar_Event_Get_All", Session("UserEmpID"), Date.Today)
-            Dim V1 As Integer = FormatNumber(strEvent.Tables(0).Rows.Count.ToString(), 0)
+            Dim V1 As Integer = FormatNumber(strEvent1.Tables(0).Rows.Count.ToString(), 0)
             Span5.InnerText = V1 - V2
             'Overtime hrs
+            Dim strOvertime As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Get_Over_hours", Session("UserEmpID"), Month(Date.Today))
+            If strOvertime.Tables(0).Rows(0).Item("Overtime").ToString = "" Then
+                span12.InnerText = "0"
+            Else
+                span12.InnerText = strOvertime.Tables(0).Rows(0).Item("Overtime").ToString
+            End If
 
+            'All days
+            Dim strPresentDays As DataTable = Process.SearchDataP3("Time_Employee_Attendance_Get_All_Working", Session("UserEmpID"), DateSerial(Now.Year, Now.Month, 1), Date.Today)
+            ' Dim strPresentDays As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Time_Employee_Attendance_Get_All", Session("UserEmpID"), DateSerial(Now.Year, Now.Month, 1), Date.Today)
+            Dim foundRow As DataRow() = strPresentDays.[Select]("isworkday = 1")
+            Dim foundRow1 As DataRow() = strPresentDays.[Select]("leaveid <> '0' and isworkday = 1")
+            Dim foundRow2 As DataRow() = strPresentDays.[Select]("checkindate ='' and isworkday = 1 and leaveid = '0'")
+            Span13.InnerText = foundRow.Length.ToString()
+            span14.InnerText = foundRow1.Length.ToString
+            span15.InnerText = foundRow2.Length.ToString()
+            span16.InnerText = (foundRow.Length - (foundRow1.Length + foundRow2.Length)).ToString()
             'Leave
             Dim strLeave As DataTable
             strLeave = Process.SearchData("Emp_Leave_Chart", Session("UserEmpID"))

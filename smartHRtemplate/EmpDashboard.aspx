@@ -209,29 +209,29 @@
                 <div >
                     <div class="pie-chart-detail">
                         <div class="pie-chart-item">
-                            <span>24</span>
+                            <span runat="server" id="Span13">24</span>
                             <span>Total Days</span>
                         </div>
                         <div class="pie-chart-item">
-                            <span>10hrs</span><span>Overtime</span>
+                            <span runat="server" id="span12">10hrs</span><span>Overtime hours</span>
                             <button class="btn-success btn">Request Pay</button>
                         </div>
                     </div>
                     <div class="event-wrapper">
                         <div class="event-item reward-item">
-                            <span class="event-count">8</span><span>Present</span>
+                            <span class="event-count" id="span16" runat="server">8</span><span>Present</span>
                         </div>
                         <div class="event-pipe">
                             
                         </div>
                         <div class="event-item reward-item">
-                            <span class="event-count">8</span>
+                            <span class="event-count" id="span15" runat="server">8</span>
                             <span>Absent</span>
                         </div>
                         <div class="event-pipe"></div>
                         <div class="event-item reward-item">
-                            <span class="event-count">8</span>
-                            <span>Leave</span>
+                            <span class="event-count" runat="server" id="span14">8</span>
+                            <span >Leave</span>
                         </div>
                     </div>
                 </div>
@@ -551,15 +551,16 @@
                      }
                  }
        });
-      <%--  new Chart(document.getElementById("pie-charta1"), {
+       new Chart(document.getElementById("pie-charta1"), {
             type: 'pie',
             data: {
-                labels: [<%=nationalitytitle %>],
+                labels: ["we"],
                      datasets: [{
                          label: "Amount (millions)",
                          backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#0250f7", "#f7020e"],
-                         data: [<%=nationalitytotal %>]
-                 }]
+                         data: ["2"]
+                     },
+                       
              },
              options: {
                  legend: { display: true },
@@ -568,7 +569,7 @@
                      text: 'Employee by Nationality Ratio'
                  }
              }
-         });--%>
+         });
 
 
     </script>

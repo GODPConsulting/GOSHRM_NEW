@@ -347,6 +347,60 @@ Partial Public Class LoanDetail
     Protected WithEvents cboApproval As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
+    '''chkHigherApproval2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents chkHigherApproval2 As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''divhigherapproval2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents divhigherapproval2 As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''UpdatePanel2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UpdatePanel2 As Global.System.Web.UI.UpdatePanel
+
+    '''<summary>
+    '''cboApproverII control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents cboApproverII As Global.Telerik.Web.UI.RadComboBox
+
+    '''<summary>
+    '''divhigherapproval control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents divhigherapproval As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''ahigherapproval control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ahigherapproval As Global.System.Web.UI.HtmlControls.HtmlInputText
+
+    '''<summary>
     '''txtComment control.
     '''</summary>
     '''<remarks>
