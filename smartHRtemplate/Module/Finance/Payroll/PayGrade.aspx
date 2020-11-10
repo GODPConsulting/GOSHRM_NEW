@@ -69,6 +69,7 @@
                 <strong id="msgalert" runat="server">Danger!</strong>
             </div>
         </div>
+            <div id="content" runat="server">
         <div class="panel panel-success">
                 <div class="panel-heading">
                     <h5><b id="pagetitle" runat="server"></b></h5>
@@ -149,7 +150,7 @@
                    <%-- <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:GOSHRMConnectionString %>"
                         SelectCommand="Job_Grade_TreeView" SelectCommandType="StoredProcedure"></asp:SqlDataSource>--%>
                 </div>
-</div></div></div>
+</div></div></div></div>
         
         </form>
     </body>

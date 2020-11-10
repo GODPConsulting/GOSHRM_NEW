@@ -33,6 +33,7 @@
                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 <strong id="msgalert" runat="server">Danger!</strong>
             </div>
+                <div id="content" runat="server">
         <div class="panel panel-success">
                 <div class="panel-heading">
                     <h5><b id="pagetitle" runat="server">Appraisal Grade Definition</b></h5>

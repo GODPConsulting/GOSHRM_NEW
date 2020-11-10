@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class PayGrade
-    
+
     '''<summary>
     '''divalert control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class PayGrade
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents divalert As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''msgalert control.
     '''</summary>
@@ -30,7 +30,16 @@ Partial Public Class PayGrade
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents msgalert As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
+    '''<summary>
+    '''content control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents content As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
     '''<summary>
     '''pagetitle control.
     '''</summary>
@@ -39,7 +48,7 @@ Partial Public Class PayGrade
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pagetitle As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''txtsearch control.
     '''</summary>
@@ -48,7 +57,7 @@ Partial Public Class PayGrade
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtsearch As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''btnFind control.
     '''</summary>
@@ -57,7 +66,7 @@ Partial Public Class PayGrade
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnFind As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''btnUploadFile control.
     '''</summary>
@@ -66,7 +75,7 @@ Partial Public Class PayGrade
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnUploadFile As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''btExport control.
     '''</summary>
@@ -75,7 +84,7 @@ Partial Public Class PayGrade
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btExport As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''btnDelete control.
     '''</summary>
@@ -84,7 +93,7 @@ Partial Public Class PayGrade
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnDelete As Global.System.Web.UI.WebControls.LinkButton
-    
+
     '''<summary>
     '''btnAdd control.
     '''</summary>
@@ -93,7 +102,7 @@ Partial Public Class PayGrade
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnAdd As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''FileUpload1 control.
     '''</summary>
@@ -102,7 +111,7 @@ Partial Public Class PayGrade
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents FileUpload1 As Global.System.Web.UI.HtmlControls.HtmlInputFile
-    
+
     '''<summary>
     '''chkIsTransposed control.
     '''</summary>
@@ -111,7 +120,7 @@ Partial Public Class PayGrade
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents chkIsTransposed As Global.System.Web.UI.WebControls.CheckBox
-    
+
     '''<summary>
     '''GridView1 control.
     '''</summary>

@@ -96,6 +96,7 @@
                 <strong id="msgalert" runat="server">Danger!</strong>
             </div>
         </div>
+         <div id="content" runat="server">
         <div class="panel panel-success">
                 <div class="panel-heading">
                     <h5><b id="pagetitle" runat="server"></b></h5>
@@ -220,7 +221,7 @@
         <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
     
     </div>
-    </div></div>
+    </div></div></div>
     
     </form>
 </body>

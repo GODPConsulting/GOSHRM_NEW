@@ -32,6 +32,15 @@ Partial Public Class PayrollPeriod
     Protected WithEvents msgalert As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
+    '''content control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents content As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''UpdatePanel2 control.
     '''</summary>
     '''<remarks>
@@ -56,7 +65,7 @@ Partial Public Class PayrollPeriod
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cbocompany As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents cbocompany As Global.Telerik.Web.UI.radcombobox
 
     '''<summary>
     '''btDelete control.
@@ -110,7 +119,7 @@ Partial Public Class PayrollPeriod
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboyear As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents cboyear As Global.Telerik.Web.UI.radcombobox
 
     '''<summary>
     '''UpdatePanel3 control.

@@ -206,11 +206,9 @@ Public Class Employees
         Try
             If Process.AuthenAction(Session("role"), AuthenCode, "Read") = False Then
                 holder.Style.Add("display", "none")
-                Process.loadalert(divalert, msgalert, Process.privilegemsg, "danger")
-                'ClientScript.RegisterClientScriptBlock(Me.[GetType](), "alert", Convert.ToString("alert('") & lblstatus.Text + "')", True)
+                Process.loadalert(divalert, msgalert, "You don't have privilege to perform view this page", "info")
                 Exit Sub
             End If
-
 
             If Not Me.IsPostBack Then
                 Dim ismulti As String = SqlHelper.ExecuteScalar(WebConfig.ConnectionString, CommandType.Text, "select isnull(ismulticompany,'No')  from general_info")

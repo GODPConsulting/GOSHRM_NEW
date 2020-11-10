@@ -32,6 +32,15 @@ Partial Public Class Salary
     Protected WithEvents msgalert As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
+    '''content control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents content As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''UpdatePanel1 control.
     '''</summary>
     '''<remarks>
@@ -164,7 +173,7 @@ Partial Public Class Salary
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents radOffice As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents radOffice As Global.Telerik.Web.UI.radcombobox
 
     '''<summary>
     '''UpdatePanel5 control.

@@ -19,6 +19,11 @@ Public Class PayrollPeriodData
     Dim EmpID_1 As String = ""
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
+            If Process.AuthenAction(Session("role"), AuthenCode, "Read") = False Then
+                content.Style.Add("display", "none")
+                Process.loadalert(divalert, msgalert, "You don't have privilege to perform view this page", "info")
+                Exit Sub
+            End If
             If Not Me.IsPostBack Then
                 cboapprovalstat.Items.Clear()
                 cboapprovalstat.Items.Add("Pending")
@@ -66,7 +71,7 @@ Public Class PayrollPeriodData
                         cboapprovalstat.Enabled = False
                     End If
                 End If
-              
+
             End If
         Catch ex As Exception
             Process.loadalert(divalert, msgalert, ex.Message, "danger")
