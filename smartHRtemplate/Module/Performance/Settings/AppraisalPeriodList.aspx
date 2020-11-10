@@ -86,6 +86,7 @@
                         <strong id="msgalert" runat="server">Danger!</strong>
                     </div>
                 </div>
+          <div id="content" runat="server">
          <div class="panel panel-success">
                 <div class="panel-heading">
                     <h5><b id="pagetitle" runat="server"></b></h5>

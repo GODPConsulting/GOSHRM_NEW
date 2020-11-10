@@ -33,7 +33,11 @@ Public Class TrainingSessions
     End Sub
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
-
+            If Process.AuthenAction(Session("role"), AuthenCode, "Read") = False Then
+                content.Style.Add("display", "none")
+                Process.loadalert(divalert, msgalert, "You don't have privilege to perform view this page", "info")
+                Exit Sub
+            End If
             If Not Me.IsPostBack Then
                 Dim ismulti As String = SqlHelper.ExecuteScalar(WebConfig.ConnectionString, CommandType.Text, "select isnull(ismulticompany,'No')  from general_info")
                 If ismulti.ToLower = "no" Then
