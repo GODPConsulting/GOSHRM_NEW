@@ -12,7 +12,25 @@ Option Explicit On
 
 
 Partial Public Class PayrollOptionUpdate
-    
+
+    '''<summary>
+    '''modal_title control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents modal_title As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''btnsubmit1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnsubmit1 As Global.System.Web.UI.HtmlControls.HtmlButton
+
     '''<summary>
     '''divalert control.
     '''</summary>
@@ -21,7 +39,7 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents divalert As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''msgalert control.
     '''</summary>
@@ -30,7 +48,7 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents msgalert As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''txtid control.
     '''</summary>
@@ -39,7 +57,7 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtid As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblid control.
     '''</summary>
@@ -48,7 +66,7 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblid As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblauto control.
     '''</summary>
@@ -57,7 +75,7 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblauto As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblemail control.
     '''</summary>
@@ -66,7 +84,7 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblemail As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblovertimeenabled control.
     '''</summary>
@@ -75,7 +93,7 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblovertimeenabled As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblattendance control.
     '''</summary>
@@ -84,7 +102,16 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblattendance As Global.System.Web.UI.WebControls.Label
-    
+
+    '''<summary>
+    '''txtskillid control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtskillid As Global.System.Web.UI.WebControls.TextBox
+
     '''<summary>
     '''pagetitle control.
     '''</summary>
@@ -93,7 +120,7 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pagetitle As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''cboCompany control.
     '''</summary>
@@ -102,7 +129,7 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboCompany As Global.Telerik.Web.UI.RadComboBox
-    
+
     '''<summary>
     '''drpCurrency control.
     '''</summary>
@@ -111,7 +138,7 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents drpCurrency As Global.Telerik.Web.UI.RadDropDownList
-    
+
     '''<summary>
     '''rdoAutoApprove control.
     '''</summary>
@@ -120,7 +147,7 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents rdoAutoApprove As Global.System.Web.UI.WebControls.RadioButtonList
-    
+
     '''<summary>
     '''txtAmount control.
     '''</summary>
@@ -129,7 +156,7 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtAmount As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''UpdatePanel4 control.
     '''</summary>
@@ -138,7 +165,7 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UpdatePanel4 As Global.System.Web.UI.UpdatePanel
-    
+
     '''<summary>
     '''cboApprove control.
     '''</summary>
@@ -147,7 +174,7 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboApprove As Global.Telerik.Web.UI.RadComboBox
-    
+
     '''<summary>
     '''lstApprover control.
     '''</summary>
@@ -156,7 +183,7 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lstApprover As Global.Telerik.Web.UI.RadListBox
-    
+
     '''<summary>
     '''radAutoEmailSlips control.
     '''</summary>
@@ -165,7 +192,7 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents radAutoEmailSlips As Global.Telerik.Web.UI.RadDropDownList
-    
+
     '''<summary>
     '''drpAdjustment control.
     '''</summary>
@@ -174,7 +201,7 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents drpAdjustment As Global.Telerik.Web.UI.RadDropDownList
-    
+
     '''<summary>
     '''radPayOnAttendance control.
     '''</summary>
@@ -183,7 +210,7 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents radPayOnAttendance As Global.Telerik.Web.UI.RadDropDownList
-    
+
     '''<summary>
     '''radPayOverTime control.
     '''</summary>
@@ -192,7 +219,7 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents radPayOverTime As Global.Telerik.Web.UI.RadDropDownList
-    
+
     '''<summary>
     '''UpdatePanel2 control.
     '''</summary>
@@ -201,7 +228,7 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UpdatePanel2 As Global.System.Web.UI.UpdatePanel
-    
+
     '''<summary>
     '''lblOvertimePaymentID control.
     '''</summary>
@@ -210,7 +237,7 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblOvertimePaymentID As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''UpdatePanel1 control.
     '''</summary>
@@ -219,7 +246,7 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
-    
+
     '''<summary>
     '''txtOvertimeIndex control.
     '''</summary>
@@ -228,7 +255,7 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtOvertimeIndex As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''lblpaydesc control.
     '''</summary>
@@ -237,7 +264,7 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblpaydesc As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lnkexception control.
     '''</summary>
@@ -246,7 +273,7 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lnkexception As Global.System.Web.UI.WebControls.LinkButton
-    
+
     '''<summary>
     '''btnupdate control.
     '''</summary>
@@ -255,7 +282,7 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnupdate As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''Button1 control.
     '''</summary>
@@ -264,4 +291,85 @@ Partial Public Class PayrollOptionUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Button1 As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''pnskill control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents pnskill As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
+    '''search control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents search As Global.System.Web.UI.HtmlControls.HtmlInputText
+
+    '''<summary>
+    '''btsearch control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btsearch As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''btExport control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btExport As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''btnUploadFile control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnUploadFile As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''btDelete control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btDelete As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''btAdd control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btAdd As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
+    '''file1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents file1 As Global.System.Web.UI.HtmlControls.HtmlInputFile
+
+    '''<summary>
+    '''gridskills control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gridskills As Global.System.Web.UI.WebControls.GridView
 End Class

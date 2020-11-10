@@ -91,6 +91,7 @@ Public Class OvertimeRequest
             Dim actualduration As Double = strUser.Tables(0).Rows(0).Item("actualduration")
             Dim grade As String = strUser.Tables(0).Rows(0).Item("grade").ToString
             Dim company As String = strUser.Tables(0).Rows(0).Item("company").ToString
+            Dim Link = Process.ApplicationURL & "/" & "Module/TimeManagement/OvertimeApprovals.aspx?id=" & Request.QueryString("id")
 
             Dim strCheck As New DataSet
             strCheck = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Payroll_Attendance_Exception_Check", company, grade)
@@ -118,6 +119,7 @@ Public Class OvertimeRequest
             msgbuild.AppendLine(" ")
             msgbuild.AppendLine("Work Hours    : " & actualduration.ToString)
             msgbuild.AppendLine("Overtime      : " & (actualduration - shiftduration).ToString)
+            msgbuild.AppendLine("Follow this Link:" & Link)
 
             Process.MailNotification(checkindate, 2, checkindate & " Overtime Approval Request by " & empname, msgbuild.ToString, mgrid, empid, Process.GetEmpIDMailList("hr"), mgrid, "")
 

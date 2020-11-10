@@ -203,6 +203,39 @@
                                 </telerik:RadComboBox>
                             </div>
                         </div>
+                                 <div class="row">
+                                    <div class="col-md-8">
+                                    <asp:CheckBox ID="chkHigherApproval2" runat="server" AutoPostBack="true" Text="Requires higher level approval (Higher Approval)"
+                                         ForeColor="#666666" />
+                                    </div>
+                                </div>
+                            <div id="divhigherapproval2" runat ="server" class="row">
+                                <div class=" col-md-12">
+                                    <div class="form-group">
+                                        <label>
+                                            Higher Approval</label>
+                                        <asp:UpdatePanel runat="server" ID="UpdatePanel2" UpdateMode="Always">
+                                            <ContentTemplate>
+                                                <telerik:radcombobox id="cboApproverII" runat="server" width="100%" forecolor="#666666"
+                                                    emptymessage="-- Select --" rendermode="Lightweight" skin="Bootstrap" 
+                                                    CheckBoxes="True" EnableCheckAllItemsCheckBox="True" Filter="Contains">
+                                                </telerik:radcombobox>
+                                            </ContentTemplate>
+                                            <%--<Triggers>
+                                                <asp:AsyncPostBackTrigger ControlID="cboEmployee" EventName="SelectedIndexChanged" />
+                                            </Triggers>--%>
+                                        </asp:UpdatePanel>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="divhigherapproval" runat ="server" class="row">
+                                <div class=" col-md-12">
+                                    <div class="form-group">
+                                        <label>
+                                            Approval </label> 
+                                            <input id="ahigherapproval" runat="server" class="form-control" type="text" readonly="readonly" /></div>
+                                    </div>
+                                </div>
                          <div class="col-md-12">
                             <div class="form-group">
                                 <label>

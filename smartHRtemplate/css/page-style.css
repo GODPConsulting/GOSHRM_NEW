@@ -1,0 +1,139 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+.content-wrapper {
+    background: #eee;
+    display: flex;
+    flex-wrap: wrap;
+    font-family: 'Poppins' !important;
+}
+.content-card {
+    background: #fff;
+    height: 370px;
+    /* width: 300px; */
+    margin: 2px;
+    border-radius: 8px
+}
+.chart-card {
+    flex-basis: 49%;
+    height: 280px;
+    /* display: flex;
+    align-items: center;
+    justify-content: center */
+}
+.event-card {
+    flex-basis: 40%;
+}
+.event-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.event-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.event-pipe {
+    margin: 10px;
+    border-right: 2px solid #ddd;
+    height: 100px;
+}
+.event-count {
+    font-size: 40px;
+    font-weight: bold;
+}
+.content-card-header {
+    text-align: center;
+    color: #00ff90;
+}
+.reward-card {
+    flex-basis: 33%;
+}
+.comp-card {
+    flex-basis: 33%;
+}
+.progress-item {
+    display: flex;
+    flex-direction: column;
+}
+.progress {
+    width: 94%;
+}
+.progress-wrapper {
+    padding: 0 20px;
+    margin-left: 23px;
+}
+.page-btn-wrapper {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.page-btn {
+    
+    border: 1px solid #fff;
+    padding: 10px;
+    width: 120px;
+    border-radius: 6px;
+     background-color: #55ce63;
+    border: 1px solid #55ce63
+    transition: 1s;
+}
+.page-btn:hover {
+     background: #4ab657;
+        border: 1px solid #4ab657
+}
+.pie-chart-card {
+    flex-basis: 50%;
+    height: 280px;
+}
+.pie-chart-detail {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.pie-chart-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+.pie-chart-wrapper {
+    display: flex;
+    justify-content: space-around;
+}
+.bar-chart-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+.right-side {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    align-items: center;
+}
+.bar-btn {
+    width: 150px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+.feedback-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 150px;
+    background:  #f8fbf8;
+    border-radius: 8px;
+}
+.leave-event {
+    width: 150px;
+    background: #f8fbf8;
+    border-radius: 8px;
+}
+.reward-item {
+    flex-basis: 20%;
+    background: #f8fbf8;
+    border-radius: 8px
+}

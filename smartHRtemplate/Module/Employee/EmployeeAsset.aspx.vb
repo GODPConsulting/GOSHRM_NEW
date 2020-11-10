@@ -45,7 +45,7 @@ Public Class EmployeeAsset
 
             cmd.CommandType = CommandType.StoredProcedure
             cmd.CommandText = "Emp_Asset_Update"
-            cmd.Parameters.Add("@id", SqlDbType.Int).Value = txtid.Text
+            cmd.Parameters.Add("@id", SqlDbType.Int).Value = 0
             cmd.Parameters.Add("@EmpID", SqlDbType.VarChar).Value = empid
             cmd.Parameters.Add("@AssetName", SqlDbType.VarChar).Value = assetname1
             cmd.Parameters.Add("@AssetNumber", SqlDbType.VarChar).Value = assetnumber1
@@ -109,8 +109,11 @@ Public Class EmployeeAsset
 
             Exit Sub
         End If
-
-        txtid.Text = GetIdentity(txtempid.Text, assetsname.Value, assetsnumber.Value, locations.Value, classifications.Value, assetsdescription.Value, physicalconditions.Value, RadComboBox2.SelectedItem.Text, comments.Value)
+        If txtid.Text = "" Then
+            txtid.Text = GetIdentity(txtempid.Text, assetsname.Value, assetsnumber.Value, locations.Value, classifications.Value, assetsdescription.Value, physicalconditions.Value, RadComboBox2.SelectedItem.Text, comments.Value)
+        Else
+            SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Emp_Asset_Update", txtid.Text, txtempid.Text, assetsname.Value, assetsnumber.Value, assetsdescription.Value, classifications.Value, locations.Value, physicalconditions.Value, RadComboBox2.SelectedItem.Text, comments.Value)
+        End If
         lblstatus = "Employee Asset has been Updated"
         Process.loadalert(divalert, msgalert, lblstatus, "success")
     End Sub

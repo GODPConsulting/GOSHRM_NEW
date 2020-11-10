@@ -203,6 +203,15 @@ Partial Public Class Attendance
     Protected WithEvents MyCalendar As Global.System.Web.UI.WebControls.Calendar
 
     '''<summary>
+    '''btapprove control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btapprove As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''btnExport control.
     '''</summary>
     '''<remarks>

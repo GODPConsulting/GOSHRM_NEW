@@ -321,6 +321,15 @@ Public Class EmployeeProfile
         End Try
 
     End Sub
+    Protected Sub btnAddHobby_Click(sender As Object, e As EventArgs)
+        Try
+            Session("EmpID") = lblEmpID.Text
+            Response.Redirect("EmployeeHobbies", True)
+        Catch ex As Exception
+            Process.loadalert(divalert, msgalert, ex.Message, "danger")
+        End Try
+
+    End Sub
 
     'Protected Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
     '    Try
@@ -425,5 +434,10 @@ Public Class EmployeeProfile
         Catch ex As Exception
             Process.loadalert(divalert, msgalert, ex.Message, "danger")
         End Try
+    End Sub
+    Protected Sub btnReturnAsset_Click(sender As Object, e As EventArgs)
+        Dim lblstatus = "Changes has been forwarded to HR for acceptance"
+        Process.loadalert(divalert, msgalert, lblstatus, "success")
+
     End Sub
 End Class

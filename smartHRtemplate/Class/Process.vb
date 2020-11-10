@@ -5035,15 +5035,17 @@ sempid As String, mgrid As String, links As String)
             Return False
         End Try
     End Function
-    Public Shared Function Asset_Alert(empid As String, email As String, Coachname As String, appstartdate As String, links As String, time As String) As Boolean
+    Public Shared Function Asset_Return_Request(ByVal certname As String, ByVal receivermail As String, ByVal employee As String, ByVal certtype As String, ByVal copyMail As String, sempid As String, mgrid As String, links As String) As Boolean
         Try
-            Dim subject As String = "Coaching Session" & appstartdate
+            msgbuild1.Clear()
+            msgbuild1.AppendLine("Dear " & employee & ",")
+            msgbuild1.AppendLine("")
+            msgbuild1.AppendLine("")
+            msgbuild1.AppendLine("Your  " & certtype & " with" & certtype & " has been forwarded to HR for acceptance")
+            msgbuild1.AppendLine(" ")
+
+            Dim subject As String = "New  Asset :" & certtype & " Returned by " & employee
             Dim filePath As String = MailContentURL & MailFolderPerformance & "Asset_Alert.txt"
-
-
-
-
-            Dim rname As String = GetEmployeeData(empid, "firstname")
             Dim readertxt As New StreamReader(filePath)
             msgbuild.Clear()
             While Not readertxt.EndOfStream
@@ -5051,29 +5053,29 @@ sempid As String, mgrid As String, links As String)
                 msgbuild.AppendLine(line)
             End While
             readertxt.Close()
-            msgbuild = msgbuild.Replace("@empname", rname).Replace("@startdate", appstartdate).Replace("@Coach", Coachname).Replace("@Time", time).Replace("@company", GetCompanyByEmpID(empid)).Replace("@empid", empid)
+            msgbuild = msgbuild.Replace("@empname", GetEmployeeData(sempid, "fullname")).Replace("@mgrname", GetEmployeeData(mgrid, "fullname")).Replace("@company", GetCompanyByEmpID(mgrid)).Replace("@certtype", certtype) _
+                .Replace("@certname", certname).Replace("@empid", sempid)
 
-            Process.MailNotification(empid, MailPerfromance, subject, msgbuild.ToString, empid, Process.AppName, "", empid, links, "")
+            Process.MailNotification(sempid, MailQualification, "New " & certtype & " added by " & employee, msgbuild1.ToString, sempid, Process.AppName, "", sempid, "", "")
 
-            If email <> "aa" Then
-                If SendNotification() = "Yes" Then
-                    Process.SendEmail("", GetCompanyByEmpID(empid), email,
-                                         subject,
-                                           "<div style=""font-family:Arial; font-size:12px;"">" & msgbuild.ToString & "<br /> <br /><a href=" & links & ">" & links & "</a> </div>",
-                                        "", True, "")
+            Dim Arrays() As String = Process.GetEmpIDMailList("hr").Split(SeparatorSemi, StringSplitOptions.RemoveEmptyEntries)
+            For i = 0 To Arrays.Count - 1
+                Process.MailNotification(sempid, MailQualification, subject, msgbuild.ToString, sempid, HRTeam, "", Arrays(i), links)
+            Next
 
-                End If
+            If SendNotification() = "Yes" Then
+                'Notification for requester
+                Process.SendEmail("", GetEmployeeData(sempid, "company"), GetMailList("hr"),
+                                     subject, "<div style=""font-family:Arial; font-size:12px;"">" & msgbuild.ToString & " <br /> <br /><a href=" & links & ">" & links & "</a> <br /> <br />" & GetEmployeeData(sempid, "company") & "</div>", "", True)
             End If
-
-
             Return True
-
 
         Catch ex As Exception
             HttpContext.Current.Session.Item("exception") = ex.Message
             Return False
         End Try
     End Function
+
     Public Shared Function Appraisal_Feedback_Alert(sempid As String, semail As String, appenddate As String, links As String) As Boolean
         Try
             Dim subject As String = "Appraisal Feedback Alert for review cycle ending " & appenddate & " is due"

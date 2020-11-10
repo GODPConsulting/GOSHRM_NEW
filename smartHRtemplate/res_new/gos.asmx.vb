@@ -97,6 +97,9 @@ Public Class gos
         Public Property source As String
         Public transfers As List(Of transfers)
     End Class
+    Public Class DayList
+        Public Property day As String
+    End Class
 
 
     <WebMethod()> _
@@ -544,6 +547,99 @@ Public Class gos
             Dim js As JavaScriptSerializer = New JavaScriptSerializer()
             Context.Response.Write(js.Serialize(listRecipients))
         End If
+    End Sub
+    <WebMethod(EnableSession:=True)>
+    Public Sub Send_Return_Request(ByVal ID As String)
+        Try
+            Dim returnid = ID
+            Dim lblstatus As String = ""
+            Dim initiator As String = ""
+            Dim initiatorname As String = ""
+            Dim office As String = ""
+            Dim strUser As New DataSet
+            strUser = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Emp_Asset_get", returnid)
+            Dim AssetName = strUser.Tables(0).Rows(0).Item("AssetName").ToString
+            Dim EmpID = strUser.Tables(0).Rows(0).Item("EmpID").ToString
+            Dim AssetNumber = strUser.Tables(0).Rows(0).Item("AssetNumber").ToString
+            Dim strEmp As New DataSet
+            strEmp = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, CommandType.Text, "select a.Name, a.Employee2 Employee,Email, Office     from dbo.Employees_All a where a.EmpID = '" & EmpID & "'")
+            If strEmp.Tables(0).Rows.Count > 0 Then
+                initiator = strEmp.Tables(0).Rows(0).Item("Email").ToString
+                initiatorname = strEmp.Tables(0).Rows(0).Item("Name").ToString
+                office = strEmp.Tables(0).Rows(0).Item("Office").ToString
+            End If
+            Dim url As String = ""
+            url = Process.ApplicationURL & "/" & "Module/Employee/EmployeeData"
+            If Process.Asset_Return_Request(AssetName, Process.GetMailList("hr"), initiatorname & " of " & office, AssetNumber, initiator, EmpID, "", url & "?id=" & EmpID) = True Then
+                lblstatus = "Changes has been forwarded to HR for acceptance"
+
+            Else
+                lblstatus = Session("exception")
+            End If
+
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    <WebMethod()>
+    Public Sub FinanceComponents(ByVal pid As String)
+        Dim listRecipients As List(Of PerfomancePoints) = New List(Of PerfomancePoints)()
+
+        Dim strTest As DataSet
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Finance_Monthly_Earning_Items_Get_All")
+
+        Dim i As Integer = 0
+        Dim count As Integer = 1
+
+        If strTest.Tables(0).Rows.Count > 0 Then
+            For Each dr As DataRow In strTest.Tables(0).Rows
+                Try
+                    Dim prog As PerfomancePoints = New PerfomancePoints()
+                    prog.name = Convert.ToString(strTest.Tables(0).Rows(i)("Payslip Item"))
+
+                    prog.desc = Convert.ToString(strTest.Tables(0).Rows(i)("Payslip Item"))
+
+
+                    listRecipients.Add(prog)
+                    i += 1
+                    count += 1
+                Catch Ex As Exception
+                    Context.Response.Write(Ex.Message)
+                End Try
+            Next
+            Dim js As JavaScriptSerializer = New JavaScriptSerializer()
+            Context.Response.Write(js.Serialize(listRecipients))
+
+        End If
+
+    End Sub
+    <WebMethod()>
+    Public Sub DaysComponents(ByVal pid As String)
+        Dim listRecipients1 As List(Of DayList) = New List(Of DayList)()
+        Dim strTest2 As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Work_Week_get_all_Overtime", pid)
+        Dim i As Integer = 0
+        Dim count As Integer = 1
+
+        If strTest2.Tables(0).Rows.Count > 0 Then
+            For Each dr As DataRow In strTest2.Tables(0).Rows
+                Try
+                    Dim progs As DayList = New DayList()
+                    progs.day = Convert.ToString(strTest2.Tables(0).Rows(i)("Day"))
+
+
+                    listRecipients1.Add(progs)
+                    i += 1
+                    count += 1
+                Catch Ex As Exception
+                    Context.Response.Write(Ex.Message)
+                End Try
+            Next
+            Dim js As JavaScriptSerializer = New JavaScriptSerializer()
+            Context.Response.Write(js.Serialize(listRecipients1))
+
+        End If
+
     End Sub
 
 

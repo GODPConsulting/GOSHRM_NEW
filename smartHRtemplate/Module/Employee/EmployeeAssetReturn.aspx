@@ -140,7 +140,7 @@
                                 <div class="col-md-12 m-t-20">
                                     <button id="btnsave" runat="server" onserverclick="btnAdd_Click" type="submit" style="width: 150px"
                                         class="btn btn-success rounded">
-                                        Save & Update</button>
+                                        Return</button>
                                     <button id="btnback" runat="server" onserverclick="btnCancel_Click" type="submit"
                                         style="width: 150px" class="btn btn-info rounded">
                                         << Back</button>

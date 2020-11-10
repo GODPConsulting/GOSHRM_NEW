@@ -7,6 +7,7 @@ Imports System.Web.Services
 Imports System.Web.Script.Services
 Imports GOSHRM.GOSHRM.GOSHRM.BO
 Imports Telerik.Web.UI
+Imports System.IO
 
 Public Class PayrollOptionUpdate
     Inherits System.Web.UI.Page
@@ -16,6 +17,7 @@ Public Class PayrollOptionUpdate
     Dim oFileAttached1 As Byte
     Dim oFileAttached As Byte()
     Dim lblstatus As String = ""
+    Dim Pages As String = "Training Course"
 
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -26,7 +28,7 @@ Public Class PayrollOptionUpdate
                 drpAdjustment.Items.Add("Divide by number of remaining days after date join of Salary Month")
 
                 Dim ismulti As String = SqlHelper.ExecuteScalar(WebConfig.ConnectionString, CommandType.Text, "select isnull(ismulticompany,'No')  from general_info")
-               
+
 
                 Process.LoadRadDropDownTextAndValue(drpCurrency, "Currency_Load_1", "Currency", "Code", False)
 
@@ -74,6 +76,8 @@ Public Class PayrollOptionUpdate
                         End If
                         cboCompany.Enabled = False
                     End If
+                    LoadGrid(lblid.Text)
+                    PanelVisibility()
                 Else
 
                     If ismulti.ToLower = "no" Then
@@ -88,6 +92,7 @@ Public Class PayrollOptionUpdate
                     txtAmount.Value = "0"
                     txtOvertimeIndex.Text = "0"
                     cboApprove.Enabled = False
+                    PanelVisibility()
                     Process.AssignRadDropDownValue(radPayOverTime, "No")
                     If radPayOverTime.SelectedValue.ToUpper = "YES" Then
                         lblOvertimePaymentID.Visible = True
@@ -232,7 +237,7 @@ Public Class PayrollOptionUpdate
                     Dim collection As IList(Of RadComboBoxItem) = cboApprove.CheckedItems
                     If (collection.Count <> 0) Then
                         For Each item As RadComboBoxItem In collection
-                            SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Payroll_Option_Approver_Update", lblid.Text, item.Value)
+                            SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Payroll_Option_Approver_Update", lblid.Text, item.Value, 0)
                         Next
                     End If
                 End If
@@ -247,6 +252,9 @@ Public Class PayrollOptionUpdate
                 End If
             End If
             cboCompany.Enabled = False
+            LoadGrid(lblid.Text)
+            PanelVisibility()
+
             Process.LoadListBoxFromCombo(lstApprover, cboApprove)
             lblstatus = "Record saved"
             Process.loadalert(divalert, msgalert, lblstatus, "success")
@@ -274,7 +282,7 @@ Public Class PayrollOptionUpdate
             cmd.Parameters.Add("@amount", SqlDbType.Decimal).Value = amount
             cmd.Parameters.Add("@salaryonatendance", SqlDbType.VarChar).Value = salaryonatendance
             cmd.Parameters.Add("@payovertime", SqlDbType.VarChar).Value = payovertime
-            cmd.Parameters.Add("@index", SqlDbType.Decimal).Value = sindex
+
             cmd.Parameters.Add("@userid", SqlDbType.VarChar).Value = userid
             cmd.Connection = con
             con.Open()
@@ -337,9 +345,9 @@ Public Class PayrollOptionUpdate
         End Try
     End Sub
 
-   
 
-    
+
+
 
     Protected Sub lnkResume0_Click(sender As Object, e As EventArgs) Handles lnkexception.Click
 
@@ -353,5 +361,221 @@ Public Class PayrollOptionUpdate
             Process.loadalert(divalert, msgalert, lblstatus, "danger")
         End Try
 
+    End Sub
+    Private Function LoadDatatable() As DataTable
+        Dim dt As New DataTable
+        search.Value = Session("courseskillLoadsearch")
+        If search.Value.Trim = "" Then
+            dt = Process.SearchData("Overtime_Category_get_all", lblid.Text)
+        Else
+            dt = Process.SearchDataP2("Overtime_Categor_get_search", lblid.Text, search.Value)
+        End If
+        Return dt
+    End Function
+    Protected Sub Delete(sender As Object, e As EventArgs) Handles btDelete.Click
+        Try
+            Process.loadalert(divalert, msgalert, "", "warning")
+            If Process.AuthenAction(Session("role"), AuthenCode, "Delete") = False Then
+                Process.loadalert(divalert, msgalert, Process.privilegemsg, "warning")
+
+                Exit Sub
+            End If
+            Dim count As Integer = 0
+            Dim confirmValue As String = Request.Form("confirm_value")
+            'If confirmValue = "Yes" Then
+            Dim atLeastOneRowDeleted As Boolean = False
+            ' Iterate through the Products.Rows property
+            For Each row As GridViewRow In gridskills.Rows
+                ' Access the CheckBox
+                Dim cb As CheckBox = row.FindControl("chkEmp")
+                If cb IsNot Nothing AndAlso cb.Checked Then
+                    count = count + 1
+                    ' Delete row! (Well, not really...)
+                    atLeastOneRowDeleted = True
+                    ' First, get the ProductID for the selected row
+                    Dim ID As String =
+                            Convert.ToString(gridskills.DataKeys(row.RowIndex).Value)
+                    ' "Delete" the row
+                    SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Overtime_Pay_Delete", ID)
+                End If
+            Next
+            Process.loadalert(divalert, msgalert, count.ToString & " records successfully deleted", "success")
+
+            LoadGrid(txtid.Text)
+
+            'End If
+        Catch ex As Exception
+            Process.loadalert(divalert, msgalert, ex.Message, "danger")
+        End Try
+    End Sub
+    Private Sub LoadGrid(id As String)
+        Try
+            gridskills.PageIndex = CInt(Session("courseskillLoadindex"))
+            gridskills.DataSource = LoadDatatable()
+            gridskills.AllowSorting = True
+            gridskills.DataBind()
+            PanelVisibility()
+        Catch ex As Exception
+            Process.loadalert(divalert, msgalert, ex.Message, "danger")
+
+        End Try
+    End Sub
+
+
+    Private Sub PanelVisibility()
+        Try
+            If radPayOverTime.SelectedValue = "Yes" Then
+                pnskill.Visible = True
+            Else
+                pnskill.Visible = False
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Protected Sub DrillDown(ByVal sender As Object, ByVal e As EventArgs)
+        Try
+            txtskillid.Text = CType(sender, LinkButton).CommandArgument
+            Dim url As String = "OvertimePayment?id=" & txtskillid.Text
+            Response.Redirect(url, True)
+        Catch ex As Exception
+            Process.loadalert(divalert, msgalert, ex.Message, "danger")
+        End Try
+    End Sub
+    Protected Sub SortRecords(ByVal sender As Object, ByVal e As GridViewSortEventArgs)
+        Try
+            Dim sortExpression As String = e.SortExpression
+            Session("courseskillsortExpression") = sortExpression
+            Dim direction As String = String.Empty
+            If SortsDirection = SortDirection.Ascending Then
+                SortsDirection = SortDirection.Descending
+                direction = " DESC"
+            Else
+                SortsDirection = SortDirection.Ascending
+                direction = " ASC"
+            End If
+            gridskills.PageIndex = CInt(Session("courseskillLoadindex"))
+            Dim table As DataTable = LoadDatatable()
+            table.DefaultView.Sort = sortExpression & direction
+            gridskills.DataSource = table
+            gridskills.DataBind()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    Public Property SortsDirection() As SortDirection
+        Get
+            If ViewState("SortDirection") Is Nothing Then
+                ViewState("SortDirection") = SortDirection.Ascending
+            End If
+            Return DirectCast(ViewState("SortDirection"), SortDirection)
+        End Get
+        Set(ByVal value As SortDirection)
+            ViewState("SortDirection") = value
+        End Set
+    End Property
+    Protected Sub btnUpload_Click(sender As Object, e As EventArgs)
+        Try
+
+            If Process.AuthenAction(Session("role"), AuthenCode, "Create") = False Then
+                Process.loadalert(divalert, msgalert, Process.privilegemsg, "warning")
+
+                Exit Sub
+            End If
+
+            If Not file1.PostedFile Is Nothing Then
+                'To create a PostedFile
+                Dim csvPath As String = Server.MapPath(Process.FileURL) + Path.GetFileName(file1.PostedFile.FileName)
+                If File.Exists(csvPath) = True Then
+                    File.Delete(csvPath)
+                End If
+                file1.PostedFile.SaveAs(csvPath)
+                'Create byte Array with file len
+                'File.ContentLength
+                If Process.Import(csvPath, "Overtime_JobGrade_upload", Pages) = True Then
+                    Process.loadalert(divalert, msgalert, "Uploaded " & Session("uploadcnt") & " record(s)", "success")
+                    Process.GetAuditTrailInsertandUpdate("", "Uploaded " & Session("uploadcnt") & " record(s) from " & csvPath, "File Upload", Pages)
+                    LoadGrid(lblid.Text)
+                Else
+                    Process.loadalert(divalert, msgalert, Session("exception"), "danger")
+                End If
+                If File.Exists(csvPath) = True Then
+                    File.Delete(csvPath)
+                End If
+            Else
+                Process.loadalert(divalert, msgalert, "No files selected to upload", "warning")
+                file1.Focus()
+                Exit Sub
+            End If
+
+        Catch ex As Exception
+            Process.loadalert(divalert, msgalert, ex.Message, "danger")
+
+        End Try
+    End Sub
+    Protected Sub btnExport_Click(sender As Object, e As EventArgs)
+        Try
+            Dim dt As DataTable = Process.SearchData("Overtime_Download", lblid.Text)
+            If Process.ExportExcel(dt, "CourseSkills") = False Then
+                Response.Output.Write(Process.strExp)
+            End If
+
+        Catch ex As Exception
+            Process.loadalert(divalert, msgalert, ex.Message, "danger")
+
+        End Try
+    End Sub
+    Protected Sub btnAddSkill_Click(sender As Object, e As EventArgs)
+        Try
+            Dim url As String = "OverTimePayment?courseid=" & lblid.Text
+            Response.Redirect(url, True)
+        Catch ex As Exception
+            Process.loadalert(divalert, msgalert, ex.Message, "danger")
+        End Try
+    End Sub
+
+    Protected Sub btnFind_Click(sender As Object, e As EventArgs)
+        Try
+            'If Not Me.IsPostBack Then
+            Session("courseskillLoadsearch") = search.Value.Trim
+            LoadGrid(txtid.Text)
+            'End If
+        Catch ex As Exception
+            Process.loadalert(divalert, msgalert, ex.Message, "danger")
+
+        End Try
+    End Sub
+    Protected Sub Add_Details(sender As Object, e As EventArgs)
+
+        Dim SalaryComponent = Request.Form("grateful")
+        Dim DaysApplied = Request.Form("grateful1")
+        If SalaryComponent = "" Then
+            lblstatus = "No Salary Component Selected"
+            Process.loadalert(divalert, msgalert, lblstatus, "danger")
+        End If
+        If DaysApplied = "" Then
+            lblstatus = "No day is selected"
+            Process.loadalert(divalert, msgalert, lblstatus, "danger")
+        End If
+        Dim str = Guid.NewGuid.ToString()
+        Dim SalaryComponents As Array = SalaryComponent.Split(",")
+        Dim DaysApplies As Array = DaysApplied.Split(",")
+
+        For d As Integer = 0 To DaysApplies.Length - 1
+            SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Overtime_days_Update", 0, lblid.Text, Request.Form("performanceid"), DaysApplies(d), str)
+
+        Next
+        For d As Integer = 0 To SalaryComponents.Length - 1
+            SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Overtime_Components_Update", 0, lblid.Text, Request.Form("performanceid"), SalaryComponents(d), str)
+
+        Next
+
+
+    End Sub
+    Protected Sub OnRowDataBound(sender As Object, e As GridViewRowEventArgs)
+        If e.Row.RowType = DataControlRowType.DataRow Then
+            e.Row.Attributes("onclick") = Page.ClientScript.GetPostBackClientHyperlink(gridskills, "Select$" & e.Row.RowIndex)
+            e.Row.ToolTip = "Click to select this row."
+        End If
     End Sub
 End Class

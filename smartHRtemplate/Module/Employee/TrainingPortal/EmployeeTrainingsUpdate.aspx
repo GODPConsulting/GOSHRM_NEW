@@ -22,6 +22,7 @@
                             <asp:Label ID="lblsessionid" runat="server" Font-Size="1px" Visible="False"></asp:Label>
                             <asp:Label ID="lblassessment" runat="server" Visible="False" Font-Size="1px"></asp:Label>
                             <asp:Label ID="lblappassessment" runat="server" Visible="False" Font-Size="1px"></asp:Label>
+                             <asp:Label ID="lblassessmentdate" runat="server" Visible="False" Font-Size="1px"></asp:Label>
                             <asp:Label ID="lbldateassessment" runat="server" Visible="False" Font-Size="1px"></asp:Label>
                             <asp:Label ID="lblappdateassessment" runat="server" Visible="False" Font-Size="1px"></asp:Label>
                             <asp:Label ID="lblEmpID" runat="server" Visible="False" Font-Size="1px"></asp:Label>
@@ -214,6 +215,9 @@
                                     <button id="lnkapplicationassessment" runat="server" onserverclick="lnkApplication_Click" type="submit"
                                         style="width: 200px" class="btn btn-link " title="Self evaluation on how training has impacted your work">
                                         Application Assessment</button>
+                                     <button id="Button1" runat="server" onserverclick="lnkmaterials_Click" type="submit"
+                                        style="width: 200px" class="btn btn-link " title="Self evaluation on how training has impacted your work">
+                                        Materials</button>
                                 </div>
                             </div>
                             <div class="row">

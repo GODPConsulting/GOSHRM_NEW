@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" type="text/css" />
     <link rel="stylesheet" href="plugins/morris/morris.css" />
     <link href="css/style.css" rel="stylesheet" type="text/css" />
+     <link href="css/page-style.css" rel="stylesheet" type="text/css" />
     <link href="css/gridview.css" rel="stylesheet" type="text/css" />
     <link href="css/w3.css" rel="stylesheet" type="text/css" />
     <link href="css/slider-goke.css" rel="stylesheet" type="text/css" />
@@ -223,7 +224,9 @@
         <div class="sidebar" id="sidebar">
             <div class="sidebar-inner slimscroll">
                 <div id="sidebar-menu" class="sidebar-menu">
+                    
                     <ul id="menu">
+                        
                         <li><a href="<%= Page.ResolveClientUrl("~/empdashboard") %>"><i class="fa fa-dashboard">
                         </i>Dashboard</a> </li>
                     </ul>

@@ -84,17 +84,20 @@
                                     </div>
                                 </div>
                                 <div class=" col-md-6">
-                                    <div class="form-group" id="rating">
+                                    <div class="form-group">
                                         <label>
-                                            Hobby Score *</label><br />
-                                        <i class="glyphicon glyphicon-star-empty" style="font-size:30px"></i>
-                                        <i class="glyphicon glyphicon-star-empty" style="font-size:30px"></i> 
-                                        <i class="glyphicon glyphicon-star-empty" style="font-size:30px"></i>
-                                        <i class="glyphicon glyphicon-star-empty" style="font-size:30px"></i>
-                                        <i class="glyphicon glyphicon-star-empty" style="font-size:30px"></i>
-
-
-
+                                            TRAINING RATING</label>
+                                        <telerik:RadRating ID="hobbiesrate" runat="server" AutoPostBack="True" ToolTip="How you rate hobby"
+                                            RenderMode="Lightweight" Skin="Bootstrap">
+                                        </telerik:RadRating>
+                                        <asp:UpdatePanel runat="server" ID="UpdatePanel4" UpdateMode="Always">
+                                            <ContentTemplate>
+                                                <label id="lbrating" runat="server"></label>
+                                            </ContentTemplate>
+                                            <Triggers>
+                                                <asp:AsyncPostBackTrigger ControlID="hobbiesrate" EventName="Rate" />
+                                            </Triggers>
+                                        </asp:UpdatePanel>
                                     </div>
                                 </div>
                             </div>

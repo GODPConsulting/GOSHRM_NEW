@@ -13,6 +13,163 @@
             <script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
             <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css"
                 rel="Stylesheet" type="text/css" />
+            <script type="text/javascript">
+                function corevalues(id) {
+                    var id = id
+                    corevalues1(id)
+                    corevalues2(id)
+                    
+                }
+
+                function corevalues1(id) {
+                    alert(id)
+                    var pid = <%=Request.QueryString("id")%>;
+                    //alert(pid)
+                    $.ajax({
+                        url: "<%= Page.ResolveClientUrl("~/res_new/gos.asmx/FinanceComponents") %>",
+                method: 'post',
+                data: {
+                    pid: pid
+                },
+                dataType: 'json',
+
+                success: function (data) {
+                    $('#performanceid').val(id);
+                    //var selsubmod = $('#tableComment');
+                    var selsubmod = document.getElementById("grateful");
+                  
+                    selsubmod.innerHTML = ''
+                    // selsubmod.empty();
+                    // selsubmod.append('<option value=-1>--Select KPI Metric--</option>');
+                    $(document).ready(function () {
+                        $(selsubmod).multiselect();
+                    });
+
+                    $(data).each(function (index, prog) {
+                        console.log(prog)
+                        selsubmod.innerHTML += '<option value=' + prog.name + '>' + prog.desc + '</option>';
+                    });
+
+
+                },
+                error: function (err) {
+                    //alert(JSON.stringify(err));
+                    $(err).each(function (index, prog) {
+                        $('#msgbox2').css('display', 'block');
+                        $("#pmsg").text(prog.responseText);
+                    });
+                }
+            });
+                }
+
+                function corevalues2(id) {
+                    alert(id)
+                    var pid = id;
+                    //alert(pid)
+                    $.ajax({
+                        url: "<%= Page.ResolveClientUrl("~/res_new/gos.asmx/DaysComponents") %>",
+                        method: 'post',
+                        data: {
+                            pid: pid
+                        },
+                        dataType: 'json',
+
+                        success: function (data) {
+                            $('#performanceid').val(id);
+                            //var selsubmod = $('#tableComment');
+                            
+                            var selsubmod1 = document.getElementById("grateful1");
+                            selsubmod1.innerHTML = ''
+                            // selsubmod.empty();
+                            // selsubmod.append('<option value=-1>--Select KPI Metric--</option>');
+                            $(document).ready(function () {
+                                $(selsubmod1).multiselect();
+                            });
+
+                            $(data).each(function (index, progs) {
+                                console.log(progs)
+                                selsubmod1.innerHTML += '<option value=' + progs.day + '>' + progs.day + '</option>';
+                            });
+
+
+                        },
+                        error: function (err) {
+                            //alert(JSON.stringify(err));
+                            $(err).each(function (index, prog) {
+                                $(document).ready(function () {
+                                    $(selsubmod1).multiselect();
+                                });
+                                $('#msgbox2').css('display', 'block');
+                                $("#pmsg").text(prog.responseText);
+                            });
+                        }
+                    });
+                }
+            </script>
+
+
+
+
+             <div class="modal fade" tabindex="-1" id="loginModal1"
+        data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" onclick="hide_msg()" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h4 class="modal-title"><b id="modal_title" runat="server">Schedule Coaching Session</b></h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                   
+                    
+                   <textarea id="performanceid" name="performanceid" style="display:none"  ></textarea>
+                    
+                     
+                    
+                     <div class="form-group">
+                        <div class="col-md-12">
+                            <label>Salary Components</label><br />
+                             
+                            <select style="width:100%"  id="grateful" name="grateful" class="mdb-select colorful-select dropdown-primary md-form" multiple searchable="Search here..">
+      
+    </select>
+                 
+                                   
+                        </div>
+                    </div>
+                       <div class="form-group">
+                        <div class="col-md-12">
+                            <label>Days Applied</label><br />
+                             
+                            <select style="width:100%"  id="grateful1" name="grateful1" class="mdb-select colorful-select dropdown-primary md-form" multiple searchable="Search here..">
+      
+    </select>
+                 
+                                   
+                        </div>
+                    </div>
+                  
+                     
+                    <div style="display:none;" class="row">
+                        <label><input id="self" style="margin-top:10px;" onclick="onchecked()" type="checkbox"/> Self</label>
+                    </div>
+                    <div id="msgbox20" style="display:none;" class="row text-center">
+                      <label class=" m-t-10" id="pmsg" style="color:Red;">Please Complete Every Field !!!</label>
+                    </div>
+                    <div id="msgbox100" style="display:none;" class="row text-center">
+                      <label class=" m-t-10" id="Label11" style="color:Green;"><b>Objective Saved !!!</b></label>
+                    </div>  
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="btnsubmit1" type="button"  runat="server" onserverclick="Add_Details"   class="btn btn-success m-t-10">Save</button>
+                <button type="button" onclick="hide_msg()" class="btn btn-danger m-t-10" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
             <div class="container col-md-10">
                 <div class="row">
                     <div id="divalert" runat="server" visible="false" class="alert alert-info">
@@ -30,6 +187,8 @@
                             Font-Size="1px"></asp:Label>
                         <asp:Label ID="lblattendance" runat="server" Text="Label" Visible="False" Width="1px"
                             Font-Size="1px"></asp:Label>
+                         <asp:TextBox ID="txtskillid" runat="server" Font-Size="1px" Height="1px" Width="1px"
+                            Visible="False"></asp:TextBox>
                     </div>
                     <div class="panel panel-success">
                         <div class="panel-heading">
@@ -204,6 +363,90 @@
                         </div>
                     </div>
                 </div>
+                   <div id="pnskill" runat="server" class="panel panel-info">
+                <div class="panel-heading">
+                   <h6><b>Overtime Set Up</b></h6>  
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="search-box-wrapper col-sm-6 col-md-3 col-xs-12 form-group pull-right">
+                            <input id="search" style="width: 100%" runat="server" type="text" placeholder="Search..." class="search-box-input" />
+                            <button onserverclick="btnFind_Click" id="btsearch" runat="server" class="search-box-button"><i style="color: Black;" class="fa fa-search"></i></button>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12 form-group pull-right">
+                            <button id="btExport" data-toggle="tooltip" data-original-title="Export" type="button" runat="server" class="fa fa-download btn btn-default btn-sm" onserverclick="btnExport_Click"
+                                style="height: 35px">
+                            </button>
+                            <button id="btnUploadFile" type="button" runat="server" class="fa fa-upload btn btn-default btn-sm"
+                                onserverclick="btnUpload_Click" data-toggle="tooltip" data-original-title="Upload(Skill, CourseCode, Rating)" style="margin-right: 10px; margin-left: 10px; height: 35px">
+                            </button>
+                            <asp:LinkButton ID="btDelete" data-toggle="tooltip" data-original-title="Delete" Height="35px" runat="server" CssClass="btn btn-default btn-sm" OnClick="Delete" OnClientClick="Confirm()">
+                            <span style="margin-top:5px" aria-hidden="true" class="glyphicon glyphicon-trash"></span>
+                            </asp:LinkButton>
+                            <button id="btAdd" type="button" data-toggle="tooltip" data-original-title="Add Skills" runat="server" class="glyphicon glyphicon-plus btn btn-default btn-sm" onserverclick="btnAddSkill_Click"
+                                style="height: 35px; margin-right: 10px; margin-left: 10px;">
+                            </button>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12 pull-right">
+                            <input style="height: 35px;" class="form-control" type="file" id="file1" runat="server" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="table-responsive">
+                            <asp:GridView ID="gridskills" runat="server" OnSorting="SortRecords" AllowSorting="True"
+                                BorderStyle="Solid" Font-Names="Verdana" AllowPaging="True" PageSize="10" DataKeyNames="id"
+                                Width="100%" Height="50px" ToolTip="click row to select record" Font-Size="12px"
+                                ShowHeaderWhenEmpty="True" EmptyDataText="No data to display" AutoGenerateColumns="False"
+                                GridLines="Both" ForeColor="#666666" BorderWidth="1px" BorderColor="#CCCCCC"
+                                CssClass="table table-condensed">
+                                <RowStyle BackColor="White" />
+                                <Columns>
+                                    <asp:TemplateField ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Top">
+                                        <HeaderTemplate>
+                                            <asp:CheckBox ID="chkboxSelectAll" runat="server" onclick="CheckAllEmp(this);" />
+                                        </HeaderTemplate>
+                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                        <ItemTemplate>
+                                            <asp:CheckBox ID="chkEmp" runat="server"></asp:CheckBox>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:BoundField DataField="Rows" HeaderText="Rows" SortExpression="rows"
+                                        ItemStyle-VerticalAlign="Top" />
+                                    <asp:TemplateField HeaderText="Jobgrade" SortExpression="skills"
+                                        ItemStyle-VerticalAlign="Top">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="lnkDownload" Text='<%# Eval("jobgrade")%>' CommandArgument='<%# Eval("id") %>'
+                                                runat="server" OnClick="DrillDown"></asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                     <asp:BoundField DataField="rate" HeaderText="Rate" SortExpression="rating"
+                                        ItemStyle-VerticalAlign="Top" />
+                                     <asp:BoundField DataField="Active" HeaderText="Status" SortExpression="rating"
+                                        ItemStyle-VerticalAlign="Top" />
+                                      <asp:TemplateField HeaderText="ADD" ItemStyle-Font-Bold="true" SortExpression="name">
+                                    <ItemTemplate>
+                                       
+                                        <a href="#" data-toggle="modal" data-target="#loginModal1" onclick='corevalues("<%# Eval("id") %>");' >
+                                        ADD </a>
+                                    </ItemTemplate>
+                                </asp:TemplateField> 
+                                </Columns>
+                                <HeaderStyle BackColor="White" ForeColor="#1BA691" HorizontalAlign="center" />
+                            </asp:GridView>
+                            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                            <script type="text/javascript">
+                                $(function () {
+                                    $("[id*=gridskills] td").hover(function () {
+                                        $("td", $(this).closest("tr")).addClass("hover_row");
+                                    }, function () {
+                                        $("td", $(this).closest("tr")).removeClass("hover_row");
+                                    })
+                                })
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
             </div>
             <%-- <table width="100%">
             <tr>

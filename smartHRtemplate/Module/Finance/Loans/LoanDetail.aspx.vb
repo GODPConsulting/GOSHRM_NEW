@@ -113,6 +113,7 @@ Public Class LoanDetail
 
                     lblEmpID.Text = strUser.Tables(0).Rows(0).Item("empid").ToString
                     lblEmpName.Value = strUser.Tables(0).Rows(0).Item("EmployeeName").ToString
+                    Process.LoadRadComboTextAndValueP2(cboApproverII, "Emp_PersonalDetail_get_Superiors", strUser.Tables(0).Rows(0).Item("grade").ToString, Process.GetCompanyName, "Employee2", "EmpID", True)
 
                     txtAmount.Value = FormatNumber(strUser.Tables(0).Rows(0).Item("LoanAmount").ToString, 2)
 
@@ -499,6 +500,22 @@ Public Class LoanDetail
                 End If
             End If
 
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+    Protected Sub chkHigherApproval_CheckedChanged(sender As Object, e As EventArgs) Handles chkHigherApproval2.CheckedChanged
+        Try
+            If chkHigherApproval2.Checked = True Then
+                divhigherapproval2.Visible = True
+                divhigherapproval.Visible = True
+
+            Else
+                divhigherapproval2.Visible = False
+                divhigherapproval.Visible = False
+
+            End If
         Catch ex As Exception
 
         End Try

@@ -11,7 +11,16 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class EmployeeHobbies
+Partial Public Class OverTimePayment
+
+    '''<summary>
+    '''RadCodeBlock1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadCodeBlock1 As Global.Telerik.Web.UI.RadCodeBlock
 
     '''<summary>
     '''divalert control.
@@ -41,22 +50,22 @@ Partial Public Class EmployeeHobbies
     Protected WithEvents txtid As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''txtempid control.
+    '''txtcourseid control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txtempid As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtcourseid As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''TextBox1 control.
+    '''divjoboffer control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents TextBox1 As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents divjoboffer As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
     '''pagetitle control.
@@ -68,74 +77,47 @@ Partial Public Class EmployeeHobbies
     Protected WithEvents pagetitle As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''aname control.
+    '''cboskill control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents aname As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents cboskill As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
-    '''hobbiesname control.
+    '''aweight control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents hobbiesname As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents aweight As Global.System.Web.UI.HtmlControls.HtmlInputText
 
     '''<summary>
-    '''hobbyDescriptions control.
+    '''radItemActive control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents hobbyDescriptions As Global.System.Web.UI.HtmlControls.HtmlInputText
+    Protected WithEvents radItemActive As Global.Telerik.Web.UI.RadDropDownList
 
     '''<summary>
-    '''hobbiesrate control.
+    '''btnupdate control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents hobbiesrate As Global.Telerik.Web.UI.RadRating
+    Protected WithEvents btnupdate As Global.System.Web.UI.HtmlControls.HtmlButton
 
     '''<summary>
-    '''UpdatePanel4 control.
+    '''Button1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UpdatePanel4 As Global.System.Web.UI.UpdatePanel
-
-    '''<summary>
-    '''lbrating control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbrating As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''btnsave control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnsave As Global.System.Web.UI.HtmlControls.HtmlButton
-
-    '''<summary>
-    '''btnback control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnback As Global.System.Web.UI.HtmlControls.HtmlButton
+    Protected WithEvents Button1 As Global.System.Web.UI.HtmlControls.HtmlButton
 End Class
