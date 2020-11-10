@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class EmployeeLeaves
-    
+
     '''<summary>
     '''divalert control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class EmployeeLeaves
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents divalert As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''msgalert control.
     '''</summary>
@@ -30,7 +30,16 @@ Partial Public Class EmployeeLeaves
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents msgalert As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
+    '''<summary>
+    '''content control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents content As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
     '''<summary>
     '''pagetitle control.
     '''</summary>
@@ -39,7 +48,7 @@ Partial Public Class EmployeeLeaves
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pagetitle As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''cboView control.
     '''</summary>
@@ -48,7 +57,7 @@ Partial Public Class EmployeeLeaves
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboView As Global.Telerik.Web.UI.RadComboBox
-    
+
     '''<summary>
     '''cboCompany control.
     '''</summary>
@@ -57,7 +66,7 @@ Partial Public Class EmployeeLeaves
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboCompany As Global.Telerik.Web.UI.RadComboBox
-    
+
     '''<summary>
     '''MultiView1 control.
     '''</summary>
@@ -66,7 +75,7 @@ Partial Public Class EmployeeLeaves
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents MultiView1 As Global.System.Web.UI.WebControls.MultiView
-    
+
     '''<summary>
     '''AllListView control.
     '''</summary>
@@ -75,7 +84,7 @@ Partial Public Class EmployeeLeaves
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents AllListView As Global.System.Web.UI.WebControls.View
-    
+
     '''<summary>
     '''radStatus control.
     '''</summary>
@@ -84,7 +93,7 @@ Partial Public Class EmployeeLeaves
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents radStatus As Global.Telerik.Web.UI.RadComboBox
-    
+
     '''<summary>
     '''dateFrom control.
     '''</summary>
@@ -93,7 +102,7 @@ Partial Public Class EmployeeLeaves
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dateFrom As Global.Telerik.Web.UI.RadDatePicker
-    
+
     '''<summary>
     '''dateTo control.
     '''</summary>
@@ -102,7 +111,7 @@ Partial Public Class EmployeeLeaves
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dateTo As Global.Telerik.Web.UI.RadDatePicker
-    
+
     '''<summary>
     '''btnApprove control.
     '''</summary>
@@ -111,7 +120,7 @@ Partial Public Class EmployeeLeaves
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnApprove As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''btnDelete control.
     '''</summary>
@@ -120,7 +129,7 @@ Partial Public Class EmployeeLeaves
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnDelete As Global.System.Web.UI.WebControls.LinkButton
-    
+
     '''<summary>
     '''txtsearch control.
     '''</summary>
@@ -129,7 +138,7 @@ Partial Public Class EmployeeLeaves
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtsearch As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''btnFind control.
     '''</summary>
@@ -138,7 +147,7 @@ Partial Public Class EmployeeLeaves
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnFind As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''GridVwHeaderChckbox control.
     '''</summary>
@@ -147,7 +156,7 @@ Partial Public Class EmployeeLeaves
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents GridVwHeaderChckbox As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''GroupByEmployee control.
     '''</summary>
@@ -156,7 +165,7 @@ Partial Public Class EmployeeLeaves
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents GroupByEmployee As Global.System.Web.UI.WebControls.View
-    
+
     '''<summary>
     '''btnGroupApprove control.
     '''</summary>
@@ -165,7 +174,7 @@ Partial Public Class EmployeeLeaves
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnGroupApprove As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''txtSearchGroup control.
     '''</summary>
@@ -174,7 +183,7 @@ Partial Public Class EmployeeLeaves
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtSearchGroup As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''btnGroupView control.
     '''</summary>
@@ -183,7 +192,7 @@ Partial Public Class EmployeeLeaves
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnGroupView As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''dateGroupFrom control.
     '''</summary>
@@ -192,7 +201,7 @@ Partial Public Class EmployeeLeaves
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dateGroupFrom As Global.Telerik.Web.UI.RadDatePicker
-    
+
     '''<summary>
     '''dateGroupTo control.
     '''</summary>
@@ -201,7 +210,7 @@ Partial Public Class EmployeeLeaves
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents dateGroupTo As Global.Telerik.Web.UI.RadDatePicker
-    
+
     '''<summary>
     '''gridGroupView control.
     '''</summary>

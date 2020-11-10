@@ -74,6 +74,7 @@
                     <strong id="msgalert" runat="server">Danger!</strong>
                 </div>
             </div>
+            <div id="content" runat="server">
         <div class="panel panel-success">
                 <div class="panel-heading">
                     <h5><b id="pagetitle" runat="server">Company Name</b></h5>
@@ -185,6 +186,7 @@
         </div>
         </div>
         </div>
+            </div>
         </form>
     </body>
     </html>
