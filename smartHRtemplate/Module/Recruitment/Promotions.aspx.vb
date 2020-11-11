@@ -229,7 +229,7 @@ Public Class Promotions
                             End If
                         Next
                         SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Recruitment_Promotion_delete", ID)
-                        Dim saveAudit As Boolean = Process.GetAuditTrailInsertandUpdate(NewValue, OldValue, "Deleted", "HR Promotion Page")
+                        Dim saveAudit As Boolean = Process.GetAuditTrailInsertandUpdate(NewValue, OldValue, "Deleted", "Promotion Page")
                     End If
                 Next
                 Process.loadalert(divalert, msgalert, count.ToString & " records successfully deleted", "success")

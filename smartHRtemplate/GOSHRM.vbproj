@@ -2340,6 +2340,7 @@
     <Content Include="js\report.js" />
     <Content Include="js\select2.min.js" />
     <Content Include="js\task.js" />
+    <Content Include="hrdashboard2.aspx" />
     <Content Include="managers.aspx" />
     <Content Include="manager1.aspx" />
     <Content Include="Module\Admin\AcademicGradeUpdate.aspx" />
@@ -5238,6 +5239,13 @@
     <Compile Include="hrdashboard.aspx.vb">
       <DependentUpon>hrdashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="hrdashboard2.aspx.designer.vb">
+      <DependentUpon>hrdashboard2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="hrdashboard2.aspx.vb">
+      <DependentUpon>hrdashboard2.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="managers.aspx.designer.vb">
       <DependentUpon>managers.aspx</DependentUpon>

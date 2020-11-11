@@ -217,7 +217,31 @@ Public Class TerminationUpdate
                 ahigherapproval.Value = "Approved"
             End If
 
+            Dim terminateObj = New TerminationObj()
+            terminateObj.EmpId = cboEmployee.SelectedValue
+            terminateObj.MgrId = cboManager.SelectedValue
+            terminateObj.NoticeDate = anoticedate.SelectedDate
+            terminateObj.TerminationDate = aexitdate.SelectedDate
+            terminateObj.Reason = areason.Value
+            terminateObj.ExitType = cboExitType.SelectedItem.Value
+            terminateObj.Comment = acomment.Value
+            terminateObj.Status = acomment.Value
+            terminateObj.UserEmpId = cboHRApproval.SelectedItem.Text
+            terminateObj.Supervisor = Session("UserEmpID")
+            terminateObj.Status = cboApproverII.SelectedValue
+            terminateObj.CreatedBy = Session("LoginID")
 
+            For Each a In GetType(TerminationObj).GetProperties() 'New Entries
+                If a.Name.ToLower <> "id" And a.Name.ToLower <> "password" Then
+                    If a.PropertyType.IsValueType = True Or a.PropertyType.Equals(GetType(String)) Then
+                        If a.GetValue(terminateObj, Nothing) = Nothing Then
+                            NewValue += a.Name + ":" + " " & vbCrLf
+                        Else
+                            NewValue += a.Name + ": " + a.GetValue(terminateObj, Nothing).ToString & vbCrLf
+                        End If
+                    End If
+                End If
+            Next
 
             If txtid.Text <> "0" And txtid.Text <> "" Then
                 SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Emp_Termination_Update", txtid.Text, cboEmployee.SelectedValue, cboManager.SelectedValue, Process.DDMONYYYY(anoticedate.SelectedDate), Process.DDMONYYYY(aexitdate.SelectedDate), areason.Value, cboExitType.SelectedItem.Value, acomment.Value, cboHRApproval.SelectedItem.Text, Session("UserEmpID"), cboApproverII.SelectedValue)
@@ -230,6 +254,7 @@ Public Class TerminationUpdate
                 End If
                 Process.Exit_From_HR(Process.DDMONYYYY(aexitdate.SelectedDate), cboExitType.SelectedItem.Text, areason.Value, Process.GetMailList("hr"), cboEmployee.SelectedValue, cboManager.SelectedValue, Process.ApplicationURL() + "/" + Process.GetMailLink(AuthenCode, 1))
             End If
+            Dim saveAudit As Boolean = Process.GetAuditTrailInsertandUpdate(OldValue, NewValue, "Inserted", "Termination Initiated")
 
             lblstatus = "Record updated"
             Process.loadalert(divalert, msgalert, lblstatus, "success")
@@ -274,6 +299,21 @@ Public Class TerminationUpdate
             Return 0
         End Try
     End Function
+
+    Private Class TerminationObj
+        Public Property Id As Integer
+        Public Property EmpId As String
+        Public Property MgrId As String
+        Public Property NoticeDate As String
+        Public Property TerminationDate As String
+        Public Property Reason As String
+        Public Property ExitType As String
+        Public Property Comment As String
+        Public Property Status As String
+        Public Property UserEmpId As String
+        Public Property Supervisor As String
+        Public Property CreatedBy As String
+    End Class
     Protected Sub btnCancel_Click(sender As Object, e As EventArgs)
         Try
             'Response.Redirect("terminations", True)
