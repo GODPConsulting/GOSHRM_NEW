@@ -14,218 +14,56 @@ Option Explicit On
 Partial Public Class test1
 
     '''<summary>
-    '''Gcount control.
+    '''divalert control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Gcount As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents divalert As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''distribute control.
+    '''msgalert control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents distribute As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents msgalert As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''birthday control.
+    '''txtid control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents birthday As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents txtid As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''top_perform control.
+    '''TextBox1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents top_perform As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents TextBox1 As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''leavetable control.
+    '''txtskillid control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents leavetable As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents txtskillid As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''mTeam control.
+    '''mgrbody control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents mTeam As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''Aloan control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Aloan As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''ALeave control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ALeave As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''ADev control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ADev As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''ATrain control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ATrain As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''APer control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents APer As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''APerFeed control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents APerFeed As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''APro control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents APro As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''AJob control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents AJob As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''AWork control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents AWork As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''ASucc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ASucc As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''EmpCon control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents EmpCon As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''EmpAttend control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents EmpAttend As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''Emptime control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Emptime As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''RPro control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RPro As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''RStaff control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RStaff As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''RWork control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RWork As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''RSucc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RSucc As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-
-    '''<summary>
-    '''ADis control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ADis As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    Protected WithEvents mgrbody As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 End Class

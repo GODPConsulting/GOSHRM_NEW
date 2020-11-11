@@ -1,9 +1,86 @@
 ﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/smartHR.Master" CodeBehind="manager.aspx.vb" Inherits="GOSHRM.test1" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+     <%--<script type="text/javascript"
+      src="https://code.jquery.com/jquery-3.5.1.min.js"
+      integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+      crossorigin="anonymous"
+    ></script>--%>
+    <script type="text/javascript">
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("man");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("manager-close")[0];
+
+        // When the user clicks the button, open the modal
+        btn.onclick = function () {
+            modal.style.display = "block";
+        };
+        function good(id) {
+            var pid = id;
+            var modal = document.getElementById("myModal");
+            $.ajax({
+                url: "<%= Page.ResolveClientUrl("~/res_new/gos.asmx/Employedata") %>",
+                method: 'post',
+                data: {
+                    pid: pid,
+
+                },
+                dataType: 'json',
+
+                success: function (data) {
+                    modal.style.display = "block";
+                    var present = document.getElementById("present");
+                    var leavetaken = document.getElementById("leavetaken");
+                    var absent = document.getElementById("absent");
+                    var attend = document.getElementById("attandanceRate")
+                   
+                    $(data).each(function (index, progs) {
+                        present.innerText = "";
+                        leavetaken.innerText = "";
+                        absent.innerText = "";
+                        console.log(progs)
+                        present.innerText = progs.Presentday;
+                        leavetaken.innerText =
+                            progs.LeaveTaken;
+                        absent.innerText = progs.AbsentDay;
+                        attend.innerText = progs.AttendanceRate+'%';
+                    });
+                },
+                error: function (err) {
+                    //alert(JSON.stringify(err));
+                    $(err).each(function (index, prog) {
+                        $('#msgbox2').css('display', 'block');
+                        $("#pmsg").text(prog.responseText);
+                    });
+
+
+                }
+            });
+            
+
+        }
+        // When the user clicks on <span> (x), close the modal
+        function bad() {
+            var modal = document.getElementById("myModal")
+            modal.style.display = "none";
+        };
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
+    </script>
 <%--<div class="tcontainer">
 <iframe src="manager1.aspx"  scrolling="no" style="width: 100%; height:2500px;overflow: hidden;  border:0;" ></iframe></div>--%>
 <div class="container col-md-12">
@@ -21,12 +98,221 @@
             </ul>
         </div>
          <div class="panel panel-success">
+             <div id="divalert" runat="server" visible="false" class="alert alert-info">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong id="msgalert" runat="server">Danger!</strong>
+                        <asp:TextBox ID="txtid" runat="server" Width="1px"
+                            Font-Names="Candara" Height="1px" Visible="False"></asp:TextBox>
+                        <asp:TextBox ID="TextBox1" runat="server" Font-Size="1px" Height="1px" Width="1px"
+                            Visible="False"></asp:TextBox>
+                    </div>
                                 <div class="panel-heading">
                                     <h4><b>Manager Dashboard</b></h4>
+                                     <asp:TextBox ID="txtskillid" runat="server" Font-Size="1px" Height="1px" Width="1px"
+                            Visible="False"></asp:TextBox>
+                                      
                                 </div>
                                 <div class="panel-body">
+                                    			<div class="table-responsive">
+										<table class="table table-striped custom-table m-b-0">
+											<thead>
+												<tr>
+                                                    <th>S/N</th>
+													<th>Name</th>
+													<th>Office</th>
+													<th>Job Title</th>
+													<th>Job Grade</th>
+													<th>Performance Rating</th>
+                                                    <th></th>
+												</tr>
+											</thead>
+											<tbody id="mgrbody" runat="server">
+												<%--<tr>
+													<td><a href="invoice-view.html">#INV-0001</a></td>
+													<td>
+														<h2><a href="#">Hazel Nutt</a></h2>
+													</td>
+													<td>8 Aug 2017</td>
+													<td>$380</td>
+													<td>
+														<span class="label label-warning-border">Partially Paid</span>
+													</td>
+                                                    <td>Approve</td>
+												</tr>
+												--%>
+											
+											</tbody>
+										</table>
+									</div>
+                                    <div class="row">
+                                    <div class="col-md-6">
+                                   <div id="myModal" style="width:90%;margin-left:13%" class="manager-card-wrapper manager-modal">
+          <div class="manager-modal-content">
+            <span class="manager-close" onclick="bad()">&times;</span>
+            <div class="manager-card-container">
+                <div class="col-md-4">
+               
+                    <h3 class="content-card-header">Competence & Development</h3>
+                    <div class="rating-container">
+                      <span class="rating-percent">98%</span><span>Rating</span>
+                    </div>
+                    <div class="manager-btn-wrapper">
+                      <button class="manager-btn">Request Training</button>
+                      <button class="manager-btn">View Dev Plan</button>
+                      <button class="manager-btn">Approve Training</button>
+                      <button class="manager-btn">View Training</button>
+                    </div>
+                    
+                  </div>
+                <div class="col-md-4">
+                  
+                    <h3 class="content-card-header">Attendance & Leave</h3>
+                    <div class="rating-container">
+                      <span class="rating-percent" id="attandanceRate">80%</span><span>Rating</span>
+                    </div>
+                    <div class="manager-item-wrapper">
+                      <div class="top-wrapper">
+                        <div class="event-item manager-card-item">
+                          <span id="present"> 10 </span>
+                          <span>Present</span>
+                        </div>
+                        <div class="manager-pipe"></div>
+                        <div class="event-item manager-card-item">
+                          <span id="absent"> 10 </span>
+                          <span>Absent</span>
+                        </div>
+                        <div class="manager-pipe"></div>
+                        <div class="event-item manager-card-item">
+                          <span> 10 </span>
+                          <span>Overtime Request</span>
+                        </div>
+                      </div>
+                      <!-- <div class="event-pipe"></div> -->
+                      <div class="top-wrapper">
+                        <div class="event-item manager-card-item">
+                          <span id="leavetaken">10</span>
+                          <span>Leave Taken</span>
+                        </div>
+                        <div class="manager-pipe"></div>
+                        <div class="event-item manager-card-item">
+                          <span>10</span>
+                          <span>Leave Request</span>
+                        </div>
+                      </div>
+                    </div>
+                
+                    </div>
+                <div class="col-md-4">
+                
+                  
+                    <h3 class="content-card-header">Performance Rating</h3>
+                    <div class="rating-container">
+                      <span class="rating-percent">98%</span><span>Rating</span>
+                    </div>
+                    <div class="manager-btn-wrapper">
+                      <button class="manager-btn">View Objective</button>
+                      <button class="manager-btn">View Feedback</button>
+                      <button class="manager-btn">View Kudos</button>
+                      <button class="manager-btn">End Cycles</button>
+                    </div>
+                
+                    </div>
+                  <div class="col-md-4">
+                    <h3 class="content-card-header">Career</h3>
+                    <div class="career-top">
+                      <div class="career-top-item">
+                        <span>0</span>
+                        <span>Confirmed</span>
+                      </div>
+                      <div class="manager-pipe"></div>
+                      <div class="career-top-btn-wrapper">
+                        <button class="career-btn">Initiate Confirmation</button>
+                      </div>
+                    </div>
+                    <div class="career-mid">
+                      <div class="career-mid-item">
+                        <span>2</span>
+                        <span>Promotion</span>
+                      </div>
+                      <div class="manager-pipe"></div>
+                      <div>
+                        <button class="career-btn">Initiate Promotion</button>
+                      </div>
+                      <div class="manager-pipe"></div>
+                      <div class="career-mid-item">
+                        <span>Approve</span>
+                      </div>
+                    </div>
+                    <div class="career-bottom">
+                      <div class="career-bottom-item">
+                        <span>4</span><span>Overtime</span>
+                      </div>
+                      <div class="manager-pipe"></div>
+                      <div class="career-top-btn-wrapper">
+                        <button class="career-btn">Initiate Overtime</button>
+                      </div>
+                    </div>
+                  </div>
+                    </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
 
-					<div class="card-box m-b-0">
+
+
+                       <%-- <div class="table-responsive">
+                            <asp:GridView ID="gridskills" runat="server" OnSorting="SortRecords" AllowSorting="True"
+                                BorderStyle="Solid" Font-Names="Verdana" AllowPaging="True" PageSize="10" DataKeyNames="id"
+                                Width="100%" Height="50px" ToolTip="click row to select record" Font-Size="12px"
+                                ShowHeaderWhenEmpty="True" EmptyDataText="No data to display" AutoGenerateColumns="False"
+                                GridLines="Both" ForeColor="#666666" BorderWidth="1px" BorderColor="#CCCCCC"
+                                CssClass="table table-condensed">
+                                <RowStyle BackColor="White" />
+                                <Columns>
+                                    
+                                    <asp:BoundField DataField="id" HeaderText="Rows" SortExpression="rows"
+                                        ItemStyle-VerticalAlign="Top" />
+                                    <asp:TemplateField HeaderText="Name" SortExpression="skills"
+                                        ItemStyle-VerticalAlign="Top">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="lnkDownload" Text='<%# Eval("Names")%>' CommandArgument='<%# Eval("empid") %>'
+                                                runat="server" OnClick="DrillDown"></asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                     <asp:BoundField DataField="Company" HeaderText="Office" SortExpression="Company"
+                                        ItemStyle-VerticalAlign="Top" />
+                                    <asp:BoundField DataField="JobTitle" HeaderText="Job Title" SortExpression="JobTitle"
+                                        ItemStyle-VerticalAlign="Top" />
+                                     <asp:BoundField DataField="GradeLevel" HeaderText="Job Grade" SortExpression="GradeLevel"
+                                        ItemStyle-VerticalAlign="Top" />
+                                    <asp:BoundField DataField="Score" HeaderText="Performance Rating" SortExpression="Score"
+                                        ItemStyle-VerticalAlign="Top" />
+                                     <asp:TemplateField HeaderText="" SortExpression="skills"
+                                        ItemStyle-VerticalAlign="Top">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="lnkDownload" Text='View Profile' CommandArgument='<%# Eval("empid") %>'
+                                                runat="server" OnClick="DrillDown"></asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                                <HeaderStyle BackColor="White" ForeColor="#1BA691" HorizontalAlign="center" />
+                            </asp:GridView>
+                            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                            <script type="text/javascript">
+                                $(function () {
+                                    $("[id*=gridskills] td").hover(function () {
+                                        $("td", $(this).closest("tr")).addClass("hover_row");
+                                    }, function () {
+                                        $("td", $(this).closest("tr")).removeClass("hover_row");
+                                    })
+                                })
+                            </script>
+                        </div>--%>
+                    </div>
+</div>
+<%--					<div class="card-box m-b-0">
 						<div class="row">
 							<div class="col-md-12">
 											<div class="col-md-6">                                           
@@ -62,7 +348,7 @@
                                                         <div class="experience-content">
                                                             <div class="timeline-content">
                                                                 <a href="#/" class="name">No Direct Report</a>
-                                                                <%--<div>Bsc Computer Science</div>--%>
+                                                               <div>Bsc Computer Science</div>
                                                             </div>
                                                         </div>
                                                     </li>
@@ -83,7 +369,7 @@
                                                         <div class="experience-content">
                                                             <div class="timeline-content">
                                                                 <a href="#/" class="name">No Birthdays Today</a>
-                                                                <%--<div>2nd August 1980</div>--%>
+                                                                <div>2nd August 1980</div>
                                                             </div>
                                                         </div>
                                                     </li>
@@ -101,15 +387,15 @@
                                             <div class="activity-box">
                                                 <ul id="top_perform" runat="server" class="activity-list">
                                                     <li>
-                                                       <%-- <div class="activity-user">
+                                                        <div class="activity-user">
                                                             <a href="profile.html" title="Lesley Grauer" data-toggle="tooltip" class="avatar">
                                                                 <img alt="Lesley Grauer" src="images/user.jpg" class="img-responsive img-circle">
                                                             </a>
-                                                        </div>--%>
+                                                        </div>
                                                         <div class="activity-content">
                                                             <div class="timeline-content">
                                                                 <a href="profile.html" class="name">No top performer
-                                                                <%--<span class="time">96%</span>--%>
+                                                                <span class="time">96%</span>
                                                             </div>
                                                         </div>
                                                     </li>                                                   
@@ -160,7 +446,7 @@
 							</div>
 						</div>
                     <div class="row">
-			<%--		<div style="display: none" class="card-box tab-box">
+					<div style="display: none" class="card-box tab-box">
                         <div class="row user-tabs">
                             <div class="col-md-12 col-sm-12 col-xs-12 line-tabs">
                                 <ul class="nav nav-tabs tabs nav-tabs-bottom">
@@ -170,7 +456,7 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>--%>
+                    </div>
                     
                     <div class="card-box tab-box" style="">
                         <div class="row user-tabs" >
@@ -460,6 +746,6 @@
 
 
 
-             </script>
+             </script>--%>
 
 </asp:Content>

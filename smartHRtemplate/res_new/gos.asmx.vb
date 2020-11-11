@@ -100,6 +100,16 @@ Public Class gos
     Public Class DayList
         Public Property day As String
     End Class
+    Public Class EmployeesData
+        Public Property Presentday As String
+        Public Property AbsentDay As String
+        Public Property Leaveday As String
+        Public Property Overtime As String
+        Public Property AttendanceRate As String
+        Public Property LeaveTaken As String
+        Public Property LeaveRequest As String
+        Public Property Performance As String
+    End Class
 
 
     <WebMethod()> _
@@ -639,6 +649,49 @@ Public Class gos
             Context.Response.Write(js.Serialize(listRecipients1))
 
         End If
+
+    End Sub
+    <WebMethod()>
+    Public Sub Employedata(ByVal pid As String)
+        Dim listRecipients1 As List(Of EmployeesData) = New List(Of EmployeesData)()
+
+        Dim strPresentDays As DataTable = Process.SearchDataP3("Time_Employee_Attendance_Get_All_Working", pid, DateSerial(Now.Year, Now.Month, 1), Date.Today)
+        ' Dim strPresentDays As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Time_Employee_Attendance_Get_All", Session("UserEmpID"), DateSerial(Now.Year, Now.Month, 1), Date.Today)
+        Dim foundRow As DataRow() = strPresentDays.[Select]("isworkday = 1")
+        Dim foundRow1 As DataRow() = strPresentDays.[Select]("leaveid <> '0' and isworkday = 1")
+        Dim foundRow2 As DataRow() = strPresentDays.[Select]("checkindate ='' and isworkday = 1 and leaveid = '0'")
+        Dim strLeave As DataTable
+        strLeave = Process.SearchData("Emp_Leave_Chart", pid)
+
+        Dim sum = IIf(IsDBNull(strLeave.Compute("SUM(totalbalance)", "")), "0", strLeave.Compute("SUM(totalbalance)", ""))
+        'Dim sum2 As Integer = Convert.ToInt32(strLeave.Compute("SUM(ApprovedDays)", String.Empty))
+        Dim sum2 = IIf(IsDBNull(strLeave.Compute("SUM(ApprovedDays)", "")), "0", strLeave.Compute("SUM(ApprovedDays)", ""))
+        Dim sums As String = sum.ToString()
+        Dim sums2 As String = sum2.ToString()
+        'Dim strEmployee As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Emp_PersonalDetail_DirectReports_My_Team", Session("UserEmpID"))
+        'Dim newDataRow As DataRow() = strEmployee.Tables(0).[Select]("empid ='" & pid & "'")
+
+
+
+
+        Dim progs As EmployeesData = New EmployeesData()
+        progs.Presentday = (foundRow.Length - (foundRow1.Length + foundRow2.Length)).ToString()
+        progs.AbsentDay = foundRow2.Length.ToString()
+        progs.Leaveday = foundRow1.Length.ToString
+        If foundRow.Length > 0 Then
+            progs.AttendanceRate = ((Integer.Parse(progs.Presentday) / foundRow.Length) * (100)).ToString()
+        Else
+            progs.AttendanceRate = "0"
+        End If
+        progs.LeaveTaken = sums2.Split(".")(0)
+        '  progs.Performance = newDataRow(0).Item("Score")
+        listRecipients1.Add(progs)
+
+
+
+        Dim js As JavaScriptSerializer = New JavaScriptSerializer()
+            Context.Response.Write(js.Serialize(listRecipients1))
+
 
     End Sub
 
