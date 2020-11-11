@@ -114,7 +114,7 @@ Public Class PromotionsUpdate
         Catch ex As Exception
         End Try
     End Sub
- 
+
     Private Function GetIdentity() As String
         Try
             Dim strConnString As String = WebConfig.ConnectionString   ' ConfigurationManager.ConnectionStrings("conString").ConnectionString
@@ -140,6 +140,7 @@ Public Class PromotionsUpdate
             cmd.Connection = con
             con.Open()
             Dim obj As Object = cmd.ExecuteScalar()
+
             Return obj.ToString()
         Catch ex As Exception
             Process.loadalert(divalert, msgalert, ex.Message, "danger")
@@ -147,6 +148,24 @@ Public Class PromotionsUpdate
             'Session("UserEmpID")
         End Try
     End Function
+
+    Private Class PromotionObj
+        Public Property Id As Integer
+        Public Property EmpId As String
+        Public Property Company As String
+        Public Property Dept As String
+        Public Property Location As String
+        Public Property JobTitle As String
+        Public Property JobGrade As String
+        Public Property PerformanceRating As Decimal
+        Public Property Reason As String
+        Public Property HOD As String
+        Public Property Supervisor As String
+        Public Property EffectiveDate As String
+        Public Property MonthsInPosition As String
+        Public Property Initiator As String
+        Public Property CreatedBy As String
+    End Class
 
     Protected Sub btnsave_Click(sender As Object, e As EventArgs)
         Try
@@ -229,6 +248,37 @@ Public Class PromotionsUpdate
             '    aeffdate.Focus()
             '    Exit Sub
             'End If
+            Dim promotionData As New PromotionObj()
+            promotionData.EmpId = cboEmployee.SelectedValue
+            promotionData.Company = cboCompany.SelectedValue
+            promotionData.Dept = radoffice.SelectedValue
+            promotionData.Location = radlocation.SelectedValue
+            promotionData.JobTitle = radjobtitle.SelectedValue
+            promotionData.JobGrade = radjobgrade.SelectedValue
+            promotionData.PerformanceRating = CDbl(aemprating.Value)
+            promotionData.Reason = acomment.Value
+            promotionData.HOD = radhod.SelectedValue
+            promotionData.Supervisor = radsup.SelectedValue
+            promotionData.EffectiveDate = aeffdate.SelectedDate
+            promotionData.MonthsInPosition = txtmthservice.Text
+            promotionData.Initiator = cboinitiator.SelectedValue
+            promotionData.CreatedBy = Session("LoginID")
+            Dim OldValue As String = ""
+            Dim NewValue As String = ""
+
+            Dim j As Integer = 0
+
+            For Each a In GetType(PromotionObj).GetProperties() 'New Entries
+                If a.Name.ToLower <> "id" And a.Name.ToLower <> "password" Then
+                    If a.PropertyType.IsValueType = True Or a.PropertyType.Equals(GetType(String)) Then
+                        If a.GetValue(promotionData, Nothing) = Nothing Then
+                            NewValue += a.Name + ":" + " " & vbCrLf
+                        Else
+                            NewValue += a.Name + ": " + a.GetValue(promotionData, Nothing).ToString & vbCrLf
+                        End If
+                    End If
+                End If
+            Next
 
             If lblID.Text = "0" Then
                 lblID.Text = GetIdentity()
@@ -240,7 +290,7 @@ Public Class PromotionsUpdate
                     Exit Sub
                 End If
             End If
-
+            Dim saveAudit As Boolean = Process.GetAuditTrailInsertandUpdate(OldValue, NewValue, "Inserted", "Promotion Initiation")
 
             lblstatus = "Record saved!"
             Process.loadalert(divalert, msgalert, lblstatus, "success")
@@ -254,7 +304,6 @@ Public Class PromotionsUpdate
             Dim strUser As New DataSet
             strUser = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Emp_PersonalDetail_get", cboEmployee.SelectedValue)
             If strUser.Tables(0).Rows.Count > 0 Then
-
                 aempcompany.Value = strUser.Tables(0).Rows(0).Item("company").ToString
                 aempoffice.Value = strUser.Tables(0).Rows(0).Item("office").ToString
                 aempgrade.Value = strUser.Tables(0).Rows(0).Item("grade").ToString

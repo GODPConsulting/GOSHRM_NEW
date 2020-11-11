@@ -30,7 +30,7 @@
                 _approver1 = value
             End Set
         End Property
-      
+
         Public Property LeaveType() As String
             Get
                 Return _leavetype
@@ -91,4 +91,5 @@
         End Property
 #End Region
     End Class
+
 End Namespace

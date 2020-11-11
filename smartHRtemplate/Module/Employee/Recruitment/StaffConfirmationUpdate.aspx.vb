@@ -115,6 +115,20 @@ Public Class StaffConfirmationUpdate
         End Try
     End Sub
 
+    Public Class StaffConfirmationObj
+        Public Property Id As Integer
+        Public Property EmpId As String
+        Public Property RecruitId As String
+        Public Property Probation As String
+        Public Property Office As String
+        Public Property Rating As String
+        Public Property Recommendation As String
+        Public Property TargetComments As String
+        Public Property AreaOfDevelopment As String
+        Public Property ProbationExtension As String
+        Public Property User As String
+        Public Property Hr As String
+    End Class
     Protected Sub btnAdd_Click(sender As Object, e As EventArgs)
         Try
             If cboEmployee.SelectedValue Is Nothing Then
@@ -131,6 +145,36 @@ Public Class StaffConfirmationUpdate
                 Exit Sub
             End If
 
+            Dim staffObj As New StaffConfirmationObj()
+            staffObj.EmpId = Session("UserEmpID")
+            staffObj.RecruitId = cboEmployee.SelectedValue
+            staffObj.Probation = txtProbation.Text.Trim
+            staffObj.Office = lbloffice.Text
+            staffObj.Rating = RadRating1.Value
+            staffObj.Recommendation = radRecommendation.SelectedValue
+            staffObj.TargetComments = txtTargetAchieved.Value
+            staffObj.AreaOfDevelopment = txtAreaOfDev.Value
+            staffObj.ProbationExtension = txtProbationExtension.Text
+            staffObj.User = Session("LoginID")
+            staffObj.Hr = ""
+
+            Dim OldValue As String = ""
+            Dim NewValue As String = ""
+
+            Dim j As Integer = 0
+
+            For Each a In GetType(StaffConfirmationObj).GetProperties() 'New Entries
+                If a.Name.ToLower <> "id" And a.Name.ToLower <> "password" Then
+                    If a.PropertyType.IsValueType = True Or a.PropertyType.Equals(GetType(String)) Then
+                        If a.GetValue(staffObj, Nothing) = Nothing Then
+                            NewValue += a.Name + ":" + " " & vbCrLf
+                        Else
+                            NewValue += a.Name + ": " + a.GetValue(staffObj, Nothing).ToString & vbCrLf
+                        End If
+                    End If
+                End If
+            Next
+
             If txtid.Text = "0" Then
                 txtid.Text = GetIdentity(Session("UserEmpID"), cboEmployee.SelectedValue, txtProbation.Text.Trim, lbloffice.Text, RadRating1.Value, radRecommendation.SelectedValue, txtComment.Value, txtTargetAchieved.Value, txtAreaOfDev.Value, txtProbationExtension.Text, Session("LoginID"))
                 If txtid.Text = "0" Then
@@ -141,6 +185,7 @@ Public Class StaffConfirmationUpdate
             Else
                 SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Recruit_Confirmation_Update", txtid.Text, Session("UserEmpID"), cboEmployee.SelectedValue, txtProbation.Text.Trim, lbloffice.Text, RadRating1.Value, radRecommendation.SelectedValue, txtComment.Value, txtTargetAchieved.Value, txtAreaOfDev.Value, txtProbationExtension.Text, Session("LoginID"), "")
             End If
+            Dim saveAudit As Boolean = Process.GetAuditTrailInsertandUpdate(OldValue, NewValue, "Inserted", "Staff Confirmation")
             lblstatus = "Record saved!"
             Process.loadalert(divalert, msgalert, lblstatus, "success")
             If radRecommendation.SelectedValue = "Pending" Then
@@ -196,9 +241,9 @@ Public Class StaffConfirmationUpdate
 
         End Try
     End Sub
-    Private Function GetIdentity(ByVal empid As String, ByVal recruitid As String, ByVal probation As Integer, _
-                                ByVal dept As String, ByVal ratings As Double, ByVal recommendation As String, _
-                                 ByVal comments As String, ByVal targetachieved As String, _
+    Private Function GetIdentity(ByVal empid As String, ByVal recruitid As String, ByVal probation As Integer,
+                                ByVal dept As String, ByVal ratings As Double, ByVal recommendation As String,
+                                 ByVal comments As String, ByVal targetachieved As String,
                                  ByVal areaofdevelopment As String, ByVal probationext As Integer, ByVal strusers As String) As String
         Try
             Dim strConnString As String = WebConfig.ConnectionString   ' ConfigurationManager.ConnectionStrings("conString").ConnectionString

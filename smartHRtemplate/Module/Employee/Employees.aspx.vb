@@ -399,13 +399,23 @@ Public Class Employees
         End Try
     End Sub
 
+
+    Private Class DeleteObj
+        Public Property Id As Integer
+        Public Property EmpId As String
+        Public Property FirstName As String
+        Public Property LastName As String
+        Public Property JobGrade As String
+        Public Property JobTitle As String
+        Public Property Office As String
+        Public Property CreatedBy As String
+    End Class
     'Protected Sub Delete(sender As Object, e As EventArgs)
     Protected Sub Delete(sender As Object, e As EventArgs) Handles btDelete.Click
         Try
 
             If Process.AuthenAction(Session("role"), AuthenCode, "Delete") = False Then
                 Process.loadalert(divalert, msgalert, Process.privilegemsg, "warning")
-
                 Exit Sub
             End If
             Dim count As Integer = 0
@@ -422,7 +432,33 @@ Public Class Employees
                         atLeastOneRowDeleted = True
                         ' First, get the ProductID for the selected row
                         Dim ID As String = Convert.ToString(GridVwHeaderChckbox.DataKeys(row.RowIndex).Value)
+                        Dim employeeDeleted As New DeleteObj()
+                        Dim strUser As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Emp_PersonalDetail_get", ID)
+                        employeeDeleted.EmpId = strUser.Tables(0).Rows(0).Item("EmpID").ToString
+                        employeeDeleted.FirstName = strUser.Tables(0).Rows(0).Item("FirstName")
+                        employeeDeleted.LastName = strUser.Tables(0).Rows(0).Item("LastName")
+                        employeeDeleted.JobGrade = strUser.Tables(0).Rows(0).Item("GradeLevel").ToString
+                        employeeDeleted.JobTitle = strUser.Tables(0).Rows(0).Item("JobTitle").ToString
+                        employeeDeleted.Office = strUser.Tables(0).Rows(0).Item("Office").ToString
+                        employeeDeleted.CreatedBy = Session("LoginID")
+                        Dim OldValue As String = ""
+                        Dim NewValue As String = ""
+
+                        Dim j As Integer = 0
+
+                        For Each a In GetType(DeleteObj).GetProperties() 'New Entries
+                            If a.Name.ToLower <> "id" And a.Name.ToLower <> "password" Then
+                                If a.PropertyType.IsValueType = True Or a.PropertyType.Equals(GetType(String)) Then
+                                    If a.GetValue(employeeDeleted, Nothing) = Nothing Then
+                                        NewValue += a.Name + ":" + " " & vbCrLf
+                                    Else
+                                        NewValue += a.Name + ": " + a.GetValue(employeeDeleted, Nothing).ToString & vbCrLf
+                                    End If
+                                End If
+                            End If
+                        Next
                         SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Emp_PersonalDetail_delete", ID)
+                        Dim saveAudit As Boolean = Process.GetAuditTrailInsertandUpdate(NewValue, OldValue, "Deleted", "Employee Data Page")
                     End If
                 Next
                 Process.loadalert(divalert, msgalert, count.ToString & " records successfully deleted", "success")
