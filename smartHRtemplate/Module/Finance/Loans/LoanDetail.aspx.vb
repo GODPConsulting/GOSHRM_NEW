@@ -8,6 +8,7 @@ Imports System.Web.Script.Services
 Imports GOSHRM.GOSHRM.GOSHRM.BO
 Imports Microsoft.Reporting.WebForms
 Imports System.IO
+Imports Telerik.Web.UI
 
 
 Public Class LoanDetail
@@ -136,6 +137,7 @@ Public Class LoanDetail
                     lblGuarantorStatus.Value = strUser.Tables(0).Rows(0).Item("guarantorstatus").ToString
                     lblguarantorcomment.Value = strUser.Tables(0).Rows(0).Item("comment").ToString
                     lblfinancemember.Value = strUser.Tables(0).Rows(0).Item("approver2name").ToString
+
                     If strUser.Tables(0).Rows(0).Item("guarantor").ToString = "n/a" Or strUser.Tables(0).Rows(0).Item("guarantor").ToString.Trim = "" Then
                         lblguarantor.Visible = False
                         lblguarantorname.Visible = False
@@ -175,6 +177,23 @@ Public Class LoanDetail
                                 btnStatus.Visible = True
                             End If
                         End If
+                    End If
+
+
+                    If strUser.Tables(0).Rows(0).Item("HigherApproval") = True Then
+                        divhigherapproval2.Visible = True
+                        chkHigherApproval2.Checked = True
+                        Process.LoadListAndComboxFromDataset(lstMakeup, cboApproverII, "Emp_Loan_Approval_Get", "AproverID", "AproverID", Request.QueryString("id"))
+                        Dim strUser2 As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Emp_Loan_Approval_Get", Request.QueryString("id"))
+                        For i As Integer = 0 To strUser2.Tables(0).Rows.Count - 1
+                            If strUser2.Tables(0).Rows(0).Item("Status").ToString().ToLower <> "approved" Then
+                                cboApproval.Enabled = False
+                            End If
+                        Next
+
+                    Else
+                        chkHigherApproval2.Checked = False
+                        divhigherapproval2.Visible = False
                     End If
                     DisableControl()
 
@@ -270,8 +289,42 @@ Public Class LoanDetail
                 txtIntRate.Focus()
                 Exit Sub
             End If
+            If chkHigherApproval2.Checked = True And cboApproval.SelectedItem.Text.ToLower = "approved" Then
+                lblstatus = "Higher Level aproval needed"
+                Process.loadalert(divalert, msgalert, lblstatus, "danger")
+            End If
+            If cboApproval.SelectedItem.Text.ToLower <> "approved" Then
+
+                If chkHigherApproval2.Checked = True Then
+                    Dim aproversdb = ""
+                    Dim aproversmain = ""
+                    Dim strUser2 As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Emp_Loan_Approval_Get", Request.QueryString("id"))
+                    If strUser2.Tables(0).Rows.Count > 0 Then
+                        For i As Integer = 0 To strUser2.Tables(0).Rows.Count - 1
+                            aproversdb = aproversdb + strUser2.Tables(0).Rows(i).Item("Aprovers")
 
 
+                        Next
+                        For h As Integer = 0 To cboApproverII.CheckedItems.Count - 1
+                            aproversmain = aproversmain + cboApproverII.CheckedItems.Item(h).Text
+                        Next
+                        If aproversdb <> aproversmain Then
+                            SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Emp_Loan_Approval_Delete", Request.QueryString("id"))
+                            If cboApproverII.CheckedItems.Count > 0 Then
+                                For d As Integer = 0 To cboApproverII.CheckedItems.Count - 1
+                                    SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Emp_Loan_Approval_Update", Request.QueryString("id"), cboApproverII.CheckedItems.Item(d).Text)
+                                Next
+                            End If
+                        End If
+                    Else
+                            If cboApproverII.CheckedItems.Count > 0 Then
+                            For d As Integer = 0 To cboApproverII.CheckedItems.Count - 1
+                                SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Emp_Loan_Approval_Update", Request.QueryString("id"), cboApproverII.CheckedItems.Item(d).Text)
+                            Next
+                        End If
+                    End If
+                End If
+            End If
             Dim marketrate As Double = 0
             Dim interestrate As Double = 0
             Dim monthlypay As Double = 0
@@ -390,7 +443,7 @@ Public Class LoanDetail
                 End If
 
                 ''
-                SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Emp_Loan_Update_Status_Level_2", txtid.Text, txtAmount.Value, ApproveLoan.Finance_Approval_Status, txtComment.Value, Session("UserEmpID"), radFairValue.SelectedText, lblfAIRVALUE.Text, txtIntRate.Value, txtMarketrate.Value, lblamortisedcost.Text, amortisedeir)
+                SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Emp_Loan_Update_Status_Level_2", txtid.Text, txtAmount.Value, ApproveLoan.Finance_Approval_Status, txtComment.Value, Session("UserEmpID"), radFairValue.SelectedText, lblfAIRVALUE.Text, txtIntRate.Value, txtMarketrate.Value, lblamortisedcost.Text, amortisedeir, chkHigherApproval2.Checked)
                 Dim saveAudit As Boolean = Process.GetAuditTrailInsertandUpdate(OldValue, NewValue, "Update Loan " & ApproveLoan.LoanRefNo, "Loan Approval Level " & txtapproverlevel.Text)
 
                 If cboApproval.SelectedItem.Text.ToLower = "approved" Then
@@ -418,7 +471,7 @@ Public Class LoanDetail
         End Try
     End Sub
 
-    
+
 
     Protected Sub cboApproval_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboApproval.SelectedIndexChanged
         Try
@@ -436,7 +489,7 @@ Public Class LoanDetail
         End Try
     End Sub
 
-   
+
     Protected Sub radFairValue_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.DropDownListEventArgs) Handles radFairValue.SelectedIndexChanged
         Try
             Dim marketrate As Double = 0
@@ -457,7 +510,7 @@ Public Class LoanDetail
             interestrate = txtIntRate.Value
             monthlypay = lblrepayamount.Value
             loanamount = txtAmount.Value
-            LoanType = lblLoanType.Text
+            LoanType = lblloantype.Text
             marketrate = txtMarketrate.Value
             EIR = interestrate / 1200
 
@@ -510,14 +563,34 @@ Public Class LoanDetail
             If chkHigherApproval2.Checked = True Then
                 divhigherapproval2.Visible = True
                 divhigherapproval.Visible = True
+                cboApproval.Enabled = False
 
             Else
                 divhigherapproval2.Visible = False
                 divhigherapproval.Visible = False
+                cboApproval.Enabled = True
 
             End If
         Catch ex As Exception
 
         End Try
+    End Sub
+    Private Sub ReloadComponentList()
+        Try
+            lstMakeup.Items.Clear()
+            Dim collection As IList(Of RadComboBoxItem) = cboApproverII.CheckedItems
+            If (collection.Count > 0) Then
+                For Each item As RadComboBoxItem In collection
+                    lstMakeup.Items.Add(item.Text)
+
+                Next
+            Else
+                lstMakeup.Items.Clear()
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
+    Protected Sub cboApproverII_ItemChecked(sender As Object, e As Telerik.Web.UI.RadComboBoxItemEventArgs) Handles cboApproverII.ItemChecked
+        ReloadComponentList()
     End Sub
 End Class

@@ -47,7 +47,7 @@
 
                     $(data).each(function (index, prog) {
                         console.log(prog)
-                        selsubmod.innerHTML += '<option value=' + prog.name + '>' + prog.desc + '</option>';
+                        selsubmod.innerHTML += '<option value=' + prog.points + '>' + prog.desc + '</option>';
                     });
 
 

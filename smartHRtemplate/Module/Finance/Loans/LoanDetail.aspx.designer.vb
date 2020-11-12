@@ -383,6 +383,24 @@ Partial Public Class LoanDetail
     Protected WithEvents cboApproverII As Global.Telerik.Web.UI.RadComboBox
 
     '''<summary>
+    '''UpdatePanel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UpdatePanel As Global.System.Web.UI.UpdatePanel
+
+    '''<summary>
+    '''lstMakeup control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lstMakeup As Global.Telerik.Web.UI.RadListBox
+
+    '''<summary>
     '''divhigherapproval control.
     '''</summary>
     '''<remarks>

@@ -30,7 +30,7 @@
         
   </head>
   <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
-   <%="" %>
+  <%-- <%="" %>
     <div class="app-bodys">
    
       <main class="mains" style="width:100%;>
@@ -1036,7 +1036,7 @@ var pdat = [];
     
     </script> 
 
-
+--%>
 
 
 

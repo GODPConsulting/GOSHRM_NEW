@@ -220,6 +220,18 @@
                                                     emptymessage="-- Select --" rendermode="Lightweight" skin="Bootstrap" 
                                                     CheckBoxes="True" EnableCheckAllItemsCheckBox="True" Filter="Contains">
                                                 </telerik:radcombobox>
+                                                 <asp:UpdatePanel runat="server" ID="UpdatePanel" UpdateMode="Always">
+                                    <ContentTemplate>
+                                        <telerik:RadListBox ID="lstMakeup" runat="server" Font-Names="Verdana" Font-Size="12px"
+                                            Width="100%" Visible="False" RenderMode="Lightweight" Skin="Bootstrap">
+                                        </telerik:RadListBox>
+                                    </ContentTemplate>
+                                    <Triggers>
+                                        
+                                        <asp:AsyncPostBackTrigger ControlID="cboApproverII" EventName="ItemChecked" />
+                                        <asp:AsyncPostBackTrigger ControlID="cboApproverII" EventName="CheckAllCheck" />
+                                    </Triggers>
+                                </asp:UpdatePanel>
                                             </ContentTemplate>
                                             <%--<Triggers>
                                                 <asp:AsyncPostBackTrigger ControlID="cboEmployee" EventName="SelectedIndexChanged" />

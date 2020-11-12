@@ -184,7 +184,7 @@ Public Class ManagerLoanApprove
                 ApproveLoan.Level1_Approval_Status = cboApproval.SelectedItem.Text
                 ApproveLoan.Finance_Approval_Status = lblstatustemp2.Text
 
-                SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Emp_Loan_Update_Status", txtid.Text, ApproveLoan.Level1_Approval_Status, txtComment.Value)
+                SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Emp_Loan_Update_Status", txtid.Text, ApproveLoan.Level1_Approval_Status, txtComment.Value, Session("UserEmpID"))
 
                 Dim saveAudit As Boolean = Process.GetAuditTrailInsertandUpdate(OldValue, NewValue, "Update Loan " & ApproveLoan.LoanRefNo, "Loan Approval Level " & txtapproverlevel.Text)
                 lblstatus = "Approval Status Updated"

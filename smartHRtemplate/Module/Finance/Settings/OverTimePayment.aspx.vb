@@ -8,6 +8,7 @@ Imports System.Web.Script.Services
 Imports GOSHRM.GOSHRM.GOSHRM.BO
 Imports Telerik.Web.UI
 Public Class MyList1
+    Public Property id As Integer
     Public Property skills As String
 End Class
 Public Class OverTimePayment
@@ -123,39 +124,40 @@ Public Class OverTimePayment
                 Exit Sub
             End If
 
+            Dim SkillList As List(Of MyList1) = New List(Of MyList1)
+            Dim strUser As DataSet
+            strUser = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Overtime_Category_get_all", txtcourseid.Text)
+            Dim i As Integer = 0
+            Dim count1 As Integer = 1
 
+            If strUser.Tables(0).Rows.Count > 0 Then
+                For Each dr As DataRow In strUser.Tables(0).Rows
+                    Try
+                        Dim prog As MyList1 = New MyList1()
+                        prog.skills = Convert.ToString(strUser.Tables(0).Rows(i)("jobgrade"))
+                        prog.id = Convert.ToString(strUser.Tables(0).Rows(i)("id"))
+                        If prog.skills = cboskill.SelectedValue And prog.id <> txtid.Text Then
+                            lblstatus = "Jobgrade cannot be inputed twice "
+                            Process.loadalert(divalert, msgalert, lblstatus, "danger")
+                            Exit Sub
+                        End If
+
+                        SkillList.Add(prog)
+
+
+                        i += 1
+                        count1 += 1
+                    Catch Ex As Exception
+                        Process.loadalert(divalert, msgalert, Ex.Message, "danger")
+                        Exit Sub
+                    End Try
+                Next
+
+
+            End If
 
             If txtid.Text = "0" Then
-                Dim SkillList As List(Of MyList1) = New List(Of MyList1)
-                Dim strUser As DataSet
-                strUser = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Overtime_Category_get_all", txtcourseid.Text)
-                Dim i As Integer = 0
-                Dim count1 As Integer = 1
 
-                If strUser.Tables(0).Rows.Count > 0 Then
-                    For Each dr As DataRow In strUser.Tables(0).Rows
-                        Try
-                            Dim prog As MyList1 = New MyList1()
-                            prog.skills = Convert.ToString(strUser.Tables(0).Rows(i)("jobgrade"))
-                            If prog.skills = cboskill.SelectedValue Then
-                                lblstatus = "Jobgrade cannot be inputed twice "
-                                Process.loadalert(divalert, msgalert, lblstatus, "danger")
-                                Exit Sub
-                            End If
-
-                            SkillList.Add(prog)
-
-
-                            i += 1
-                            count1 += 1
-                        Catch Ex As Exception
-                            Process.loadalert(divalert, msgalert, Ex.Message, "danger")
-                            Exit Sub
-                        End Try
-                    Next
-
-
-                End If
                 txtid.Text = GetIdentity()
                 If txtid.Text = "0" Then
                     Exit Sub
