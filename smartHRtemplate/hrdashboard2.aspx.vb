@@ -28,7 +28,7 @@ Public Class hrdashboard2
                 Dim name As String = Convert.ToString(strDashBoard.Tables(0).Rows(i)("name"))
                 Dim noOFemployees As Integer = Convert.ToInt32(strDashBoard.Tables(0).Rows(i)("employees"))
                 Dim location As String = Convert.ToString(strDashBoard.Tables(0).Rows(i)("location"))
-                s.Append("<tr><td class='table-data td'><a onclick='viewdashboardInfo(" + name + ")' href='#'>" & name & "</a></td>")
+                s.Append("<tr><td class='table-data td'><a onclick='viewdashboardInfo(""" & name & """)' href='#'>" & name & "</a></td>")
                 s.Append("<td class='table-data'>" & noOFemployees & "</td>")
                 s.Append("<td class='table-data'>" & location & "</td>")
                 s.Append("<td class='table-data'>0%</td></tr>")

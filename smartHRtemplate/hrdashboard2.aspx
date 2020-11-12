@@ -213,9 +213,8 @@
     </script>
                         <script type="text/javascript">
                             function viewdashboardInfo(company) {
-                                console.log(company)
                                 $.ajax({
-                                    url: '../gos.asmx/HRDashboardData',
+                                    url: 'res_new/gos.asmx/HRDashboardData',
                                     method: 'post',
                                     dataType: 'json',
                                     data: { companyName: company },
