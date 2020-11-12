@@ -32,6 +32,15 @@ Partial Public Class Terminations
     Protected WithEvents msgalert As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
+    '''content control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents content As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''UpdatePanel1 control.
     '''</summary>
     '''<remarks>
@@ -92,16 +101,7 @@ Partial Public Class Terminations
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents radStatus As Global.Telerik.Web.UI.RadComboBox
-
-    '''<summary>
-    '''adatefrom control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents adatefrom As Global.Telerik.Web.UI.RadDatePicker
+    Protected WithEvents radStatus As Global.Telerik.Web.UI.radcombobox
 
     '''<summary>
     '''adateto control.
@@ -110,7 +110,16 @@ Partial Public Class Terminations
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents adateto As Global.Telerik.Web.UI.RadDatePicker
+    Protected WithEvents adateto As Global.Telerik.Web.UI.raddatepicker
+
+    '''<summary>
+    '''adatefrom control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents adatefrom As Global.Telerik.Web.UI.raddatepicker
 
     '''<summary>
     '''divcompany control.
@@ -128,7 +137,7 @@ Partial Public Class Terminations
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents cboCompany As Global.Telerik.Web.UI.RadComboBox
+    Protected WithEvents cboCompany As Global.Telerik.Web.UI.radcombobox
 
     '''<summary>
     '''UpdatePanel2 control.

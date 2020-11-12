@@ -147,10 +147,22 @@ Public Class Appraisals
         End Try
     End Sub
 
+
+    Private Class DeleteObj
+        Public Property Id As Integer
+        Public Property EmpId As String
+        Public Property Name As String
+        Public Property EndPeriod As String
+        Public Property StartPeriod As String
+        Public Property Score As String
+        Public Property ReviewYear As String
+        Public Property CreatedBy As String
+    End Class
+
     Protected Sub Delete(sender As Object, e As EventArgs) Handles btnDelete.Click
         Try
             If Process.AuthenAction(Session("role"), AuthenCode, "Delete") = False Then
-               Process.loadalert(divalert, msgalert, "You don't have privilege to perform this action", "danger")
+                Process.loadalert(divalert, msgalert, "You don't have privilege to perform this action", "danger")
                 Exit Sub
             End If
             Dim confirmValue As String = Request.Form("confirm_value")
@@ -164,10 +176,37 @@ Public Class Appraisals
                         ' Delete row! (Well, not really...)
                         atLeastOneRowDeleted = True
                         ' First, get the ProductID for the selected row
-                        Dim ID As String = _
+                        Dim ID As String =
                             Convert.ToString(GridVwHeaderChckbox.DataKeys(row.RowIndex).Value)
+
+                        Dim appraisalDeleted As New DeleteObj()
+                        Dim strUser As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Performance_Appraisal_Summary_Get", ID)
+                        appraisalDeleted.EmpId = strUser.Tables(0).Rows(0).Item("EmpID").ToString
+                        appraisalDeleted.StartPeriod = strUser.Tables(0).Rows(0).Item("StartPeriod")
+                        appraisalDeleted.EndPeriod = strUser.Tables(0).Rows(0).Item("EndPeriod")
+                        appraisalDeleted.Name = strUser.Tables(0).Rows(0).Item("empname").ToString
+                        appraisalDeleted.ReviewYear = strUser.Tables(0).Rows(0).Item("ReviewYear").ToString
+                        appraisalDeleted.Score = strUser.Tables(0).Rows(0).Item("Score").ToString
+                        appraisalDeleted.CreatedBy = Session("LoginID")
+                        Dim OldValue As String = ""
+                        Dim NewValue As String = ""
+
+                        Dim j As Integer = 0
+
+                        For Each a In GetType(DeleteObj).GetProperties() 'New Entries
+                            If a.Name.ToLower <> "id" And a.Name.ToLower <> "password" Then
+                                If a.PropertyType.IsValueType = True Or a.PropertyType.Equals(GetType(String)) Then
+                                    If a.GetValue(appraisalDeleted, Nothing) = Nothing Then
+                                        NewValue += a.Name + ":" + " " & vbCrLf
+                                    Else
+                                        NewValue += a.Name + ": " + a.GetValue(appraisalDeleted, Nothing).ToString & vbCrLf
+                                    End If
+                                End If
+                            End If
+                        Next
                         ' "Delete" the row
                         SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Performance_Appraisal_Summary_Delete_Admin", ID)
+                        Dim saveAudit As Boolean = Process.GetAuditTrailInsertandUpdate(NewValue, OldValue, "Deleted", "Employee Appraisal Page")
                     End If
                 Next
                 LoadGrid(Session("LoadType"), lblcycleid.Text)

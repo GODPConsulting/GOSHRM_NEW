@@ -16,23 +16,24 @@
     <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css"
         rel="Stylesheet" type="text/css" />
                  <div class="container col-md-10">
-            <div class="row">
-            <div id="divalert" runat="server" visible="false" class="alert alert-info">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong id="msgalert" runat="server">Danger!</strong>
-                <asp:TextBox ID="txtid" runat="server" Width="3px"  
-                    Font-Names="Candara" Height="2px" Visible="False"></asp:TextBox>
-                    <asp:Label ID="lblid" runat="server" style="text-align: left; margin-right: 0px;" 
-                                    Width="1px" Font-Names="Verdana" Font-Size="9px" 
-                    Visible="False"></asp:Label>
-                    <asp:Label ID="lblpayotionid" runat="server" style="text-align: left; margin-right: 0px;" 
-                                    Width="1px" Font-Names="Verdana" Font-Size="9px" 
-                    Visible="False"></asp:Label>
-                     <asp:Label ID="lblStart" runat="server" Font-Bold="True" Font-Names="Candara" Font-Size="1px"
-                    ForeColor="#FF3300" Visible="False"></asp:Label>
-                <asp:Label ID="lblEnd" runat="server" Font-Bold="True" Font-Names="Candara" Font-Size="1px"
-                    ForeColor="#FF3300" Visible="False"></asp:Label>
-            </div>
+                      <div id="divalert" runat="server" visible="false" class="alert alert-info">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong id="msgalert" runat="server">Danger!</strong>
+                        <asp:TextBox ID="txtid" runat="server" Width="3px"  
+                            Font-Names="Candara" Height="2px" Visible="False"></asp:TextBox>
+                            <asp:Label ID="lblid" runat="server" style="text-align: left; margin-right: 0px;" 
+                                            Width="1px" Font-Names="Verdana" Font-Size="9px" 
+                            Visible="False"></asp:Label>
+                            <asp:Label ID="lblpayotionid" runat="server" style="text-align: left; margin-right: 0px;" 
+                                            Width="1px" Font-Names="Verdana" Font-Size="9px" 
+                            Visible="False"></asp:Label>
+                             <asp:Label ID="lblStart" runat="server" Font-Bold="True" Font-Names="Candara" Font-Size="1px"
+                            ForeColor="#FF3300" Visible="False"></asp:Label>
+                        <asp:Label ID="lblEnd" runat="server" Font-Bold="True" Font-Names="Candara" Font-Size="1px"
+                            ForeColor="#FF3300" Visible="False"></asp:Label>
+                    </div>
+                     <div id="content" runat="server">
+            <div class="row">          
                    <div class="panel panel-success">
                         <div class="panel-heading">
                             <h5><b id="pagetitle" runat="server">EMPLOYEE PENSION CONTRIBUTION</b></h5>
@@ -119,7 +120,7 @@
                     </div>
                 </div>
             </div>
-             </div>
+             </div></div>
             </div>
 <%--
     <table>

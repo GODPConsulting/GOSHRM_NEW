@@ -1068,7 +1068,7 @@ Public Class Process
             'Your SMTP Server
             smtp.Host = _smtphost
             'SSL Settings depending on your Server
-            smtp.EnableSsl = True
+            smtp.EnableSsl = False
             'Creadentials for the Server
             Dim NetworkCred As NetworkCredential = New System.Net.NetworkCredential()
 

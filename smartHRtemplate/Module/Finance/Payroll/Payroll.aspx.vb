@@ -162,7 +162,11 @@ Public Class Payroll
         Try
 
             'Session("View") = "Loans"
-
+            If Process.AuthenAction(Session("role"), AuthenCode, "Read") = False Then
+                content.Style.Add("display", "none")
+                Process.loadalert(divalert, msgalert, "You don't have privilege to perform view this page", "info")
+                Exit Sub
+            End If
             If Not Me.IsPostBack Then
 
                 If Session("processid") IsNot Nothing Then

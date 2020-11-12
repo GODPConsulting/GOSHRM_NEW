@@ -55,6 +55,7 @@
                 id="msgalert" runat="server">Danger!</strong>
         </div>
         </div>
+            <div id="content" runat="server">
            <div class="panel panel-success">
                 <div class="panel-heading">
                    <asp:UpdatePanel runat="server" ID="UpdatePanel1" UpdateMode="Always">
@@ -149,7 +150,7 @@
                 </script>
             </div>
         </div>
-     </div></div>
+     </div></div></div>
      </div>
         </form>
     </body>

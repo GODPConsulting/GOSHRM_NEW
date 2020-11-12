@@ -60,6 +60,10 @@ Public Class ChangePassword
                 confirmpwd.Focus()
                 Exit Sub
             End If
+            If currentpwd.Value.ToLower.Trim = newpwd.Value.ToLower.Trim Then
+                Process.loadalert(divalert, msgalert, "New password should be different from the current password", "danger")
+                Exit Sub
+            End If
 
             Dim strDataSet As New DataSet
             strDataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "users_authen", Session("LoginID"), Process.Encrypt(currentpwd.Value))

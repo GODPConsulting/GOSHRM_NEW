@@ -12,6 +12,7 @@ Imports System.IO
 Public Class successionupdate
     Inherits System.Web.UI.Page
     Dim AuthenCode As String = "ADMSUCCESSION"
+    Dim SuccessionPlan As New clsSuccessionPlan
     Private Sub LoadGrid(jobid As Integer)
         Try
             GridVwHeaderChckbox.DataSource = Process.SearchData("Recruitment_Succession_Detail_Get_All", jobid)
@@ -243,6 +244,41 @@ Public Class successionupdate
                 Exit Sub
             End If
 
+            SuccessionPlan.EmpId = cboEmployee.SelectedValue
+            SuccessionPlan.Company = acompany.Value
+            SuccessionPlan.Dept = aoffice.Value
+            SuccessionPlan.Location = alocation.Value
+            SuccessionPlan.Jobtitle = ajobtitle.Value
+            SuccessionPlan.Jobgrade = ajobgrade.Value
+            SuccessionPlan.PerformanceRating = CDbl(aperformancerating.Value)
+            SuccessionPlan.Comment = acomment.Value
+            SuccessionPlan.Hod = lblhodid.Text
+            SuccessionPlan.Supervisor = lblmanagerid.Text
+            SuccessionPlan.PlannedCompany = cboplancompany.SelectedValue
+            SuccessionPlan.PlannedDept = radplanoffice.SelectedValue
+            SuccessionPlan.PlannedLocation = radplanlocation.SelectedValue
+            SuccessionPlan.PlannedJobtitle = radplanjobtitle.SelectedValue
+            SuccessionPlan.PlannedJobgrade = radplanjobgrade.SelectedValue
+            SuccessionPlan.Status = radstatus.SelectedValue
+            SuccessionPlan.CreatedBy = Session("LoginID")
+
+            Dim OldValue As String = ""
+            Dim NewValue As String = ""
+
+            Dim j As Integer = 0
+
+            For Each a In GetType(clsSuccessionPlan).GetProperties() 'New Entries
+                If a.Name.ToLower <> "id" And a.Name.ToLower <> "password" Then
+                    If a.PropertyType.IsValueType = True Or a.PropertyType.Equals(GetType(String)) Then
+                        If a.GetValue(SuccessionPlan, Nothing) = Nothing Then
+                            NewValue += a.Name + ":" + " " & vbCrLf
+                        Else
+                            NewValue += a.Name + ": " + a.GetValue(SuccessionPlan, Nothing).ToString & vbCrLf
+                        End If
+                    End If
+                End If
+            Next
+
             If lblID.Text = "0" Then
                 lblID.Text = GetIdentity()
                 'Process.successionid = lblID.Text
@@ -253,6 +289,7 @@ Public Class successionupdate
                 SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "recruitment_succession_update", CInt(lblID.Text), cboEmployee.SelectedValue, acompany.Value, aoffice.Value, alocation.Value, ajobtitle.Value, ajobgrade.Value, CDbl(aperformancerating.Value), acomment.Value, lblhodid.Text, lblmanagerid.Text, cboplancompany.SelectedValue, radplanoffice.SelectedValue, radplanlocation.SelectedValue, radplanjobtitle.SelectedValue, radplanjobgrade.SelectedValue, radstatus.SelectedValue, Session("LoginID"))
             End If
             divdetail.Visible = True
+            Dim saveAudit As Boolean = Process.GetAuditTrailInsertandUpdate(OldValue, NewValue, "Inserted", "Succession Planning")
 
             lblstatus = "record saved!"
             Process.loadalert(divalert, msgalert, lblstatus, "success")

@@ -37,7 +37,8 @@ Public Class JobInterviews
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             If Process.AuthenAction(Session("role"), AuthenCode, "Read") = False Then
-                Process.loadalert(divalert, msgalert, "You don't have privilege to perform this action", "warning")
+                content.Style.Add("display", "none")
+                Process.loadalert(divalert, msgalert, "You don't have privilege to perform view this page", "info")
                 Exit Sub
             End If
 

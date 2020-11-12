@@ -6,7 +6,7 @@
 <head runat="server">
     <link rel="icon" type="image/png" href="images/Goshrm.png" />
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">    
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -16,14 +16,15 @@
     <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" type="text/css" />
     <link rel="stylesheet" href="plugins/morris/morris.css" />
     <link href="css/style.css" rel="stylesheet" type="text/css" />
-     <link href="css/page-style.css" rel="stylesheet" type="text/css" />
+     
     <link href="css/gridview.css" rel="stylesheet" type="text/css" />
     <link href="css/w3.css" rel="stylesheet" type="text/css" />
     <link href="css/slider-goke.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css"/>
+    <link href="css/page-style.css" rel="stylesheet" type="text/css" />
     <!-- Main styles for this application-->
     <!-- <link href="res_new/css/style.css" rel="stylesheet"> -->
-    <link href="res_new/vendors/pace-progress/css/pace.min.css" rel="stylesheet">
+
     <title>GOS HRM</title>
     <asp:ContentPlaceHolder ID="title" runat="server">
     </asp:ContentPlaceHolder>

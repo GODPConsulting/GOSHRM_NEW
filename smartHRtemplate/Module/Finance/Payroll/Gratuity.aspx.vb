@@ -65,11 +65,10 @@ Public Class Gratuity
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             If Process.AuthenAction(Session("role"), AuthenCode, "Read") = False Then
-                response.write("You don't have privilege to perform this action")
-                ClientScript.RegisterClientScriptBlock(Me.[GetType](), "alert", Convert.ToString("alert('") & "You don't have privilege to perform this action" + "')", True)
+                content.Style.Add("display", "none")
+                Process.loadalert(divalert, msgalert, "You don't have privilege to perform view this page", "info")
                 Exit Sub
             End If
-
 
             If Not Me.IsPostBack Then
                 cboYear.Items.Clear()

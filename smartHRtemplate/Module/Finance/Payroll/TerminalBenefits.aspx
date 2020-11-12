@@ -55,6 +55,7 @@
                             <asp:TextBox ID="txtid" runat="server" Height="1px" Width="1px" Visible="false"></asp:TextBox>
             </div>
         </div>
+            <div id="content" runat="server">
         <div class="panel panel-success">
                 <div class="panel-heading">
                     <h5><b id="pagetitle" runat="server"></b></h5>
@@ -140,7 +141,7 @@
             <div>
             <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
         </div>
-        </div>
+        </div></div>
         </form>
     </body>
     </html>

@@ -38,10 +38,10 @@ Public Class EmployeeConfirmation
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             If Process.AuthenAction(Session("role"), AuthenCode, "Read") = False Then
-                Process.loadalert(divalert, msgalert, Process.privilegemsg, "warning")
+                content.Style.Add("display", "none")
+                Process.loadalert(divalert, msgalert, "You don't have privilege to perform view this page", "info")
                 Exit Sub
             End If
-
 
             If Not Me.IsPostBack Then
                 Dim ismulti As String = SqlHelper.ExecuteScalar(WebConfig.ConnectionString, CommandType.Text, "select isnull(ismulticompany,'No')  from general_info")

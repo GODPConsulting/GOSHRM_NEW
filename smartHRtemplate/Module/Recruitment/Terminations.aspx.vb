@@ -33,11 +33,10 @@ Public Class Terminations
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
             If Process.AuthenAction(Session("role"), AuthenCode, "Read") = False Then
-                Process.loadalert(divalert, msgalert, Process.privilegemsg, "success")
-
+                content.Style.Add("display", "none")
+                Process.loadalert(divalert, msgalert, "You don't have privilege to perform view this page", "info")
                 Exit Sub
             End If
-
 
             If Not Me.IsPostBack Then
                 radStatus.Items.Clear()
@@ -159,11 +158,22 @@ Public Class Terminations
                 Exit Sub
             End If
             Response.Redirect("TerminationUpdate", True)
-            
+
         Catch ex As Exception
 
         End Try
     End Sub
+
+    Private Class DeleteObj
+        Public Property Id As Integer
+        Public Property EmpId As String
+        Public Property Name As String
+        Public Property ExitType As String
+        Public Property ExitDate As String
+        Public Property ApprovalStatus As String
+        Public Property NoticeDate As String
+        Public Property CreatedBy As String
+    End Class
 
     Protected Sub Delete(sender As Object, e As EventArgs) Handles btnDelete.Click
         Try
@@ -184,10 +194,36 @@ Public Class Terminations
                         ' Delete row! (Well, not really...)
                         atLeastOneRowDeleted = True
                         ' First, get the ProductID for the selected row
-                        Dim ID As String = _
+                        Dim ID As String =
                             Convert.ToString(GridVwHeaderChckbox.DataKeys(row.RowIndex).Value)
+                        Dim terminationDeleted As New DeleteObj()
+                        Dim strUser As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Emp_Termination_Get", ID)
+                        terminationDeleted.EmpId = strUser.Tables(0).Rows(0).Item("EmpID").ToString
+                        terminationDeleted.ExitDate = strUser.Tables(0).Rows(0).Item("TerminationDate")
+                        terminationDeleted.NoticeDate = strUser.Tables(0).Rows(0).Item("NoticeDate")
+                        terminationDeleted.Name = strUser.Tables(0).Rows(0).Item("Employee").ToString
+                        terminationDeleted.ApprovalStatus = strUser.Tables(0).Rows(0).Item("HRApproval").ToString
+                        terminationDeleted.ExitType = strUser.Tables(0).Rows(0).Item("ExitType").ToString
+                        terminationDeleted.CreatedBy = Session("LoginID")
+                        Dim OldValue As String = ""
+                        Dim NewValue As String = ""
+
+                        Dim j As Integer = 0
+
+                        For Each a In GetType(DeleteObj).GetProperties() 'New Entries
+                            If a.Name.ToLower <> "id" And a.Name.ToLower <> "password" Then
+                                If a.PropertyType.IsValueType = True Or a.PropertyType.Equals(GetType(String)) Then
+                                    If a.GetValue(terminationDeleted, Nothing) = Nothing Then
+                                        NewValue += a.Name + ":" + " " & vbCrLf
+                                    Else
+                                        NewValue += a.Name + ": " + a.GetValue(terminationDeleted, Nothing).ToString & vbCrLf
+                                    End If
+                                End If
+                            End If
+                        Next
                         ' "Delete" the row
                         SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Emp_Termination_delete", ID)
+                        Dim saveAudit As Boolean = Process.GetAuditTrailInsertandUpdate(NewValue, OldValue, "Deleted", "Termination Page")
                     End If
                 Next
                 Process.loadalert(divalert, msgalert, count.ToString & " records successfully deleted", "success")

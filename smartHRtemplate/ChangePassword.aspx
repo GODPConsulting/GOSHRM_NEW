@@ -179,7 +179,7 @@
                                     class="btn btn-success btn-block btn-lg">
                                     Save</button>
                                 <label style="color: White">Current Password</label>
-                                <button id="btncancel" runat="server" onserverclick="btnHome_Click" type="submit"
+                                <button id="btncancel" runat="server" onserverclick="btnHome_Click" style="display:none" type="submit"
                                     class="btn btn-danger btn-block btn-lg">
                                     Not Now</button>
                             </div>

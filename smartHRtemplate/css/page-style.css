@@ -1,187 +1,221 @@
 * {
-  padding: 0;
-  margin: 0;
-  color: #777777;
+    padding: 0;
+    margin: 0;
+    color: #777777;
 }
+
 .content-wrapper {
-  background: #eee;
-  display: flex;
-  flex-wrap: wrap;
-  font-family: "Poppins" !important;
+    background: #eee;
+    display: flex;
+    flex-wrap: wrap;
+    font-family: "Poppins" !important;
 }
+
 .content-card {
-  background: #fff;
-  height: 370px;
-  /* width: 300px; */
-  margin: 2px;
-  border-radius: 8px;
+    background: #fff;
+    height: 370px;
+    /* width: 300px; */
+    margin: 2px;
+    border-radius: 8px;
 }
+
 .chart-card {
-  flex-basis: 49%;
-  height: 280px;
-  /* display: flex;
+    flex-basis: 49%;
+    height: 280px;
+    /* display: flex;
     align-items: center;
     justify-content: center */
 }
+
 .event-card {
-  flex-basis: 40%;
+    flex-basis: 40%;
 }
+
 .event-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 .event-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
 .event-pipe {
-  margin: 10px;
-  border-right: 2px solid #ddd;
-  height: 100px;
+    margin: 10px;
+    border-right: 2px solid #ddd;
+    height: 100px;
 }
+
 .event-count {
-  font-size: 40px;
-  font-weight: bold;
+    font-size: 40px;
+    font-weight: bold;
 }
+
 .content-card-header {
-  text-align: center;
-  color:#4AB657;
+    text-align: center;
+    color: #4AB657;
 }
+
 .reward-card {
-  flex-basis: 33%;
+    flex-basis: 33%;
 }
+
 .comp-card {
-  flex-basis: 33%;
+    flex-basis: 33%;
 }
+
 .progress-item {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
+
 .progress {
-  width: 94%;
+    width: 94%;
 }
+
 .progress-wrapper {
-  padding: 0 20px;
-  margin-left: 23px;
+    padding: 0 20px;
+    margin-left: 23px;
 }
+
 .page-btn-wrapper {
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 .page-btn {
-  background:#4AB657;
-  border: 1px solid #fff;
-  padding: 10px;
-  width: 120px;
-  border-radius: 6px;
-  color: #fff;
-  transition: 1s;
+    background: #4AB657;
+    border: 1px solid #fff;
+    padding: 10px;
+    width: 120px;
+    border-radius: 6px;
+    color: #fff;
+    transition: 1s;
 }
-.page-btn:hover {
-  background: #fff;
-  color: #4AB657;
-  border: 1px solid#4AB657;
-}
+
+    .page-btn:hover {
+        background: #fff;
+        color: #4AB657;
+        border: 1px solid#4AB657;
+    }
+
 .pie-chart-card {
-  flex-basis: 50%;
-  height: 280px;
+    flex-basis: 50%;
+    height: 280px;
 }
+
 .pie-chart-detail {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
+
 .pie-chart-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
 .pie-chart-wrapper {
-  display: flex;
-  justify-content: space-around;
+    display: flex;
+    justify-content: space-around;
 }
+
 .bar-chart-wrapper {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
 }
+
 .right-side {
-  display: flex;
-  flex-direction: column;
-  width: 200px;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    align-items: center;
 }
+
 .bar-btn {
-  width: 150px;
-  height: 50px;
-  margin-bottom: 10px;
+    width: 150px;
+    height: 50px;
+    margin-bottom: 10px;
 }
+
 .feedback-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 150px;
-  background: #f8fbf8;
-  border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 150px;
+    background: #f8fbf8;
+    border-radius: 8px;
 }
+
 .leave-event {
-  width: 150px;
-  background: #f8fbf8;
-  border-radius: 8px;
+    width: 150px;
+    background: #f8fbf8;
+    border-radius: 8px;
 }
+
 .reward-item {
-  flex-basis: 20%;
-  background: #f8fbf8;
-  border-radius: 8px;
+    flex-basis: 20%;
+    background: #f8fbf8;
+    border-radius: 8px;
 }
 
 /* maanger dashboard styles */
 
 .manager-page-wrapper {
-  background: #eee;
-  font-family: "Poppins" !important;
-  /* height: 100vh; */
+    background: #eee;
+    font-family: "Poppins" !important;
+    /* height: 100vh; */
 }
 
 .details-table {
-  width: 100%;
-  text-align: center;
-  background: #fff;
+    width: 100%;
+    text-align: center;
+    background: #fff;
 }
+
 .profile-link {
-  text-decoration: none;
+    text-decoration: none;
 }
+
 .table-data {
-  padding: 10px;
+    padding: 10px;
 }
+
 .manager-card-wrapper {
-  display: none;
+    display: none;
 }
+
 .manager-card-container {
     display: flex;
     margin-top: 25px;
 }
+
 .manager-card, .hr-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #fff;
-  margin: 5px;
-  padding: 10px;
-  min-height: 200px;
-  border-radius: 8px;
-  flex-basis: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    margin: 5px;
+    padding: 10px;
+    min-height: 200px;
+    border-radius: 8px;
+    flex-basis: 25%;
 }
+
 .rating-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 10px;
 }
+
 .manager-btn-wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -189,10 +223,11 @@
     justify-content: center;
     margin-top: 60px;
 }
+
 .manager-btn {
     flex-basis: 46%;
     margin: 5px;
-    background:#4AB657;
+    background: #4AB657;
     border: 1px solid #eee;
     padding: 10px;
     border-radius: 6px;
@@ -200,20 +235,24 @@
     color: #fff;
     transition: 0.5s;
 }
-.manager-btn:hover {
-    background: #fff;
-    color:#4AB657;
-    border: 1px solid#4AB657;
-}
+
+    .manager-btn:hover {
+        background: #fff;
+        color: #4AB657;
+        border: 1px solid#4AB657;
+    }
+
 .rating-percent {
     font-size: 29px;
     font-weight: bold;
     color: #ff6d00;
 }
+
 .top-wrapper {
     display: flex;
     margin: 10px 0;
 }
+
 .manager-card-item {
     text-align: center;
     display: flex;
@@ -223,14 +262,17 @@
     background: #f8fbf8;
     border-radius: 8px;
 }
+
 .manager-pipe {
     margin: 10px;
     border-right: 2px solid #ddd;
     height: 50px;
 }
+
 .career-top, .career-bottom {
     display: flex;
 }
+
 .career-top-item, .career-mid-item, .career-bottom-item {
     display: flex;
     flex-direction: column;
@@ -240,14 +282,16 @@
     border-radius: 8px;
     padding: 10px;
 }
+
 .career-top-btn-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .career-btn {
     margin: 5px;
-    background:#4AB657;
+    background: #4AB657;
     border: 1px solid #eee;
     padding: 10px;
     border-radius: 6px;
@@ -255,11 +299,12 @@
     transition: 0.5s;
     color: #fff;
 }
-.career-btn:hover {
-    background: #fff;
-    color: #fff;
-    border: 1px solid#4AB657;
-}
+
+    .career-btn:hover {
+        background: #fff;
+        color: #fff;
+        border: 1px solid#4AB657;
+    }
 
 .career-mid {
     display: flex;
@@ -272,9 +317,11 @@
     display: flex;
     margin-top: 25px;
 }
+
 .hr-item-container {
     display: flex;
 }
+
 .hr-item {
     flex-basis: 40%;
     margin: 10px;
@@ -302,68 +349,75 @@
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
-  
-  /* Modal Content */
-  .manager-modal-content {
+}
+
+/* Modal Content */
+.manager-modal-content {
     background-color: #f8fbf8;
     margin: auto;
     padding: 10px;
     border: 1px solid #888;
     width: 95%;
     border-radius: 8px;
-  }
-  
-  /* The Close Button */
-  .manager-close {
+}
+
+/* The Close Button */
+.manager-close {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }
-  
-  .manager-close:hover,
-  .manager-close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-  }
+}
 
-  @media only screen and (max-width: 600px) {
-    .manager-card-container, .hr-card-container {
-       flex-direction: column;
+    .manager-close:hover,
+    .manager-close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
     }
+
+@media only screen and (max-width: 600px) {
+    .manager-card-container, .hr-card-container {
+        flex-direction: column;
+    }
+
     .manager-modal-content {
         width: 70%;
     }
+
     .content-wrapper {
         flex-direction: column;
     }
-   
-  }
-  @media only screen and (max-width: 768px) {
+}
+
+@media only screen and (max-width: 768px) {
     .manager-card-container, .hr-card-container {
         flex-wrap: wrap;
     }
+
     .manager-card, .hr-card {
         flex-basis: 45%;
     }
+
     .chart-card {
         flex-basis: 48%;
     }
+
     .content-card {
         flex-basis: 49%;
     }
-    
-  }
-  @media only screen and (max-width: 1024px) {
+}
+
+@media only screen and (max-width: 1024px) {
     .manager-card-container, .hr-card-container {
         flex-wrap: wrap;
     }
+
     .manager-card, .hr-card {
         flex-basis: 45%;
     }
+
     .content-card {
         flex-basis: 49%;
     }
-  }
+}
