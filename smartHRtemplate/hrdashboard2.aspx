@@ -40,16 +40,16 @@
             <th>Performance Rating</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id ="companytb" runat="server">
           <tr>
-            <td class="table-data" id="content-name">Finance</td>
+            <td class="table-data"><a onclick='viewdashboardInfo()' href="#">Finance</a></td>
             <td class="table-data">200</td>
             <td class="table-data">Ikeja</td>
             <td class="table-data">98%</td>
           </tr>
         </tbody>
       </table>
-      <div class="manager-modal" id="myModal">
+      <div style="margin-left:13%; width:88%" class="manager-modal" id="myModal">
         <div class="manager-modal-content">
           <span class="manager-close">&times;</span>
           <div class="hr-card-container">
@@ -62,24 +62,24 @@
               <div>
                 <div class="hr-item-container">
                   <div class="hr-item">
-                    <span>6</span><span>Workforce Plan</span>
+                    <span id="workforceplan">0</span><span>Workforce Plan</span>
                   </div>
                   <div class="hr-item">Initiate Workforce Plan</div>
                 </div>
                 <div class="hr-item-container">
                   <div class="hr-item">
-                    <span>5</span><span>Staff Request</span>
+                    <span id="staffRequest">0</span><span>Staff Request</span>
                   </div>
                   <div class="hr-item">
-                    <span>7</span><span>Job Portal</span>
+                    <span id="jobPortal">0</span><span>Job Portal</span>
                   </div>
                 </div>
                 <div class="hr-item-container">
                   <div class="hr-item">
-                    <span>6</span><span>Recruitment Test</span>
+                    <span id="recruitmentTest">0</span><span>Recruitment Test</span>
                   </div>
                   <div class="hr-item">
-                    <span>10</span><span>Interviews</span>
+                    <span id="interview">0</span><span>Interviews</span>
                   </div>
                 </div>
               </div>
@@ -87,31 +87,31 @@
             <div class="hr-card">
               <h3 class="content-card-header">Employee</h3>
               <div class="rating-container">
-                <span class="rating-percent">80%</span>
+                <span id="rating" class="rating-percent">80</span>%
                 <span>Turnover</span>
               </div>
               <div>
                 <div class="hr-item-container">
                   <div class="hr-item">
-                    <span>6</span><span>Employee Dataset</span>
+                    <span id="employeeDataset">0</span><span>Employee Dataset</span>
                   </div>
                   <div class="hr-item">
-                    <span>8</span><span>Employee Confirmation</span>
+                    <span id="employeeConfirmation">0</span><span>Employee Confirmation</span>
                   </div>
                 </div>
                 <div class="hr-item-container">
                   <div class="hr-item">
-                    <span>5</span><span>Successor Plan</span>
+                    <span id="successionPlan">0</span><span>Successor Plan</span>
                   </div>
                   <div class="hr-item">
-                    <span>7</span><span>Promotion</span>
+                    <span id="promotion">0</span><span>Promotion</span>
                   </div>
                 </div>
                 <div class="hr-item-container">
                   <div class="hr-item">
-                    <span>6</span><span>Employee Exit</span>
+                    <span id="employeeExit">0</span><span>Employee Exit</span>
                   </div>
-                  <div class="hr-item"><span>10</span><span>HMO</span></div>
+                  <div class="hr-item"><span id="hmo">0</span><span>HMO</span></div>
                 </div>
               </div>
             </div>
@@ -119,11 +119,11 @@
               <h3 class="content-card-header">Performance & Development</h3>
               <div style="display: flex">
                 <div class="hr-item">
-                  <span>80%</span><span>Perf Rating</span>
+                  <span id="performanceRating">80</span>%<span>Perf Rating</span>
                 </div>
                 <div class="manager-pipe"></div>
                 <div class="hr-item">
-                  <span>50%</span>
+                  <span id="compentenceRating">0</span>%
                   <span>Competence Rating</span>
                 </div>
               </div>
@@ -145,7 +145,7 @@
                   </div>
                 </div>
                 <div class="hr-item-container">
-                  <div class="hr-item"><span>6</span><span>Querries</span></div>
+                  <div class="hr-item"><span id="queries">0</span><span>Querries</span></div>
                   <div class="hr-item"><span></span><span></span></div>
                 </div>
               </div>
@@ -153,7 +153,7 @@
             <div class="hr-card">
               <h3 class="content-card-header">Compensation & Benefit</h3>
               <div style="display: flex">
-                <div class="hr-item"><span>1</span><span>Payroll</span></div>
+                <div class="hr-item"><span id="payroll">0</span><span>Payroll</span></div>
                 <div class="manager-pipe"></div>
                 <div class="hr-item">
                   <span>Initiate</span>
@@ -163,18 +163,18 @@
               <div>
                 <div class="hr-item-container">
                   <div class="hr-item">
-                    <span>6</span><span>Terminal Benefits</span>
+                    <span id="terminalBenefit">0</span><span>Terminal Benefits</span>
                   </div>
                   <div class="hr-item">
-                    <span>5</span><span>Staff Loans</span>
+                    <span id="staffLoan">0</span><span>Staff Loans</span>
                   </div>
                 </div>
                 <div class="hr-item-container">
                   <div class="hr-item">
-                    <span>5</span><span>Leave Allow.</span>
+                    <span id="leaveAllowance">0</span><span>Leave Allow.</span>
                   </div>
                   <div class="hr-item">
-                    <span>6</span><span>Overtime Requests</span>
+                    <span id="overTimeRequest">0</span><span>Overtime Requests</span>
                   </div>
                 </div>
               </div>
@@ -183,32 +183,70 @@
         </div>
       </div>
     </div>
-                                <script type="text/javascript">
-                                    var modal = document.getElementById("myModal");
+    <script type="text/javascript">
+        var modal = document.getElementById("myModal");
 
-                                    // Get the button that opens the modal
-                                    var btn = document.getElementById("content-name");
+        // Get the button that opens the modal
+        var btn = document.querySelectorAll(".table-data.td");
 
-                                    // Get the <span> element that closes the modal
-                                    var span = document.getElementsByClassName("manager-close")[0];
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("manager-close")[0];
 
-                                    // When the user clicks the button, open the modal
-                                    btn.onclick = function () {
-                                        modal.style.display = "block";
-                                    };
+        btn.forEach(el => {
+            el.addEventListener('click', (e) => {
+                let id = e.target.id
+                modal.style.display = "block";
+            })
+        })
 
-                                    // When the user clicks on <span> (x), close the modal
-                                    span.onclick = function () {
-                                        modal.style.display = "none";
-                                    };
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        };
 
-                                    // When the user clicks anywhere outside of the modal, close it
-                                    window.onclick = function (event) {
-                                        if (event.target == modal) {
-                                            modal.style.display = "none";
-                                        }
-                                    };
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
     </script>
+                        <script type="text/javascript">
+                            function viewdashboardInfo(company) {
+                                console.log(company)
+                                $.ajax({
+                                    url: '../gos.asmx/HRDashboardData',
+                                    method: 'post',
+                                    dataType: 'json',
+                                    data: { companyName: company },
+                                    success: function (data) {
+                                        $(data).each(function (index, sup) {
+                                            $('#workforceplan').val(sup.workforceplan);
+                                            $('#staffRequest').val(sup.staffRequest);
+                                            $('#jobPortal').val(sup.jobPortal);
+                                            $('#recruitmentTest').val(sup.recruitmentTest);
+                                            $('#interview').val(sup.interview);
+                                            $('#employeeDataset').val(sup.employeeDataset);
+                                            $('#employeeConfirmation').val(sup.employeeConfirmation);
+                                            $('#successionPlan').val(sup.successionPlan);
+                                            $('#promotion').val(sup.promotion);
+                                            $('#employeeExit').val(sup.employeeExit);
+                                            $('#performanceRating').val(sup.performanceRating);
+                                            $('#compentenceRating').val(sup.compentenceRating);
+                                            $('#queries').val(sup.queries);
+                                            $('#payroll').val(sup.payroll);
+                                            $('#terminalBenefit').val(sup.terminalBenefit);
+                                            $('#staffLoan').val(sup.staffLoan);
+                                            $('#leaveAllowance').val(sup.leaveAllowance);
+                                            $('#overTimeRequest').val(sup.overTimeRequest);
+                                        });
+                                    },
+                                    error: function (err) {
+                                        console.log(JSON.stringify(err));
+                                    }
+                                });
+                            }
+                        </script>
 						</div>
 
             </div>

@@ -41,6 +41,28 @@ Public Class gos
         Public Property name As String
         Public Property desc As String
     End Class
+
+    Public Class companyObj
+        Public Property workforceplan As Integer
+        Public Property staffRequest As Integer
+        Public Property jobPortal As Integer
+        Public Property recruitmentTest As Integer
+        Public Property interview As Integer
+        Public Property employeeDataset As Integer
+        Public Property employeeConfirmation As Integer
+        Public Property successionPlan As Integer
+        Public Property promotion As Integer
+        Public Property employeeExit As Integer
+        Public Property hmo As Integer
+        Public Property performanceRating As Integer
+        Public Property compentenceRating As Integer
+        Public Property queries As Integer
+        Public Property payroll As Integer
+        Public Property terminalBenefit As Integer
+        Public Property staffLoan As Integer
+        Public Property leaveAllowance As Integer
+        Public Property overTimeRequest As Integer
+    End Class
     Public Class EmpComment
         Public Property performanceid As Integer
         Public Property radEnddate As Date
@@ -642,5 +664,94 @@ Public Class gos
 
     End Sub
 
+
+    <WebMethod()>
+    Public Sub HRDashboardData(ByVal companyName As String)
+        Dim listRecipients As List(Of companyObj) = New List(Of companyObj)()
+
+        Dim prog As companyObj = New companyObj()
+        Dim strTest As DataSet
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Recruit_Job_Requisition_Get_All_HR", companyName, "Pending")
+        prog.workforceplan = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
+        strTest.Clear()
+
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Recruit_Job_Post_get_all", "Opened", companyName)
+        prog.jobPortal = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
+        strTest.Clear()
+
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Recruit_Job_Test_Get_All", companyName)
+        prog.recruitmentTest = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
+        strTest.Clear()
+
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Recruit_Job_Interview_Get_All", companyName)
+        prog.interview = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
+        strTest.Clear()
+
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Recruit_Job_Requisition_Get_All_HR", companyName, "Pending")
+        prog.staffRequest = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
+        strTest.Clear()
+
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Emp_PersonalDetail_get_all_Specific", "", companyName, 1, 1000000)
+        prog.employeeDataset = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
+        strTest.Clear()
+
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Recruit_Confirmation_Get_HR", companyName, "due")
+        prog.employeeConfirmation = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
+        strTest.Clear()
+
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Recruitment_Succession_Get_All_HR", companyName)
+        prog.successionPlan = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
+        strTest.Clear()
+
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Recruitment_Promotion_Get_All", companyName)
+        prog.promotion = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
+        strTest.Clear()
+
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Emp_Termination_Get_All", companyName, "Pending", DateSerial(Date.Now.Year, 1, 1), Date.Now)
+        prog.employeeExit = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
+        strTest.Clear()
+
+
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Recruit_HMO_Get_All")
+        prog.hmo = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
+        strTest.Clear()
+
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Recruit_HMO_Get_All")
+        prog.performanceRating = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
+        strTest.Clear()
+
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Recruit_HMO_Get_All")
+        prog.compentenceRating = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
+        strTest.Clear()
+
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Performance_Employee_Query_Get_All", companyName)
+        prog.queries = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
+        strTest.Clear()
+
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Finance_Payslip_Primary_Get_All", Date.Now.Year, companyName)
+        prog.payroll = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
+        strTest.Clear()
+
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Finance_Payslip_Terminal_Get_All", companyName)
+        prog.terminalBenefit = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
+        strTest.Clear()
+
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Finance_Emp_Loan_Get_all", DateSerial(Date.Now.Year, 1, 1), Date.Now, "Pending", companyName)
+        prog.staffLoan = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
+        strTest.Clear()
+
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Employee_Leavelist_get_all", "", "Pending", DateSerial(Date.Now.Year, 1, 1), Date.Now, companyName, "")
+        prog.leaveAllowance = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
+        strTest.Clear()
+
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Performance_Employee_Query_Get_All", companyName)
+        prog.overTimeRequest = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
+        strTest.Clear()
+
+        listRecipients.Add(prog)
+        Dim js As JavaScriptSerializer = New JavaScriptSerializer()
+        Context.Response.Write(js.Serialize(listRecipients))
+
+    End Sub
 
 End Class
