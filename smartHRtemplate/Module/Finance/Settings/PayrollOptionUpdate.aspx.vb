@@ -547,13 +547,13 @@ Public Class PayrollOptionUpdate
     End Sub
     Protected Sub Add_Details(sender As Object, e As EventArgs)
 
-        Dim SalaryComponent = Request.Form("grateful")
+        Dim SalaryComponent = Request.Form("grateful").ToString()
         Dim DaysApplied = Request.Form("grateful1")
-        If SalaryComponent = "" Then
+        If SalaryComponent Is Nothing Then
             lblstatus = "No Salary Component Selected"
             Process.loadalert(divalert, msgalert, lblstatus, "danger")
         End If
-        If DaysApplied = "" Then
+        If DaysApplied Is Nothing Then
             lblstatus = "No day is selected"
             Process.loadalert(divalert, msgalert, lblstatus, "danger")
         End If

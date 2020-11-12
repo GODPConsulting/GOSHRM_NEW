@@ -606,7 +606,7 @@ Public Class gos
             For Each dr As DataRow In strTest.Tables(0).Rows
                 Try
                     Dim prog As PerfomancePoints = New PerfomancePoints()
-                    prog.name = Convert.ToString(strTest.Tables(0).Rows(i)("Payslip Item"))
+                    prog.points = Convert.ToString(strTest.Tables(0).Rows(i)("id"))
 
                     prog.desc = Convert.ToString(strTest.Tables(0).Rows(i)("Payslip Item"))
 
@@ -652,11 +652,11 @@ Public Class gos
 
     End Sub
     <WebMethod()>
-    Public Sub Employedata(ByVal pid As String)
+    Public Sub Employedata(ByVal pid As String, ByVal empid As String)
         Dim listRecipients1 As List(Of EmployeesData) = New List(Of EmployeesData)()
 
         Dim strPresentDays As DataTable = Process.SearchDataP3("Time_Employee_Attendance_Get_All_Working", pid, DateSerial(Now.Year, Now.Month, 1), Date.Today)
-        ' Dim strPresentDays As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Time_Employee_Attendance_Get_All", Session("UserEmpID"), DateSerial(Now.Year, Now.Month, 1), Date.Today)
+        'Dim strPresentDays As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Time_Employee_Attendance_Get_All", empid, DateSerial(Now.Year, Now.Month, 1), Date.Today)
         Dim foundRow As DataRow() = strPresentDays.[Select]("isworkday = 1")
         Dim foundRow1 As DataRow() = strPresentDays.[Select]("leaveid <> '0' and isworkday = 1")
         Dim foundRow2 As DataRow() = strPresentDays.[Select]("checkindate ='' and isworkday = 1 and leaveid = '0'")
@@ -664,12 +664,12 @@ Public Class gos
         strLeave = Process.SearchData("Emp_Leave_Chart", pid)
 
         Dim sum = IIf(IsDBNull(strLeave.Compute("SUM(totalbalance)", "")), "0", strLeave.Compute("SUM(totalbalance)", ""))
-        'Dim sum2 As Integer = Convert.ToInt32(strLeave.Compute("SUM(ApprovedDays)", String.Empty))
-        Dim sum2 = IIf(IsDBNull(strLeave.Compute("SUM(ApprovedDays)", "")), "0", strLeave.Compute("SUM(ApprovedDays)", ""))
+        Dim sum2 As Integer = Convert.ToInt32(strLeave.Compute("SUM(ApprovedDays)", String.Empty))
+        'Dim sum2 = IIf(IsDBNull(strLeave.Compute("SUM(ApprovedDays)", "")), "0", strLeave.Compute("SUM(ApprovedDays)", ""))
         Dim sums As String = sum.ToString()
         Dim sums2 As String = sum2.ToString()
-        'Dim strEmployee As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Emp_PersonalDetail_DirectReports_My_Team", Session("UserEmpID"))
-        'Dim newDataRow As DataRow() = strEmployee.Tables(0).[Select]("empid ='" & pid & "'")
+        Dim strEmployee As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Emp_PersonalDetail_DirectReports_My_Team", empid)
+        Dim newDataRow As DataRow() = strEmployee.Tables(0).[Select]("empid ='" & pid & "'")
 
 
 
@@ -684,13 +684,13 @@ Public Class gos
             progs.AttendanceRate = "0"
         End If
         progs.LeaveTaken = sums2.Split(".")(0)
-        '  progs.Performance = newDataRow(0).Item("Score")
+        progs.Performance = newDataRow(0).Item("Score")
         listRecipients1.Add(progs)
 
 
 
         Dim js As JavaScriptSerializer = New JavaScriptSerializer()
-            Context.Response.Write(js.Serialize(listRecipients1))
+        Context.Response.Write(js.Serialize(listRecipients1))
 
 
     End Sub

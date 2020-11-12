@@ -26,12 +26,15 @@
         };
         function good(id) {
             var pid = id;
+            var empid = '<%=Session("UserEmpid") %>';
+            console.log(empid);
             var modal = document.getElementById("myModal");
             $.ajax({
                 url: "<%= Page.ResolveClientUrl("~/res_new/gos.asmx/Employedata") %>",
                 method: 'post',
                 data: {
                     pid: pid,
+                    empid:empid
 
                 },
                 dataType: 'json',

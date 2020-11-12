@@ -68,7 +68,7 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-8 col-md-offset-0">
-                                        <h4 id="pagetitle" runat="server" class="page-title" style="color: #1BA691">Skills</h4>
+                                        <h4 id="pagetitle" runat="server" class="page-title" style="color: #1BA691">Overtime Jobgrade Settings</h4>
                                     </div>
                                 </div>                                
                                 <div class="row">

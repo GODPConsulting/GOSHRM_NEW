@@ -177,7 +177,11 @@
     </Reference>
     <Reference Include="Telerik.Web.UI, Version=2015.2.623.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Program Files (x86)\Telerik\UI for ASP.NET AJAX Q2 2015\Bin35\Telerik.Web.UI.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\UI for ASP.NET AJAX Q2 2015\Bin40\Telerik.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.UI.Skins, Version=2015.2.623.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\UI for ASP.NET AJAX Q2 2015\Bin40\Telerik.Web.UI.Skins.dll</HintPath>
     </Reference>
     <Reference Include="TimePicker">
       <HintPath>..\..\..\..\..\..\inetpub\wwwroot\goshrm\bin\TimePicker.dll</HintPath>
@@ -229,8 +233,6 @@
     <Content Include="bin\System.Web.dll" />
     <Content Include="bin\System.Web.Extensions.dll" />
     <Content Include="bin\Telerik.Web.Design.dll" />
-    <Content Include="bin\Telerik.Web.UI.dll" />
-    <Content Include="bin\Telerik.Web.UI.Skins.dll" />
     <Content Include="bin\TimePicker.dll" />
     <Content Include="bower_components\bootstrap\dist\css\bootstrap-theme.css" />
     <Content Include="bower_components\bootstrap\dist\css\bootstrap-theme.min.css" />
@@ -2492,6 +2494,7 @@
     <Content Include="Module\Employee\TimeManagement\EmployeeShiftUpdate.aspx" />
     <Content Include="Module\Employee\TrainingPortal\MgrTrainings.aspx" />
     <Content Include="Module\Finance\Payroll\Paystack.aspx" />
+    <Content Include="Module\Finance\Settings\OverTimePayment.aspx" />
     <Content Include="Module\Recruitment\Applications\about.html" />
     <Content Include="Module\Recruitment\Applications\ApplicantLogin.html" />
     <Content Include="Module\Recruitment\Applications\goat.aspx" />
@@ -5442,6 +5445,12 @@
     <Compile Include="Module\Finance\Payroll\Paystack.aspx.vb">
       <DependentUpon>Paystack.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Module\Finance\Settings\OverTimePayment.aspx.designer.vb">
+      <DependentUpon>OverTimePayment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Finance\Settings\OverTimePayment.aspx.vb">
+      <DependentUpon>OverTimePayment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Module\Recruitment\Applications\goat.aspx.designer.vb">
       <DependentUpon>goat.aspx</DependentUpon>

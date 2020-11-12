@@ -115,21 +115,7 @@ Public Class LoanDetail
                     lblEmpID.Text = strUser.Tables(0).Rows(0).Item("empid").ToString
                     lblEmpName.Value = strUser.Tables(0).Rows(0).Item("EmployeeName").ToString
                     Process.LoadRadComboTextAndValueP2(cboApproverII, "Emp_PersonalDetail_get_Superiors", strUser.Tables(0).Rows(0).Item("grade").ToString, Process.GetCompanyName, "Employee2", "EmpID", True)
-                    If strUser.Tables(0).Rows(0).Item("HigherApproval") = True Then
-                        divhigherapproval2.Visible = True
-                        chkHigherApproval2.Checked = True
-                        Process.LoadListAndComboxFromDataset(lstMakeup, cboApproverII, "Emp_Loan_Approval_Get", "AproverID", "AproverID", Request.QueryString("id"))
-                        Dim strUser2 As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Emp_Loan_Approval_Get", Request.QueryString("id"))
-                        For i As Integer = 0 To strUser2.Tables(0).Rows.Count - 1
-                            If strUser2.Tables(0).Rows(0).Item("Status") = False Then
-                                cboApproval.Enabled = False
-                            End If
-                        Next
 
-                    Else
-                        chkHigherApproval2.Checked = False
-                        divhigherapproval2.Visible = False
-                    End If
                     txtAmount.Value = FormatNumber(strUser.Tables(0).Rows(0).Item("LoanAmount").ToString, 2)
 
                     lblfAIRVALUE.Text = FormatNumber(strUser.Tables(0).Rows(0).Item("FairValue"), 2)
@@ -191,6 +177,23 @@ Public Class LoanDetail
                                 btnStatus.Visible = True
                             End If
                         End If
+                    End If
+
+
+                    If strUser.Tables(0).Rows(0).Item("HigherApproval") = True Then
+                        divhigherapproval2.Visible = True
+                        chkHigherApproval2.Checked = True
+                        Process.LoadListAndComboxFromDataset(lstMakeup, cboApproverII, "Emp_Loan_Approval_Get", "AproverID", "AproverID", Request.QueryString("id"))
+                        Dim strUser2 As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Emp_Loan_Approval_Get", Request.QueryString("id"))
+                        For i As Integer = 0 To strUser2.Tables(0).Rows.Count - 1
+                            If strUser2.Tables(0).Rows(0).Item("Status").ToString().ToLower <> "approved" Then
+                                cboApproval.Enabled = False
+                            End If
+                        Next
+
+                    Else
+                        chkHigherApproval2.Checked = False
+                        divhigherapproval2.Visible = False
                     End If
                     DisableControl()
 
