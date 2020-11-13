@@ -71,7 +71,7 @@
             <div class="hr-card">
               <h3 class="content-card-header">Recruitment & Onboarding</h3>
               <div class="rating-container">
-                <span class="rating-percent">80%</span>
+                <span id="workforceCount" class="rating-percent">80%</span>
                 <span>Workforce</span>
               </div>
               <div>
@@ -102,7 +102,7 @@
             <div class="hr-card">
               <h3 class="content-card-header">Employee</h3>
               <div class="rating-container">
-                <span id="rating" class="rating-percent">80%</span>
+                <span id="turnoverCount" class="rating-percent">80%</span>
                 <span>Turnover</span>
               </div>
               <div>
@@ -153,10 +153,10 @@
                 </div>
                 <div class="hr-item-container">
                   <a href="<%= Page.ResolveClientUrl("~/Module/Performance/Settings/AppraisalPeriodUpdate")%>"><div class="hr-item">
-                    <span>Create</span><span>App Cycle</span>
+                    <span>Create</span><span>Perf Cycle</span>
                   </div></a>
                   <a href="<%= Page.ResolveClientUrl("~/Module/Performance/Settings/AppraisalPeriodList.aspx")%>"><div class="hr-item">
-                    <span>View</span><span>App Cycle</span>
+                    <span>View</span><span>Perf Cycle</span>
                   </div></a>
                 </div>
                 <div class="hr-item-container">
@@ -247,6 +247,8 @@
                                 var leaveAllowance = document.getElementById("leaveAllowance");
                                 var overTimeRequest = document.getElementById("overTimeRequest");
                                 var hmo = document.getElementById("hmo");
+                                var turnoverCount = document.getElementById("turnoverCount");
+                                var workforceCount = document.getElementById("workforceCount");
                                 workforce.innerText = "";                               
                                 staffRequest.innerText = "";                               
                                 jobPortal.innerText = "";                               
@@ -265,6 +267,8 @@
                                 leaveAllowance.innerText = "";                               
                                 overTimeRequest.innerText = "";
                                 hmo.innerText = "";
+                                turnoverCount.innerText = "";
+                                workforceCount.innerText = "";
                                 $.ajax({
                                     url: 'res_new/gos.asmx/HRDashboardData',
                                     method: 'post',
@@ -290,6 +294,8 @@
                                             staffLoan.innerText = sup.staffLoan;
                                             leaveAllowance.innerText = sup.leaveAllowance;
                                             overTimeRequest.innerText = sup.overTimeRequest;
+                                            turnoverCount.innerText = sup.turnoverCount;
+                                            workforceCount.innerText = sup.workforceCount;
                                             hmo.innerText = sup.hmo;
                                         });
                                     },
