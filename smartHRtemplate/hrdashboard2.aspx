@@ -31,7 +31,21 @@
 
 					<div class="card-box m-b-0">
                             <div class="hr-wrapper">
-      <table class="details-table">
+                                
+        <table class="table table-striped custom-table datatable dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+									<thead>
+										<tr role="row"><th style="width: 206px;" class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending"><b>Office</b></th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Employee ID: activate to sort column ascending" style="width: 206px;"><b>Number of Employees</b></th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Email: activate to sort column ascending" style="width: 206px;"><b>Location</b></th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Mobile: activate to sort column ascending" style="width: 206px;"><b>Performance Rating</b></th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Role: activate to sort column ascending" style="width: 124.4px;"><b>Action</b></th>
+										</tr>
+									</thead>
+									<tbody id ="companytb" runat="server">
+
+                                    </tbody>
+								</table>
+<%--      <table class="details-table">
         <thead>
           <tr>
             <th>Office</th>
@@ -40,7 +54,7 @@
             <th>Performance Rating</th>
           </tr>
         </thead>
-        <tbody id ="companytb" runat="server">
+        <tbody>
           <tr>
             <td class="table-data"><a onclick='viewdashboardInfo()' href="#">Finance</a></td>
             <td class="table-data">200</td>
@@ -48,7 +62,8 @@
             <td class="table-data">98%</td>
           </tr>
         </tbody>
-      </table>
+      </table>--%>
+
       <div style="margin-left:13%; width:88%" class="manager-modal" id="myModal">
         <div class="manager-modal-content">
           <span class="manager-close">&times;</span>
@@ -61,57 +76,57 @@
               </div>
               <div>
                 <div class="hr-item-container">
-                  <div class="hr-item">
+                  <a href="<%= Page.ResolveClientUrl("~/Module/Recruitment/WorkForceBudget.aspx")%>"><div class="hr-item">
                     <span id="workforceplan">0</span><span>Workforce Plan</span>
-                  </div>
-                  <div class="hr-item">Initiate Workforce Plan</div>
+                  </div></a>
+                 <a href="<%= Page.ResolveClientUrl("~/Module/Recruitment/WorkForceBudgetUpdate")%>"><div class="hr-item">Initiate Workforce Plan</div></a>
                 </div>
                 <div class="hr-item-container">
-                  <div class="hr-item">
+                  <a href="<%= Page.ResolveClientUrl("~/Module/Recruitment/StaffRequisitionForm.aspx")%>"><div class="hr-item">
                     <span id="staffRequest">0</span><span>Staff Request</span>
-                  </div>
-                  <div class="hr-item">
-                    <span id="jobPortal">0</span><span>Job Portal</span>
-                  </div>
+                  </div></a>
+                  <a href="<%= Page.ResolveClientUrl("~/Module/Recruitment/JobPostings.aspx")%>"><div class="hr-item">
+                    <span id="jobPortal">0</span><span>Job Posting</span>
+                  </div></a>
                 </div>
                 <div class="hr-item-container">
-                  <div class="hr-item">
+                  <a href="<%= Page.ResolveClientUrl("~/Module/Recruitment/JobTests.aspx")%>"><div class="hr-item">
                     <span id="recruitmentTest">0</span><span>Recruitment Test</span>
-                  </div>
-                  <div class="hr-item">
+                  </div></a>
+                  <a href="<%= Page.ResolveClientUrl("~/Module/Recruitment/JobInterviews.aspx")%>"><div class="hr-item">
                     <span id="interview">0</span><span>Interviews</span>
-                  </div>
+                  </div></a>
                 </div>
               </div>
             </div>
             <div class="hr-card">
               <h3 class="content-card-header">Employee</h3>
               <div class="rating-container">
-                <span id="rating" class="rating-percent">80</span>%
+                <span id="rating" class="rating-percent">80%</span>
                 <span>Turnover</span>
               </div>
               <div>
                 <div class="hr-item-container">
-                  <div class="hr-item">
-                    <span id="employeeDataset">0</span><span>Employee Dataset</span>
-                  </div>
-                  <div class="hr-item">
+                   <a href="<%= Page.ResolveClientUrl("~/Module/Employee/Employees.aspx")%>"><div class="hr-item">
+                    <span id="employeeDataset">0</span><span>Employee Data</span>
+                  </div></a>
+                  <a href="<%= Page.ResolveClientUrl("~/Module/Recruitment/EmployeeConfirmation.aspx")%>"><div class="hr-item">
                     <span id="employeeConfirmation">0</span><span>Employee Confirmation</span>
-                  </div>
+                  </div></a>
                 </div>
                 <div class="hr-item-container">
-                  <div class="hr-item">
+                  <a href="<%= Page.ResolveClientUrl("~/Module/Recruitment/SuccessionPlan.aspx")%>"><div class="hr-item">
                     <span id="successionPlan">0</span><span>Successor Plan</span>
-                  </div>
-                  <div class="hr-item">
+                  </div></a>
+                  <a href="<%= Page.ResolveClientUrl("~/Module/Recruitment/Promotions.aspx")%>"><div class="hr-item">
                     <span id="promotion">0</span><span>Promotion</span>
-                  </div>
+                  </div></a>
                 </div>
                 <div class="hr-item-container">
-                  <div class="hr-item">
+                  <a href="<%= Page.ResolveClientUrl("~/Module/Recruitment/Terminations.aspx")%>"><div class="hr-item">
                     <span id="employeeExit">0</span><span>Employee Exit</span>
-                  </div>
-                  <div class="hr-item"><span id="hmo">0</span><span>HMO</span></div>
+                  </div></a>
+                  <a href="<%= Page.ResolveClientUrl("~/Module/Recruitment/HMOs.aspx")%>"><div class="hr-item"><span id="hmo">0</span><span>HMO</span></div></a>
                 </div>
               </div>
             </div>
@@ -119,33 +134,33 @@
               <h3 class="content-card-header">Performance & Development</h3>
               <div style="display: flex">
                 <div class="hr-item">
-                  <span id="performanceRating">80</span>%<span>Perf Rating</span>
+                  <span id="performanceRating">80%</span><span>Perf Rating</span>
                 </div>
                 <div class="manager-pipe"></div>
                 <div class="hr-item">
-                  <span id="compentenceRating">0</span>%
+                  <span id="compentenceRating">0%</span>
                   <span>Competence Rating</span>
                 </div>
               </div>
               <div>
                 <div class="hr-item-container">
-                  <div class="hr-item">
+                  <a href="<%= Page.ResolveClientUrl("~/Module/Trainings/Settings/Courses.aspx")%>"><div class="hr-item">
                     <span></span><span>Development Activities</span>
-                  </div>
-                  <div class="hr-item">
+                  </div></a>
+                  <a href="<%= Page.ResolveClientUrl("~/Module/Trainings/Settings/TrainingSessions.aspx")%>"><div class="hr-item">
                     <span>Initiate</span><span>Development Session</span>
-                  </div>
+                  </div></a>
                 </div>
                 <div class="hr-item-container">
-                  <div class="hr-item">
+                  <a href="<%= Page.ResolveClientUrl("~/Module/Performance/Settings/AppraisalPeriodUpdate")%>"><div class="hr-item">
                     <span>Create</span><span>App Cycle</span>
-                  </div>
-                  <div class="hr-item">
+                  </div></a>
+                  <a href="<%= Page.ResolveClientUrl("~/Module/Performance/Settings/AppraisalPeriodList.aspx")%>"><div class="hr-item">
                     <span>View</span><span>App Cycle</span>
-                  </div>
+                  </div></a>
                 </div>
                 <div class="hr-item-container">
-                  <div class="hr-item"><span id="queries">0</span><span>Querries</span></div>
+                   <a href="<%= Page.ResolveClientUrl("~/Module/Performance/Queries.aspx")%>"><div class="hr-item"><span id="queries">0</span><span>Queries</span></div></a>
                   <div class="hr-item"><span></span><span></span></div>
                 </div>
               </div>
@@ -153,29 +168,29 @@
             <div class="hr-card">
               <h3 class="content-card-header">Compensation & Benefit</h3>
               <div style="display: flex">
-                <div class="hr-item"><span id="payroll">0</span><span>Payroll</span></div>
+                <a href="<%= Page.ResolveClientUrl("~/Module/Finance/Payroll/PayrollPeriod.aspx")%>"><div class="hr-item"><span id="payroll">0</span><span>Payroll</span></div></a>
                 <div class="manager-pipe"></div>
-                <div class="hr-item">
+                <a href="<%= Page.ResolveClientUrl("~/Module/Finance/Payroll/SalaryPayslipGenerate")%>"><div class="hr-item">
                   <span>Initiate</span>
                   <span>Payroll</span>
-                </div>
+                </div></a>
               </div>
               <div>
                 <div class="hr-item-container">
-                  <div class="hr-item">
-                    <span id="terminalBenefit">0</span><span>Terminal Benefits</span>
-                  </div>
-                  <div class="hr-item">
+                    <a href="<%= Page.ResolveClientUrl("~/Module/Finance/Payroll/TerminalBenefits.aspx")%>"><div class="hr-item">
+                        <span id="terminalBenefit">0</span><span>Terminal Benefits</span>
+                    </div></a>
+                  <a href="<%= Page.ResolveClientUrl("~/Module/Finance/Loans/StaffLoans.aspx")%>"><div class="hr-item">
                     <span id="staffLoan">0</span><span>Staff Loans</span>
-                  </div>
+                  </div></a>
                 </div>
                 <div class="hr-item-container">
-                  <div class="hr-item">
+                  <a href="<%= Page.ResolveClientUrl("~/Module/TimeManagement/EmployeeLeaves.aspx")%>"><div class="hr-item">
                     <span id="leaveAllowance">0</span><span>Leave Allow.</span>
-                  </div>
-                  <div class="hr-item">
+                  </div></a>
+                  <a href="<%= Page.ResolveClientUrl("~/Module/TimeManagement/Attendance.aspx")%>"><div class="hr-item">
                     <span id="overTimeRequest">0</span><span>Overtime Requests</span>
-                  </div>
+                  </div></a>
                 </div>
               </div>
             </div>
@@ -213,6 +228,43 @@
     </script>
                         <script type="text/javascript">
                             function viewdashboardInfo(company) {
+                                var workforce = document.getElementById("workforceplan");
+                                var staffRequest = document.getElementById("staffRequest");
+                                var jobPortal = document.getElementById("jobPortal");
+                                var recruitmentTest = document.getElementById("recruitmentTest");
+                                var interview = document.getElementById("interview");
+                                var employeeDataset = document.getElementById("employeeDataset");
+                                var employeeConfirmation = document.getElementById("employeeConfirmation");
+                                var successionPlan = document.getElementById("successionPlan");
+                                var promotion = document.getElementById("promotion");
+                                var employeeExit = document.getElementById("employeeExit");
+                                var performanceRating = document.getElementById("performanceRating");
+                                var compentenceRating = document.getElementById("compentenceRating");
+                                var queries = document.getElementById("queries");
+                                var payroll = document.getElementById("payroll");
+                                var terminalBenefit = document.getElementById("terminalBenefit");
+                                var staffLoan = document.getElementById("staffLoan");
+                                var leaveAllowance = document.getElementById("leaveAllowance");
+                                var overTimeRequest = document.getElementById("overTimeRequest");
+                                var hmo = document.getElementById("hmo");
+                                workforce.innerText = "";                               
+                                staffRequest.innerText = "";                               
+                                jobPortal.innerText = "";                               
+                                recruitmentTest.innerText = "";                               
+                                interview.innerText = "";                               
+                                queries.innerText = "";                               
+                                employeeConfirmation.innerText = "";                               
+                                successionPlan.innerText = "";                               
+                                promotion.innerText = "";                               
+                                employeeExit.innerText = "";                               
+                                performanceRating.innerText = "";                               
+                                compentenceRating.innerText = "";                               
+                                payroll.innerText = "";                               
+                                terminalBenefit.innerText = "";                               
+                                staffLoan.innerText = "";                               
+                                leaveAllowance.innerText = "";                               
+                                overTimeRequest.innerText = "";
+                                hmo.innerText = "";
                                 $.ajax({
                                     url: 'res_new/gos.asmx/HRDashboardData',
                                     method: 'post',
@@ -220,24 +272,25 @@
                                     data: { companyName: company },
                                     success: function (data) {
                                         $(data).each(function (index, sup) {
-                                            $('#workforceplan').val(sup.workforceplan);
-                                            $('#staffRequest').val(sup.staffRequest);
-                                            $('#jobPortal').val(sup.jobPortal);
-                                            $('#recruitmentTest').val(sup.recruitmentTest);
-                                            $('#interview').val(sup.interview);
-                                            $('#employeeDataset').val(sup.employeeDataset);
-                                            $('#employeeConfirmation').val(sup.employeeConfirmation);
-                                            $('#successionPlan').val(sup.successionPlan);
-                                            $('#promotion').val(sup.promotion);
-                                            $('#employeeExit').val(sup.employeeExit);
-                                            $('#performanceRating').val(sup.performanceRating);
-                                            $('#compentenceRating').val(sup.compentenceRating);
-                                            $('#queries').val(sup.queries);
-                                            $('#payroll').val(sup.payroll);
-                                            $('#terminalBenefit').val(sup.terminalBenefit);
-                                            $('#staffLoan').val(sup.staffLoan);
-                                            $('#leaveAllowance').val(sup.leaveAllowance);
-                                            $('#overTimeRequest').val(sup.overTimeRequest);
+                                            workforce.innerText = sup.workforceplan;
+                                            staffRequest.innerText = sup.staffRequest;
+                                            jobPortal.innerText = sup.jobPortal;
+                                            recruitmentTest.innerText = sup.recruitmentTest;
+                                            interview.innerText = sup.interview;
+                                            employeeDataset.innerText = sup.employeeDataset;
+                                            employeeConfirmation.innerText = sup.employeeConfirmation;
+                                            successionPlan.innerText = sup.successionPlan;
+                                            promotion.innerText = sup.promotion;
+                                            employeeExit.innerText = sup.employeeExit;
+                                            performanceRating.innerText = sup.performanceRating;
+                                            compentenceRating.innerText = sup.compentenceRating;
+                                            queries.innerText = sup.queries;
+                                            payroll.innerText = sup.payroll;
+                                            terminalBenefit.innerText = sup.terminalBenefit;
+                                            staffLoan.innerText = sup.staffLoan;
+                                            leaveAllowance.innerText = sup.leaveAllowance;
+                                            overTimeRequest.innerText = sup.overTimeRequest;
+                                            hmo.innerText = sup.hmo;
                                         });
                                     },
                                     error: function (err) {

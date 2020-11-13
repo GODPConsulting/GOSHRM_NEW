@@ -724,7 +724,7 @@ Public Class gos
 
         Dim prog As companyObj = New companyObj()
         Dim strTest As DataSet
-        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Recruit_Job_Requisition_Get_All_HR", companyName, "Pending")
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Recruit_WorkForce_Budget_get_all", companyName, "Pending", "Plan", Date.Now.Year)
         prog.workforceplan = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
         strTest.Clear()
 
@@ -748,7 +748,7 @@ Public Class gos
         prog.employeeDataset = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
         strTest.Clear()
 
-        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Recruit_Confirmation_Get_HR", companyName, "due")
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Recruit_Confirmation_Get_HR", companyName, "Pending")
         prog.employeeConfirmation = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
         strTest.Clear()
 
