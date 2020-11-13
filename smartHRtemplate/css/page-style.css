@@ -12,7 +12,7 @@
 }
 
 .content-card {
-    background: #fff;
+    background: #C0C0C0;
     height: 370px;
     /* width: 300px; */
     margin: 2px;
@@ -50,13 +50,14 @@
 }
 
 .event-count {
-    font-size: 40px;
+    font-size: 29px;
     font-weight: bold;
+	color:#ff6d00;
 }
 
 .content-card-header {
     text-align: center;
-    color: #4AB657;
+    color: #333;
 }
 
 .reward-card {
@@ -89,19 +90,23 @@
 }
 
 .page-btn {
-    background: #4AB657;
+    background: #fff;
     border: 1px solid #fff;
     padding: 10px;
     width: 120px;
     border-radius: 6px;
-    color: #fff;
+    color: #333;
     transition: 1s;
 }
+   .manager-indicator{
+	   color:#ff6d00;
+	   font-size:20px
+   }
 
     .page-btn:hover {
         background: #fff;
-        color: #4AB657;
-        border: 1px solid#4AB657;
+        color: #009ce7;
+        border: 1px solid#009ce7;
     }
 
 .pie-chart-card {
@@ -227,19 +232,20 @@
 .manager-btn {
     flex-basis: 46%;
     margin: 5px;
-    background: #4AB657;
+    background: #fff;
     border: 1px solid #eee;
     padding: 10px;
     border-radius: 6px;
     cursor: pointer;
-    color: #fff;
+    color: #333;
     transition: 0.5s;
+	width: 130px;
 }
 
     .manager-btn:hover {
         background: #fff;
-        color: #4AB657;
-        border: 1px solid#4AB657;
+        color: #009ce7;
+        border: 1px solid#009ce7;
     }
 
 .rating-percent {
@@ -291,19 +297,19 @@
 
 .career-btn {
     margin: 5px;
-    background: #4AB657;
+    background: #fff;
     border: 1px solid #eee;
     padding: 10px;
     border-radius: 6px;
     cursor: pointer;
     transition: 0.5s;
-    color: #fff;
+    color: #333;
 }
 
     .career-btn:hover {
         background: #fff;
-        color: #fff;
-        border: 1px solid#4AB657;
+        color: #009ce7;
+        border: 1px solid#009ce7;
     }
 
 .career-mid {

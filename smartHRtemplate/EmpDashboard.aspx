@@ -191,10 +191,10 @@
                  <div class="content-card chart-card">
            <h3 class="content-card-header">Performance</h3>
            <div class="bar-chart-wrapper">
-               <div style="margin-top:-25px; width:60%"> <canvas id="line-chart" style="max-height: 220px !important"></canvas></div>
+               <canvas id="line-chart" style="margin-top:-25px; width:60%;max-height: 220px !important"> </canvas>
                <div class="right-side">
-                   <button runat="server" onserverclick="ObjectiveList_ServerClick" class="bar-btn btn btn-success">Initiate Objective</button>
-                   <button runat="server" onserverclick="FeedbackList_ServerClick" class="btn-success bar-btn btn">Initiate Feedback</button>
+                   <button runat="server" onserverclick="ObjectiveList_ServerClick" class="page-btn bar-btn">Initiate Objective</button>
+                   <button runat="server" onserverclick="FeedbackList_ServerClick" class="page-btn bar-btn ">Initiate Feedback</button>
                    <div class="feedback-wrapper">
                        <span>2</span>
                        <span>Feedback</span>
@@ -208,7 +208,7 @@
                   <div class="content-card pie-chart-card">
             <h3 class="content-card-header">My Time</h3>
             <div class="pie-chart-wrapper">
-                <div><canvas id="pie-charta1" width="400" height="225"></canvas></div>
+                <div><canvas id="pie-charta1" style="width:400px;height:225px"></canvas></div>
                 <div >
                     <div class="pie-chart-detail">
                         <div class="pie-chart-item">
@@ -217,7 +217,7 @@
                         </div>
                         <div class="pie-chart-item">
                             <span runat="server" id="span12">10hrs</span><span>Overtime hours</span>
-                            <button class="btn-success btn">Request Pay</button>
+                            <button class="page-btn btn">Request Pay</button>
                         </div>
                     </div>
                     <div class="event-wrapper">
@@ -286,7 +286,7 @@
                     </div>
                 </div>
                 <div class="page-btn-wrapper">
-                    <button class="btn btn-success" runat="server" onserverclick="InitiateNew">Initiate New</button>
+                    <button class="page-btn" runat="server" onserverclick="InitiateNew">Initiate New</button>
                 </div>
             </div>
         </div>
@@ -336,7 +336,7 @@
                 </div>
             </div>
             <div class="page-btn-wrapper">
-                <button runat="server" onserverclick="ApplyLeave_ServerClick" class="btn btn-success">Apply For Leave</button>
+                <button runat="server" onserverclick="ApplyLeave_ServerClick" class="btn page-btn">Apply For Leave</button>
             </div>
         </div>
             </div>
@@ -493,7 +493,7 @@
     </div>
     
     <script type="text/javascript" src="js/Chart.min.js"></script>
-    <script>
+    <script type="text/javascript">
        // var canvas = document.getElementById("bar-chart-grouped");
        // var special_width = document.getElementById('special_width');
         //const width_1 = document.getElementById('width_1');
@@ -529,6 +529,7 @@
                      responsive: true
                  }
         });--%>
+        console.log(document.getElementById("pie-charta1"))
        new Chart(document.getElementById("line-chart"), {
                  type: 'line',
                  data: {
@@ -554,16 +555,15 @@
                      }
                  }
        });
-       new Chart(document.getElementById("pie-charta1"), {
+        new Chart(document.getElementById("pie-charta1"), {
             type: 'pie',
             data: {
-                labels: ["we"],
+                labels: ['Present','Absent','Leave'],
                      datasets: [{
                          label: "Amount (millions)",
                          backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#0250f7", "#f7020e"],
-                         data: ["2"]
-                     },
-                       
+                         data: [<%=value1%>,<%=value2%>,<%=value3%>]
+                 }]
              },
              options: {
                  legend: { display: true },

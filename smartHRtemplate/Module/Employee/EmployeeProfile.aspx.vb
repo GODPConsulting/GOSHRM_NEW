@@ -188,9 +188,15 @@ Public Class EmployeeProfile
                     'LoadDirectReport(Request.QueryString("empid"))
                     LoadDependants(Request.QueryString("empid"))
                     LoadHobbies(Request.QueryString("empid"))
+                    If Request.QueryString("empid") <> Session("UserEmpID") Then
+                        A4.Visible = False
+                        A3.Visible = False
+                        A2.Visible = False
+                        A5.Visible = False
+                    End If
                     ' LoadContacts(Request.QueryString("empid"))
                 Else
-                    LoadPersonalDetail(Session("UserEmpID"))
+                        LoadPersonalDetail(Session("UserEmpID"))
                     LoadCertification(Session("UserEmpID"))
                     LoadEducation(Session("UserEmpID"))
                     LoadEmergencyContact(Session("UserEmpID"))

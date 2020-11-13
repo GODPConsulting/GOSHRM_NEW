@@ -32,20 +32,23 @@ Public Class test1
                     Dim JobGrade = strEmployee.Tables(0).Rows(i).Item("GradeLevel").ToString()
                     Dim Performance = strEmployee.Tables(0).Rows(i).Item("Score").ToString()
                     Dim empid = strEmployee.Tables(0).Rows(i).Item("empid").ToString()
+                    Dim chap As char= Name.Substring(0, 1)
                     Dim jsfunction = " good('" + empid + "')"
+                    Dim url = Process.ApplicationURL + "/Module/Employee/EmployeeProfile?empid=" + empid
                     s.Append("<tr>
-                           <td>" + sn + "
-													<td><a href='#'  onclick=" + jsfunction + ">" + Name + " </a></td>
+                           <td><a href='" + url + "'  class='avatar'>" + chap + "</a><h2><a href='#' onclick=" + jsfunction + ">" + Name + "<span>" + JobTitle + "</span></a></h2>
+											</td>
+													<td>" + empid + " </td>
 													<td>
 														<h2><a href='#'>" + office + "</a></h2>
 													</td>
-													<td>" + JobTitle + "</td>
-													<td> " + JobGrade + "</td>
+													<td>" + JobGrade + "</td>
+													<td> " + Performance + "</td>
 											
-													<td>" + Performance + "</td>	
+													<td><a class='btn btn-white btn-sm rounded' onclick=" + jsfunction + ">Manage Employee</a></td>	
 													<td>
-                                                    
-                                                    <span class='label label-success-border'> View Profile</span></td>
+                                                    <a href='" + url + "'
+                                                    <span class='label label-success-border'> View Profile</span></a></td>
 												</tr>
 												")
 

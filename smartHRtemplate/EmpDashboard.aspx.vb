@@ -16,8 +16,8 @@ Imports System.Globalization
 Public Class EmpDashboard
     Inherits System.Web.UI.Page
     Public cur_lenght, cur_per, cur_per_forcast, obj As String
-    Public score, year, actuallSkills, expectedSkills, actualWeight, expectedWeight As String
-
+    Public score, year, actuallSkills, expectedSkills, actualWeight, expectedWeight, day As String
+    Public value1, value2, value3 As Integer
     Protected Sub TrainingLib_ServerClick(sender As Object, e As EventArgs)
         Try
             Response.Redirect("~/Module/Employee/TrainingPortal/AvailableTrainings.aspx?id=emp", True)
@@ -301,6 +301,9 @@ Public Class EmpDashboard
             span14.InnerText = foundRow1.Length.ToString
             span15.InnerText = foundRow2.Length.ToString()
             span16.InnerText = (foundRow.Length - (foundRow1.Length + foundRow2.Length)).ToString()
+            value1 = foundRow.Length - (foundRow1.Length + foundRow2.Length)
+            value2 = foundRow2.Length
+            value3 = foundRow1.Length
             'Leave
             Dim strLeave As DataTable
             strLeave = Process.SearchData("Emp_Leave_Chart", Session("UserEmpID"))

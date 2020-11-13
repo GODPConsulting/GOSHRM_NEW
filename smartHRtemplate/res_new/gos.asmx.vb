@@ -131,6 +131,10 @@ Public Class gos
         Public Property LeaveTaken As String
         Public Property LeaveRequest As String
         Public Property Performance As String
+        Public Property Overtimes As String
+        Public Property competencerate As String
+        Public Property daysspent As String
+        Public Property comfirmstatus As String
     End Class
 
 
@@ -692,21 +696,53 @@ Public Class gos
         Dim sums2 As String = sum2.ToString()
         Dim strEmployee As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Emp_PersonalDetail_DirectReports_My_Team", empid)
         Dim newDataRow As DataRow() = strEmployee.Tables(0).[Select]("empid ='" & pid & "'")
+        Dim strOvertime As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Get_Over_hours_Requests", pid, Now.Month)
+        Dim strOvertimes As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Get_Over_hours", pid, Now.Month)
+        Dim strLeaveRequest As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Employee_Leavelist_Approver_Summary_Get_All", empid, DateSerial(Now.Year, 1, 1), DateSerial(Now.Year, 12, 31))
+        Dim datatables As DataTable = Process.SearchData("Actual_skills_get", pid)
+        Dim recipientin As Decimal = 0
+        Dim recipientss As String
+        Dim ExpectedDate As Date = newDataRow(0).Item("ExpectedConfirmationDate")
+        Dim ComfirmedDate As String = newDataRow(0).Item("ConfirmationDate")
 
-
-
+        If datatables.Rows.Count > 0 Then
+            For i As Integer = 0 To datatables.Rows.Count - 1
+                recipientin = recipientin + datatables.Rows(i).Item("Actual Percentage")
+            Next
+            recipientin = Math.Round(recipientin / datatables.Rows.Count)
+            recipientss = recipientin.ToString()
+        Else
+            recipientss = 0.ToString()
+        End If
+        Dim LeaveRequest As DataRow() = strLeaveRequest.Tables(0).[Select]("empid ='" & pid & "'")
 
         Dim progs As EmployeesData = New EmployeesData()
         progs.Presentday = (foundRow.Length - (foundRow1.Length + foundRow2.Length)).ToString()
         progs.AbsentDay = foundRow2.Length.ToString()
         progs.Leaveday = foundRow1.Length.ToString
         If foundRow.Length > 0 Then
-            progs.AttendanceRate = ((Integer.Parse(progs.Presentday) / foundRow.Length) * (100)).ToString()
+            progs.AttendanceRate = (Math.Round(Integer.Parse(progs.Presentday) / foundRow.Length * (100))).ToString()
         Else
             progs.AttendanceRate = "0"
         End If
         progs.LeaveTaken = sums2.Split(".")(0)
-        progs.Performance = newDataRow(0).Item("Score")
+        progs.Performance = Math.Round(newDataRow(0).Item("Score"))
+        progs.Overtime = strOvertime.Tables(0).Rows(0).Item("OVERTIME").ToString
+        progs.Overtimes = strOvertimes.Tables(0).Rows(0).Item("OVERTIME").ToString
+        progs.daysspent = (Math.Round(DateDiff(DateInterval.Day, newDataRow(0).Item("DateJoin"), Date.Now))).ToString("N0")
+        progs.competencerate = recipientss
+        If LeaveRequest.Length > 0 Then
+            progs.LeaveRequest = (Math.Round(LeaveRequest(0).Item("pending"))).ToString()
+        Else
+            progs.LeaveRequest = 0.ToString()
+        End If
+        If ComfirmedDate <> "" Then
+            progs.comfirmstatus = "Comfimed"
+        ElseIf ComfirmedDate = "" And ExpectedDate <= Date.Today Then
+            progs.comfirmstatus = "Comfirmation Due"
+        Else
+            progs.comfirmstatus = "Not Comfirmed"
+        End If
         listRecipients1.Add(progs)
 
 

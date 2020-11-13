@@ -21,9 +21,7 @@
         var span = document.getElementsByClassName("manager-close")[0];
 
         // When the user clicks the button, open the modal
-        btn.onclick = function () {
-            modal.style.display = "block";
-        };
+      
         function good(id) {
             var pid = id;
             var empid = '<%=Session("UserEmpid") %>';
@@ -44,18 +42,39 @@
                     var present = document.getElementById("present");
                     var leavetaken = document.getElementById("leavetaken");
                     var absent = document.getElementById("absent");
-                    var attend = document.getElementById("attandanceRate")
+                    var attend = document.getElementById("attandanceRate");
+                    var performance = document.getElementById("performance");
+                    var overtime = document.getElementById("overtime");
+                   
+                    var competence = document.getElementById("competence");
+                    var leaverequest = document.getElementById("leaverequest");
+                    var daysspent = document.getElementById("daysspent")
+                    var comfirmstatus = document.getElementById("comfirmstatus")
                    
                     $(data).each(function (index, progs) {
                         present.innerText = "";
                         leavetaken.innerText = "";
                         absent.innerText = "";
+                        performance.innerText = "";
+                        overtime.innerText = "";
+                       
+                        competence.innerText = "";
+                        leaverequest.innerText = "";
+                        daysspent.innerText = "";
+                        comfirmstatus.innerText = "";
                         console.log(progs)
-                        present.innerText = progs.Presentday;
+                        present.innerText = progs.Presentday+ ' '+'days';
                         leavetaken.innerText =
-                            progs.LeaveTaken;
-                        absent.innerText = progs.AbsentDay;
-                        attend.innerText = progs.AttendanceRate+'%';
+                            progs.LeaveTaken +' '+'days';
+                        absent.innerText = progs.AbsentDay +' '+ 'days';
+                        attend.innerText = progs.AttendanceRate + '%';
+                        performance.innerText = progs.Performance + '%';
+                        overtime.innerText = progs.Overtime +' '+'hrs';
+                       
+                        competence.innerText = progs.competencerate + '%';
+                        leaverequest.innerText = progs.LeaveRequest + ' ' + 'days';
+                        daysspent.innerText = progs.daysspent;
+                        comfirmstatus.innerText = progs.comfirmstatus;
                     });
                 },
                 error: function (err) {
@@ -119,52 +138,44 @@
                                       
                                 </div>
                                 <div class="panel-body">
-                                    			<div class="table-responsive">
-										<table class="table table-striped custom-table m-b-0">
-											<thead>
-												<tr>
-                                                    <th>S/N</th>
-													<th>Name</th>
-													<th>Office</th>
-													<th>Job Title</th>
-													<th>Job Grade</th>
-													<th>Performance Rating</th>
-                                                    <th></th>
-												</tr>
-											</thead>
-											<tbody id="mgrbody" runat="server">
-												<%--<tr>
-													<td><a href="invoice-view.html">#INV-0001</a></td>
-													<td>
-														<h2><a href="#">Hazel Nutt</a></h2>
-													</td>
-													<td>8 Aug 2017</td>
-													<td>$380</td>
-													<td>
-														<span class="label label-warning-border">Partially Paid</span>
-													</td>
-                                                    <td>Approve</td>
-												</tr>
-												--%>
-											
-											</tbody>
-										</table>
-									</div>
+                                    			<div class="row">
+                                                    <div class="col-md-12">
+							<div class="table-responsive">
+								<table class="table table-striped custom-table datatable">
+                                    <thead>
+										<tr>
+											<th style="width:30%;">Name</th>
+											<th>Employee ID</th>
+											<th>Office</th>
+											<th>Job Grade</th>
+											<th>Performance Rating</th>
+											<th>Action</th>
+											<th class="text-right">Action</th>
+										</tr>
+									</thead>
+                                    <tbody id="mgrbody" runat="server">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                                        </div>
+                                    			</div>
                                     <div class="row">
                                     <div class="col-md-6">
-                                   <div id="myModal" style="width:90%;margin-left:13%" class="manager-card-wrapper manager-modal">
+                                   <div id="myModal" style="width:88%;margin-left:15%" class="manager-card-wrapper manager-modal">
           <div class="manager-modal-content">
             <span class="manager-close" onclick="bad()">&times;</span>
             <div class="manager-card-container">
                 <div class="col-md-4">
                
-                    <h3 class="content-card-header">Competence & Development</h3>
+                    <h3 class="content-card-header">Competence & Dev.</h3>
                     <div class="rating-container">
-                      <span class="rating-percent">98%</span><span>Rating</span>
+                      <span class="rating-percent" id="competence">98%</span><span>Rating</span>
                     </div>
                     <div class="manager-btn-wrapper">
-                      <button class="manager-btn">Request Training</button>
-                      <button class="manager-btn">View Dev Plan</button>
+                        <a href="<%= Page.ResolveClientUrl("~/Module/")%>">
+                      <button class="manager-btn">Request Training</button></a>
+                        <a href="<%= Page.ResolveClientUrl("~/Module/Employee/Performance/DirectReportDevelopmentPlan")%>">
+                      <button type="button" class="manager-btn">View Dev Plan</button></a>
                       <button class="manager-btn">Approve Training</button>
                       <button class="manager-btn">View Training</button>
                     </div>
@@ -179,30 +190,37 @@
                     <div class="manager-item-wrapper">
                       <div class="top-wrapper">
                         <div class="event-item manager-card-item">
-                          <span id="present"> 10 </span>
+                          <span id="present" class="manager-indicator"> 10 </span>
                           <span>Present</span>
                         </div>
                         <div class="manager-pipe"></div>
                         <div class="event-item manager-card-item">
-                          <span id="absent"> 10 </span>
+                          <span id="absent" class="manager-indicator"> 10 </span>
                           <span>Absent</span>
                         </div>
                         <div class="manager-pipe"></div>
                         <div class="event-item manager-card-item">
-                          <span> 10 </span>
-                          <span>Overtime Request</span>
+                         <a href="<%= Page.ResolveClientUrl("~/Module/Employee/TimeManagement/TeamAttendanceCalendar")%>"> <span id="overtime" class="manager-indicator"> 10 </span></a>
+                         <a href="<%= Page.ResolveClientUrl("~/Module/Employee/TimeManagement/TeamAttendanceCalendar")%>"> <span>Overtime Req.</span></a>
                         </div>
                       </div>
                       <!-- <div class="event-pipe"></div> -->
                       <div class="top-wrapper">
                         <div class="event-item manager-card-item">
-                          <span id="leavetaken">10</span>
+                          <span id="leavetaken" class="manager-indicator">10</span>
                           <span>Leave Taken</span>
                         </div>
                         <div class="manager-pipe"></div>
                         <div class="event-item manager-card-item">
-                          <span>10</span>
+                          <span id="leaverequest" class="manager-indicator">10</span>
                           <span>Leave Request</span>
+
+                        </div>
+                           <div class="manager-pipe"></div>
+                          <div class="event-item manager-card-item">
+                               <a href="<%= Page.ResolveClientUrl("~/Module/Employee/TimeManagement/TeamAttendanceCalendar")%>">
+                          <button class="career-btn" type="button">Initiate Overtime</button></a>
+
                         </div>
                       </div>
                     </div>
@@ -211,53 +229,55 @@
                 <div class="col-md-4">
                 
                   
-                    <h3 class="content-card-header">Performance Rating</h3>
+                    <h3 class="content-card-header">Performance</h3>
                     <div class="rating-container">
-                      <span class="rating-percent">98%</span><span>Rating</span>
+                      <span id="performance" class="rating-percent">98%</span><span>Rating</span>
                     </div>
                     <div class="manager-btn-wrapper">
                       <button class="manager-btn">View Objective</button>
                       <button class="manager-btn">View Feedback</button>
-                      <button class="manager-btn">View Kudos</button>
+                        <a href="<%= Page.ResolveClientUrl("~/Module/Employee/Performance/AppraisalFeedBackNuggetsManagerList")%>">
+                      <button class="manager-btn" type="button">View Kudos</button></a>
                       <button class="manager-btn">End Cycles</button>
                     </div>
                 
                     </div>
                   <div class="col-md-4">
                     <h3 class="content-card-header">Career</h3>
+                          <div class="rating-container">
+                      <span id="daysspent" class="rating-percent">98%</span><span>days</span>
+                    </div>
                     <div class="career-top">
                       <div class="career-top-item">
-                        <span>0</span>
-                        <span>Confirmed</span>
+                       
+                        <span id="comfirmstatus" >Confirmed</span>
                       </div>
                       <div class="manager-pipe"></div>
                       <div class="career-top-btn-wrapper">
                         <button class="career-btn">Initiate Confirmation</button>
                       </div>
+                          <div class="career-top-btn-wrapper">
+                              <a href="<%= Page.ResolveClientUrl("~/Module/Employee/Recruitment/ExitApprovals")%>">
+                        <button class="career-btn" type="button"> Exit</button></a>
+                      </div>
                     </div>
                     <div class="career-mid">
                       <div class="career-mid-item">
-                        <span>2</span>
-                        <span>Promotion</span>
+                          <a href="<%= Page.ResolveClientUrl("~/Module/Employee/Recruitment/promotionupdate?type=mgr")%>">
+                         <button class="career-btn" type="button">Initiate Promotion</button></a>
                       </div>
                       <div class="manager-pipe"></div>
                       <div>
-                        <button class="career-btn">Initiate Promotion</button>
+                          <a href="<%= Page.ResolveClientUrl("~/Module/Employee/Recruitment/PromotionsInitiated")%>">
+                        <button class="career-btn" type="button">Approve Promotion</button></a>
                       </div>
                       <div class="manager-pipe"></div>
                       <div class="career-mid-item">
-                        <span>Approve</span>
+                          <a href="<%= Page.ResolveClientUrl("~/Module/Employee/Recruitment/SuccessionPlans")%>">
+                        <button class="career-btn" type="button">Succ. planning</button></a>
                       </div>
                     </div>
-                    <div class="career-bottom">
-                      <div class="career-bottom-item">
-                        <span>4</span><span>Overtime</span>
-                      </div>
-                      <div class="manager-pipe"></div>
-                      <div class="career-top-btn-wrapper">
-                        <button class="career-btn">Initiate Overtime</button>
-                      </div>
-                    </div>
+                   
                   </div>
                     </div>
               </div>

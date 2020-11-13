@@ -172,6 +172,10 @@
     <Reference Include="System.EnterpriseServices">
       <Private>True</Private>
     </Reference>
+    <Reference Include="Telerik.Web.Design, Version=2015.2.623.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\UI for ASP.NET AJAX Q2 2015\Bin40\Telerik.Web.Design.dll</HintPath>
+    </Reference>
     <Reference Include="Telerik.Web.Mvc, Version=2013.2.611.340, Culture=neutral, PublicKeyToken=29ac1a93ec063d92, processorArchitecture=MSIL">
       <HintPath>..\packages\TelerikMvcExtensions.2013.2.611\lib\net40\Telerik.Web.Mvc.dll</HintPath>
     </Reference>
@@ -227,8 +231,6 @@
     <Content Include="bin\Microsoft.ReportViewer.WebForms.dll" />
     <Content Include="bin\Microsoft.Web.Administration.dll" />
     <Content Include="bin\smartHRtemplate.dll" />
-    <Content Include="bin\smartHRtemplate.pdb" />
-    <Content Include="bin\smartHRtemplate.xml" />
     <Content Include="bin\System.dll" />
     <Content Include="bin\System.Web.dll" />
     <Content Include="bin\System.Web.Extensions.dll" />
