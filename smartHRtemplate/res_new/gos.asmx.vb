@@ -54,7 +54,9 @@ Public Class gos
         Public Property promotion As Integer
         Public Property employeeExit As Integer
         Public Property hmo As Integer
-        Public Property performanceRating As Integer
+        Public Property workforceCount As Integer
+        Public Property turnoverCount As Decimal
+        Public Property performanceRating As Decimal
         Public Property compentenceRating As Integer
         Public Property queries As Integer
         Public Property payroll As Integer
@@ -760,7 +762,7 @@ Public Class gos
 
         Dim prog As companyObj = New companyObj()
         Dim strTest As DataSet
-        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Recruit_Job_Requisition_Get_All_HR", companyName, "Pending")
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Recruit_WorkForce_Budget_get_all", companyName, "Pending", "Plan", Date.Now.Year)
         prog.workforceplan = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
         strTest.Clear()
 
@@ -784,7 +786,7 @@ Public Class gos
         prog.employeeDataset = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
         strTest.Clear()
 
-        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Recruit_Confirmation_Get_HR", companyName, "due")
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Recruit_Confirmation_Get_HR", companyName, "Pending")
         prog.employeeConfirmation = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
         strTest.Clear()
 
@@ -800,16 +802,49 @@ Public Class gos
         prog.employeeExit = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
         strTest.Clear()
 
-
         strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Recruit_HMO_Get_All")
         prog.hmo = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
         strTest.Clear()
 
-        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Recruit_HMO_Get_All")
-        prog.performanceRating = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "sp_Get_WorkForceGrowth_Hr_dashboard", companyName)
+        Dim k As Integer = strTest.Tables(0).Rows.Count
+        If k > 0 Then
+            For i As Integer = 0 To k - 1
+                Dim name As Integer = Convert.ToInt32(strTest.Tables(0).Rows(i)("name"))
+                If name = Date.Now.Year Then
+                    prog.workforceCount = Convert.ToInt32(strTest.Tables(0).Rows(i)("count"))
+                Else
+                    prog.workforceCount = 0
+                End If
+            Next
+        End If
         strTest.Clear()
 
-        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Recruit_HMO_Get_All")
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "sp_Get_TurnoverRate_Hr_dashboard", companyName)
+        Dim n As Integer = strTest.Tables(0).Rows.Count
+        If n > 0 Then
+            For o As Integer = 0 To n - 1
+                Dim name As Integer = Convert.ToInt32(strTest.Tables(0).Rows(o)("name"))
+                If name = Date.Now.Year Then
+                    prog.turnoverCount = Convert.ToDecimal(strTest.Tables(0).Rows(o)("count"))
+                Else
+                    prog.turnoverCount = 0
+                End If
+            Next
+        End If
+        strTest.Clear()
+
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "sp_Get_Performance_Hr_dashboard", companyName)
+        prog.performanceRating = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
+        Dim y As Integer = strTest.Tables(0).Rows.Count
+        If y > 0 Then
+            For a As Integer = 0 To y - 1
+                prog.performanceRating = Convert.ToDecimal(strTest.Tables(0).Rows(a)("score"))
+            Next
+        End If
+        strTest.Clear()
+
+        strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "sp_Get_WorkForceGrowth_Hr_dashboard", companyName)
         prog.compentenceRating = FormatNumber(strTest.Tables(0).Rows.Count.ToString(), 0)
         strTest.Clear()
 
