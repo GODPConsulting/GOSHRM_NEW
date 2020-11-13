@@ -41,10 +41,10 @@ Public Class test1
 													</td>
 													<td>" + JobTitle + "</td>
 													<td> " + JobGrade + "</td>
-											
+
 													<td>" + Performance + "</td>	
 													<td>
-                                                    
+
                                                     <span class='label label-success-border'> View Profile</span></td>
 												</tr>
 												")
