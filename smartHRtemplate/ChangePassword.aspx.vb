@@ -71,7 +71,11 @@ Public Class ChangePassword
             If count > 0 Then
                 Dim id As String = strDataSet.Tables(0).Rows(0).Item("id").ToString
                 SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "users_update_password", id, Process.Encrypt(newpwd.Value))
-                ClientScript.RegisterClientScriptBlock(Me.[GetType](), "alert", Convert.ToString("alert('") & "Password successfully updated" + "')", True)
+
+                Dim days As Integer = SqlHelper.ExecuteScalar(WebConfig.ConnectionString, CommandType.Text, "select cycleDays from Admin_PasswordDate")
+                Dim newDAte As Date = Date.Now.AddDays(days)
+
+                SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, CommandType.Text, "update users set passwordupdatedate = '" & newDAte & "', passwordupdate = 'true' where userid ='" & Session("LoginID") & "'")
 
                 If Session("pp") Is Nothing Then
                     Response.Redirect("empdashboard", True)
@@ -83,7 +87,7 @@ Public Class ChangePassword
                     End If
                 End If
             Else
-                lblstatus = "Login validation failed, invalid password!"
+                lblstatus = "Login validation failed, Invalid password!"
                 Process.loadalert(divalert, msgalert, lblstatus, "danger")
             End If
 

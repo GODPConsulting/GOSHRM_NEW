@@ -2351,6 +2351,7 @@
     <Content Include="Module\Admin\Certifications.aspx" />
     <Content Include="Module\Admin\CertificationsUpdate.aspx" />
     <Content Include="Module\Admin\Configuration\Authenticationmode.aspx" />
+    <Content Include="Module\Admin\Configuration\PasswordUpdate.aspx" />
     <Content Include="Module\Admin\Configuration\PaystackSetup.aspx" />
     <Content Include="Module\Admin\Configuration\EmailConfiguration.aspx" />
     <Content Include="Module\Admin\Configuration\HostServer.aspx" />
@@ -5270,6 +5271,13 @@
     </Compile>
     <Compile Include="Module\Admin\Configuration\Authenticationmode.aspx.vb">
       <DependentUpon>Authenticationmode.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Module\Admin\Configuration\PasswordUpdate.aspx.designer.vb">
+      <DependentUpon>PasswordUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Module\Admin\Configuration\PasswordUpdate.aspx.vb">
+      <DependentUpon>PasswordUpdate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Module\Admin\Configuration\PaystackSetup.aspx.designer.vb">

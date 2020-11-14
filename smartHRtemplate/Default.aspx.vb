@@ -78,6 +78,20 @@ Public Class Login
             Dim loginSuccess As Boolean = False
             Dim changePwd As Boolean = True
 
+            Session("LoginID") = Request.Form("uid")
+
+            'Dim strDataSet As New DataSet
+            'strDataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, CommandType.Text, "select * from users where userid = '" & Session("LoginID") & "'")
+            'If strDataSet.Tables(0).Rows.Count > 0 Then
+            '    Dim passwordDate As Date = Convert.ToDateTime(strDataSet.Tables(0).Rows(0).Item("passwordupdatedate"))
+            '    Dim passwordUpdate As Boolean = Convert.ToBoolean(strDataSet.Tables(0).Rows(0).Item("passwordUpdate"))
+            '    If passwordDate.Date <= Date.Now.Date Then
+            '        If passwordUpdate = False Then
+            '            Response.Redirect("~/ChangePassword", True)
+            '        End If
+            '    End If
+            'End If
+
             strUser = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "User_LDAP_Setting_Get")
             If strUser.Tables(0).Rows.Count > 0 Then
                 ldap = strUser.Tables(0).Rows(0).Item("ldap").ToString
@@ -96,7 +110,7 @@ Public Class Login
             SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Database_Shrink")
             SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Create_Audit_Proc")
             'lblStatus.Text = Request.Form("uid") & Request.Form("pwd")
-            Session("LoginID") = Request.Form("uid")
+
             Dim ipaddress As String
             ipaddress = Request.ServerVariables("HTTP_X_FORWARDED_FOR")
             If ipaddress = "" Or ipaddress Is Nothing Then
@@ -124,6 +138,20 @@ Public Class Login
                     Else
                         Process.loadalert(divalert, msgalert, "Login failed, invalid user or password", "warning")
                     End If
+                End If
+            End If
+
+            Dim strDataSet As New DataSet
+            strDataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, CommandType.Text, "select * from users where userid = '" & Session("LoginID") & "'")
+            If strDataSet.Tables(0).Rows.Count > 0 Then
+                Dim passwordDate As Date = Convert.ToDateTime(strDataSet.Tables(0).Rows(0).Item("passwordupdatedate"))
+                Dim passwordUpdate As Boolean = Convert.ToBoolean(strDataSet.Tables(0).Rows(0).Item("passwordUpdate"))
+                If passwordDate.Date <= Date.Now.Date Then
+                    If passwordUpdate = False Then
+                        Response.Redirect("~/ChangePassword", True)
+                    End If
+                Else
+                    SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, CommandType.Text, "update users set passwordupdate = 'false' where userid ='" & Session("LoginID") & "'")
                 End If
             End If
 
