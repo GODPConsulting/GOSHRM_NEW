@@ -79,7 +79,7 @@
                     <div id="divapprovalupdate" runat="server" class="col-xs-4 text-right m-b-30 pull-right" visible="false">
                         <button id="Button1" runat="server" onserverclick="lnkupdatestatus_Click" type="submit"
                             class="btn btn-primary btn-success " title="update approvals status">
-                            Update Approval Status
+                            Approve
                         </button>
                     </div>
 

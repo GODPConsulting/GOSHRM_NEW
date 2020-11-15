@@ -193,8 +193,8 @@
            <div class="bar-chart-wrapper">
                <canvas id="line-chart" style="margin-top:-25px; width:60%;max-height: 220px !important"> </canvas>
                <div class="right-side">
-                   <button runat="server" onserverclick="ObjectiveList_ServerClick" class="page-btn bar-btn">Initiate Objective</button>
-                   <button runat="server" onserverclick="FeedbackList_ServerClick" class="page-btn bar-btn ">Initiate Feedback</button>
+                   <button runat="server" onserverclick="ObjectiveList_ServerClick" class="page-btn bar-btn"> Objective</button>
+                   <button runat="server" onserverclick="FeedbackList_ServerClick" class="page-btn bar-btn ">Feedback</button>
                    <div class="feedback-wrapper">
                        <span>2</span>
                        <span>Feedback</span>

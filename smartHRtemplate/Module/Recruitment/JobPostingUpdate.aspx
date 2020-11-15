@@ -358,7 +358,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>
-                                                SECONDARY SCHOOL SUBJECTS*</label>
+                                                SECONDARY SCHOOL SUBJECTS</label>
                                             <telerik:radcombobox id="cboSchoolLeaving" runat="server" forecolor="#666666" width="100%"
                                                 filter="Contains" rendermode="Lightweight" skin="Bootstrap" autopostback="True"
                                                 checkboxes="True">

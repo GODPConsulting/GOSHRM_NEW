@@ -80,12 +80,12 @@ Public Class EmployeeDependantUpdate
     Protected Sub btnAdd_Click(sender As Object, e As EventArgs)
         Try
             Dim lblstatus As String = ""
-            If Process.AuthenAction(Session("role"), AuthenCode, "Create") = False Then
-                lblstatus = "You don't have privilege to perform this action"
-                ClientScript.RegisterClientScriptBlock(Me.[GetType](), "alert", Convert.ToString("alert('") & "You don't have privilege to perform this action" + "')", True)
-                Process.loadalert(divalert, msgalert, lblstatus, "warning")
-                Exit Sub
-            End If
+            'If Process.AuthenAction(Session("role"), AuthenCode, "Create") = False Then
+            '    lblstatus = "You don't have privilege to perform this action"
+            '    ClientScript.RegisterClientScriptBlock(Me.[GetType](), "alert", Convert.ToString("alert('") & "You don't have privilege to perform this action" + "')", True)
+            '    Process.loadalert(divalert, msgalert, lblstatus, "warning")
+            '    Exit Sub
+            'End If
 
             If (radDOB.SelectedDate Is Nothing) Then
                 lblstatus = "Date of Birth required"

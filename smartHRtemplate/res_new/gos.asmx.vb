@@ -456,11 +456,11 @@ Public Class gos
 
             Dim point = Decimal.Parse(Performance.Points)
             If Performance.userid = Performance.empid Then
-                SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Performance_Appraisal_Questionaire_Update_reviewee", Performance.Pid, point, Performance.jobgrade, Performance.kpiobjectives)
+                SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Performance_Appraisal_Questionaire_Update_reviewee", Performance.Pid, point, Performance.jobgrade)
             ElseIf Performance.userid = Performance.rev1id Then
-                SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Performance_Appraisal_Questionaire_Update_reviewer", Performance.Pid, point, Performance.jobgrade, Performance.kpiobjectives)
+                SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Performance_Appraisal_Questionaire_Update_reviewer", Performance.Pid, point, Performance.jobgrade)
             Else
-                SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Performance_Appraisal_Questionaire_Update_reviewer2", Performance.Pid, point, Performance.jobgrade, Performance.kpiobjectives)
+                SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Performance_Appraisal_Questionaire_Update_reviewer2", Performance.Pid, point, Performance.jobgrade)
 
 
             End If

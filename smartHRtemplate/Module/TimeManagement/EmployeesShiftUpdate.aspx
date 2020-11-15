@@ -64,7 +64,7 @@
                                 <label>Shift Name*</label>
                                 <telerik:RadDropDownList ID="radShift" Skin="Bootstrap" runat="server" DefaultMessage="-- Select --"
                                     Font-Names="Verdana" Font-Size="12px" Width="100%" 
-                                    ResolvedRenderMode="Classic" ForeColor="#666666">
+                                    ResolvedRenderMode="Classic" ForeColor="#666666" ToolTip="enabled overtime payment" AutoPostBack="true" >
                                 </telerik:RadDropDownList>
                             </div>
                         </div>
@@ -116,9 +116,17 @@
 										</div>
                         <div class="col-md-12">
                             <div class="form-group">
+                                <asp:UpdatePanel runat="server" ID="UpdatePanel2" UpdateMode="Always">
+                                    <ContentTemplate>
                                 <label>
                                     Duration (Hours)</label>
-                                    <input type="text" id="lblDays" runat="server" class="form-control">
+                                    <input type="text" id="lblDays" runat="server" class="form-control"/>
+                                        </ContentTemplate>
+                                    <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="radShift" EventName="SelectedIndexChanged" />
+                                    </Triggers>
+                                    </asp:UpdatePanel>
+                                        
                             </div>
                         </div>
                          <div class="col-md-12">

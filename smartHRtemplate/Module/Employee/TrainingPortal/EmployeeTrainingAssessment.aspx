@@ -347,6 +347,9 @@
             </td>
             <td class="style5" colspan="2" valign="top">
                   <input style="height:35px;" class="form-control" type="file" id="FileUpload1" runat="server" />
+                <button id="btcertificate" runat="server" type="submit" onserverclick="lblcertificate_Click"
+                                        class="btn btn-link">
+                                        <i class="fa fa-download"></i></button>
             </td>
         </tr>
         <tr>

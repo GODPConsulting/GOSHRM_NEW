@@ -311,6 +311,15 @@ Partial Public Class EmployeeTrainingAssessment
     Protected WithEvents FileUpload1 As Global.System.Web.UI.HtmlControls.HtmlInputFile
 
     '''<summary>
+    '''btcertificate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btcertificate As Global.System.Web.UI.HtmlControls.HtmlButton
+
+    '''<summary>
     '''btnAdd control.
     '''</summary>
     '''<remarks>

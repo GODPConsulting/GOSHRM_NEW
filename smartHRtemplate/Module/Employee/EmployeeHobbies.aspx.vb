@@ -95,7 +95,7 @@ Public Class EmployeeHobbies
             Else
                 SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Emp_Hobbies_Update", txtid.Text, txtempid.Text, hobbiesname.Value, hobbyDescriptions.Value, hobbiesrate.Value)
             End If
-            lblstatus = "Employee Asset has been Updated"
+            lblstatus = "Employee Hobbies has been Updated"
             Process.loadalert(divalert, msgalert, lblstatus, "success")
         Catch ex As Exception
             Process.loadalert(divalert, msgalert, ex.Message, "danger")

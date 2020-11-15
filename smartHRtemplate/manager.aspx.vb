@@ -11,6 +11,7 @@ Imports Telerik.Web.UI.HtmlChart.PlotArea
 Imports Telerik.Web.UI.HtmlChart
 Imports Telerik.Web.UI.HtmlChart.Enums
 Imports GOSHRM.GOSHRM.GOSHRM.BO
+Imports System.IO
 
 Public Class test1
     Inherits System.Web.UI.Page
@@ -19,24 +20,32 @@ Public Class test1
     Protected Sub EndCycle_ServerClick(sender As Object, e As EventArgs)
         Dim id = Request.Form("empid")
         Dim Performance As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Get_PeformanceID", id)
-        Dim performanceid = Performance.Tables(0).Rows(0).Item("id")
-        Dim Performername = Performance.Tables(0).Rows(0).Item("name")
-        Dim PerformanceOffice = Performance.Tables(0).Rows(0).Item("Office")
+        Dim performanceid = Performance.Tables(0).Rows(0).Item("id").ToString()
+        Dim Performername = Performance.Tables(0).Rows(0).Item("name").ToString()
+        Dim PerformanceOffice = Performance.Tables(0).Rows(0).Item("Office").ToString()
         Dim Link = Process.ApplicationURL + "~/Module/Employee/Performance/AppraisalFeedback?id=" + performanceid
-        SqlHelper.ExecuteScalar(WebConfig.ConnectionString, "Performance_Appraisal_End_Cycle", performanceid)
-        Process.Appraisal_Cycle_End(performanceid, "", Performername, PerformanceOffice, Link)
+        Try
+            SqlHelper.ExecuteScalar(WebConfig.ConnectionString, "Performance_Appraisal_End_Cycle", performanceid)
+            Process.Appraisal_Cycle_End(performanceid, "", Performername, PerformanceOffice, Link)
+        Catch ex As Exception
+            'Content.Style.Add("display", "none")
+            Process.loadalert(divalert, msgalert, "No Cycle in session", "info")
+            Exit Sub
+        End Try
+
+
     End Sub
     Protected Sub ViewObjective_ServerClick(sender As Object, e As EventArgs)
         Dim id = Request.Form("empid")
         Dim Performance As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Get_PeformanceID", id)
-        Dim performanceid = Performance.Tables(0).Rows(0).Item("id")
-        Response.Redirect("~/Module/Employee/Performance/AppObjectiveUpdate?id=" + performanceid)
+        Dim performanceid = Performance.Tables(0).Rows(0).Item("id").ToString()
+        Response.Redirect("~/Module/Employee/Performance/AppObjectiveUpdate?id=" + performanceid, True)
     End Sub
     Protected Sub ViewFeedback_ServerClick(sender As Object, e As EventArgs)
         Dim id = Request.Form("empid")
         Dim Performance As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Get_PeformanceID", id)
-        Dim performanceid = Performance.Tables(0).Rows(0).Item("id")
-        Response.Redirect("~/Module/Employee/Performance/AppraisalFeedback?id=" + performanceid)
+        Dim performanceid = Performance.Tables(0).Rows(0).Item("id").ToString()
+        Response.Redirect("~/Module/Employee/Performance/AppraisalFeedback?id=" + performanceid, True)
     End Sub
 
     Public CompletionStatusName, CompletionStatusNameScore As String

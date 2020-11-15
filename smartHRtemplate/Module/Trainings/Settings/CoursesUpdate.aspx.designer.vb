@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class CoursesUpdate
-    
+
     '''<summary>
     '''divalert control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class CoursesUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents divalert As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''msgalert control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class CoursesUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents msgalert As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''txtid control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class CoursesUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtid As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txtskillid control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class CoursesUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtskillid As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''pagetitle control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class CoursesUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pagetitle As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''acode control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class CoursesUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents acode As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''acoursetitle control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class CoursesUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents acoursetitle As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''aobjective control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class CoursesUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents aobjective As Global.System.Web.UI.HtmlControls.HtmlTextArea
-    
+
     '''<summary>
     '''cboCurrency control.
     '''</summary>
@@ -93,7 +93,7 @@ Partial Public Class CoursesUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents cboCurrency As Global.Telerik.Web.UI.RadComboBox
-    
+
     '''<summary>
     '''acost control.
     '''</summary>
@@ -102,7 +102,7 @@ Partial Public Class CoursesUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents acost As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''radStatus control.
     '''</summary>
@@ -111,7 +111,7 @@ Partial Public Class CoursesUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents radStatus As Global.Telerik.Web.UI.RadDropDownList
-    
+
     '''<summary>
     '''btnupdate control.
     '''</summary>
@@ -120,7 +120,7 @@ Partial Public Class CoursesUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnupdate As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''Button1 control.
     '''</summary>
@@ -129,7 +129,25 @@ Partial Public Class CoursesUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Button1 As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
+    '''<summary>
+    '''Button2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Button2 As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
+    '''Button4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Button4 As Global.System.Web.UI.WebControls.LinkButton
+
     '''<summary>
     '''pnskill control.
     '''</summary>
@@ -138,7 +156,7 @@ Partial Public Class CoursesUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents pnskill As Global.System.Web.UI.HtmlControls.HtmlGenericControl
-    
+
     '''<summary>
     '''search control.
     '''</summary>
@@ -147,7 +165,7 @@ Partial Public Class CoursesUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents search As Global.System.Web.UI.HtmlControls.HtmlInputText
-    
+
     '''<summary>
     '''btsearch control.
     '''</summary>
@@ -156,7 +174,7 @@ Partial Public Class CoursesUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btsearch As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''btExport control.
     '''</summary>
@@ -165,7 +183,7 @@ Partial Public Class CoursesUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btExport As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''btnUploadFile control.
     '''</summary>
@@ -174,7 +192,7 @@ Partial Public Class CoursesUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnUploadFile As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''btDelete control.
     '''</summary>
@@ -183,7 +201,7 @@ Partial Public Class CoursesUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btDelete As Global.System.Web.UI.WebControls.LinkButton
-    
+
     '''<summary>
     '''btAdd control.
     '''</summary>
@@ -192,7 +210,7 @@ Partial Public Class CoursesUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btAdd As Global.System.Web.UI.HtmlControls.HtmlButton
-    
+
     '''<summary>
     '''file1 control.
     '''</summary>
@@ -201,7 +219,7 @@ Partial Public Class CoursesUpdate
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents file1 As Global.System.Web.UI.HtmlControls.HtmlInputFile
-    
+
     '''<summary>
     '''gridskills control.
     '''</summary>

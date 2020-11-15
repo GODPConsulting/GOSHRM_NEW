@@ -351,7 +351,63 @@ Public Class Attendance
             ClientScript.RegisterClientScriptBlock(Me.[GetType](), "alert", Convert.ToString("alert('") & ex.Message + "')", True)
         End Try
     End Sub
+    Protected Sub btnUpload5_Click(sender As Object, e As EventArgs)
+        Try
+            If Process.AuthenAction(Session("role"), AuthenCode, "Create") = False Then
+                Response.Write("You don't have privilege to perform this action")
+                ClientScript.RegisterClientScriptBlock(Me.[GetType](), "alert", Convert.ToString("alert('") & "You don't have privilege to perform this action" + "')", True)
+                Exit Sub
+            End If
 
+            'Dim confirmValue As String = Request.Form("confirm_value")
+            Dim confirmValue As String = "Yes"
+            If confirmValue = "Yes" Then
+                'System.Threading.Thread.Sleep(2000)
+                If FileUpload1.PostedFile IsNot Nothing Then
+                    'To create a PostedFile
+                    Dim csvPath As String = Server.MapPath(Process.FileURL) + Path.GetFileName(FileUpload1.PostedFile.FileName)
+                    If File.Exists(csvPath) = True Then
+                        File.Delete(csvPath)
+                    End If
+                    FileUpload1.PostedFile.SaveAs(csvPath)
+                    'Create byte Array with file len
+                    'File.ContentLength
+                    If chkDelete.Checked = True Then
+                        SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Time_Attendance_Delete_Date", dateFrom.SelectedDate, dateTo.SelectedDate.Value.AddDays(1), cboCompany.SelectedValue)
+                    End If
+
+                    If Process.Import(csvPath, "Time_Attendance_upload", Pages) = True Then
+
+                        If AttendanaceCreate(dateFrom.SelectedDate.Value, dateTo.SelectedDate.Value.AddDays(1), cboCompany.SelectedValue) = True Then
+                            Process.loadalert(divalert, msgalert, "Uploaded " & Session("uploadcnt") & " record(s)", "success")
+                        Else
+                            Response.Write(Process.strExp)
+                        End If
+
+                    Else
+                        Response.Write(Process.strExp)
+                    End If
+                    Button1_Click(sender, e)
+                    ClientScript.RegisterClientScriptBlock(Me.[GetType](), "alert", Convert.ToString("alert('") & cboCompany.SelectedValue & ": Uploaded " & Session("uploadcnt") & " record(s) from " & csvPath + "')", True)
+                    Process.GetAuditTrailInsertandUpdate("", cboCompany.SelectedValue & ": Uploaded " & Session("uploadcnt") & " record(s) from " & csvPath, "File Upload", Pages)
+                Else
+
+                End If
+
+                LoadLogGrid(Session("LoadType"))
+            Else
+                ClientScript.RegisterClientScriptBlock(Me.[GetType](), "alert", Convert.ToString("alert('") & "Import cancelled!" + "')", True)
+
+            End If
+
+
+
+
+        Catch ex As Exception
+            Response.Write(ex.Message)
+            ClientScript.RegisterClientScriptBlock(Me.[GetType](), "alert", Convert.ToString("alert('") & ex.Message + "')", True)
+        End Try
+    End Sub
     Protected Sub Button1_Click1(sender As Object, e As EventArgs)
         Try
             If Process.Export(gridLog, "LogSheet", 1, 100) = False Then

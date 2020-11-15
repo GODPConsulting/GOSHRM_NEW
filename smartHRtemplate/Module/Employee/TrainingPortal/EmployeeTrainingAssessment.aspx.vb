@@ -26,9 +26,15 @@ Public Class EmployeeTrainingAssessment
                 If strEmp.Tables(0).Rows.Count > 0 Then
                     EmpID = strEmp.Tables(0).Rows(0).Item("empid").ToString
                     lblTraining.Text = strEmp.Tables(0).Rows(0).Item("session").ToString
+                    If strEmp.Tables(0).Rows(0).Item("cvname").ToString <> "" Then
+                        FileUpload1.Value = strEmp.Tables(0).Rows(0).Item("cvname").ToString
+                        btcertificate.Visible = True
+                    Else
+                        btcertificate.Visible = True
+                    End If
                 End If
 
-                Session("PreviousPage") = Request.UrlReferrer
+                    Session("PreviousPage") = Request.UrlReferrer
 
                 SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Emp_Training_Sessions_Assessment_Create", Request.QueryString("assessid"))
                 Process.saved = False
@@ -97,6 +103,13 @@ Public Class EmployeeTrainingAssessment
                 SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Emp_Training_Sessions_Assessment_Update", Request.QueryString("assessid"), 6, txt6.Text, cvfile, cvtype, cvname)
                 SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Emp_Training_Sessions_Assessment_Update", Request.QueryString("assessid"), 7, txt7.Text, cvfile, cvtype, cvname)
                 SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Emp_Training_Sessions_Assessment_Update", Request.QueryString("assessid"), 8, txt8.Text, cvfile, cvtype, cvname)
+                Dim strEmp As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Emp_Training_Sessions_Assessment_EmpID", Request.QueryString("assessid"))
+                If strEmp.Tables(0).Rows(0).Item("cvname").ToString <> "" Then
+                    FileUpload1.Value = strEmp.Tables(0).Rows(0).Item("cvname").ToString
+                    btcertificate.Visible = True
+                Else
+                    btcertificate.Visible = True
+                End If
                 lblstatus.Text = "Assessment Saved"
                 Process.saved = True
             Else
@@ -116,8 +129,29 @@ Public Class EmployeeTrainingAssessment
             lblstatus.Text = ex.Message
         End Try
     End Sub
+    Protected Sub lblcertificate_Click(sender As Object, e As EventArgs)
+        Try
+            Dim dt As DataTable = Process.SearchData("Emp_Training_Sessions_Assessment_EmpID", txtid.Text)
+            If dt IsNot Nothing Then
+                downloadFile(CType(dt.Rows(0)("cvfile"), Byte()), dt.Rows(0)("cvtype").ToString(), dt.Rows(0)("cvname").ToString())
+            End If
 
-
+        Catch ex As Exception
+            lblstatus.Text = "No file to download"
+            ClientScript.RegisterClientScriptBlock(Me.[GetType](), "alert", Convert.ToString("alert('") & lblstatus.Text + "')", True)
+        End Try
+    End Sub
+    Protected Sub downloadFile(ByVal bytefile As Byte(), ByVal filetype As String, ByVal filename As String)
+        Dim bytes() As Byte = bytefile
+        Response.Buffer = True
+        Response.Charset = ""
+        Response.Cache.SetCacheability(HttpCacheability.NoCache)
+        Response.ContentType = filetype
+        Response.AddHeader("content-disposition", "attachment;filename=" & filename)
+        Response.BinaryWrite(bytes)
+        Response.Flush()
+        Response.End()
+    End Sub
 
     Protected Sub btnComplete_Click(sender As Object, e As EventArgs) Handles btnComplete.Click
         Try
@@ -163,6 +197,13 @@ Public Class EmployeeTrainingAssessment
                 SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Emp_Training_Sessions_Assessment_Update", Request.QueryString("assessid"), 7, txt7.Text, cvfile, cvtype, cvname)
                 SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Emp_Training_Sessions_Assessment_Update", Request.QueryString("assessid"), 8, txt8.Text, cvfile, cvtype, cvname)
                 Process.Training_Assessment_Complete("Training", lblTraining.Text, Session("userempid"), Process.GetEmployeeData(Session("userempid"), "linemanagerid"), Process.GetMailLink(AuthenCode, 2), Process.GetMailLink(AuthenCode, 1))
+                Dim strEmp As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Emp_Training_Sessions_Assessment_EmpID", Request.QueryString("assessid"))
+                If strEmp.Tables(0).Rows(0).Item("cvname").ToString <> "" Then
+                    FileUpload1.Value = strEmp.Tables(0).Rows(0).Item("cvname").ToString
+                    btcertificate.Visible = True
+                Else
+                    btcertificate.Visible = True
+                End If
 
                 lblstatus.ForeColor = Color.DarkGreen
                 lblstatus.Text = "Application Assessment is complete!"

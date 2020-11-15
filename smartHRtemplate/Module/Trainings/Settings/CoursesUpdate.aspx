@@ -16,6 +16,22 @@
                 }
             }
     </script>
+
+
+        
+    <script type="text/javascript">
+        function Comfirm1() {
+            var confirm_value1 = document.createElement("INPUT");
+            confirm_value1.type = "hidden";
+            confirm_value1.name = "confirm_value";
+            if (confirm("Total skill score is"+" " + <%=totalscore%> + "? Are you sure total is up to 100")) {
+                confirm_value1.value = "Yes";
+            } else {
+                confirm_value1.value = "No";
+            }
+            document.forms[0].appendChild(confirm_value);
+        }
+    </script>
     <head>
         <title>Add New</title>
         <script type="text/javascript">
@@ -94,6 +110,12 @@
                                     <button id="Button1" runat="server" onserverclick="btnCancel_Click" type="submit" style="width: 150px"
                                         class="btn btn-primary btn-danger">
                                         << Back</button>
+                                    <asp:LinkButton id="Button2" runat="server" onClick="btnAdd1_Click" OnClientClick="Comfirm1()" type="submit"
+                                        style="width: 150px" class="btn btn-primary btn-success" Text=" Save &amp; Update">
+                                        </asp:LinkButton>
+                                    <asp:LinkButton id="Button4" runat="server" onClientClick="Comfirm1()" onClick="btnCancel1_Click" type="button" data-toggle="tooltip" style="width: 150px"
+                                        class="btn btn-primary btn-danger">
+                                        << Back</asp:LinkButton>
                                 </div>
                             </div>
                         </div>

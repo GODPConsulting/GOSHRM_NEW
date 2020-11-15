@@ -97,7 +97,7 @@
             kpimetric.rev1id = "<%=lblreviewer.Text%>";
             kpimetric.rev2id = "<%=lblreviewer2.Text%>";
             kpimetric.pid = $('#performanceid1').val();
-            kpimetric.kpiobjectives= $('#performanceid2').val();
+            
             kpimetric.jobgrade =  "<%=ajobgrade.Value %>";
             kpimetric.points = $('#Select10 :selected').val();
             var check = $('#performanceid3').val();
@@ -429,12 +429,12 @@
                 //autoclose: true
             })
         }
-        function performpoints(id,kpiobjectives,uploadstatus) {
+        function performpoints(id,uploadstatus) {
             //alert(uploadstatus)
             var pid = id;
             $('#msgbox22').css('display', 'none');
             $('#performanceid1').val(pid);
-            $('#performanceid2').val(kpiobjectives);
+            
             $('#performanceid3').val(uploadstatus);
             $.ajax({
                 url: "<%= Page.ResolveClientUrl("~/res_new/gos.asmx/PerformPoints") %>",
@@ -1414,7 +1414,7 @@
                                         <ItemTemplate>
                                             <asp:HyperLink ID="HyperLink1" runat="server" 
                                                 Text='<%# Eval("EMpIDRating")%>' />
-                                            <a href="#" data-toggle="modal" data-target="#scoreModal" onclick='performpoints("<%# Eval("id") %>","<%# Eval("objectives") %>","<%# Eval("Upload_Status") %>");'>
+                                            <a href="#" data-toggle="modal" data-target="#scoreModal" onclick='performpoints("<%# Eval("id") %>","<%# Eval("Upload_Status") %>");'>
                                             <button id="Button8" type="button" data-toggle="tooltip" data-original-title="Input Your Score" runat="server" class="glyphicon glyphicon-pencil btn btn-default btn-sm" 
                         style="margin-left:10px;margin-right:10px;height: 35px;"></button> </a>
                                         </ItemTemplate>
@@ -1441,7 +1441,7 @@
                                         <ItemTemplate>
                                             <asp:HyperLink ID="HyperLink2" runat="server" 
                                                 Text='<%# Eval("mgrIDRating")%>' />
-                                            <a href="#" data-toggle="modal" data-target="#scoreModal" onclick='performpoints("<%# Eval("id") %>","<%# Eval("objectives") %>","<%# Eval("Upload_Status") %>");'>
+                                            <a href="#" data-toggle="modal" data-target="#scoreModal" onclick='performpoints("<%# Eval("id") %>","<%# Eval("Upload_Status") %>");'>
                                              <button id="Button8" type="button" data-toggle="tooltip" data-original-title="Input Your Score" runat="server" class="glyphicon glyphicon-pencil btn btn-default btn-sm" 
                         style="margin-left:10px;margin-right:10px;height: 35px;"></button> </a>
                                         </ItemTemplate>
@@ -1469,7 +1469,7 @@
                                         <ItemTemplate>
                                             <asp:HyperLink ID="HyperLink1" runat="server" 
                                                 Text='<%# Eval("mgrIDRating2")%>' />
-                                            <a href="#" data-toggle="modal" data-target="#scoreModal" onclick='performpoints("<%# Eval("id") %>","<%# Eval("objectives") %>","<%# Eval("Upload_Status") %>");'>
+                                            <a href="#" data-toggle="modal" data-target="#scoreModal" onclick='performpoints("<%# Eval("id") %>","<%# Eval("Upload_Status") %>");'>
                                             <button id="Button8" type="button" data-toggle="tooltip" data-original-title="Input Your Score" runat="server" class="glyphicon glyphicon-pencil btn btn-default btn-sm" 
                         style="margin-left:10px;margin-right:10px;height: 35px;"></button> </a>
                                         </ItemTemplate>

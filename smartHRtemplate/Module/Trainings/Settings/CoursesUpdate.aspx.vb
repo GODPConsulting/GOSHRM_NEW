@@ -13,7 +13,7 @@ Public Class CoursesUpdate
     Dim olddata(7) As String
     Dim AuthenCode As String = "COURSE"
     Dim Pages As String = "Training Course"
-
+    Public totalscore As String
     <ScriptMethod(ResponseFormat:=ResponseFormat.Json)>
     <WebMethod()>
     Public Shared Function GetName(prefix As String) As String()
@@ -126,6 +126,10 @@ Public Class CoursesUpdate
                 Process.LoadRadComboTextAndValue(cboCurrency, "Currency_Load_1", "Currency", "Code", False)
 
                 If Request.QueryString("id") IsNot Nothing Then
+                    btnupdate.Visible = False
+                    Button1.Visible = False
+                    Button2.Visible = True
+                    Button4.Visible = True
                     Dim strUser As New DataSet
                     strUser = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Courses_get", Request.QueryString("id"))
                     acode.Value = strUser.Tables(0).Rows(0).Item("Code").ToString
@@ -135,12 +139,18 @@ Public Class CoursesUpdate
                     Process.AssignRadComboValue(cboCurrency, strUser.Tables(0).Rows(0).Item("currency").ToString)
                     txtid.Text = strUser.Tables(0).Rows(0).Item("id").ToString
                     aobjective.Value = strUser.Tables(0).Rows(0).Item("objectives").ToString
+                    Dim strLeave As DataTable = Process.SearchData("Course_Skills_get_all", txtid.Text)
+                    totalscore = IIf(IsDBNull(strLeave.Compute("SUM(rating)", "")), "0", strLeave.Compute("SUM(rating)", "")).ToString()
                     LoadGrid(txtid.Text)
                     PanelVisibility()
                 Else
                     txtid.Text = "0"
                     acost.Value = "0"
                     PanelVisibility()
+                    btnupdate.Visible = True
+                    Button1.Visible = True
+                    Button2.Visible = False
+                    Button4.Visible = False
                 End If
             End If
 
@@ -269,6 +279,129 @@ Public Class CoursesUpdate
             Process.loadalert(divalert, msgalert, ex.Message, "danger")
         End Try
     End Sub
+    Protected Sub btnAdd1_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Try
+            Process.loadalert(divalert, msgalert, "", "danger")
+            Dim lblstatus As String = ""
+            If Process.AuthenAction(Session("role"), AuthenCode, "Create") = False Then
+                lblstatus = "You don't have privilege to perform this action"
+                Process.loadalert(divalert, msgalert, lblstatus, "warning")
+                Exit Sub
+            End If
+            Dim confirmValue As String = Request.Form("confirm_value1")
+            If confirmValue = "Yes" Then
+
+                If acode.Value.Trim = "" Then
+                    lblstatus = "Course Code is required!"
+                    Process.loadalert(divalert, msgalert, lblstatus, "warning")
+                    acode.Focus()
+                    Exit Sub
+                End If
+
+                If (radStatus.SelectedText.Trim = "" Or radStatus.SelectedText.Trim.ToLower = "-- select --") Then
+                    lblstatus = "Status required!"
+                    Process.loadalert(divalert, msgalert, lblstatus, "warning")
+                    radStatus.Focus()
+                    Exit Sub
+                End If
+
+                If acoursetitle.Value.Trim = "" Then
+                    lblstatus = "Course title required!"
+                    Process.loadalert(divalert, msgalert, lblstatus, "warning")
+                    acoursetitle.Focus()
+                    Exit Sub
+                End If
+
+
+
+                If IsNumeric(acost.Value) = False Then
+                    lblstatus = "Cost per participants must be in numbers!"
+                    Process.loadalert(divalert, msgalert, lblstatus, "warning")
+                    acost.Focus()
+                    Exit Sub
+                End If
+
+                If Request.QueryString("id") IsNot Nothing Then
+                    Dim strUser As New DataSet
+                    strUser = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Courses_get", Request.QueryString("id"))
+                    olddata(0) = strUser.Tables(0).Rows(0).Item("id").ToString
+                    olddata(1) = strUser.Tables(0).Rows(0).Item("Code").ToString
+                    olddata(2) = strUser.Tables(0).Rows(0).Item("Name").ToString
+                    olddata(3) = strUser.Tables(0).Rows(0).Item("objectives").ToString
+                    olddata(4) = strUser.Tables(0).Rows(0).Item("currency").ToString
+                    olddata(5) = strUser.Tables(0).Rows(0).Item("cost").ToString
+                    olddata(6) = strUser.Tables(0).Rows(0).Item("Status").ToString
+                End If
+
+
+                If txtid.Text.Trim = "" Then
+                    course.id = 0
+                Else
+                    course.id = txtid.Text
+                End If
+
+                course.Code = acode.Value.Trim
+                course.Status = radStatus.SelectedText
+                course.Name = acoursetitle.Value.Trim
+                course.Objective = aobjective.Value.Trim
+                course.Currency = cboCurrency.SelectedValue
+                course.Cost = acost.Value
+
+                Dim OldValue As String = ""
+                Dim NewValue As String = ""
+
+                Dim j As Integer = 0
+
+                If Request.QueryString("id") IsNot Nothing Then 'Updates
+                    For Each a In GetType(clsCourse).GetProperties()
+                        If a.Name.ToLower <> "id" And a.Name.ToLower <> "password" Then
+                            If a.PropertyType.IsValueType = True Or a.PropertyType.Equals(GetType(String)) Then
+                                If IsNumeric(a.GetValue(course, Nothing)) = True And IsNumeric(olddata(j)) = True Then
+                                    If CDbl(a.GetValue(course, Nothing)) <> CDbl(olddata(j)) Then
+                                        NewValue += a.Name + ": " + a.GetValue(course, Nothing).ToString & vbCrLf
+                                        OldValue += a.Name + ": " + olddata(j).ToString & vbCrLf
+                                    End If
+                                Else
+                                    If a.GetValue(course, Nothing).ToString <> olddata(j).ToString Then
+                                        NewValue += a.Name + ": " + a.GetValue(course, Nothing).ToString & vbCrLf
+                                        OldValue += a.Name + ": " + olddata(j).ToString & vbCrLf
+                                    End If
+                                End If
+                            End If
+                        End If
+                        j = j + 1
+                    Next
+                Else
+                    For Each a In GetType(clsCourse).GetProperties() 'New Entries
+                        If a.Name.ToLower <> "id" And a.Name.ToLower <> "password" Then
+                            If a.PropertyType.IsValueType = True Or a.PropertyType.Equals(GetType(String)) Then
+                                If a.GetValue(course, Nothing) = Nothing Then
+                                    NewValue += a.Name + ":" + " " & vbCrLf
+                                Else
+                                    NewValue += a.Name + ": " + a.GetValue(course, Nothing).ToString & vbCrLf
+                                End If
+                            End If
+                        End If
+                    Next
+                End If
+
+                txtid.Text = GetIdentity()
+
+
+                If NewValue.Trim = "" And OldValue.Trim = "" Then
+                Else
+                    If Request.QueryString("id") IsNot Nothing Then
+                        Dim saveAudit As Boolean = Process.GetAuditTrailInsertandUpdate(OldValue, NewValue, "Updated", "Courses")
+                    Else
+                        Dim saveAudit As Boolean = Process.GetAuditTrailInsertandUpdate(OldValue, NewValue, "Inserted", "Courses")
+                    End If
+                End If
+                Process.loadalert(divalert, msgalert, "Record saved!", "success")
+            End If
+        Catch ex As Exception
+            Process.loadalert(divalert, msgalert, ex.Message, "danger")
+        End Try
+    End Sub
     Private Function GetIdentity() As String
 
         Dim strConnString As String = WebConfig.ConnectionString   ' ConfigurationManager.ConnectionStrings("conString").ConnectionString
@@ -297,6 +430,20 @@ Public Class CoursesUpdate
         Catch ex As Exception
 
         End Try
+    End Sub
+    Protected Sub btnCancel1_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Dim confirmValue As String = Request.Form("confirm_value1")
+        If confirmValue = "Yes" Then
+
+            Try
+
+                Session("courseskillLoadsearch") = ""
+                Session("courseskillLoadindex") = "0"
+                Response.Redirect("~/Module/Trainings/Settings/Courses", True)
+            Catch ex As Exception
+
+            End Try
+        End If
     End Sub
 
     Protected Sub Delete(sender As Object, e As EventArgs) Handles btDelete.Click

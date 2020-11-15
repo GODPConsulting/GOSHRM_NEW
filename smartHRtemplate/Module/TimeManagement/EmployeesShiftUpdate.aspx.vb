@@ -46,21 +46,26 @@ Public Class EmployeesShiftUpdate
 
                     txtid.Text = strUser.Tables(0).Rows(0).Item("id").ToString
                     Process.AssignRadDropDownValue(radShift, strUser.Tables(0).Rows(0).Item("shiftname").ToString)
+                    If radShift.SelectedText <> "" Then
+                        Dim shiftTable As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Job_Work_Shift_Get_All")
+                        Dim shiftrows As DataRow() = shiftTable.Tables(0).[Select]("shiftname = '" + radShift.SelectedText + "'")
+                        lblDays.Value = shiftrows(0).Item("duration").ToString()
+                    End If
                     Process.AssignRadComboValue(cboEmployee, strUser.Tables(0).Rows(0).Item("empid").ToString)
                     radStartDate.SelectedDate = CDate(strUser.Tables(0).Rows(0).Item("datefrom"))
-                    radEndDate.SelectedDate = CDate(strUser.Tables(0).Rows(0).Item("dateto"))
+                        radEndDate.SelectedDate = CDate(strUser.Tables(0).Rows(0).Item("dateto"))
 
-                    If strUser.Tables(0).Rows(0).Item("datestr").ToString.ToUpper = "PRESENT" Then
-                        chkCurrent.Checked = True
-                        lblDateTo.Visible = False
-                        radEndDate.Visible = False
+                        If strUser.Tables(0).Rows(0).Item("datestr").ToString.ToUpper = "PRESENT" Then
+                            chkCurrent.Checked = True
+                            lblDateTo.Visible = False
+                            radEndDate.Visible = False
+                        Else
+                            chkCurrent.Checked = False
+                            lblDateTo.Visible = True
+                            radEndDate.Visible = True
+                        End If
                     Else
-                        chkCurrent.Checked = False
-                        lblDateTo.Visible = True
-                        radEndDate.Visible = True
-                    End If
-                Else
-                    txtid.Text = "0"
+                        txtid.Text = "0"
                     chkCurrent.Checked = True
                     lblDateTo.Visible = False
                     radEndDate.Visible = False
@@ -197,4 +202,15 @@ Public Class EmployeesShiftUpdate
 
         End Try
     End Sub
+
+    Protected Sub radShift_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.DropDownListEventArgs) Handles radShift.SelectedIndexChanged
+        Try
+            Dim shiftTable As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Job_Work_Shift_Get_All")
+            Dim shiftrows As DataRow() = shiftTable.Tables(0).[Select]("shiftname = '" + radShift.SelectedText + "'")
+            lblDays.Value = shiftrows(0).Item("duration").ToString()
+        Catch ex As Exception
+            Process.loadalert(divalert, msgalert, ex.Message, "danger")
+        End Try
+    End Sub
+
 End Class
