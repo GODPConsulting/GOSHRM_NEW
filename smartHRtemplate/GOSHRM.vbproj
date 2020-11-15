@@ -2114,6 +2114,7 @@
     <Content Include="Content\kendo\2014.1.318\Uniform\sprite.png" />
     <Content Include="Content\kendo\2014.1.318\Uniform\sprite_2x.png" />
     <Content Include="css\bootstrap-datetimepicker.min.css" />
+    <Content Include="css\bootstrap-multiselect.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\custom.min.css" />
     <Content Include="css\dataTables.bootstrap.min.css" />
@@ -2123,6 +2124,7 @@
     <Content Include="css\fullcalendar.min.css" />
     <Content Include="css\grid.css" />
     <Content Include="css\gridview.css" />
+    <Content Include="css\page-style.css" />
     <Content Include="css\select2.min.css" />
     <Content Include="css\slider-goke.css" />
     <Content Include="css\style.css" />
@@ -2327,6 +2329,7 @@
     <Content Include="images\working-team.png" />
     <Content Include="js\app.js" />
     <Content Include="js\bootstrap-datetimepicker.min.js" />
+    <Content Include="js\bootstrap-multiselect.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\Chart.min.js" />
     <Content Include="js\dataTables.bootstrap.min.js" />
@@ -4448,7 +4451,6 @@
     <Content Include="Scripts\2013.2.611\telerik.window.min.js" />
     <Content Include="Content\kendo\2014.1.318\images\kendoui.woff" />
     <Content Include="Content\kendo\2014.1.318\images\kendoui.ttf" />
-    <Content Include="bin\AjaxControlToolkit.dll.refresh" />
     <None Include="My Project\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
