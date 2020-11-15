@@ -297,7 +297,7 @@ Public Class EmpDashboard
             Dim foundRow As DataRow() = strPresentDays.[Select]("isworkday = 1")
             Dim foundRow1 As DataRow() = strPresentDays.[Select]("leaveid <> '0' and isworkday = 1")
             Dim foundRow2 As DataRow() = strPresentDays.[Select]("checkindate ='' and isworkday = 1 and leaveid = '0'")
-            Span13.InnerText = foundRow.Length.ToString()
+            'Span13.InnerText = foundRow.Length.ToString()
             span14.InnerText = foundRow1.Length.ToString
             span15.InnerText = foundRow2.Length.ToString()
             span16.InnerText = (foundRow.Length - (foundRow1.Length + foundRow2.Length)).ToString()

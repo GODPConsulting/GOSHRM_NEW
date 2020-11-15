@@ -38,6 +38,8 @@
                 dataType: 'json',
 
                 success: function (data) {
+                    document.getElementById("empid").innerText = '';
+                    document.getElementById("empid").innerText = pid;
                     modal.style.display = "block";
                     var present = document.getElementById("present");
                     var leavetaken = document.getElementById("leavetaken");
@@ -162,6 +164,7 @@
                                     <div class="row">
                                     <div class="col-md-6">
                                    <div id="myModal" style="width:88%;margin-left:15%" class="manager-card-wrapper manager-modal">
+                                       <form>
           <div class="manager-modal-content">
             <span class="manager-close" onclick="bad()">&times;</span>
             <div class="manager-card-container">
@@ -169,15 +172,18 @@
                
                     <h3 class="content-card-header">Competence & Dev.</h3>
                     <div class="rating-container">
+                        <textarea style="display:none" cols="1" rows="1" id="empid" name="empid"></textarea>
                       <span class="rating-percent" id="competence">98%</span><span>Rating</span>
                     </div>
                     <div class="manager-btn-wrapper">
-                        <a href="<%= Page.ResolveClientUrl("~/Module/")%>">
-                      <button class="manager-btn">Request Training</button></a>
+                        <a href="<%= Page.ResolveClientUrl("~/Module/Employee/TrainingPortal/AvailableTrainings")%>">
+                      <button class="manager-btn" type="button">Request Training</button></a>
                         <a href="<%= Page.ResolveClientUrl("~/Module/Employee/Performance/DirectReportDevelopmentPlan")%>">
                       <button type="button" class="manager-btn">View Dev Plan</button></a>
-                      <button class="manager-btn">Approve Training</button>
-                      <button class="manager-btn">View Training</button>
+                        <a href="<%= Page.ResolveClientUrl("~/Module/Employee/TrainingPortal/DirectReportTrainings")%>">
+                      <button class="manager-btn" type="button">Approve Training</button></a>
+                        <a href="<%= Page.ResolveClientUrl("~/Module/Employee/TrainingPortal/DirectReportTrainings")%>">
+                      <button class="manager-btn" type="button">View Training</button></a>
                     </div>
                     
                   </div>
@@ -234,11 +240,11 @@
                       <span id="performance" class="rating-percent">98%</span><span>Rating</span>
                     </div>
                     <div class="manager-btn-wrapper">
-                      <button class="manager-btn">View Objective</button>
-                      <button class="manager-btn">View Feedback</button>
+                      <button class="manager-btn" runat="server" onserverclick="ViewObjective_ServerClick">View Objective</button>
+                      <button class="manager-btn" runat="server" onserverclick="ViewFeedback_ServerClick">View Feedback</button>
                         <a href="<%= Page.ResolveClientUrl("~/Module/Employee/Performance/AppraisalFeedBackNuggetsManagerList")%>">
                       <button class="manager-btn" type="button">View Kudos</button></a>
-                      <button class="manager-btn">End Cycles</button>
+                      <button class="manager-btn" runat="server" onserverclick="EndCycle_ServerClick">End Cycles</button>
                     </div>
                 
                     </div>
@@ -281,6 +287,7 @@
                   </div>
                     </div>
               </div>
+                                       </form>
             </div>
           </div>
         </div>

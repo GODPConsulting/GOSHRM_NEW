@@ -140,7 +140,7 @@ Public Class gos
     End Class
 
 
-    <WebMethod()> _
+    <WebMethod()>
     Public Sub getRecipient(ByVal pid As Integer)
         Dim listRecipients As List(Of recipient) = New List(Of recipient)()
         Dim strTest As DataSet
@@ -172,7 +172,7 @@ Public Class gos
         Context.Response.Write(js.Serialize(listRecipients))
     End Sub
 
-    <WebMethod()> _
+    <WebMethod()>
     Public Sub payRecipient(ByVal pid As Integer)
         Dim listTransfers As List(Of transfers) = New List(Of transfers)()
         Dim strTest As DataSet
@@ -206,7 +206,7 @@ Public Class gos
         Context.Response.Write(js.Serialize(recipients))
     End Sub
 
-    <WebMethod()> _
+    <WebMethod()>
     Public Sub updatePaymentStatus(ByVal pid As Integer)
         Dim listRecipients As List(Of transfers) = New List(Of transfers)()
         Dim strTest As Integer
@@ -214,7 +214,7 @@ Public Class gos
     End Sub
 
 
-    <WebMethod()> _
+    <WebMethod()>
     Public Sub updateRecipient(emp As recipient)
         Try
             Dim empid As String = emp.description
@@ -226,11 +226,11 @@ Public Class gos
         End Try
     End Sub
 
-    <WebMethod()> _
+    <WebMethod()>
     Public Sub getcorevaluesbyID(ByVal pid As Integer)
         Dim listProgrammes As List(Of Corevalues) = New List(Of Corevalues)()
         Dim canSetObj As String = "yes"
-       
+
         Dim strTest As DataSet
         strTest = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Performance_Appraisal_Get", pid)
         Dim i As Integer = 0

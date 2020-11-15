@@ -15,6 +15,30 @@ Imports GOSHRM.GOSHRM.GOSHRM.BO
 Public Class test1
     Inherits System.Web.UI.Page
     Public male, female, no, jobtitle As String
+
+    Protected Sub EndCycle_ServerClick(sender As Object, e As EventArgs)
+        Dim id = Request.Form("empid")
+        Dim Performance As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Get_PeformanceID", id)
+        Dim performanceid = Performance.Tables(0).Rows(0).Item("id")
+        Dim Performername = Performance.Tables(0).Rows(0).Item("name")
+        Dim PerformanceOffice = Performance.Tables(0).Rows(0).Item("Office")
+        Dim Link = Process.ApplicationURL + "~/Module/Employee/Performance/AppraisalFeedback?id=" + performanceid
+        SqlHelper.ExecuteScalar(WebConfig.ConnectionString, "Performance_Appraisal_End_Cycle", performanceid)
+        Process.Appraisal_Cycle_End(performanceid, "", Performername, PerformanceOffice, Link)
+    End Sub
+    Protected Sub ViewObjective_ServerClick(sender As Object, e As EventArgs)
+        Dim id = Request.Form("empid")
+        Dim Performance As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Get_PeformanceID", id)
+        Dim performanceid = Performance.Tables(0).Rows(0).Item("id")
+        Response.Redirect("~/Module/Employee/Performance/AppObjectiveUpdate?id=" + performanceid)
+    End Sub
+    Protected Sub ViewFeedback_ServerClick(sender As Object, e As EventArgs)
+        Dim id = Request.Form("empid")
+        Dim Performance As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Get_PeformanceID", id)
+        Dim performanceid = Performance.Tables(0).Rows(0).Item("id")
+        Response.Redirect("~/Module/Employee/Performance/AppraisalFeedback?id=" + performanceid)
+    End Sub
+
     Public CompletionStatusName, CompletionStatusNameScore As String
     Public PerformanceName, PerformanceNameScore As String
 
@@ -437,4 +461,5 @@ Public Class test1
 
     '    End Try
     'End Sub
+
 End Class

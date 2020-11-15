@@ -211,13 +211,11 @@
                 <div><canvas id="pie-charta1" style="width:400px;height:225px"></canvas></div>
                 <div >
                     <div class="pie-chart-detail">
-                        <div class="pie-chart-item">
-                            <span runat="server" id="Span13">24</span>
-                            <span>Total Days</span>
-                        </div>
+                        
                         <div class="pie-chart-item">
                             <span runat="server" id="span12">10hrs</span><span>Overtime hours</span>
-                            <button class="page-btn btn">Request Pay</button>
+                            <a href="<%= Page.ResolveClientUrl("~/Module/Employee/TimeManagement/EmployeeAttendanceCalendar")%>">
+                            <button type="button" class="page-btn btn">Request Pay</button></a>
                         </div>
                     </div>
                     <div class="event-wrapper">
@@ -247,7 +245,7 @@
             <h3 class="content-card-header">My Reward</h3>
             <div class="event-wrapper">
                 <div class="event-item reward-item">
-                    <a href="href="<%= Page.ResolveClientUrl("~/Module/Employee/Performance/AppraisalFeedBackNuggetsOwnerList")%>">
+                    <a href="<%= Page.ResolveClientUrl("~/Module/Reports/Employees/Payslips")%>">
                     <span runat="server" id="Span3" class="event-count">8</span></a><span>Payslip</span>
                 </div>
                 <div class="event-pipe">
@@ -256,7 +254,7 @@
                  
                 <div class="event-item reward-item">
                    
-                   <a href="href="<%= Page.ResolveClientUrl("~/Module/Finance/Loans/LoansAndAdvances")%>"> <span runat="server" id="Span1" class="event-count">8</span></a>
+                   <a href="<%= Page.ResolveClientUrl("~/Module/Finance/Loans/LoansAndAdvances")%>"> <span runat="server" id="Span1" class="event-count">8</span></a>
                     <span>Loans</span>
                 </div>
                      
@@ -267,7 +265,7 @@
                 </div>--%>
                 <div class="event-pipe"></div>
                 <div class="event-item reward-item">
-                    <a href="href="<%= Page.ResolveClientUrl("~/Module/Employee/Performance/AppraisalFeedBackNuggetsOwnerList")%>">
+                    <a href="<%= Page.ResolveClientUrl("~/Module/Employee/Performance/AppraisalFeedBackNuggetsOwnerList")%>">
                     <span runat="server" id="span2" class="event-count">5</span> </a><span>Kudos</span>
                 </div>
             </div>
@@ -275,15 +273,17 @@
                 <h3 class="content-card-header">My Events</h3>
                 <div class="event-wrapper">
                     <div class="event-item reward-item">
-
-                        <span runat="server" id="Span4" class="event-count">2</span>
+                        <a href="<%= Page.ResolveClientUrl("~/cal_view.aspx")%>">
+                        <span runat="server" id="Span4" class="event-count">2</span></a>
                         <span>Scheduled</span>
                     </div>
                     <div class="event-pipe"></div>
                     <div class="event-item reward-item">
-                        <span runat="server" id="Span5" class="event-count">1</span>
+                        <a href="<%= Page.ResolveClientUrl("~/cal_view.aspx")%>">
+                        <span runat="server" id="Span5" class="event-count">1</span></a>
                         <span>Today</span>
                     </div>
+
                 </div>
                 <div class="page-btn-wrapper">
                     <button class="page-btn" runat="server" onserverclick="InitiateNew">Initiate New</button>

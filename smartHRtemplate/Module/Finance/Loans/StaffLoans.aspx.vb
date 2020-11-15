@@ -376,6 +376,7 @@ Public Class StaffLoans
             Dim approver1name As String = ""
             Dim approver2name As String = ""
             Dim status_approver2name As String = ""
+            Dim higherapproval As Boolean = False
 
             Dim confirmValue As String = Request.Form("confirm_app")
             If confirmValue = "Yes" Then
@@ -409,6 +410,7 @@ Public Class StaffLoans
                             status_approver2name = strLoan.Tables(0).Rows(0).Item("status2").ToString
                             approver1name = strLoan.Tables(0).Rows(0).Item("Approver1Name").ToString
                             approver2name = strLoan.Tables(0).Rows(0).Item("Approver2Name").ToString
+                            higherapproval = strLoan.Tables(0).Rows(0).Item("HigherApproval")
                             Dim amortisedeir As Double = 0
                             If IsFairValue.ToUpper = "YES" Then
                                 fairvalue = PV(interestrate / 1200, tenor, monthlypay * -1)
@@ -420,7 +422,7 @@ Public Class StaffLoans
                             amortisedeir = Rate(CDbl(tenor), monthlypay * -1, fairvalue, 0, 0, 0)
 
                             'SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Emp_Loan_Update_Status_Level_2", txtid.Text, txtAmount.Text, ApproveLoan.Finance_Approval_Status, txtComment.Text, Session("UserEmpID"), radFairValue.SelectedText, lblfAIRVALUE.Text, txtIntRate.Text, txtMarketrate.Text, lblamortisedcost.Text, amortisedeir)
-                            SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Emp_Loan_Update_Status_Level_2", LoanRef, loanamount, "Approved", "Approved", Session("UserEmpID"), IsFairValue, fairvalue, interestrate, marketrate, AmortFairValue, amortisedeir)
+                            SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Emp_Loan_Update_Status_Level_2", LoanRef, loanamount, "Approved", "Approved", Session("UserEmpID"), IsFairValue, fairvalue, interestrate, marketrate, AmortFairValue, amortisedeir, higherapproval)
                             SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "auto_loan_schedule_run", CStr(CInt(LoanRef)), fairvalue, monthlypay, repaystartdate, EIR)
 
                             Dim strGrade As New DataSet

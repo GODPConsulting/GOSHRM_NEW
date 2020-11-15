@@ -323,8 +323,9 @@
                     <asp:BoundField DataField="checkoutdate"  HeaderText="Date Out" /> 
                     <asp:BoundField DataField="checkintime"  HeaderText="Time In" SortExpression="checkintime" />  
                     <asp:BoundField DataField="checkouttime" HeaderText="Time Out" SortExpression="checkouttime"  /> 
+                        
                     <asp:BoundField DataField="actualduration" HeaderText="Actual Duration (Hr)" ItemStyle-HorizontalAlign="Right" SortExpression="actualduration" />
-                     
+                     <asp:BoundField DataField="agreedovertime" HeaderText="Overtime Duration" SortExpression="agreedovertime"  /> 
                     <asp:TemplateField HeaderText="" ItemStyle-Font-Bold="true" ItemStyle-HorizontalAlign="Left">
                         <ItemTemplate>                             
                                 <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# string.Format("~/Module/TimeManagement/OvertimeApprovals.aspx?id={0}",

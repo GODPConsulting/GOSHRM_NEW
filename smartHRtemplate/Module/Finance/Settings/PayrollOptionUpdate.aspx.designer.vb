@@ -230,49 +230,22 @@ Partial Public Class PayrollOptionUpdate
     Protected WithEvents UpdatePanel2 As Global.System.Web.UI.UpdatePanel
 
     '''<summary>
-    '''lblOvertimePaymentID control.
+    '''overtimetaxablelabel control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblOvertimePaymentID As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents overtimetaxablelabel As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
-    '''UpdatePanel1 control.
+    '''radovertimetaxable control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
-
-    '''<summary>
-    '''txtOvertimeIndex control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtOvertimeIndex As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''lblpaydesc control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblpaydesc As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lnkexception control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lnkexception As Global.System.Web.UI.WebControls.LinkButton
+    Protected WithEvents radovertimetaxable As Global.Telerik.Web.UI.RadDropDownList
 
     '''<summary>
     '''btnupdate control.

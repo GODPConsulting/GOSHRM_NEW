@@ -10,7 +10,7 @@
         Private _amount As Double
         Private _salarybasedattendance As String
         Private _payovertime As String
-        Private _overtimeindex As Double
+        Private _overtimetaxable As String
 #End Region
 
 #Region "Public Properties"
@@ -90,12 +90,12 @@
                 _payovertime = value
             End Set
         End Property
-        Public Property OvertimeIndex() As Double
+        Public Property OvertimeTaxable() As String
             Get
-                Return _overtimeindex
+                Return _overtimetaxable
             End Get
-            Set(ByVal value As Double)
-                _overtimeindex = value
+            Set(ByVal value As String)
+                _overtimetaxable = value
             End Set
         End Property
 #End Region

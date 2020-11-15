@@ -57,7 +57,7 @@ Public Class PayrollPeriodData
                         Process.AssignRadComboValue(cboapprovalstat, strDataSet.Tables(0).Rows(0).Item("approvalstatus").ToString())
 
                     Else
-                        Dim strApproved As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Payroll_Option_Approver_Get_Approve]", Session("UserEmpID"), Session("Organisation"))
+                        Dim strApproved As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Payroll_Option_Approver_Get_Approve", Session("UserEmpID"), Session("Organisation"))
                         If strApproved.Tables(0).Rows(0).Item("Approve") = True Then
                             Process.AssignRadComboValue(cboapprovalstat, "Approved")
                         Else

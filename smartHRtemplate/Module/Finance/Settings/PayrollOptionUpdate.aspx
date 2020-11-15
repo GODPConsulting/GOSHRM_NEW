@@ -291,7 +291,7 @@
                                         </telerik:RadDropDownList>
                                     </div>
                                 </div>
-                                <div class=" col-md-6">
+                                <div class=" col-md-4">
                                     <div class="form-group">
                                         <label>
                                             MONTHLY SALARIES CALCULATED BASED ON ATTENDANCE</label>
@@ -306,7 +306,7 @@
                                         </telerik:RadDropDownList>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>
                                             OVERTIME PAYMENT ENABLED</label>
@@ -323,33 +323,25 @@
                                         </telerik:RadDropDownList>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-4">
+                                     <div class="form-group">
                                     <asp:UpdatePanel runat="server" ID="UpdatePanel2" UpdateMode="Always">
+                                       
                                         <ContentTemplate>
-                                            <asp:Label ID="lblOvertimePaymentID" runat="server" Font-Names="Verdana" Font-Size="12px" Font-Bold="True" ForeColor="#666666"
-                                                Text="Overtime Payment Index:"></asp:Label>
+                                            <label runat="server"  id="overtimetaxablelabel">Overtime is Taxable</label>
+                                            <telerik:RadDropDownList ID="radovertimetaxable" runat="server" Width="100%" Height="31px" Font-Names="Verdana" Font-Size="12px" Font-Bold="True" Skin="Bootstrap" ForeColor="#666666"
+                                                ResolvedRenderMode="Classic" ToolTip="enabled overtime payment"
+                                            AutoPostBack="True"></telerik:RadDropDownList>
+                                             
                                         </ContentTemplate>
+                                           
                                         <Triggers>
                                             <asp:AsyncPostBackTrigger ControlID="radPayOverTime" EventName="SelectedIndexChanged" />
                                         </Triggers>
                                     </asp:UpdatePanel>
+                                          </div>
 
-                                    <asp:UpdatePanel runat="server" ID="UpdatePanel1" UpdateMode="Always">
-                                        <ContentTemplate>
-                                            <asp:TextBox ID="txtOvertimeIndex" runat="server" Width="70px"
-                                                Font-Names="Verdana" Font-Size="12px" ForeColor="#666666"
-                                                BorderColor="#CCCCCC" BorderWidth="1px"></asp:TextBox>
-                                            &nbsp;<asp:Label ID="lblpaydesc" runat="server" Font-Names="Verdana" Font-Size="12px" ForeColor="#666666"
-                                                Text="Overtime Payment = (Basic * (Overtime/WorkShift)) * OverTimeIndex"
-                                                Font-Italic="True"></asp:Label>
-                                        </ContentTemplate>
-                                        <Triggers>
-                                            <asp:AsyncPostBackTrigger ControlID="radPayOverTime" EventName="SelectedIndexChanged" />
-                                        </Triggers>
-                                    </asp:UpdatePanel>
-
-                                    <asp:LinkButton ID="lnkexception" runat="server" Font-Names="Verdana" Font-Size="12px"
-                                        ToolTip="Grades exempted from Attendance and Overtime">Job Grades Excluded from Overtime and Attendance</asp:LinkButton>
+                                 
                                 </div>
                                 <div class="col-md-12 m-t-20 text-center">
                                     <button id="btnupdate" runat="server" onserverclick="btnAdd_Click" type="submit"

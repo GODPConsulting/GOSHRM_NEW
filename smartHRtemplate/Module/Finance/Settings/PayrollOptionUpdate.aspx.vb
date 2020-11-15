@@ -28,6 +28,9 @@ Public Class PayrollOptionUpdate
                 drpAdjustment.Items.Add("Divide by number of remaining days after date join of Salary Month")
 
                 Dim ismulti As String = SqlHelper.ExecuteScalar(WebConfig.ConnectionString, CommandType.Text, "select isnull(ismulticompany,'No')  from general_info")
+                radovertimetaxable.Items.Clear()
+                radovertimetaxable.Items.Add("Yes")
+                radovertimetaxable.Items.Add("No")
 
 
                 Process.LoadRadDropDownTextAndValue(drpCurrency, "Currency_Load_1", "Currency", "Code", False)
@@ -52,11 +55,12 @@ Public Class PayrollOptionUpdate
                         Process.RadioListCheck(rdoAutoApprove, strUser.Tables(0).Rows(0).Item("autoapprove").ToString)
                         Process.AssignRadDropDownValue(radPayOnAttendance, strUser.Tables(0).Rows(0).Item("SalaryBasedOnAttendance").ToString)
                         Process.AssignRadDropDownValue(radPayOverTime, strUser.Tables(0).Rows(0).Item("PayOvertime").ToString)
+                        Process.AssignRadDropDownValue(radovertimetaxable, strUser.Tables(0).Rows(0).Item("OvertimeTaxable").ToString)
                         lblauto.Text = strUser.Tables(0).Rows(0).Item("autoapprove").ToString
                         lblemail.Text = strUser.Tables(0).Rows(0).Item("autoemailpayslip").ToString
                         lblovertimeenabled.Text = strUser.Tables(0).Rows(0).Item("PayOvertime").ToString
                         lblattendance.Text = strUser.Tables(0).Rows(0).Item("SalaryBasedOnAttendance").ToString
-                        txtOvertimeIndex.Text = strUser.Tables(0).Rows(0).Item("overtimeindex").ToString
+
 
                         txtAmount.Value = FormatNumber(strUser.Tables(0).Rows(0).Item("minamount").ToString, 2)
                         If lblauto.Text = "No" Then
@@ -66,13 +70,9 @@ Public Class PayrollOptionUpdate
                         End If
 
                         If radPayOverTime.SelectedValue.ToUpper = "YES" Then
-                            lblOvertimePaymentID.Visible = True
-                            txtOvertimeIndex.Visible = True
-                            lblpaydesc.Visible = True
+
                         Else
-                            lblOvertimePaymentID.Visible = False
-                            txtOvertimeIndex.Visible = False
-                            lblpaydesc.Visible = False
+
                         End If
                         cboCompany.Enabled = False
                     End If
@@ -88,20 +88,18 @@ Public Class PayrollOptionUpdate
                     Process.AssignRadComboValue(cboCompany, Session("Organisation"))
                     Process.LoadRadComboTextAndValueP1(cboApprove, "Emp_PersonalDetail_Get_Approvers", cboCompany.SelectedValue, "Employee2", "EmpID", False)
                     lblid.Text = "0"
-                    lnkexception.Visible = False
+
                     txtAmount.Value = "0"
-                    txtOvertimeIndex.Text = "0"
+
                     cboApprove.Enabled = False
                     PanelVisibility()
                     Process.AssignRadDropDownValue(radPayOverTime, "No")
                     If radPayOverTime.SelectedValue.ToUpper = "YES" Then
-                        lblOvertimePaymentID.Visible = True
-                        txtOvertimeIndex.Visible = True
-                        lblpaydesc.Visible = True
+                        radovertimetaxable.Visible = True
+                        overtimetaxablelabel.Visible = True
                     Else
-                        lblOvertimePaymentID.Visible = False
-                        txtOvertimeIndex.Visible = False
-                        lblpaydesc.Visible = False
+                        radovertimetaxable.Visible = False
+                        overtimetaxablelabel.Visible = False
                     End If
                 End If
 
@@ -165,7 +163,8 @@ Public Class PayrollOptionUpdate
             payrolloption.MinAmountForApproval = txtAmount.Value
             payrolloption.SalaryBasedOnAttendance = radPayOnAttendance.SelectedValue
             payrolloption.PayOvertime = radPayOverTime.SelectedValue
-            payrolloption.OvertimeIndex = txtOvertimeIndex.Text
+            payrolloption.OvertimeTaxable = radovertimetaxable.SelectedText
+
 
             Dim strUser As New DataSet
             strUser = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Payroll_Options_Get", lblid.Text)
@@ -181,6 +180,7 @@ Public Class PayrollOptionUpdate
                 olddata(7) = strUser.Tables(0).Rows(0).Item("SalaryBasedOnAttendance").ToString
                 olddata(8) = strUser.Tables(0).Rows(0).Item("PayOvertime").ToString
                 olddata(9) = strUser.Tables(0).Rows(0).Item("overtimeindex").ToString
+                olddata(10) = strUser.Tables(0).Rows(0).Item("OvertimeTaxable").ToString
             End If
 
             Dim NewValue As String = ""
@@ -222,12 +222,12 @@ Public Class PayrollOptionUpdate
             End If
 
             If lblid.Text = "0" Then
-                lblid.Text = GetIdentity(lblid.Text, payrolloption.Company, payrolloption.AutoApprovePayslip, payrolloption.AutoMailPayslip, payrolloption.PerDaySalaryAdjustment, payrolloption.Currency, payrolloption.MinAmountForApproval, payrolloption.SalaryBasedOnAttendance, payrolloption.PayOvertime, payrolloption.OvertimeIndex, Session("LoginID"))
+                lblid.Text = GetIdentity(lblid.Text, payrolloption.Company, payrolloption.AutoApprovePayslip, payrolloption.AutoMailPayslip, payrolloption.PerDaySalaryAdjustment, payrolloption.Currency, payrolloption.MinAmountForApproval, payrolloption.SalaryBasedOnAttendance, payrolloption.PayOvertime, Session("LoginID"), payrolloption.OvertimeTaxable)
                 If lblid.Text = "0" Then
                     Exit Sub
                 End If
             Else
-                SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Payroll_Options_Update", lblid.Text, payrolloption.Company, payrolloption.AutoApprovePayslip, payrolloption.AutoMailPayslip, payrolloption.PerDaySalaryAdjustment, payrolloption.Currency, payrolloption.MinAmountForApproval, payrolloption.SalaryBasedOnAttendance, payrolloption.PayOvertime, payrolloption.OvertimeIndex, Session("LoginID"))
+                SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Payroll_Options_Update", lblid.Text, payrolloption.Company, payrolloption.AutoApprovePayslip, payrolloption.AutoMailPayslip, payrolloption.PerDaySalaryAdjustment, payrolloption.Currency, payrolloption.MinAmountForApproval, payrolloption.SalaryBasedOnAttendance, payrolloption.PayOvertime, Session("LoginID"), payrolloption.OvertimeTaxable)
             End If
 
 
@@ -258,7 +258,7 @@ Public Class PayrollOptionUpdate
             Process.LoadListBoxFromCombo(lstApprover, cboApprove)
             lblstatus = "Record saved"
             Process.loadalert(divalert, msgalert, lblstatus, "success")
-            lnkexception.Visible = True
+
             'Response.Redirect("~/Module/Finance/Settings/PayrollOption.aspx", False)
 
         Catch ex As Exception
@@ -266,7 +266,7 @@ Public Class PayrollOptionUpdate
             Process.loadalert(divalert, msgalert, lblstatus, "danger")
         End Try
     End Sub
-    Private Function GetIdentity(id As String, company As String, autoapprove As String, autoemailpayslip As String, perdaysalaryadjustment As String, currency As String, amount As Double, salaryonatendance As String, payovertime As String, sindex As Double, userid As String) As String
+    Private Function GetIdentity(id As String, company As String, autoapprove As String, autoemailpayslip As String, perdaysalaryadjustment As String, currency As String, amount As Double, salaryonatendance As String, payovertime As String, userid As String, overtimetax As String) As String
         Try
             Dim strConnString As String = WebConfig.ConnectionString   ' ConfigurationManager.ConnectionStrings("conString").ConnectionString
             Dim con As New SqlConnection(strConnString)
@@ -282,6 +282,7 @@ Public Class PayrollOptionUpdate
             cmd.Parameters.Add("@amount", SqlDbType.Decimal).Value = amount
             cmd.Parameters.Add("@salaryonatendance", SqlDbType.VarChar).Value = salaryonatendance
             cmd.Parameters.Add("@payovertime", SqlDbType.VarChar).Value = payovertime
+            cmd.Parameters.Add("@OvertimeTaxable", SqlDbType.VarChar).Value = overtimetax
 
             cmd.Parameters.Add("@userid", SqlDbType.VarChar).Value = userid
             cmd.Connection = con
@@ -318,13 +319,11 @@ Public Class PayrollOptionUpdate
 
     Protected Sub radPayOverTime_SelectedIndexChanged(sender As Object, e As Telerik.Web.UI.DropDownListEventArgs) Handles radPayOverTime.SelectedIndexChanged
         If radPayOverTime.SelectedValue.ToUpper = "YES" Then
-            lblOvertimePaymentID.Visible = True
-            txtOvertimeIndex.Visible = True
-            lblpaydesc.Visible = True
+            radovertimetaxable.Visible = True
+            overtimetaxablelabel.Visible = True
         Else
-            lblOvertimePaymentID.Visible = False
-            txtOvertimeIndex.Visible = False
-            lblpaydesc.Visible = False
+            radovertimetaxable.Visible = False
+            overtimetaxablelabel.Visible = False
         End If
     End Sub
 
@@ -349,19 +348,7 @@ Public Class PayrollOptionUpdate
 
 
 
-    Protected Sub lnkResume0_Click(sender As Object, e As EventArgs) Handles lnkexception.Click
 
-        Try
-            Dim url As String = "payrolltimeexception.aspx?id=" & lblid.Text
-            Dim s As String = "window.open('" & url + "', 'popup_window', 'width=800,height=700,status=yes,resizable=no,toolbar=no,menubar=no,location=center,scrollbars=yes,resizable=no');"
-            ClientScript.RegisterStartupScript(Me.GetType(), "script", s, True)
-
-        Catch ex As Exception
-            lblstatus = ex.Message
-            Process.loadalert(divalert, msgalert, lblstatus, "danger")
-        End Try
-
-    End Sub
     Private Function LoadDatatable() As DataTable
         Dim dt As New DataTable
         search.Value = Session("courseskillLoadsearch")
