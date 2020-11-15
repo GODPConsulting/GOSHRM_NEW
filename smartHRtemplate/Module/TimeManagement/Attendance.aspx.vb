@@ -376,13 +376,11 @@ Public Class Attendance
                         SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, "Time_Attendance_Delete_Date", dateFrom.SelectedDate, dateTo.SelectedDate.Value.AddDays(1), cboCompany.SelectedValue)
                     End If
 
-                    If Process.Import(csvPath, "Time_Attendance_upload", Pages) = True Then
+                    If Process.Import(csvPath, "Time_Attendance_Overtime_Upload", Pages) = True Then
 
-                        If AttendanaceCreate(dateFrom.SelectedDate.Value, dateTo.SelectedDate.Value.AddDays(1), cboCompany.SelectedValue) = True Then
-                            Process.loadalert(divalert, msgalert, "Uploaded " & Session("uploadcnt") & " record(s)", "success")
-                        Else
-                            Response.Write(Process.strExp)
-                        End If
+
+                        Process.loadalert(divalert, msgalert, "Uploaded " & Session("uploadcnt") & " record(s)", "success")
+
 
                     Else
                         Response.Write(Process.strExp)

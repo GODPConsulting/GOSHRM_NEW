@@ -199,6 +199,8 @@
                             style="height: 35px;margin-right:10px;margin-left:10px;"></button>--%>
                             <button id="btnZKteco" type="button" data-toggle="tooltip" data-original-title="Upload from ZTECO Database" runat="server" class="fa fa-upload btn btn-default btn-sm" onserverclick="btnZKteco_Click"
                             style="height: 35px;margin-right:10px;margin-left:10px;"></button>  
+                          <button id="Button2" type="button" runat="server" class="fa fa-upload btn btn-default btn-sm"
+                            onserverclick="btnUpload5_Click" data-toggle="tooltip" data-original-title="CSV File (Comma Delimited): EmpID,Overtime,Date" style="margin-right:10px;margin-left:10px;height:35px"></button>
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12 pull-right">
                         <input style="height:35px;" class="form-control" type="file" id="FileUpload1" runat="server" />

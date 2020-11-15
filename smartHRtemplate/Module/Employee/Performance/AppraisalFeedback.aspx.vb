@@ -994,7 +994,12 @@ Public Class AppraisalFeedback
                     gridskills.Columns(6).Visible = False
                     gridskills.Columns(11).Visible = False
                     gridskills.Columns(14).Visible = False
-                    If MngrSummit = "no" Then
+                    If MngrSummit = "no" And EmpSummit = "no" Then
+                        gridskills.Columns(8).Visible = False
+                        gridskills.Columns(9).Visible = False
+                        gridskills.Columns(7).Visible = False
+                        gridskills.Columns(10).Visible = False
+                    ElseIf MngrSummit = "no" And EmpSummit = "yes" Then
                         gridskills.Columns(8).Visible = False
                         gridskills.Columns(9).Visible = False
                     Else
@@ -1010,7 +1015,12 @@ Public Class AppraisalFeedback
                     gridskills.Columns(6).Visible = False
                     gridskills.Columns(7).Visible = False
                     gridskills.Columns(10).Visible = False
-                    If SupSummit = "no" Then
+                    If SupSummit = "no" And MngrSummit = "no" Then
+                        gridskills.Columns(12).Visible = False
+                        gridskills.Columns(13).Visible = False
+                        gridskills.Columns(11).Visible = False
+                        gridskills.Columns(14).Visible = False
+                    ElseIf SupSummit = "no" And MngrSummit = "yes" Then
                         gridskills.Columns(12).Visible = False
                         gridskills.Columns(13).Visible = False
                     Else
