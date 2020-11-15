@@ -144,15 +144,22 @@ Public Class Login
             Dim strDataSet As New DataSet
             strDataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, CommandType.Text, "select * from users where userid = '" & Session("LoginID") & "'")
             If strDataSet.Tables(0).Rows.Count > 0 Then
-                Dim passwordDate As Date = Convert.ToDateTime(strDataSet.Tables(0).Rows(0).Item("passwordupdatedate"))
-                Dim passwordUpdate As Boolean = Convert.ToBoolean(strDataSet.Tables(0).Rows(0).Item("passwordUpdate"))
-                If passwordDate.Date <= Date.Now.Date Then
-                    If passwordUpdate = False Then
-                        Response.Redirect("~/ChangePassword", True)
+                Dim passwordDate As Date = Date.Now.Date
+                Dim passwordUpdate As Boolean = False
+                If (Not IsDBNull(strDataSet.Tables(0).Rows(0).Item("passwordupdatedate"))) And (Not IsDBNull(strDataSet.Tables(0).Rows(0).Item("passwordUpdate"))) Then
+                    passwordDate = Convert.ToDateTime(strDataSet.Tables(0).Rows(0).Item("passwordupdatedate"))
+                    passwordUpdate = Convert.ToBoolean(strDataSet.Tables(0).Rows(0).Item("passwordUpdate"))
+
+                    If passwordDate.Date <= Date.Now.Date Then
+                        If passwordUpdate = False Then
+                            Response.Redirect("~/ChangePassword", True)
+                        End If
+                    Else
+                        SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, CommandType.Text, "update users set passwordupdate = 'false' where userid ='" & Session("LoginID") & "'")
                     End If
-                Else
-                    SqlHelper.ExecuteNonQuery(WebConfig.ConnectionString, CommandType.Text, "update users set passwordupdate = 'false' where userid ='" & Session("LoginID") & "'")
                 End If
+
+
             End If
 
             If (loginSuccess) Then
