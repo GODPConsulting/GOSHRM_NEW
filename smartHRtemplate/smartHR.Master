@@ -1,7 +1,11 @@
 ﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="smartHR.Master.vb" Inherits="GOSHRM.smartHR" %>
 
+<%@ Register Assembly="System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI" TagPrefix="asp" %>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ Register Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" TagPrefix="telerik" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <link rel="icon" type="image/png" href="images/Goshrm.png" />
@@ -329,7 +333,6 @@
 
     </script>
         <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/js/bootstrap-multiselect.js") %>"></script>
-
     </form>
 </body>
 </html>

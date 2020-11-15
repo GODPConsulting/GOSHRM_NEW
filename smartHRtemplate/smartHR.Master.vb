@@ -1,6 +1,7 @@
 ﻿Imports System.Data.SqlClient
 Imports Microsoft.ApplicationBlocks.Data
 Imports System.Web.Script.Serialization
+Imports System.Web.Configuration
 
 Public Class smartHR
     Inherits System.Web.UI.MasterPage
@@ -16,7 +17,7 @@ Public Class smartHR
             Dim spec_search As String = Session("spec")
             txt_search = "%" + txt_search + "%"
             loc_search = "%" + loc_search + "%"
-            spec_search = "%" + spec_search + "%"            
+            spec_search = "%" + spec_search + "%"
             Dim calds As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Emp_MailBox_Received_Unread_Get_All", Session("userempid"))
             If calds.Tables(0).Rows.Count > 0 Then
                 Dim c As Integer = calds.Tables(0).Rows.Count
@@ -48,7 +49,7 @@ Public Class smartHR
                         y.Append("</div>")
                         y.Append("</a>")
                         y.Append("</li>")
-                    Next                
+                    Next
                 End If
                 Dim ww As String = y.ToString()
                 mail_list.InnerHtml = ww
