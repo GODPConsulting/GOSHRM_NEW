@@ -17,7 +17,7 @@
                     <a href="<%= Page.ResolveClientUrl("~/manager")%>">Manager Dashboard</a>
                 </li>
                <li style="display:none" class="link_hr">
-                    <a href="<%= Page.ResolveClientUrl("~/hrdashboard2")%>" style="border-bottom: 2px solid teal; padding-bottom: 5px">HR Dashboard</a>
+                    <a href="<%= Page.ResolveClientUrl("~/hrdashboard2.aspx")%>" style="border-bottom: 2px solid teal; padding-bottom: 5px">HR Dashboard</a>
                 </li>
                 <li style="display:none" class="link_hr">
                     <a href="<%= Page.ResolveClientUrl("~/hrdashboard")%>">HR Analytics</a>

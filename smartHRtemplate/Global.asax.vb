@@ -15,6 +15,7 @@ Public Class Global_asax
     Private Shared Sub RegisterRoutes(ByVal routes As RouteCollection)
         routes.MapPageRoute("getcorevalues", "getcorevalues", "~/res_new/gos.asmx/getcorevalues")
         routes.MapPageRoute("empdashboard", "empdashboard", "~/empdashboard.aspx")
+        routes.MapPageRoute("hrdashboard2", "hrdashboard2", "~/hrdashboard2.aspx")
         routes.MapPageRoute("default", "default", "~/default.aspx")
         routes.MapPageRoute("changepassword", "changepassword", "~/changepassword.aspx")
         routes.MapPageRoute("Module/Employee/Performance/appObjectiveUpdate", "Module/Employee/Performance/appObjectiveUpdate", "~/Module/Employee/Performance/appObjectiveUpdate.aspx")
