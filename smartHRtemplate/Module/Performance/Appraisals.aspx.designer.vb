@@ -41,6 +41,15 @@ Partial Public Class Appraisals
     Protected WithEvents lblcycleid As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''content control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents content As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''pagetitle control.
     '''</summary>
     '''<remarks>
