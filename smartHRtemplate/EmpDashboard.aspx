@@ -191,7 +191,7 @@
                  <div class="content-card chart-card">
            <h3 class="content-card-header">Performance</h3>
            <div class="bar-chart-wrapper">
-               <canvas id="line-chart" style="margin-top:-25px; width:60%;max-height: 220px !important"> </canvas>
+               <canvas id="line-chart" style="margin-top:-25px; width: 75% !important;max-height: 220px !important"> </canvas>
                <div class="right-side">
                    <button runat="server" onserverclick="ObjectiveList_ServerClick" class="page-btn bar-btn"> Objective</button>
                    <button runat="server" onserverclick="FeedbackList_ServerClick" class="page-btn bar-btn ">Feedback</button>

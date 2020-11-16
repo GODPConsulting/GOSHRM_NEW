@@ -142,6 +142,8 @@
     flex-direction: column;
     width: 200px;
     align-items: center;
+    position: absolute;
+    margin-left: 68%;
 }
 
 .bar-btn {

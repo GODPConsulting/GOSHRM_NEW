@@ -41,7 +41,7 @@ Public Class EmpDashboard
     End Sub
     Protected Sub ApplyLeave_ServerClick(sender As Object, e As EventArgs)
         Try
-            Response.Redirect("~/Module/Employee/TrainingPortal/AvailableTrainings.aspx?id=emp", True)
+            Response.Redirect("~/Module/Employee/LeaveManagement/LeaveRoster.aspx?id=emp", True)
         Catch ex As Exception
 
         End Try
@@ -483,7 +483,7 @@ Public Class EmpDashboard
     End Sub
     Protected Sub InitiateNew(ByVal sender As Object, ByVal e As EventArgs)
         Try
-            Response.Redirect("~/cal_view", True)
+            Response.Redirect("~/cal_view.aspx", True)
         Catch ex As Exception
 
         End Try

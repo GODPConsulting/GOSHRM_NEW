@@ -20,32 +20,42 @@ Public Class test1
     Protected Sub EndCycle_ServerClick(sender As Object, e As EventArgs)
         Dim id = Request.Form("empid")
         Dim Performance As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Get_PeformanceID", id)
-        Dim performanceid = Performance.Tables(0).Rows(0).Item("id").ToString()
-        Dim Performername = Performance.Tables(0).Rows(0).Item("name").ToString()
-        Dim PerformanceOffice = Performance.Tables(0).Rows(0).Item("Office").ToString()
-        Dim Link = Process.ApplicationURL + "~/Module/Employee/Performance/AppraisalFeedback?id=" + performanceid
-        Try
-            SqlHelper.ExecuteScalar(WebConfig.ConnectionString, "Performance_Appraisal_End_Cycle", performanceid)
-            Process.Appraisal_Cycle_End(performanceid, "", Performername, PerformanceOffice, Link)
-        Catch ex As Exception
-            'Content.Style.Add("display", "none")
-            Process.loadalert(divalert, msgalert, "No Cycle in session", "info")
-            Exit Sub
-        End Try
-
-
+        If Performance.Tables(0).Rows.Count > 0 Then
+            Dim performanceid = Performance.Tables(0).Rows(0).Item("id").ToString()
+            Dim Performername = Performance.Tables(0).Rows(0).Item("name").ToString()
+            Dim PerformanceOffice = Performance.Tables(0).Rows(0).Item("Office").ToString()
+            Dim Link = Process.ApplicationURL + "~/Module/Employee/Performance/AppraisalFeedback?id=" + performanceid
+            Try
+                SqlHelper.ExecuteScalar(WebConfig.ConnectionString, "Performance_Appraisal_End_Cycle", performanceid)
+                Process.Appraisal_Cycle_End(performanceid, "", Performername, PerformanceOffice, Link)
+            Catch ex As Exception
+                'Content.Style.Add("display", "none")
+                Process.loadalert(divalert, msgalert, "No Cycle in session", "info")
+                Exit Sub
+            End Try
+        End If
     End Sub
     Protected Sub ViewObjective_ServerClick(sender As Object, e As EventArgs)
         Dim id = Request.Form("empid")
         Dim Performance As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Get_PeformanceID", id)
-        Dim performanceid = Performance.Tables(0).Rows(0).Item("id").ToString()
-        Response.Redirect("~/Module/Employee/Performance/AppObjectiveUpdate?id=" + performanceid, True)
+        If Performance.Tables(0).Rows.Count > 0 Then
+            Dim performanceid = Performance.Tables(0).Rows(0).Item("id").ToString()
+            Response.Redirect("~/Module/Employee/Performance/AppObjectiveUpdate?id=" + performanceid, True)
+        Else
+            Response.Redirect("~/Module/Employee/Performance/DirectReportAppraisalObjectivesForm.aspx")
+        End If
+
     End Sub
     Protected Sub ViewFeedback_ServerClick(sender As Object, e As EventArgs)
         Dim id = Request.Form("empid")
         Dim Performance As DataSet = SqlHelper.ExecuteDataset(WebConfig.ConnectionString, "Get_PeformanceID", id)
-        Dim performanceid = Performance.Tables(0).Rows(0).Item("id").ToString()
-        Response.Redirect("~/Module/Employee/Performance/AppraisalFeedback?id=" + performanceid, True)
+        If Performance.Tables(0).Rows.Count > 0 Then
+            Dim performanceid = Performance.Tables(0).Rows(0).Item("id").ToString()
+            Response.Redirect("~/Module/Employee/Performance/AppraisalFeedback?id=" + performanceid, True)
+        Else
+            Response.Redirect("~/Module/Employee/Performance/DirectReportAppraisalObjectivesForm.aspx")
+        End If
+
     End Sub
 
     Public CompletionStatusName, CompletionStatusNameScore As String
@@ -67,7 +77,7 @@ Public Class test1
                     Dim empid = strEmployee.Tables(0).Rows(i).Item("empid").ToString()
                     Dim chap As char= Name.Substring(0, 1)
                     Dim jsfunction = " good('" + empid + "')"
-                    Dim url = Process.ApplicationURL + "/Module/Employee/EmployeeProfile?empid=" + empid
+            Dim url = Process.ApplicationURL + "/Module/Employee/EmployeeProfile?empid=" + empid
                     s.Append("<tr>
                            <td><a href='" + url + "'  class='avatar'>" + chap + "</a><h2><a href='#' onclick=" + jsfunction + ">" + Name + "<span>" + JobTitle + "</span></a></h2>
 											</td>

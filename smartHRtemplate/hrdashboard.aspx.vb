@@ -42,7 +42,7 @@ Public Class hrdashboard
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If cboCompany.Text = "" Then
             Process.LoadRadComboTextAndValueP2(cboCompany, "Company_Structure_Get_ByLevel", "2", Session("Access"), "name", "name", False)
-            Process.AssignRadComboValue(cboCompany, Session("company"))
+            'Process.AssignRadComboValue(cboCompany, Session("company"))
         End If
 
     End Sub
