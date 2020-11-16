@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/smartHR.Master" CodeBehind="EmpDashboard.aspx.vb" Inherits="GOSHRM.EmpDashboard" %>
+﻿    <%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/smartHR.Master" CodeBehind="EmpDashboard.aspx.vb" Inherits="GOSHRM.EmpDashboard" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
 </asp:Content>
@@ -191,14 +191,14 @@
                  <div class="content-card chart-card">
            <h3 class="content-card-header">Performance</h3>
            <div class="bar-chart-wrapper">
-               <canvas id="line-chart" style="margin-top:-25px; width: 75% !important;max-height: 220px !important"> </canvas>
-               <div class="right-side">
+               <canvas id="line-chart" style="margin-top:-25px; max-width: 374px !important;max-height: 220px !important"> </canvas>
+               <div class="c">
                    <button runat="server" onserverclick="ObjectiveList_ServerClick" class="page-btn bar-btn"> Objective</button>
                    <button runat="server" onserverclick="FeedbackList_ServerClick" class="page-btn bar-btn ">Feedback</button>
-                   <div class="feedback-wrapper">
+                   <button class="page-btn bar-btn">
                        <span>2</span>
                        <span>Feedback</span>
-                   </div>
+                   </button>
                </div>
            </div>
         </div>
@@ -208,7 +208,7 @@
                   <div class="content-card pie-chart-card">
             <h3 class="content-card-header">My Time</h3>
             <div class="pie-chart-wrapper">
-                <div><canvas id="pie-charta1" style="width:400px;height:225px"></canvas></div>
+                <div><canvas id="pie-charta1" style="max-width:285px !important;height:225px;"></canvas></div>
                 <div >
                     <div class="pie-chart-detail">
                         

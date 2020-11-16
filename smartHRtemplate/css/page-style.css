@@ -17,6 +17,7 @@
     /* width: 300px; */
     margin: 2px;
     border-radius: 8px;
+    padding: 5px;
 }
 
 .chart-card {
@@ -140,10 +141,10 @@
 .right-side {
     display: flex;
     flex-direction: column;
-    width: 200px;
+    //width: 200px;
     align-items: center;
-    position: absolute;
-    margin-left: 68%;
+    //position: absolute;
+    //margin-left: 68%;
 }
 
 .bar-btn {
@@ -342,6 +343,8 @@
     cursor: pointer;
     border-radius: 8px;
     text-align: center;
+    height: 70px;
+    width: 80px;
 }
 
 /* The Modal (background) */
@@ -365,7 +368,7 @@
     margin: auto;
     padding: 10px;
     border: 1px solid #888;
-    width: 95%;
+    width: 89%;
     border-radius: 8px;
 }
 
@@ -390,12 +393,26 @@
     }
 
     .manager-modal-content {
-        width: 70%;
+        width: 80%;
     }
 
     .content-wrapper {
         flex-direction: column;
     }
+    .pie-chart-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+    .pie-chart-card {
+        height: 490px !important
+    }
+    .chart-card {
+        height: 370px !important;
+    }
+    .bar-btn {
+        width: 105px
+    }
+   
 }
 
 @media only screen and (max-width: 768px) {
@@ -414,6 +431,13 @@
     .content-card {
         flex-basis: 49%;
     }
+    .bar-chart-wrapper {
+        flex-direction: column;
+        align-items: center
+    }
+    .comp-card {
+        height: 230px;
+    }
 }
 
 @media only screen and (max-width: 1024px) {
@@ -427,5 +451,19 @@
 
     .content-card {
         flex-basis: 49%;
+    }
+    .bar-chart-wrapper {
+        flex-direction: column;
+        align-items:center
+    }
+    .reward-card {
+        height: 400px
+    }
+
+    .pie-chart-card, .chart-card {
+        height: 360px
+    }
+    .comp-card {
+        height: 400px
     }
 }

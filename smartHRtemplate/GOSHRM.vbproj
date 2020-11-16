@@ -173,20 +173,20 @@
     <Reference Include="System.EnterpriseServices">
       <Private>True</Private>
     </Reference>
-    <Reference Include="Telerik.Web.Design, Version=2015.2.623.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Web.Design, Version=2015.2.623.35, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\UI for ASP.NET AJAX Q2 2015\Bin40\Telerik.Web.Design.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Telerik\UI for ASP.NET AJAX Q2 2015\Bin35\Telerik.Web.Design.dll</HintPath>
     </Reference>
     <Reference Include="Telerik.Web.Mvc, Version=2013.2.611.340, Culture=neutral, PublicKeyToken=29ac1a93ec063d92, processorArchitecture=MSIL">
       <HintPath>..\packages\TelerikMvcExtensions.2013.2.611\lib\net40\Telerik.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Web.UI, Version=2015.2.623.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Web.UI, Version=2015.2.623.35, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\UI for ASP.NET AJAX Q2 2015\Bin40\Telerik.Web.UI.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Telerik\UI for ASP.NET AJAX Q2 2015\Bin35\Telerik.Web.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Web.UI.Skins, Version=2015.2.623.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+    <Reference Include="Telerik.Web.UI.Skins, Version=2015.2.623.35, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Telerik\UI for ASP.NET AJAX Q2 2015\Bin40\Telerik.Web.UI.Skins.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Telerik\UI for ASP.NET AJAX Q2 2015\Bin35\Telerik.Web.UI.Skins.dll</HintPath>
     </Reference>
     <Reference Include="TimePicker">
       <HintPath>..\..\..\..\..\..\inetpub\wwwroot\goshrm\bin\TimePicker.dll</HintPath>
@@ -236,6 +236,9 @@
     <Content Include="bin\System.Web.dll" />
     <Content Include="bin\System.Web.Extensions.dll" />
     <Content Include="bin\Telerik.Web.Design.dll" />
+    <Content Include="bin\Telerik.Web.UI.dll" />
+    <Content Include="bin\Telerik.Web.UI.Skins.dll" />
+    <Content Include="bin\Telerik.Web.UI.xml" />
     <Content Include="bin\TimePicker.dll" />
     <Content Include="bower_components\bootstrap\dist\css\bootstrap-theme.css" />
     <Content Include="bower_components\bootstrap\dist\css\bootstrap-theme.min.css" />
