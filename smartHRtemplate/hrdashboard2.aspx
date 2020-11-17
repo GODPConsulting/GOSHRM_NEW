@@ -295,8 +295,8 @@
                                             staffLoan.innerText = sup.staffLoan;
                                             leaveAllowance.innerText = sup.leaveAllowance;
                                             overTimeRequest.innerText = sup.overTimeRequest;
-                                            turnoverCount.innerText = sup.turnoverCount;
-                                            workforceCount.innerText = sup.workforceCount;
+                                            turnoverCount.innerText = sup.turnoverCount + "%";
+                                            workforceCount.innerText = sup.workforceCount + "%";
                                             hmo.innerText = sup.hmo;
                                         });
                                     },
