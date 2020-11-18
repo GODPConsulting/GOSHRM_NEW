@@ -80,7 +80,7 @@
                   <a href="<%= Page.ResolveClientUrl("~/Module/Recruitment/WorkForceBudget.aspx")%>"><div class="hr-item">
                     <span id="workforceplan">0</span><span>Workforce Plan</span>
                   </div></a>
-                 <a href="<%= Page.ResolveClientUrl("~/Module/Recruitment/WorkForceBudgetUpdate")%>"><div class="hr-item">Initiate Workforce Plan</div></a>
+                 <a href="<%= Page.ResolveClientUrl("~/Module/Recruitment/WorkForceBudgetUpdate")%>"><div class="hr-item"><span>Initiate</span> <span>Workforce Plan</span></div></a>
                 </div>
                 <div class="hr-item-container">
                   <a href="<%= Page.ResolveClientUrl("~/Module/Recruitment/StaffRequisitionForm.aspx")%>"><div class="hr-item">
@@ -146,10 +146,10 @@
               <div>
                 <div class="hr-item-container">
                   <a href="<%= Page.ResolveClientUrl("~/Module/Trainings/Settings/Courses.aspx")%>"><div class="hr-item">
-                    <span></span><span>Development Activities</span>
+                    <span></span><span>Dev Activities</span>
                   </div></a>
                   <a href="<%= Page.ResolveClientUrl("~/Module/Trainings/Settings/TrainingSessions.aspx")%>"><div class="hr-item">
-                    <span>Initiate</span><span>Development Session</span>
+                    <span>Initiate</span><span>Dev Session</span>
                   </div></a>
                 </div>
                 <div class="hr-item-container">
@@ -295,8 +295,8 @@
                                             staffLoan.innerText = sup.staffLoan;
                                             leaveAllowance.innerText = sup.leaveAllowance;
                                             overTimeRequest.innerText = sup.overTimeRequest;
-                                            turnoverCount.innerText = sup.turnoverCount;
-                                            workforceCount.innerText = sup.workforceCount;
+                                            turnoverCount.innerText = sup.turnoverCount + "%";
+                                            workforceCount.innerText = sup.workforceCount + "%";
                                             hmo.innerText = sup.hmo;
                                         });
                                     },
